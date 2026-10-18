@@ -27,13 +27,10 @@ with sync_playwright() as p:
         first = page.locator('.all-takes-table tbody > tr').first
         expect(first.locator('.has-selection')).to_have_count(3)
         expect(first.locator('.partial-selection')).to_have_count(1)
-        name = first.locator('[data-cutlist-take]').bounding_box()
-        stars = first.locator('.star-rating').bounding_box()
-        assert abs(name['y']+name['height']/2-stars['y']-stars['height']/2) <= 1
+        expect(page.locator('.all-takes-view .star-rating')).to_have_count(0)
         tools = first.locator('.all-takes-tools').bounding_box()
         first.locator('[data-take-best]').click()
         first.locator('[data-take-alt]').click()
-        first.locator('[data-stars="4"]').click()
         assert tools == first.locator('.all-takes-tools').bounding_box()
         expect(first.locator('[data-take-best]')).to_have_attribute('aria-pressed', 'true')
         expect(first.locator('[data-take-alt]')).to_have_text('Alt 1')
