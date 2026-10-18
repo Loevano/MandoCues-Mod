@@ -98,7 +98,7 @@ function quickNoteSuggestions(t,place) {
   return `<section class="quick-note-suggestions" aria-label="Quick notes"><span>Quick notes</span><div>${['Intonation','More expressive','Less expressive','Tight','Alt take'].map(text=>`<button type="button" data-quick-note="${text}" data-take="${t.id}" data-editor-place="${place}">${text}</button>`).join('')}</div></section>`;
 }
 // Navigation has the same meaning in Recording and Cut list.
-let takeNumberEntry=null,takeNumberTimer=null;
+let takeNumberEntry=null,takeNumberTimer=null,bracketKeyHold=null;
 function navigationKeysAvailable(event){
  return active&&['bediening','partituur'].includes(active.id)
   &&!document.querySelector('dialog[open]')
@@ -156,17 +156,24 @@ function handleTakeNumberEntry(e){
  cancelTakeNumberEntry();
 }
 document.addEventListener('keydown',handleTakeNumberEntry,true);
-document.addEventListener('keyup',e=>{if(takeNumberEntry&&!e.altKey&&!e.metaKey)showTakeNumberEntry();},true);
+document.addEventListener('keyup',e=>{if(['BracketLeft','BracketRight'].includes(e.code))bracketKeyHold=null;if(takeNumberEntry&&!e.altKey&&!e.metaKey)showTakeNumberEntry();},true);
 document.addEventListener('pointerdown',cancelTakeNumberEntry,true);
 document.addEventListener('focusin',e=>{if(takeNumberEntry&&!navigationKeysAvailable(e))cancelTakeNumberEntry();});
-window.addEventListener('blur',cancelTakeNumberEntry);
+window.addEventListener('blur',()=>{bracketKeyHold=null;cancelTakeNumberEntry();});
 function handleExtraKey(e) {
- if(!active||e.isComposing||e.repeat)return false;
+ if(!active||e.isComposing)return false;
+ if(e.repeat&&!['BracketLeft','BracketRight'].includes(e.code))return false;
  if(active.id==='take-afspraak'&&e.key==='Enter'&&(e.metaKey||e.ctrlKey)&&!e.shiftKey&&!e.altKey){e.preventDefault();if(state().live)registerDemoTake(state(),'timed');else toast('Er is recording geen take-registratie om te stoppen.');return true;}
  if(!navigationKeysAvailable(e)||e.metaKey||e.ctrlKey||e.shiftKey)return false;
  const direction=e.code==='BracketLeft'?-1:e.code==='BracketRight'?1:0;
  if(direction){
-  e.preventDefault();const s=state();
+  e.preventDefault();const s=state(),now=Date.now();
+  if(e.repeat){
+   if(!bracketKeyHold||bracketKeyHold.code!==e.code||bracketKeyHold.alt!==e.altKey)return true;
+   const interval=now-bracketKeyHold.started<900?240:110;
+   if(now-bracketKeyHold.last<interval)return true;
+   bracketKeyHold.last=now;
+  }else bracketKeyHold={code:e.code,alt:e.altKey,started:now,last:now};
   if(e.altKey){
    const takes=s.takes[s.cue],index=takes.findIndex(t=>t.id===s.selected);
    if(!takes.length){toast('No takes in this cue yet.');return true;}

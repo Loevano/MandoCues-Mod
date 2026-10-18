@@ -556,3 +556,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Nieuwste keuze: voorstelnaam, Rondleiding, Vragen en Claude-prompt compact bovenaan in een eigen balk.
 - Deze reviewbediening hoort niet bij de voorgestelde opname-GUI; ook in Cut list staat die apart.
 - De rondleiding blijft een verzameling vrijblijvende ideeën, zonder oordeel over het bestaande programma.
+
+
+## 62. Brackets ingedrukt houden
+
+- Eén druk blijft één cue of take. Ingedrukt houden herhaalt de navigatie en versnelt na kort vasthouden.
+- Alt blijft takes betekenen, zonder Alt cues. In tekstvelden blijven brackets tekst; cijfer- en opnameacties herhalen niet.
