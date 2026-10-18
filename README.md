@@ -2,7 +2,7 @@
 
 Vrijblijvende voorstellen voor de opnameworkflow. De interface is Engels; vragen en toelichting zijn Nederlands.
 
-**Bekijken:** open [prototype/dist/index.html](prototype/dist/index.html) in je browser. Werkt lokaal en offline.
+**Bekijken:** open [index.html](index.html) in de projectroot in je browser. Deze opent het prototype in `prototype/dist/`. Werkt lokaal en offline.
 
 **Verder werken met Codex:** open deze hele map en gebruik [CODEX_STARTPROMPT.txt](CODEX_STARTPROMPT.txt). Lees [AGENTS.md](AGENTS.md) en [HUIDIGE_STAND.md](HUIDIGE_STAND.md) voor de actuele keuzes.
 

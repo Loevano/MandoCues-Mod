@@ -28,6 +28,7 @@ for marker, value in [('CSS',(SRC/'style.css').read_text()),('CONTENT',json.dump
 for name in ['03-opnamestatus.html','04-notities.html','03-opnamestatus.md','04-notities.md','MandoCues-overdracht-aan-collega.md','01-prompt-B.txt','06-take-afspraak.html','06-take-afspraak.md','07-kniplijst.html','07-kniplijst.md','07-prompt-A.txt','07-prompt-B.txt','04-prompt-B.txt','06-kniplijst.html','06-kniplijst.md','06-prompt-A.txt','06-prompt-B.txt','Jens-input.md']:
     (DIST/name).unlink(missing_ok=True)
 (DIST/'index.html').write_text(shell)
+shutil.copyfile(SRC/'root.html', ROOT.parent/'index.html')
 (DIST/'Aanvullende-input.md').write_text((SRC/'extra-input.md').read_text())
 (DIST/'Bestaand-scherm-context.md').write_text((SRC/'rendered-context.md').read_text())
 (DIST/'Wijzigingen-18-oktober.md').write_text((SRC/'changes-20261018.md').read_text())
