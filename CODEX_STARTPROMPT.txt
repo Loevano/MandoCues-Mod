@@ -1,14 +1,20 @@
-Dit is een overdracht van Floris’ MandoCues-prototypes.
+Dit is Floris’ MandoCues-voorstel: één werkruimte met Recording, Cut list en een rondleiding.
 
-Lees eerst AGENTS.md, HUIDIGE_STAND.md en prototype/README.md.
+Lees AGENTS.md, HUIDIGE_STAND.md en prototype/README.md.
 Controleer met python3 -X utf8 prototype/check_handoff.py dat broncode en build overeenkomen.
-Gebruik op Windows eventueel py -3 in plaats van python3.
-Open prototype/dist/index.html als je het prototype wilt bekijken.
+Open index.html of prototype/dist/index.html om de pagina te bekijken.
 
-Werk bij aanpassingen in prototype/src/ en bouw daarna opnieuw met prototype/build.py.
-De actuele stand gaat voor oudere opmerkingen in Alle-notes-van-Floris.md.
-Alle echte GUI-tekst is Engels; vragen en toelichting voor de collega mogen Nederlands blijven.
-Dit zijn vrijblijvende voorstellen, geen opdracht om alles in de echte app te implementeren.
-Verander niets op SoundVibeHQ en upload of publiceer niets zonder mijn opdracht.
+De vastgelegde keuzes:
+- Opnameweergave: 2A, bediening bovenaan en compacte balk bij scrollen.
+- Kniplijst: de bestaande scorebediening behouden, inclusief All takes en instellingen.
+- Beide weergaven delen cues, takes, notes, beoordelingen en opname-state.
+- Bij openen een keuze: Rondleiding starten of Zelf bekijken.
+- Eén korte uitleg en highlight per suggestie; een checkbox kiest die tekst voor Claude.
+- Alleen gekozen vaste promptteksten samenvoegen. Vragen blijven vragen.
+- De oude vijf prototypes staan onder Git-tag before-unified-ui-20261018.
 
-Controleer nu alleen of de overdracht werkt en geef kort aan hoe ik kan starten. Wacht daarna op mijn concrete wijzigingsvraag.
+Werk in prototype/src/ en bouw opnieuw met prototype/build.py.
+Alle echte GUI-tekst is Engels; rondleiding en toelichting blijven Nederlands.
+Leg onduidelijke ontwerpkeuzes aan mij voor; verzin geen nieuwe A/B-demos.
+Mijn code en ontwerpkeuzes blijven leidend. Niets publiceren of op SoundVibeHQ wijzigen zonder mijn opdracht.
+Controleer nu alleen of de overdracht werkt en wacht daarna op mijn concrete wijzigingsvraag.

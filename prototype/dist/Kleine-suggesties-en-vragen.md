@@ -1,4 +1,6 @@
-# Kleine aanpassingen
+# Suggesties en open vragen
+
+## Kleine suggesties
 
 - Zou 1–5 sterren handiger zijn dan Good / NG / Hold, eventueel met een filter?
 - Een cue direct aanklikken in de lijst, naast Go to cue.
@@ -19,4 +21,3 @@
 - Welke timers hebben we tijdens de sessie echt nodig?
 - Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?
-

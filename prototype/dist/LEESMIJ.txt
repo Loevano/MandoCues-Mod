@@ -1,66 +1,32 @@
-Prototypes van Floris
+MandoCues · voorstel van Floris
 
-Open index.html in je browser. Dit bestand werkt op zichzelf en offline.
-De genummerde HTML-bestanden openen direct hun eigen voorbeeld via index.html.
-Laat die bestanden bij elkaar in dezelfde map; alleen index.html bevat alle data.
-Je kunt ook uitsluitend index.html sturen: dat werkt zelfstandig en offline.
-Het overzicht begint met kleine aanpassingen in bullets. Daaronder staan
-vijf prototypes, elk met één grotere vraag. Aanvullende input vult bestaande
-voorbeelden aan. De kniplijst staat bij prototype 04; export is alleen een opmerking.
+Open index.html in je browser. Dit bestand werkt zelfstandig en offline.
+Bij openen kies je Rondleiding starten of Zelf bekijken.
 
-1. Probeer een suggestie en vergelijk de beschikbare varianten.
-2. Klik Kopieer prompt bij de variant die je wilt gebruiken.
-3. Plak de prompt in je eigen Claude. Jouw ontwerpkeuzes gaan voor.
+Eén werkruimte: Recording en Cut list delen cues, takes, sterren en notes.
+Recording gebruikt bediening bovenaan met een compacte balk bij scrollen.
+Cut list bevat de bestaande scorefuncties en het All takes-overzicht.
 
-Filmmodus is handig voor een schermopname. Escape toont de uitleg weer.
-Suggesties-van-Floris.md bevat alle uitleg en de beschikbare prompts per voorbeeld.
-De prompts staan ook los in de genummerde .txt-bestanden.
-Onderaan het overzicht kun je suggesties aanvinken en per voorstel één variant
-kiezen. Kopieer of download daarna de hele selectie voor Claude. De bestaande
-teksten worden samengevoegd; er wordt geen nieuwe prompt gegenereerd.
-De selectie wordt waar mogelijk in deze browser bewaard en reist niet mee
-met de ZIP. De ontvanger kiest zelf wat hij wil overnemen.
-Aanvullende-input.md bevat de aanvullende input en waar die is verwerkt.
-Bestaand-scherm-context.md beschrijft de zichtbare bestaande functies uit de
-aangeleverde inspector-HTML, plus de beperkingen van die momentopname.
-Score-ervaring-voor-Claude.md geeft optionele achtergrond uit Floris’ andere project.
-Partituren-overzicht.md en Score-catalogus.json beschrijven de gevonden boeken
-en cuepagina's. Prototype 04 opent per cue de bijbehorende full-scorepagina’s.
-Arrival staat op PDF-pagina 7–9, maat 1–41. Het originele boek blijft ongewijzigd.
-De overige maatvakken zijn benaderd vanuit gedrukte maatnummers; meermaatsrusten
-zijn niet opgesplitst. 1M09A en 1M09B delen de score 1M09AB, met aparte take-data.
-Elke take heeft eigen notes en geselecteerde maten. Een nieuwe take begint schoon.
-Cmd + linksklik voegt volledige maten toe voor alle instrumenten; Cmd + rechtsklik
-verwijdert volledige maten. Slepen werkt ook, zonder dat Shift nodig is.
-Dubbelklik opent een invoerveld. Enter zet alleen tekst boven de betreffende
-notenbalk, of boven het systeem voor Alle instrumenten. Onder/Vrij blijven opties.
-Met Cmd/Ctrl+klik in de take-lijst kun je takes vergelijken. Takekleuren blijven in de
-lijst en geselecteerde maatvakken herkenbaar. Cmd+Z maakt
-selectie- en commentacties ongedaan. De score loopt volledig door.
-Prototype 04B onderzoekt de partituur als hoofdwerkplek: takes en notes links,
-met een compact sessieblok rechtsboven voor de lopende take, cuetijd en planning.
-Op Windows/Linux gebruik je Ctrl. Wissel links van take om zijn eigen laag te zien.
-De gewone voorstellen gebruiken dezelfde opnamecomponenten; de kniplijst is apart.
-Suggestie 2 heeft vaste take-regels, één notitiepaneel en een tijdlijn. Vorige/nieuwe
-versie zijn vergelijkbaar; je kunt per wijziging een oordeel bewaren.
-Wijzigingen-18-oktober.md beschrijft wat er veranderd is.
-Alle programma-UI is Engels; vragen en uitleg voor de collega blijven Nederlands.
-Eigen notities, cue-/projectnamen en de oorspronkelijke partituren blijven behouden.
-Alleen demo-data; herladen wist die.
-De vraag over timen/loggen en gedeelde take-telling staat onder Vragen;
-hiervoor is geen zelfstandig prototype meer.
+De rondleiding highlight per stap één suggestie met een korte uitleg.
+Vink Voeg toe aan de prompt voor Claude aan voor onderdelen die je wilt overnemen.
+Volgende gaat ook verder zonder die suggestie te kiezen.
+Aan het einde, of via Claude-prompt bovenaan, kopieer of download je je selectie.
+De bestaande tekstonderdelen worden samengevoegd, niet opnieuw gegenereerd.
+Je kunt Rondleiding later opnieuw starten; je selectie blijft lokaal bewaard.
+Vragen staan apart en worden niet automatisch implementatieopdrachten.
 
-Er wordt geen audio opgenomen of bestand geüpload. Demo-notities en een eigen
-PDF verdwijnen bij herladen. Alleen beoordelingen worden waar mogelijk lokaal
-bewaard. Reset wist het huidige voorbeeld, niet je beoordeling.
+De interface is Engels; de rondleiding en vragen zijn Nederlands.
+Alles is vrijblijvend. Jouw programma, workflow en ontwerpkeuzes gaan voor.
 
-Het echte Arrival-fragment is meegeleverd als drie gecontroleerde paginabeelden
-en als Afterparty-1M02-Arrival-excerpt.pdf. Fragmentpagina 1–3 correspondeert met
-boekpagina 7–9. De klikgebieden zijn handmatig gecontroleerd. Een eigen PDF
-krijgt die mapping niet automatisch. Er is geen live score following.
-De schematische proef is apart te kiezen en heeft vooraf ingestelde
-voorbeeld-tijdankers. Bij de echte score blijft Volg maat uit zolang tijdankers
-van een echte take ontbreken. Klik na Enter direct op het maatcijfer om te
-corrigeren; het pijltje brengt je naar de bekende scoreplek.
-In suggestie 2A staan alle notes bovenaan volledig onder elkaar, zonder eigen
-scrollvak. Het paneel groeit mee met de lijst.
+Command+Enter start of stopt een take op Mac. Gewoon Enter plaatst een note.
+Spatie blijft tekst. Er wordt geen audio opgenomen en niets geüpload.
+De demo heeft geen echte DAW-/filmverbinding of live maat-/partituurherkenning.
+Een PDF alleen bepaalt niet welke maat er wordt gespeeld.
+Nieuwe takes, notes en eigen PDF's verdwijnen bij herladen.
+Alleen de suggestiekeuze wordt waar mogelijk in deze browser bewaard;
+die wordt niet met anderen gedeeld.
+
+Suggesties-van-Floris.md bevat de teksten en exacte promptonderdelen.
+Huidig-voorstel.md beschrijft de actuele keuzes en het herstelpunt.
+Alle-notes-van-Floris.md is geschiedenis; latere correcties gaan voor eerdere.
+De oude vijf voorbeelden zijn bewaard op Git-tag before-unified-ui-20261018.

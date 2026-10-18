@@ -1,6 +1,6 @@
-# Prototypes van Floris
+# MandoCues · één voorstel
 
-Open `dist/index.html` in je browser. Dit zelfstandige bestand werkt offline, zonder installatie. De vijf genummerde HTML-bestanden openen ieder een voorstel. Werk in `src/`, niet rechtstreeks in de gegenereerde HTML.
+Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Cut list met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. Er zijn geen losse A/B-prototypes meer in de actieve UI.
 
 ## Bouwen
 
@@ -11,30 +11,31 @@ python3 -X utf8 build.py
 python3 -X utf8 check_handoff.py
 ```
 
-Op Windows: vervang `python3` door `py -3`. `-X utf8` zorgt dat de Nederlandse tekst op alle systemen goed wordt gelezen.
+Op Windows: vervang python3 door py -3. Alle benodigde scorebeelden en mappings zitten in `src/score-assets/`; de oorspronkelijke boeken zijn geen buildvereiste.
 
-Alle scorebeelden, mappings en het PDF-fragment zitten in `src/score-assets/`. De volledige originele boeken en het andere scoreproject zijn geen buildvereiste. Een eigen PDF opent lokaal zonder automatische maatmapping. Dit prototype neemt geen audio op en synchroniseert niet met een DAW of film. Nieuwe demo-invoer verdwijnt bij herladen.
+De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 25 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
 
-## Browsercontroles (optioneel)
+## Browsercontroles
 
-Voor de controles is Playwright nodig; voor bekijken en bouwen niet. Gebruik bij voorkeur een aparte Python-omgeving. Binnen die omgeving:
+Optioneel, met Playwright in een aparte Python-omgeving:
 
 ```sh
 python -m pip install playwright
 python -m playwright install chromium
-python -X utf8 check_english_ui.py
-python -X utf8 check_revision_oct18.py
+python -X utf8 check_unified_workspace.py
+python -X utf8 check_proposal_tour.py
 python -X utf8 check_all_takes.py
+python -X utf8 check_score_note_drag.py
+python -X utf8 check_score_settings.py
+python -X utf8 check_score_take_scroll.py
 ```
 
-Deze controles testen de Engelse interface, note-layout, rustige A/B-bediening, vaste knopposities, opnamebediening, vergelijken en score-notes. `check_prototype.py` controleert ook de homepagina en promptselectie. Aanvullende `check_*.py`-bestanden testen specifieke flows. Uitvoer en screenshots komen in `checks/`.
+`browser_support.py` gebruikt Playwright Chromium of een gevonden Chrome-installatie. Je kunt ook PLAYWRIGHT_CHROMIUM_EXECUTABLE instellen. Uitvoer en screenshots komen in `checks/`.
 
-`browser_support.py` gebruikt eerst de Playwright-browser, anders een gevonden Chrome-installatie. Eventueel kun je `PLAYWRIGHT_CHROMIUM_EXECUTABLE` instellen op een eigen browserpad. Controles van hashes van originele boeken worden expliciet overgeslagen als die boeken ontbreken; het prototype gebruikt de meegeleverde assets.
+`legacy-checks/` hoort uitsluitend bij de vorige vijf prototypes, herstelbaar via Git-tag `before-unified-ui-20261018`. Draai die oude controles op die oude versie.
 
 ## Delen
 
-- `python3 -X utf8 package.py` maakt het kleine ZIP-pakket met alleen het werkende prototype en uitleg in de bovenliggende map.
-- `python3 -X utf8 handoff.py --output ../MandoCues-overdracht-nieuw` maakt een volledige overdrachtsmap en ZIP met broncode, assets, controles en Codex-instructies. Een bestaande doelmap wordt niet overschreven.
-- In een broncode-overdracht staan `START_HIER.md`, `AGENTS.md` en `HUIDIGE_STAND.md` één map hoger. Dat laatste document gaat voor oude opmerkingen in `src/feedback.md`.
+`python3 -X utf8 package.py` maakt een klein ZIP-pakket om de pagina te proberen. `python3 -X utf8 handoff.py --output ../../MandoCues-overdracht-rondleiding` maakt een broncode-overdracht met assets, controles en Codex-instructies. Het doel mag nog niet bestaan.
 
-De actuele app-interface is Engels. Vragen en uitleg voor de collega blijven Nederlands. De originele SoundVibeHQ-app en originele PDF’s worden niet gewijzigd.
+De GUI is Engels; rondleiding en vragen zijn Nederlands. Alleen promptkeuzes worden lokaal bewaard. Nieuwe demo-invoer verdwijnt bij herladen. Er is geen audio-opname, DAW-/filmverbinding, live score following of server. De oorspronkelijke app en PDF-boeken blijven ongewijzigd.

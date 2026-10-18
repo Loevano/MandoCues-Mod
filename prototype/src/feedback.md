@@ -343,3 +343,15 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Open vraag: welke tijd past bij notes — film, take, sessie of kloktijd — en kunnen we één vaste bron aanhouden?
 - Vraag waarvoor de duur van iedere take wordt gebruikt en of alleen New take maken/selecteren ook werkt.
 - De voorstellen blijven vrijblijvend; geen verzoek om de hele workflow om te gooien.
+
+
+## 34. Eén voorstel met rondleiding
+
+- De huidige vijf-prototypeversie bewaren: d5f7119, tag before-unified-ui-20261018 en een herstel-ZIP.
+- Geen losse prototypes meer, maar één pagina met Recording/Cut list-toggle en gedeelde take-, note- en opnamegegevens.
+- Opname-indeling: de gekozen 2A met bediening bovenaan en compacte balk bij scrollen.
+- Kniplijst: de bestaande wijzigingen uit de opgehaalde versie behouden.
+- Bij openen een bericht met Rondleiding starten of Zelf bekijken.
+- Rondleiding met één korte suggestie en highlight tegelijk, per suggestie een checkbox voor de Claude-prompt, plus Terug/Volgende.
+- Alleen gekozen bestaande tekstonderdelen samenvoegen; niet opnieuw genereren. Vragen blijven los van implementatiekeuzes.
+- Onduidelijke ontwerpkeuzes eerst voorleggen; geen nieuwe A/B-keuzes of afwijkende UI's verzinnen.

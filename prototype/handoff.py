@@ -22,7 +22,7 @@ def run(script):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=ROOT.parent / 'MandoCues-overdracht-Jens')
+    parser.add_argument('--output', type=Path, default=ROOT.parent.parent / 'MandoCues-overdracht-rondleiding')
     args = parser.parse_args()
     destination = args.output.resolve()
     archive = destination.with_name(destination.name + '.zip')
@@ -43,6 +43,7 @@ def main():
         for doc in (ROOT / 'handoff').iterdir():
             if doc.is_file():
                 shutil.copy2(doc, bundle / doc.name)
+        shutil.copyfile(ROOT / 'src/root.html', bundle / 'index.html')
         run(project / 'check_handoff.py')
         files = {p.relative_to(bundle).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
                  for p in sorted(bundle.rglob('*')) if p.is_file()}

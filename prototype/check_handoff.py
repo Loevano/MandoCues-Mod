@@ -48,6 +48,9 @@ def main():
         for name, path in generated.items():
             if path.read_bytes() != delivered[name].read_bytes():
                 raise SystemExit(f'Dist differs from source: {name}. Run build.py first.')
+        entrypoint=ROOT.parent / 'index.html'
+        if entrypoint.exists() and entrypoint.read_bytes() != (isolated.parent / 'index.html').read_bytes():
+            raise SystemExit('Root entrypoint differs from source. Run build.py first.')
         print(f'PASS: clean isolated rebuild matches all {len(generated)} dist files byte for byte.')
         print('PASS: no original score books, external project, browser or third-party Python packages needed for the build.')
 

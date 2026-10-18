@@ -96,4 +96,4 @@ with sync_playwright() as p:
         page.set_viewport_size({'width': 1512, 'height': 1100})
     assert not errors, errors
     browser.close()
-print('PASS: note drag/click, exact placement, undo/redo, cancellation, comparison ownership, page bounds and resizing in A/B')
+print('PASS: note drag/click, exact placement, undo/redo, cancellation, comparison ownership, page bounds and resizing in the shared score view')

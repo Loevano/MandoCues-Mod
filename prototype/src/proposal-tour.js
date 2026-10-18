@@ -1,16 +1,17 @@
 // The tour only selects existing, static prompt sections; it never generates text.
-const proposalTourSteps=JSON.parse(document.querySelector('#proposal-tour-source').textContent);
+const proposalTourConfig=JSON.parse(document.querySelector('#proposal-tour-source').textContent);
+const proposalTourSteps=proposalTourConfig.steps;
 const proposalTourSelection=new Set();
 try{
  const saved=JSON.parse(localStorage.getItem('mandocues-proposal-tour-v1')||'[]');
  if(Array.isArray(saved))for(const id of saved)if(proposalTourSteps.some(step=>step.id===id))proposalTourSelection.add(id);
 }catch{}
 let proposalTourIndex=-1,tourPositionFrame=0,tourTarget=null;
-const tourPromptIntro='Geselecteerde suggesties van Floris voor mijn bestaande MandoCues-app. Implementeer alleen de onderstaande selectie. Bekijk eerst wat al bestaat en behoud mijn bestaande stijl, componenten, state en opslag. Mijn code, workflow en ontwerpkeuzes blijven leidend; dit is geen opdracht om mijn hele programma te vervangen.\n\nAlle daadwerkelijke GUI-tekst is Engels, inclusief hints, tooltips, toegankelijkheidslabels en meldingen. Vragen en toelichting mogen Nederlands blijven. Vertaal geen oorspronkelijke cue-/projectnamen of eigen notes. De demo gebruikt voorbeelddata, neemt geen audio op en bewijst geen DAW-, film- of automatische scorekoppeling. De keuze van een tijdcodebron en het nut van take-timers zijn open vragen, geen impliciete implementatieopdracht.\n\n';
+const tourPromptIntro=proposalTourConfig.promptIntro;
 function tourPromptFor(step){return step.discussion?discussion.find(item=>item.id===step.discussion).text:step.prompt;}
 function selectedTourPrompt(){
  const selected=proposalTourSteps.filter(step=>proposalTourSelection.has(step.id));
- return selected.length?tourPromptIntro+selected.map((step,index)=>`## ${index+1}. ${step.title}\n\n${tourPromptFor(step)}`).join('\n\n---\n\n')+'\n\nStem gedeelde onderdelen op elkaar af. Voeg geen andere suggesties toe. Controleer de betrokken bestaande flows en vat kort samen wat is aangepast, getest en wat een echte bronkoppeling vereist.':'';
+ return selected.length?tourPromptIntro+selected.map((step,index)=>`## ${index+1}. ${step.title}\n\n${tourPromptFor(step)}`).join('\n\n---\n\n')+proposalTourConfig.promptClosing:'';
 }
 function persistTourSelection(){
  try{localStorage.setItem('mandocues-proposal-tour-v1',JSON.stringify([...proposalTourSelection]));}catch{}
@@ -83,7 +84,7 @@ function tourChoiceRow(step){return `<label class="tour-summary-choice"><input t
 function openProposalPrompt(){
  closeProposalTour();
  const selected=proposalTourSteps.filter(step=>proposalTourSelection.has(step.id)),other=proposalTourSteps.filter(step=>!proposalTourSelection.has(step.id));
- reviewDialog('proposal-prompt','Jouw selectie voor Claude',`<p>Alleen de aangevinkte suggesties gaan mee. De bestaande teksten worden samengevoegd; er wordt niets opnieuw gegenereerd.</p><div class="tour-selected-list">${selected.length?selected.map(tourChoiceRow).join(''):'<p class="review-muted">Nog niets gekozen. Je kunt hieronder kiezen of de rondleiding starten.</p>'}</div>${other.length?`<details class="tour-other-choices"><summary>Andere suggesties (${other.length})</summary>${other.map(tourChoiceRow).join('')}</details>`:''}<details class="tour-prompt-preview"><summary>Bekijk de prompt</summary><pre tabindex="0">${esc(selectedTourPrompt()||'Vink eerst een suggestie aan.')}</pre></details><footer><button type="button" data-tour-action="download" ${selected.length?'':'disabled'}>Download</button><button type="button" class="review-primary" data-tour-action="copy" ${selected.length?'':'disabled'}>Kopieer prompt</button></footer>`);
+ reviewDialog('proposal-prompt','Jouw selectie voor Claude',`<p>Alleen de aangevinkte suggesties gaan mee. De bestaande teksten worden samengevoegd; er wordt niets opnieuw gegenereerd.</p><div class="tour-selected-list">${selected.length?selected.map(tourChoiceRow).join(''):'<p class="review-muted">Kies hieronder suggesties of start de rondleiding.</p>'}</div>${other.length?`<details class="tour-other-choices"><summary>Andere suggesties (${other.length})</summary>${other.map(tourChoiceRow).join('')}</details>`:''}<details class="tour-prompt-preview"><summary>Bekijk de prompt</summary><pre tabindex="0">${esc(selectedTourPrompt()||'Vink eerst een suggestie aan.')}</pre></details><footer><button type="button" data-tour-action="download" ${selected.length?'':'disabled'}>Download</button><button type="button" class="review-primary" data-tour-action="copy" ${selected.length?'':'disabled'}>Kopieer prompt</button></footer>`);
 }
 function refreshPromptPreview(){
  const dialog=document.querySelector('#proposal-prompt');if(!dialog)return;
