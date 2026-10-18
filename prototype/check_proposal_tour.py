@@ -13,7 +13,8 @@ with sync_playwright() as p:
     expect(page.locator('#proposal-welcome')).to_be_visible()
     page.locator('[data-tour-action="welcome-start"]').click()
     expect(page.locator('.proposal-tour-card')).to_contain_text('Sterren in plaats van')
-    assert page.evaluate('proposalTourSelection.size')==0
+    assert page.evaluate('proposalTourSelection.size===proposalTourSteps.length')
+    expect(page.locator('[data-tour-choice="sterren"]')).to_be_checked()
     def take_data():
         return page.evaluate('allTakes(state()).map(t=>({id:t.id,notes:t.notes,rating:t.rating,best:t.best,alt:!!t.alt,text:t.draft.text,selections:Object.fromEntries(Object.entries(t.scoreSelections||{}).map(([k,v])=>[k,[...v].sort()]))}))')
     original=take_data()
@@ -22,7 +23,7 @@ with sync_playwright() as p:
     for index,step in enumerate(steps):
         expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])
         expect(page.locator('.proposal-tour-highlight')).to_be_visible()
-        if step['id'] in selected:page.locator('[data-tour-choice]').check()
+        page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
         page.wait_for_timeout(30)
         card=page.locator('.proposal-tour-card').bounding_box()
         assert card['x']>=0 and card['y']>=0 and card['x']+card['width']<=1512 and card['y']+card['height']<=1100,(step,card)
@@ -76,7 +77,12 @@ with sync_playwright() as p:
         assert r['x']>=0 and r['y']>=0 and r['x']+r['width']<=390 and r['y']+r['height']<=844,(index,r)
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),index
     page.screenshot(path=str(ROOT/'checks/tour-mobile.png'))
+    # A deliberate empty selection remains empty after reload.
+    page.evaluate('localStorage.setItem("mandocues-proposal-tour-v1","[]")')
+    page.reload();page.locator('[data-tour-action="welcome-start"]').click()
+    expect(page.locator('[data-tour-choice="sterren"]')).not_to_be_checked()
+    assert page.evaluate('proposalTourSelection.size')==0
     assert not errors,errors
     assert not network,network
     browser.close()
-print('PASS: welcome choices, all tour targets, opt-in exact prompts/copy/download, persistence, open questions, live-take/draft preservation and mobile tour')
+print('PASS: checked-by-default suggestions, preserved deselections, welcome choices, all tour targets, opt-in exact prompts/copy/download, persistence, open questions, live-take/draft preservation and mobile tour')

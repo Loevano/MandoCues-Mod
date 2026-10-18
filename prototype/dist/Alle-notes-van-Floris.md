@@ -355,3 +355,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Rondleiding met één korte suggestie en highlight tegelijk, per suggestie een checkbox voor de Claude-prompt, plus Terug/Volgende.
 - Alleen gekozen bestaande tekstonderdelen samenvoegen; niet opnieuw genereren. Vragen blijven los van implementatiekeuzes.
 - Onduidelijke ontwerpkeuzes eerst voorleggen; geen nieuwe A/B-keuzes of afwijkende UI's verzinnen.
+
+
+## 35. Claude-prompt standaard aangevinkt
+
+- Suggesties staan bij een nieuwe selectie standaard aangevinkt voor de Claude-prompt.
+- Je kunt iedere suggestie uitvinken. Eerder opgeslagen keuzes blijven behouden, ook als alles is uitgezet.

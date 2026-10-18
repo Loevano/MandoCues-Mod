@@ -1,10 +1,14 @@
 // The tour only selects existing, static prompt sections; it never generates text.
 const proposalTourConfig=JSON.parse(document.querySelector('#proposal-tour-source').textContent);
 const proposalTourSteps=proposalTourConfig.steps;
-const proposalTourSelection=new Set();
+const proposalTourSelection=new Set(proposalTourSteps.map(step=>step.id));
 try{
- const saved=JSON.parse(localStorage.getItem('mandocues-proposal-tour-v1')||'[]');
- if(Array.isArray(saved))for(const id of saved)if(proposalTourSteps.some(step=>step.id===id))proposalTourSelection.add(id);
+ const stored=localStorage.getItem('mandocues-proposal-tour-v1');
+ const saved=stored===null?null:JSON.parse(stored);
+ if(Array.isArray(saved)){
+  proposalTourSelection.clear();
+  for(const id of saved)if(proposalTourSteps.some(step=>step.id===id))proposalTourSelection.add(id);
+ }
 }catch{}
 let proposalTourIndex=-1,tourPositionFrame=0,tourTarget=null;
 const tourPromptIntro=proposalTourConfig.promptIntro;

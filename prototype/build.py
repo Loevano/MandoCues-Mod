@@ -73,7 +73,8 @@ Recording gebruikt bediening bovenaan met een compacte balk bij scrollen.
 Cut list bevat de bestaande scorefuncties en het All takes-overzicht.
 
 De rondleiding highlight per stap één suggestie met een korte uitleg.
-Vink Voeg toe aan de prompt voor Claude aan voor onderdelen die je wilt overnemen.
+Voeg toe aan de prompt voor Claude staat standaard aangevinkt.
+Vink uit wat je niet wilt overnemen; bestaande opgeslagen keuzes blijven behouden.
 Volgende gaat ook verder zonder die suggestie te kiezen.
 Aan het einde, of via Claude-prompt bovenaan, kopieer of download je je selectie.
 De bestaande tekstonderdelen worden samengevoegd, niet opnieuw gegenereerd.

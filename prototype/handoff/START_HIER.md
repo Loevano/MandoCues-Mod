@@ -2,7 +2,7 @@
 
 Open **index.html**. Eén werkruimte met Recording en Cut list; de welkomstmelding laat je kiezen tussen de rondleiding en zelf bekijken. Alles werkt offline.
 
-De rondleiding toont steeds één suggestie. Vink aan wat je aan Claude wilt meegeven en ga verder. Via Claude-prompt kun je je selectie bekijken, aanpassen, kopiëren of downloaden. De bestaande teksten worden samengevoegd; niet opnieuw gegenereerd. Vragen staan apart en blijven vragen.
+De rondleiding toont steeds één suggestie. Suggesties staan standaard aangevinkt. Vink uit wat je niet aan Claude wilt meegeven en ga verder. Via Claude-prompt kun je je selectie bekijken, aanpassen, kopiëren of downloaden. De bestaande teksten worden samengevoegd; niet opnieuw gegenereerd. Vragen staan apart en blijven vragen.
 
 Verder werken: open de hele map in Codex en plak CODEX_STARTPROMPT.txt. Lees HUIDIGE_STAND.md voor de laatste keuzes. De vorige vijf prototypes staan onder Git-tag before-unified-ui-20261018.
 

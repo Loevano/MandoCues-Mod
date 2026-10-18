@@ -6,7 +6,7 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - Eén kniplijst met de bestaande wijzigingen: grote score, takes en notes, All takes, instrument-/zichtbaarheidsinstellingen, note-navigatie en slepen.
 - Recording en Cut list delen cue, take, opname, beoordelingen, notes en concepten. Een lopende take blijft lopen bij wisselen.
 - Bij openen: Rondleiding starten of Zelf bekijken. Later opnieuw openen via Rondleiding.
-- De rondleiding bevat 25 korte suggesties met een highlight, een checkbox voor Claude en Terug/Volgende. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
+- De rondleiding bevat 25 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; bestaande opgeslagen keuzes blijven behouden. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
 - GUI Engels; uitleg en vragen Nederlands. Command+Enter start/stopt, Enter plaatst een note en spatie is tekst.
 
