@@ -608,3 +608,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - De Recording-kop en sessie-instellingen scrollen mee met de bediening, tijdlijn, cues en notes.
 - Geen apart scrollvenster onder de vaste kop en geen kader in een kader. Gebruik ruimte en scheidingslijnen.
 - De compacte opnamebediening blijft bereikbaar zodra de grote knop wegscrollt. De grote doorlopende scoreweergave blijft behouden.
+
+
+## 69. Cueknoppen onder de cuenaam
+
+- Previous cue en Next cue naast elkaar op een vaste rij onder de cuenaam.
+- Hun positie hangt niet af van de lengte van de cuenaam. Brackets en de grenzen aan begin/einde blijven behouden.

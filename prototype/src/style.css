@@ -267,7 +267,7 @@ body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
 
 /* Main controls and key timing stay in view; extra session data remains foldable. */
 .proposal-shell .proposal-main-panel{display:block;padding:4px 0 14px}
-.proposal-main-top{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.proposal-main-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:24px}
 .proposal-session-clocks{display:flex;gap:28px;flex-shrink:0}
 .proposal-session-clocks label,.demo .proposal-take-clock{display:flex;flex-direction:column;gap:5px;color:#a99eaf;font-size:10px;white-space:nowrap}
 .proposal-session-clocks b{font:21px var(--mono);color:#ece7f1;min-width:5ch}
@@ -481,10 +481,13 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 @media(max-width:759px){body.unified-proposal{--app-sidebar-width:0px}.app-sidebar{display:none}.unified-proposal .proposal-shell{padding:8px}.session-choice{align-items:start;flex-direction:column;gap:5px}.session-choice>span{font-size:9px}.session-setup{gap:10px}.session-setup small{font-size:9px}.session-app-actions{gap:5px}.session-app-actions>button,.session-pdf-menu>summary{padding:7px 8px}.proposal-session-header{margin-bottom:8px;padding-bottom:10px}.session-setup>label{font-size:9px}.session-chat{top:130px}}
 @media print{body>*{display:none!important}.app-dialog[open]{display:block!important;position:static;border:0;max-height:none;overflow:visible;color:black;background:white;width:100%;padding:0}.app-dialog footer,.app-dialog header button{display:none!important}.session-export-preview{overflow:visible}.session-export-preview td,.session-export-preview th{border-color:#ccc}}
 
-/* Cue navigation belongs with the cue; recording state is distinct from its action. */
-.proposal-cue-switcher{display:flex;align-items:center;gap:10px;margin:7px 0;max-width:100%}
-.proposal-cue-switcher .main-cue{margin:0!important;min-width:0;flex:0 1 auto}
-.demo .proposal-cue-switcher>button{display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 38px;padding:4px;width:38px;height:36px;font-size:22px;color:#d1c6df;border-color:#3f3548;background:#1b1721}
+/* Cue navigation has a fixed row below the cue name. */
+.proposal-cue-switcher{display:flex;align-items:center;gap:8px;margin:9px 0;max-width:100%}
+.proposal-main-top .calm-cue{min-width:0}
+.proposal-main-top .main-cue{flex-wrap:nowrap;min-width:0}
+.proposal-main-top .main-cue b{flex-shrink:0}
+.proposal-main-top .main-cue strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.demo .proposal-cue-switcher>button{display:flex;align-items:center;justify-content:center;gap:7px;flex:0 0 137px;padding:7px 9px;width:137px;height:34px;font-size:11px;white-space:nowrap;color:#d1c6df;border-color:#3f3548;background:#1b1721}
 .proposal-cue-switcher kbd{font:8px var(--mono);color:#b0a2c0}
 .proposal-main-actions{justify-content:space-between;gap:20px}
 .proposal-session-actions button{display:flex;align-items:center;gap:6px}
@@ -506,7 +509,7 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .score-workspace .proposal-live-bar .identity small{max-width:180px}
 .score-workspace .proposal-live-bar .identity .rec-status{display:inline-block;font-size:8px}
 @media(max-width:1250px){.proposal-main-actions{flex-wrap:wrap}.proposal-main-top{grid-template-columns:minmax(0,1fr)}.proposal-session-clocks{justify-self:start}.proposal-main-panel .main-cue b{font-size:25px}.proposal-main-panel .main-cue strong{font-size:17px}.transport-clocks{gap:6px}.score-workspace .proposal-live-bar .identity{max-width:210px}}
-@media(max-width:759px){.proposal-live-bar .transport{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:7px}.proposal-live-bar .identity{grid-column:1/-1;max-width:none!important}.transport-clocks{margin-left:0}.transport-take-time{grid-row:2;grid-column:2}.proposal-live-bar .record{grid-column:1/-1}.proposal-cue-switcher{gap:6px}.demo .proposal-cue-switcher>button{flex-basis:28px;width:28px}.proposal-session-clocks{display:flex;gap:25px}.proposal-main-panel .calm-cue>small{font-size:9px}.proposal-main-actions{gap:12px}}
+@media(max-width:759px){.proposal-live-bar .transport{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:7px}.proposal-live-bar .identity{grid-column:1/-1;max-width:none!important}.transport-clocks{margin-left:0}.transport-take-time{grid-row:2;grid-column:2}.proposal-live-bar .record{grid-column:1/-1}.proposal-cue-switcher{gap:6px}.proposal-session-clocks{display:flex;gap:25px}.proposal-main-panel .calm-cue>small{font-size:9px}.proposal-main-actions{gap:12px}}
 
 /* Recording is one scrolling page, including the session header. */
 .recording-workspace .proposal-shell{overflow-y:auto;overflow-x:hidden;scrollbar-color:#5b576c #101114;scrollbar-gutter:stable;overscroll-behavior:contain}

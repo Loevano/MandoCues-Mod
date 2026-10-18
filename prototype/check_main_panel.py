@@ -17,6 +17,22 @@ with sync_playwright() as p:
         el=page.locator('#main-panel '+selector)
         expect(el).to_be_visible()
         assert not el.evaluate('(el)=>!!el.closest("details")'),selector
+    # Cue names must not move the navigation buttons horizontally or vertically.
+    for width in [1512,390]:
+        page.set_viewport_size({'width':width,'height':1100})
+        page.locator('#cue-scroll').evaluate('(el)=>el.scrollTop=0')
+        positions=[]
+        for cue in [0,1,8,11,0]:
+            page.evaluate('(cue)=>selectCue(state(),cue)',cue)
+            prev=page.locator('#main-panel [data-action="prev-cue"]').bounding_box()
+            nxt=page.locator('#main-panel [data-action="next-cue"]').bounding_box()
+            name=page.locator('#main-panel .main-cue').bounding_box()
+            assert prev['y']>=name['y']+name['height']
+            assert abs(prev['y']-nxt['y'])<1
+            positions.append([prev[k] for k in ['x','y','width','height']]+[nxt[k] for k in ['x','y','width','height']])
+        assert all(abs(a-b)<1 for row in positions for a,b in zip(row,positions[0])),(width,positions)
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
+    page.set_viewport_size({'width':1512,'height':1100})
     expect(page.locator('#main-panel [data-session-action="break"]')).to_be_disabled()
     page.keyboard.press('Meta+Enter')
     page.locator('#main-panel [data-action="next-cue"]').click()
