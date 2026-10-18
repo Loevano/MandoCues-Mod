@@ -5,7 +5,7 @@
 - Zou 1–5 sterren handiger zijn dan Good / NG / Hold, eventueel met een filter?
 - Een cue direct aanklikken in de lijst, naast Go to cue.
 - Met Enter een losse note plaatsen, zodat opmerkingen apart terug te lezen zijn.
-- Bij een note automatisch tijdcode en, waar mogelijk, maatnummer voorstellen. Beide blijven na Enter aanpasbaar.
+- Automatisch een tijdcode en, waar mogelijk, een maatnummer bij je note.
 - Start/stop met spatie kan botsen met notes typen. Voorstel: ⌘ Enter voor start én stop.
 - Overal dezelfde kloknotatie, bijvoorbeeld 19:54:59 in plaats van een mix met AM/PM.
 - Best voor de favoriete take en genummerde Alt-labels voor reservetakes, los van de sterren.

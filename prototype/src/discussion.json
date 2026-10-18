@@ -48,7 +48,7 @@
     "id": "maat-aanpassen",
     "label": "Kleine aanpassing",
     "title": "Automatisch tijd en maat bij een note?",
-    "bullet": "Bij een note automatisch tijdcode en, waar mogelijk, maatnummer voorstellen. Beide blijven na Enter aanpasbaar.",
+    "bullet": "Automatisch een tijdcode en, waar mogelijk, een maatnummer bij je note.",
     "text": "Zou het handig zijn om bij het schrijven van een note automatisch de relevante tijdcode en, waar een betrouwbare scorekoppeling bestaat, het maatnummer mee te geven? Bewaar het moment bij beginnen met typen; Enter plaatst de note. Beide waarden blijven daarna aanpasbaar of weg te laten. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Dit is nog een open keuze, geen opdracht om al die bronnen tegelijk te implementeren. Laat een klik op het maatcijfer direct een verticale lijst en een invoerveld openen. Overschrijf handmatige correcties niet automatisch. Zonder betrouwbare koppeling geen verzonnen automatisch maatnummer; een PDF alleen is daarvoor onvoldoende.",
     "small": true,
     "order": 4

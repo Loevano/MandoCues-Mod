@@ -51,7 +51,7 @@ Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bi
 
 ### 5. Tijd en maat bij je note
 
-Een tijdcode en, waar mogelijk, maatnummer bij iedere note. Beide kun je na Enter aanpassen.
+Automatisch een tijdcode en, waar mogelijk, een maatnummer bij je note.
 
 **Promptonderdeel:**
 
