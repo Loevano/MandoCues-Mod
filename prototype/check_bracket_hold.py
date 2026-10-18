@@ -16,5 +16,12 @@ with sync_playwright() as p:
   page.clock.run_for(115);key(True);assert page.evaluate('state().cue')==4
   page.evaluate('document.body.dispatchEvent(new KeyboardEvent("keyup",{code:"BracketRight",bubbles:true}))')
   key(True);assert page.evaluate('state().cue')==4
+  for code,key_name,boundary in [('BracketLeft','[','0'),('BracketRight',']','cues.length-1')]:
+   page.evaluate('selectCue(state(),'+boundary+')')
+   for repeat in [False,True,True]:
+    page.clock.run_for(300)
+    page.evaluate('''({code,key,repeat})=>document.body.dispatchEvent(new KeyboardEvent('keydown',{code,key,repeat,bubbles:true,cancelable:true}))''',{'code':code,'key':key_name,'repeat':repeat})
+    assert page.evaluate('state().cue==='+boundary)
+   page.evaluate('(code)=>document.body.dispatchEvent(new KeyboardEvent("keyup",{code,bubbles:true}))',code)
  browser.close()
-print('PASS: one press, throttled repeat, faster held navigation, release stops and shared workspace semantics')
+print('PASS: one press, throttled repeat, faster held navigation, release stops, no boundary wrap and shared workspace semantics')

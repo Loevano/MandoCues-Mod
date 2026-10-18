@@ -177,6 +177,7 @@ function renderDemo(){if(!active)return;const takePicker=document.querySelector(
  if(scorePosition&&scorePosition.source===s.doc?.id){const canvas=$('.score-canvas');if(canvas){canvas.scrollTop=scorePosition.top;canvas.scrollLeft=scorePosition.left;}}if(s.pendingScoreScroll){const canvas=$('.score-canvas');if(canvas){if(s.pendingScoreScroll.document)window.scrollTo({top:window.scrollY+canvas.getBoundingClientRect().top+s.pendingScoreScroll.top,behavior:'auto'});else{canvas.scrollTop=s.pendingScoreScroll.top;canvas.scrollLeft=s.pendingScoreScroll.left;}}delete s.pendingScoreScroll;}syncSticky();syncRecordingDock();if(focusKey){const attr='data-'+focusKey[0].replace(/[A-Z]/g,c=>'-'+c.toLowerCase());const place=focused.dataset.editorPlace;const target=document.querySelector(`[${attr}="${focusKey[1]}"]${place?`[data-editor-place="${place}"]`:""}`);if(target){target.focus({preventScroll:true});if(selection&&selection[0]!==null&&target.setSelectionRange)target.setSelectionRange(...selection);}}
  if(active.id==='partituur'){syncScoreCommentDialog();refreshScoreTextPositions();}
 }
+function stepCue(s,direction){const next=s.cue+direction;if(next>=0&&next<cues.length)selectCue(s,next);}
 function selectCue(s,j){if(active.id==='partituur'){selectScoreCue(s,j);return;}if(s.takes&&running(s)&&j!==s.cue){toast('Stop the active take before switching cues.');return;}s.cue=j;s.open.add(j);if(s.takes){const t=s.takes[j].at(-1);s.selected=t?.id||null;if(t)t.collapsed=false;}renderDemo();}
 function performRecordingAction(s){
  if(s.unified&&s.sessionPausedAt){proposalSessionBreak(s);return;}
@@ -236,8 +237,8 @@ document.addEventListener('click',async e=>{
  case 'film':film=!film;document.body.classList.toggle('film',film);b.textContent=film?'↙ Terug naar uitleg':'⛶ Filmmodus';break;
  case 'record':performRecordingAction(s);break;
  case 'record-overdub':if(!running(s))toggleRecord(s,'overdub');break;
- case 'prev-cue':selectCue(s,(s.cue+cues.length-1)%cues.length);break;
- case 'next-cue':selectCue(s,(s.cue+1)%cues.length);break;
+ case 'prev-cue':stepCue(s,-1);break;
+ case 'next-cue':stepCue(s,1);break;
  case 'scroll-takes':$('#cue-scroll').scrollTo({top:variant==='A'?$('#main-panel').offsetHeight+70:150,behavior:'auto'});break;
  case 'add-note':addNote(b.dataset.take,b.closest('.start-notes')?'top':'list');break;
  case 'add-cue-note':addCueNote(+b.dataset.cueIndex,b.closest('#main-panel')?'top':'list');break;

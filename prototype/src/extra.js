@@ -179,7 +179,7 @@ function handleExtraKey(e) {
    if(!takes.length){toast('No takes in this cue yet.');return true;}
    const next=index<0?(direction>0?0:takes.length-1):Math.max(0,Math.min(takes.length-1,index+direction));
    if(takes[next].id!==s.selected)selectNavigationTake(s,takes[next]);
-  }else selectCue(s,(s.cue+direction+cues.length)%cues.length);
+  }else stepCue(s,direction);
   return true;
  }
  if(e.altKey&&/^(Digit|Numpad)[1-9]$/.test(e.code)){e.preventDefault();chooseTakeNumber(+e.code.slice(-1));return true;}

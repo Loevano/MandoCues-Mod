@@ -60,6 +60,17 @@ with sync_playwright() as p:
         page.keyboard.press('Alt+[');assert selected()=='c0-t1' # No wrap at first take.
         page.keyboard.press(']');assert page.evaluate('state().cue')==1
         page.keyboard.press('[');assert page.evaluate('state().cue')==0
+        # Cue boundaries do not wrap or reset the selected take, in either view.
+        first=selected();page.keyboard.press('[')
+        assert page.evaluate('state().cue')==0 and selected()==first
+        if view=='recording':expect(page.locator('#main-panel [data-action="prev-cue"]')).to_be_disabled()
+        page.evaluate('selectCue(state(),cues.length-1)');focus()
+        last=selected();page.keyboard.press(']')
+        assert page.evaluate('state().cue===cues.length-1') and selected()==last
+        if view=='recording':expect(page.locator('#main-panel [data-action="next-cue"]')).to_be_disabled()
+        page.keyboard.press('[');assert page.evaluate('state().cue===cues.length-2')
+        page.keyboard.press(']');assert page.evaluate('state().cue===cues.length-1')
+        page.evaluate('selectCue(state(),0)');focus()
         # Escape, timeout, blur and clicking cancel incomplete two-digit entries.
         prefix();page.keyboard.press('1');page.keyboard.press('Escape')
         expect(page.locator('.take-number-entry')).to_have_count(0)
@@ -113,4 +124,4 @@ with sync_playwright() as p:
     expect(page.locator('.proposal-tour-card')).to_be_visible()
     assert not errors,errors
     browser.close()
-print('PASS: shared cue/take keys, actual take numbers, two-digit prefix, cancellation, Mac key codes, text/modal/drag protection, drafts, score position and live take isolation')
+print('PASS: shared cue/take keys, non-wrapping cue boundaries, actual take numbers, two-digit prefix, cancellation, Mac key codes, text/modal/drag protection, drafts, score position and live take isolation')

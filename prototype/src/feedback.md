@@ -595,3 +595,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - De gekozen zoom/schaal blijft gelijk bij wisselen tussen cues.
 - Geen afzonderlijke zoomstand per cue, take of scorebron herstellen. Alleen zelf zoomen of Fit width gebruiken verandert de schaal.
 - Dit is gewoon gedrag van de werkruimte; geen extra uitleg over de fix in de rondleiding.
+
+
+## 67. Cue-navigatie stopt bij de grens
+
+- [ op de eerste cue blijft daar; ] op de laatste cue blijft daar. Geen sprong van 1M02 naar 1M05 of andersom.
+- Hetzelfde geldt bij ingedrukt houden, in Recording en Cut list. De cuepijlen volgen dezelfde grenzen.
