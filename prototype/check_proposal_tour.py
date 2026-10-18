@@ -14,7 +14,7 @@ with sync_playwright() as p:
     page.goto((ROOT/'dist/index.html').as_uri())
     expect(page.locator('#proposal-welcome')).to_be_visible()
     page.locator('[data-tour-action="welcome-start"]').click()
-    expect(page.locator('.proposal-tour-card')).to_contain_text('Het hoofdpaneel')
+    expect(page.locator('.proposal-tour-card')).to_contain_text('Een mogelijke indeling voor Recording')
     assert page.evaluate('proposalTourSelection.size===proposalTourSteps.length')
     expect(page.locator('[data-tour-choice="duidelijke-labels"]')).to_be_checked()
     def take_data():
@@ -22,6 +22,9 @@ with sync_playwright() as p:
     original=take_data()
     assert page.evaluate('proposalTourSteps.slice(0,2).map(s=>s.id)')==['duidelijke-labels','opnametoets']
     steps=page.evaluate('proposalTourSteps.map(s=>({id:s.id,title:s.title,view:s.view}))')
+    order=[s['id'] for s in steps]
+    for first,second in [('cue-takes','noteplek'),('noteplek','notes-enter'),('notes-enter','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
+        assert order.index(first)<order.index(second),(first,second)
     selected={'sterren','opnametoets','score-notes'}
     for index,step in enumerate(steps):
         expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])
@@ -53,6 +56,8 @@ with sync_playwright() as p:
             for selector in ['.calm-cue-list .cue-group.current','.calm-notes']:
                 assert page.locator(selector).evaluate('(el)=>getComputedStyle(el).outlineStyle')=='solid'
             page.screenshot(path=str(ROOT/'checks/tour-take-notes.png'))
+        if step['id']=='tijdformaat':
+            assert page.evaluate('tourTarget.closest("#main-panel")!==null')
         if step['id']=='maat-aanpassen':
             picker=page.locator('.calm-notes .measure-picker').first
             picker.locator('summary').click()
@@ -100,7 +105,7 @@ with sync_playwright() as p:
     page.evaluate("openTourStep(proposalTourSteps.findIndex(s=>s.id==='sterren'))")
     expect(page.locator('[data-tour-choice="sterren"]')).to_be_checked()
     page.locator('[data-tour-choice="sterren"]').uncheck()
-    assert not any(line.startswith('## ') and line.endswith('. Sterren in plaats van Good / NG / Hold') for line in page.evaluate('selectedTourPrompt()').splitlines())
+    assert not any(line.startswith('## ') and line.endswith('. Sterren in plaats van Good / NG / Hold?') for line in page.evaluate('selectedTourPrompt()').splitlines())
     page.locator('[data-tour-choice="sterren"]').check()
     page.keyboard.press('Escape');expect(page.locator('.proposal-tour-card')).to_have_count(0)
     # Guided view changes never stop a live take or lose a draft.

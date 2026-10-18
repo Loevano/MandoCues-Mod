@@ -579,3 +579,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Break krijgt een koffie-icoon. Standby zegt expliciet Not recording; alleen een lopende take toont de rode Recording-status.
 - Cut list toont een lopende take-tijd, kloktijd en Expected end. Bij een gestopte take staat de vastgelegde duur.
 - Music length is de muziekduur van de cue in minuten:seconden; Planned work is werktijd in expliciete minuten. Demo-planning is geen productiebeleid.
+
+
+## 65. Rondleiding voor de collega redigeren
+
+- Begin bij Recording en sessiestart, daarna cue → take → notes → beoordeling. Sneltoetsen na de basis.
+- In Cut list eerst score en take kiezen, dan maten selecteren en notes maken; vergelijken en instellingen volgen later.
+- Formuleer als vrijblijvende ideeën voor de collega, met korte aanwijzingen om te proberen. Geen uitleg over tussentijdse fixes of onze ontwerphistorie.
+- Kloktijd onderscheiden van take-duur. Details zoals twee cijfers invoeren en het tijdcode-resetknopje blijven in de bediening en implementatieprompt, zonder de rondleiding te belasten.
+- Bestaande suggestie-ID’s en opgeslagen promptkeuzes blijven behouden.
