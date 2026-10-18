@@ -25,5 +25,9 @@ with sync_playwright() as p:
  expect(page.locator('.proposal-live-bar .rec-status')).to_have_text('NOT RECORDING')
  expect(page.locator('.proposal-live-bar .timer')).to_have_text('00:02')
  assert not errors,errors
+ direct=browser.new_page(viewport={'width':1512,'height':1100})
+ direct.goto((ROOT/'dist/index.html').as_uri()+'#cutlist');direct.locator('[data-tour-action="welcome-skip"]').click()
+ expect(direct.locator('.proposal-live-bar [data-proposal-expected-end]')).not_to_have_text('Invalid Date')
+ assert direct.evaluate('scoreWorkflowTiming(state()).clock.booked')==360*60
  browser.close()
 print('PASS: explicit idle/live styling, cut-list take clock advances, wall/expected clocks visible and stopped duration retained')

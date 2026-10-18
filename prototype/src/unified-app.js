@@ -6,11 +6,15 @@ const previousRenderDemo=renderDemo;
 const previousToggleRecord=toggleRecord;
 const previousComposer=composer;
 
+function initializeProposalTiming(s){
+ const timing=scoreWorkflowTiming(s);
+ // Example planning only; the production app keeps its own scheduling policy.
+ if(s.unified&&!s.unifiedTiming){Object.assign(timing.clock,{booked:s.booked*60,remaining:s.remaining*60,plannedEndAt:Date.now()+(s.booked*60-timing.elapsed)*1000});s.unifiedTiming=true;}
+ return scoreWorkflowTiming(s);
+}
 function proposalSchedule(){
- const timing=scoreWorkflowTiming(unifiedState);
- // Shared example schedule; never claimed to be DAW timing.
- if(!unifiedState.unifiedTiming){Object.assign(timing.clock,{booked:360*60,remaining:320*60,plannedEndAt:Date.now()+(360*60-42*60)*1000});unifiedState.unifiedTiming=true;}
- return `<span class="proposal-schedule ${scoreWorkflowTiming(unifiedState).delta>0?'is-behind':'is-ahead'}" data-proposal-plan>${scoreWorkflowPlanText(scoreWorkflowTiming(unifiedState).delta)}</span>`;
+ const timing=initializeProposalTiming(unifiedState);
+ return `<span class="proposal-schedule ${timing.delta>0?'is-behind':'is-ahead'}" data-proposal-plan>${scoreWorkflowPlanText(timing.delta)}</span>`;
 }
 function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
 function proposalClockTime(ms){return new Date(ms).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
@@ -65,6 +69,7 @@ toggleRecord=function(s,kind='take'){
  }
 };
 renderDemo=function(){
+ initializeProposalTiming(unifiedState);
  document.body.classList.toggle('score-workspace',proposalView==='cutlist');
  document.body.classList.toggle('score-expanded',proposalView==='cutlist');
  previousRenderDemo();
