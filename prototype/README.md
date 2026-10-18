@@ -26,6 +26,7 @@ python -X utf8 check_unified_workspace.py
 python -X utf8 check_proposal_tour.py
 python -X utf8 check_recording_shortcut.py
 python -X utf8 check_main_panel.py
+python -X utf8 check_recording_scroll.py
 python -X utf8 check_note_metadata.py
 python -X utf8 check_all_takes.py
 python -X utf8 check_score_note_drag.py

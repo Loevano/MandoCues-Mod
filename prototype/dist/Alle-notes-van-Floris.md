@@ -601,3 +601,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - [ op de eerste cue blijft daar; ] op de laatste cue blijft daar. Geen sprong van 1M02 naar 1M05 of andersom.
 - Hetzelfde geldt bij ingedrukt houden, in Recording en Cut list. De cuepijlen volgen dezelfde grenzen.
+
+
+## 68. Recording als één doorlopende pagina
+
+- De Recording-kop en sessie-instellingen scrollen mee met de bediening, tijdlijn, cues en notes.
+- Geen apart scrollvenster onder de vaste kop en geen kader in een kader. Gebruik ruimte en scheidingslijnen.
+- De compacte opnamebediening blijft bereikbaar zodra de grote knop wegscrollt. De grote doorlopende scoreweergave blijft behouden.

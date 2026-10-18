@@ -48,7 +48,7 @@ function openTourStep(index){
  if(step.prepare==='score'&&s.cutlistView==='all'){s.cutlistView='score';restoreScoreView(s);}
  renderDemo();
  if(step.prepare==='sticky'){
-  const scroll=document.querySelector('#cue-scroll');scroll.scrollTop=document.querySelector('#main-panel').offsetHeight+100;syncSticky();
+  const scroll=document.querySelector('#cue-scroll'),button=document.querySelector('#main-panel .record');scroll.scrollTop+=button.getBoundingClientRect().bottom-scroll.getBoundingClientRect().top+12;syncSticky();
  }
  document.querySelector('.proposal-tour-card')?.remove();
  const card=document.createElement('section');card.className='proposal-tour-card';card.lang='nl';card.setAttribute('aria-labelledby','proposal-tour-title');card.setAttribute('aria-label','Rondleiding');
@@ -58,7 +58,7 @@ function openTourStep(index){
  tourTarget=findTourTarget(step);
  if(step.id==='cue-aanklikken'){
   const scroll=document.querySelector('#cue-scroll');
-  if(innerWidth<760){scroll.scrollTop+=tourTarget.getBoundingClientRect().top-scroll.getBoundingClientRect().top-80;}else scroll.scrollTop=0;
+  scroll.scrollTop+=tourTarget.getBoundingClientRect().top-scroll.getBoundingClientRect().top-80;
   syncSticky();
  }else if(step.id==='noteplek'){
   const scroll=document.querySelector('#cue-scroll');

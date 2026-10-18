@@ -111,7 +111,7 @@ Als het grote paneel uit beeld gaat, blijft start/stop bovenaan bereikbaar. Hand
 
 **Promptonderdeel:**
 
-Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten de interne scrollweergave valt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen.
+Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten beeld scrolt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen. Gebruik in Recording één scrollgebied inclusief kop en sessie-instellingen, zonder een genest scrollvenster of extra paneelkaders. De compacte opnamebalk blijft sticky zodra de grote knop wegscrollt.
 
 ### 13. Sterren in plaats van Good / NG / Hold?
 

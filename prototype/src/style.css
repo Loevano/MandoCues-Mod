@@ -507,3 +507,14 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .score-workspace .proposal-live-bar .identity .rec-status{display:inline-block;font-size:8px}
 @media(max-width:1250px){.proposal-main-actions{flex-wrap:wrap}.proposal-main-top{grid-template-columns:minmax(0,1fr)}.proposal-session-clocks{justify-self:start}.proposal-main-panel .main-cue b{font-size:25px}.proposal-main-panel .main-cue strong{font-size:17px}.transport-clocks{gap:6px}.score-workspace .proposal-live-bar .identity{max-width:210px}}
 @media(max-width:759px){.proposal-live-bar .transport{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:7px}.proposal-live-bar .identity{grid-column:1/-1;max-width:none!important}.transport-clocks{margin-left:0}.transport-take-time{grid-row:2;grid-column:2}.proposal-live-bar .record{grid-column:1/-1}.proposal-cue-switcher{gap:6px}.demo .proposal-cue-switcher>button{flex-basis:28px;width:28px}.proposal-session-clocks{display:flex;gap:25px}.proposal-main-panel .calm-cue>small{font-size:9px}.proposal-main-actions{gap:12px}}
+
+/* Recording is one scrolling page, including the session header. */
+.recording-workspace .proposal-shell{overflow-y:auto;overflow-x:hidden;scrollbar-color:#5b576c #101114;scrollbar-gutter:stable;overscroll-behavior:contain}
+.recording-workspace .browser-frame{flex:0 0 auto;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none}
+.recording-workspace .demo,.recording-workspace .calm-scroll{height:auto!important;min-height:0;overflow:visible}
+.recording-workspace .calm-scroll{padding:0;border:0;border-radius:0;background:transparent}
+.recording-workspace .proposal-main-panel{border:0;border-bottom:1px solid #37343d;border-radius:0;background:transparent;padding:8px 0 16px!important}
+.recording-workspace .calm-notes{border:0;border-left:1px solid #37343d;border-radius:0;background:transparent;padding:0 0 0 20px;top:78px}
+.recording-workspace .sticky-slot{top:0;height:64px;margin:0 0 -64px}
+.recording-workspace .sticky-slot>.transport{left:0;width:100%;margin:0}
+@media(max-width:1000px){.recording-workspace .calm-notes{border-left:0;border-bottom:1px solid #37343d;padding:0 0 18px}}

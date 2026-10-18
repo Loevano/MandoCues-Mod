@@ -58,7 +58,7 @@ composer=function(s,t,score=false,place='list'){
  return s.unified&&active.id!=='notities'?output.replace('<div class="composer-footer">',quickNoteSuggestions(t,place)+'<div class="composer-footer">'):output;
 };
 function proposalRatingFilter(s){return `<div class="review-filter"><label>Show takes <select data-rating-filter>${[[0,'All ratings'],[3,'3–5 stars'],[4,'4–5 stars'],[5,'Only 5 stars']].map(([n,label])=>`<option value="${n}" ${s.minRating===n?'selected':''}>${label}</option>`).join('')}</select></label></div>`;}
-controls=function(){const s=state();return `<div class="calm-scroll control-scroll" id="cue-scroll" tabindex="0" aria-label="Recording workspace"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
+controls=function(){const s=state();return `<div class="calm-scroll control-scroll"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
 selectCue=function(s,index){selectScoreCue(s,index);};
 toggleRecord=function(s,kind='take'){
  s.sessionStarted=true;
@@ -70,6 +70,10 @@ toggleRecord=function(s,kind='take'){
 };
 renderDemo=function(){
  initializeProposalTiming(unifiedState);
+ document.body.classList.toggle('recording-workspace',proposalView==='recording');
+ const shell=document.querySelector('.proposal-shell');
+ if(proposalView==='recording'){shell.id='cue-scroll';shell.tabIndex=0;shell.setAttribute('aria-label','Recording workspace');}
+ else{shell.removeAttribute('id');shell.removeAttribute('tabindex');shell.removeAttribute('aria-label');shell.scrollTop=0;}
  document.body.classList.toggle('score-workspace',proposalView==='cutlist');
  document.body.classList.toggle('score-expanded',proposalView==='cutlist');
  previousRenderDemo();
