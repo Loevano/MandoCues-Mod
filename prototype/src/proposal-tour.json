@@ -46,10 +46,13 @@
     {
       "id": "noteplek",
       "title": "Notes per take",
-      "text": "Klik op een take. Hier lees en schrijf je de notes voor die take.",
+      "text": "Klik verschillende takes. Het paneel toont de notes van de gekozen take.",
       "target": ".calm-notes",
       "view": "recording",
-      "prompt": "Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt."
+      "prompt": "Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt.",
+      "relatedTargets": [
+        ".calm-cue-list .cue-group.current"
+      ]
     },
     {
       "id": "opnametoets",

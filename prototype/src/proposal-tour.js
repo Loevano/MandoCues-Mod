@@ -31,7 +31,7 @@ function showProposalWelcome(){
  reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Bekijk de suggesties in de werkruimte. Vink uit wat je niet aan Claude wilt meegeven.</p><p class="review-muted">Neem alleen mee wat bij jouw programma past.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
 }
 function closeProposalTour(){
- proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection');
+ proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes');
  document.querySelector('.proposal-tour-card')?.remove();document.querySelector('.proposal-tour-highlight')?.remove();
  document.querySelector('[data-proposal-action="tour"]')?.focus({preventScroll:true});
 }
@@ -39,6 +39,7 @@ function openTourStep(index){
  if(index<0||index>=proposalTourSteps.length)return;
  proposalTourIndex=index;const step=proposalTourSteps[index],s=unifiedState;
  document.body.classList.toggle('tour-cue-selection',step.id==='cue-aanklikken');
+ document.body.classList.toggle('tour-take-notes',step.id==='noteplek');
  showProposalView(step.view);
  if(step.view==='recording')s.open.add(s.cue);
  if(step.prepare==='session')s.calmSessionOpen=true;
@@ -59,6 +60,11 @@ function openTourStep(index){
   const scroll=document.querySelector('#cue-scroll');
   if(innerWidth<760){scroll.scrollTop+=tourTarget.getBoundingClientRect().top-scroll.getBoundingClientRect().top-80;}else scroll.scrollTop=0;
   syncSticky();
+ }else if(step.id==='noteplek'){
+  const scroll=document.querySelector('#cue-scroll');
+  const anchor=innerWidth<760?document.querySelector('.calm-cue-list .cue-group.current'):tourTarget;
+  scroll.scrollTop+=anchor.getBoundingClientRect().top-scroll.getBoundingClientRect().top-90;
+  syncSticky();
  }else tourTarget?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
  document.querySelector('#proposal-tour-title').focus({preventScroll:true});
  scheduleTourPosition();
@@ -77,7 +83,9 @@ function positionProposalTour(){
  if(proposalTourIndex<0)return;
  const card=document.querySelector('.proposal-tour-card'),highlight=document.querySelector('.proposal-tour-highlight');if(!card||!highlight)return;
  tourTarget=findTourTarget(proposalTourSteps[proposalTourIndex]);if(!tourTarget)return;
- const r=tourTarget.getBoundingClientRect(),margin=12,padding=5;
+ const step=proposalTourSteps[proposalTourIndex];
+ const rects=[tourTarget,...(step.relatedTargets||[]).map(selector=>document.querySelector(selector)).filter(Boolean)].map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);
+ const r={left:Math.min(...rects.map(r=>r.left)),top:Math.min(...rects.map(r=>r.top)),right:Math.max(...rects.map(r=>r.right)),bottom:Math.max(...rects.map(r=>r.bottom))},margin=12,padding=5;
  const left=Math.max(4,r.left-padding),top=Math.max(4,r.top-padding),right=Math.min(innerWidth-4,r.right+padding),bottom=Math.min(innerHeight-4,r.bottom+padding);
  highlight.hidden=right<=left||bottom<=top;
  Object.assign(highlight.style,{left:left+'px',top:top+'px',width:Math.max(0,right-left)+'px',height:Math.max(0,bottom-top)+'px'});

@@ -59,7 +59,7 @@ Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen. Maa
 
 ### 6. Notes per take
 
-Klik op een take. Hier lees en schrijf je de notes voor die take.
+Klik verschillende takes. Het paneel toont de notes van de gekozen take.
 
 **Promptonderdeel:**
 

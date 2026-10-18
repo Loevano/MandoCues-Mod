@@ -258,3 +258,9 @@ body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
 .calm-cue-list .cue-group.current>.calm-cue-heading button{color:#f3e9fa}
 .calm-cue-list .cue-group.current>.calm-cue-heading button[data-select-cue] b{color:#e1c6f4}
 .calm-cue-list .cue-group.current>.calm-cue-heading small{color:#e0cde9}
+
+/* Both ends of take selection stay visible and interactive in this tour step. */
+.tour-take-notes .proposal-tour-highlight{border-color:transparent;box-shadow:none}
+.tour-take-notes .calm-cue-list .cue-group.current,
+.tour-take-notes .calm-notes{outline:2px solid #d6b7f0;outline-offset:4px}
+.tour-take-notes #cue-scroll{scroll-padding-top:90px;scroll-padding-bottom:290px}

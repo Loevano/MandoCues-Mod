@@ -415,3 +415,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Ook suggesties vanaf 6 en verder standaard selecteren voor de Claude-prompt.
 - Oude gedeeltelijke selecties uit de eerdere opt-in-versie eenmalig vervangen door alles aan.
 - Nieuwe opslag onthoudt alleen expliciet uitgevinkte suggesties. Nieuwe suggesties beginnen aangevinkt; eigen uitvinkkeuzes blijven behouden bij teruggaan en herladen.
+
+
+## 44. Takekeuze kunnen proberen bij Notes per take
+
+- Bij suggestie 6 zowel de takes als hun notitiepaneel uitlichten.
+- Takeknoppen aanklikbaar houden en het paneel zichtbaar laten meewisselen bij het kiezen van een andere take.
+- De uitleg kort houden: verschillende takes aanklikken en hun notes zien.

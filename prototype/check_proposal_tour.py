@@ -43,6 +43,15 @@ with sync_playwright() as p:
             assert page.evaluate('proposalTourSteps[proposalTourIndex].id')=='cue-aanklikken'
             page.wait_for_timeout(150)
             page.screenshot(path=str(ROOT/'checks/tour-click-cues.png'))
+        if step['id']=='noteplek':
+            expect(page.locator('body')).to_have_class(__import__('re').compile(r'tour-take-notes'))
+            for take in [1,2]:
+                page.locator(f'.calm-cue-list [data-select-take="c0-t{take}"]').click()
+                expect(page.locator('.calm-notes > header')).to_contain_text(f'Take {take}')
+                expect(page.locator('.calm-notes .note-list')).to_contain_text('Nice entrance' if take==1 else 'Cello a little calmer')
+            for selector in ['.calm-cue-list .cue-group.current','.calm-notes']:
+                assert page.locator(selector).evaluate('(el)=>getComputedStyle(el).outlineStyle')=='solid'
+            page.screenshot(path=str(ROOT/'checks/tour-take-notes.png'))
         page.wait_for_timeout(30)
         card=page.locator('.proposal-tour-card').bounding_box()
         assert card['x']>=0 and card['y']>=0 and card['x']+card['width']<=1512 and card['y']+card['height']<=1100,(step,card)
@@ -89,7 +98,7 @@ with sync_playwright() as p:
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Small viewports retain an in-bounds card, highlight and functioning next action.
     page.set_viewport_size({'width':390,'height':844})
-    for index in [0,1,6,7,16,18,20,24]:
+    for index in [0,1,5,6,7,16,18,20,24]:
         page.evaluate('(index)=>openTourStep(index)',index)
         page.wait_for_timeout(60)
         if index==1:
@@ -97,6 +106,10 @@ with sync_playwright() as p:
             expect(page.locator('#main-panel .main-cue')).to_contain_text('1M18')
             page.locator('.calm-cue-list [data-select-cue="0"]').click()
             expect(page.locator('#main-panel .main-cue')).to_contain_text('1M02')
+        if index==5:
+            for take in [1,2]:
+                page.locator(f'.calm-cue-list [data-select-take="c0-t{take}"]').click()
+                expect(page.locator('.calm-notes > header')).to_contain_text(f'Take {take}')
         r=page.locator('.proposal-tour-card').bounding_box()
         assert r['x']>=0 and r['y']>=0 and r['x']+r['width']<=390 and r['y']+r['height']<=844,(index,r)
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),index
