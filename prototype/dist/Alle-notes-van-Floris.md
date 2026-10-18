@@ -477,3 +477,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 51. Quick notes direct zichtbaar
 
 - Veelgebruikte notes staan direct als knoppen bij de editor, zonder uitklapmenu.
+
+
+## 52. Rondleiding scrolt naar de suggestie
+
+- Elke stap brengt het bijbehorende onderdeel automatisch in beeld, ook na zelf scrollen.
+- Het sessieplan wordt als tijdlijn zichtbaar gemaakt; rekening houden met de vaste opnamebalk.

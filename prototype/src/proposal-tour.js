@@ -65,9 +65,25 @@ function openTourStep(index){
   const anchor=innerWidth<760?document.querySelector('.calm-cue-list .cue-group.current'):tourTarget;
   scroll.scrollTop+=anchor.getBoundingClientRect().top-scroll.getBoundingClientRect().top-90;
   syncSticky();
- }else tourTarget?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+ }else revealTourTarget(tourTarget);
+ syncSticky();
  document.querySelector('#proposal-tour-title').focus({preventScroll:true});
  positionProposalTour();scheduleTourPosition();
+}
+// Bring each step into its own scroll viewport, including a previously scrolled list.
+function revealTourTarget(target){
+ if(!target)return;
+ // Fixed transport is already on screen; scrolling its sticky ancestor would hide it.
+ if(target.closest('.sticky-slot'))return;
+ const canvas=target.closest('.score-canvas');
+ const viewport=canvas?.clientHeight||document.querySelector('#cue-scroll')?.clientHeight||innerHeight;
+ target.scrollIntoView({block:target.offsetHeight>viewport-120?'start':'center',inline:'nearest',behavior:'instant'});
+ // Leave room for the sticky start/stop bar in the recording list.
+ const scroll=target.closest('#cue-scroll');
+ if(scroll){
+  const r=target.getBoundingClientRect(),bounds=scroll.getBoundingClientRect();
+  if(r.top<bounds.top+80)scroll.scrollTop-=bounds.top+80-r.top;
+ }
 }
 function findTourTarget(step){
  for(const selector of step.target.split(','))for(const el of document.querySelectorAll(selector.trim())){
