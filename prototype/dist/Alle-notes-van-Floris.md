@@ -549,3 +549,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Maat en tijdcode vóór Enter gebruiken dezelfde bediening als bij een geplaatste note.
 - Bar opent hetzelfde zwevende, scrollbare menu met All en direct typen plus Enter.
 - Tijdcode aanklikken, aanpassen en Enter; klokje herstelt het oorspronkelijke typmoment. Enter in metadata plaatst de note nog niet.
+
+
+## 61. Voorstelbalk weer bovenaan, los van de GUI
+
+- Nieuwste keuze: voorstelnaam, Rondleiding, Vragen en Claude-prompt compact bovenaan in een eigen balk.
+- Deze reviewbediening hoort niet bij de voorgestelde opname-GUI; ook in Cut list staat die apart.
+- De rondleiding blijft een verzameling vrijblijvende ideeën, zonder oordeel over het bestaande programma.

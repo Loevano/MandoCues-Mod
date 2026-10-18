@@ -19,7 +19,7 @@ De onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevink
 
 ### 1. Het hoofdpaneel
 
-Ik heb de bediening en de belangrijkste tijden bij elkaar gezet.
+Een idee: bediening en belangrijke tijden bij elkaar. Zou deze indeling fijn werken tijdens een sessie?
 
 **Promptonderdeel:**
 

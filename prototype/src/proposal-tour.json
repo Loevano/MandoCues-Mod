@@ -6,7 +6,7 @@
     {
       "id": "duidelijke-labels",
       "title": "Het hoofdpaneel",
-      "text": "Ik heb de bediening en de belangrijkste tijden bij elkaar gezet.",
+      "text": "Een idee: bediening en belangrijke tijden bij elkaar. Zou deze indeling fijn werken tijdens een sessie?",
       "target": "#main-panel",
       "view": "recording",
       "discussion": "duidelijke-labels"
