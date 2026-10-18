@@ -392,3 +392,12 @@ body.score-workspace{height:100dvh;display:flex;flex-direction:column;overflow:h
  .score-workspace .proposal-review-actions button{padding:5px;font-size:9px}
  .score-workspace .proposal-live-bar .transport{min-height:34px}
 }
+
+/* Proposal controls belong after the recording workspace, not above it. */
+.unified-proposal>.site-header{display:none}
+.proposal-review-footer{margin-top:32px;border-top:1px solid #343039}
+.unified-proposal .proposal-review-footer .site-header{display:flex;min-height:0;padding:20px 0 4px;background:transparent;border:0;flex-wrap:wrap;gap:12px}
+.proposal-review-footer .wordmark{font-size:12px}
+.proposal-review-footer .brand-icon{height:24px;width:24px;font-size:21px}
+.proposal-shell .calm-scroll{height:calc(100dvh - 150px)}
+@media(max-width:700px){.proposal-shell .calm-scroll{height:calc(100dvh - 175px)}}

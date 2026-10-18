@@ -496,3 +496,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Recording/Cut list, cue/take en opnamebediening staan samen in één compacte balk boven de kniplijst.
 - Geen aparte titel-/projectrij en geen Expand/Restore-stap meer; de score vult meteen de beschikbare werkruimte.
 - Rondleiding, Vragen en Claude-prompt blijven bereikbaar. Op smalle schermen mag de compacte balk over twee regels lopen.
+
+
+## 55. Voorstelbediening onderaan Recording
+
+- Naam, Rondleiding, Vragen en Claude-prompt onderaan de scrollbare opnameweergave, zodat het hoofdpaneel meer ruimte krijgt.
+- De compacte kniplijstbalk blijft behouden.

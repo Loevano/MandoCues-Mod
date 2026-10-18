@@ -55,7 +55,7 @@ composer=function(s,t,score=false,place='list'){
  return s.unified&&active.id!=='notities'?output.replace('<div class="composer-footer">',quickNoteSuggestions(t,place)+'<div class="composer-footer">'):output;
 };
 function proposalRatingFilter(s){return `<div class="review-filter"><label>Show takes <select data-rating-filter>${[[0,'All ratings'],[3,'3–5 stars'],[4,'4–5 stars'],[5,'Only 5 stars']].map(([n,label])=>`<option value="${n}" ${s.minRating===n?'selected':''}>${label}</option>`).join('')}</select></label></div>`;}
-controls=function(){const s=state();return `<div class="calm-scroll control-scroll" id="cue-scroll" tabindex="0" aria-label="Recording workspace"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
+controls=function(){const s=state();return `<div class="calm-scroll control-scroll" id="cue-scroll" tabindex="0" aria-label="Recording workspace"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div><footer class="proposal-review-footer" lang="nl"></footer></div>`;};
 selectCue=function(s,index){selectScoreCue(s,index);};
 toggleRecord=function(s,kind='take'){
  s.sessionStarted=true;
@@ -68,7 +68,11 @@ toggleRecord=function(s,kind='take'){
 renderDemo=function(){
  document.body.classList.toggle('score-workspace',proposalView==='cutlist');
  document.body.classList.toggle('score-expanded',proposalView==='cutlist');
+ // Keep the persistent review header outside the subtree being rebuilt.
+ const reviewHeader=document.querySelector('.site-header');
+ if(reviewHeader?.closest('#demo'))document.body.append(reviewHeader);
  previousRenderDemo();
+ if(proposalView==='recording')document.querySelector('.proposal-review-footer')?.append(reviewHeader);
  if(proposalView==='recording'){
   for(const row of document.querySelectorAll('[data-calm-take]')){
    const t=takeById(unifiedState,row.dataset.calmTake);row.hidden=!!unifiedState.minRating&&t.rating<unifiedState.minRating;
