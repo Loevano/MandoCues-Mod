@@ -32,7 +32,7 @@ values={
 for marker,name in [('EXTRA_JS','extra.js'),('INSPECTION_JS','inspection.js'),
     ('PRODUCTION_SCORE_JS','production-score.js'),('SCORE_INTERACTIONS_JS','score-interactions.js'),
     ('SCORE_WORKFLOW_JS','score-workflow.js'),('CONTROLS_CALM_JS','controls-calm.js'),
-    ('SCORE_COMPARE_JS','score-compare.js'),('JS','app.js'),('UNIFIED_JS','unified-app.js'),('TOUR_JS','proposal-tour.js')]:
+    ('SCORE_COMPARE_JS','score-compare.js'),('JS','app.js'),('APP_SHELL_JS','proposal-shell.js'),('UNIFIED_JS','unified-app.js'),('TOUR_JS','proposal-tour.js')]:
     values[marker]=read(name)
 for marker,value in values.items():shell=shell.replace('/*'+marker+'*/',value)
 write('index.html',shell)

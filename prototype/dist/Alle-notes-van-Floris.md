@@ -562,3 +562,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Eén druk blijft één cue of take. Ingedrukt houden herhaalt de navigatie en versnelt na kort vasthouden.
 - Alt blijft takes betekenen, zonder Alt cues. In tekstvelden blijven brackets tekst; cijfer- en opnameacties herhalen niet.
+
+
+## 63. Bestaande app herkenbaar houden
+
+- Zijbalk met MandoCues, Dashboard, Cues, Sessions, Recording, Tasks, Stats, Settings en accountcontext.
+- Sessiekeuze, Session length in minuten met uren ernaast, Prep per cue, Max music in minuten, Add cues, Chat en PDF zichtbaar behouden.
+- Chat standaard dicht; lokale proefberichten. PDF toont Recording order of Take sheet en kan via de browser worden afgedrukt.
+- Inspectie-HTML is een gerenderde momentopname, geen volledige JavaScriptbron. Max music heeft daar het aria-label Maximum minutes of music.
+- Nieuwe cues zonder meegeleverde score tonen No score linked; geen verzonnen partituur.
