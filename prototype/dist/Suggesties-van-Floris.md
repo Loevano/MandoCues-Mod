@@ -191,15 +191,15 @@ Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumente
 
 **Promptonderdeel:**
 
-Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine.
+Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine. Gebruik de horizontale maatvakken ook voor dubbelklikken vlak boven de balken, zodat bijvoorbeeld boven maat 5 direct maat 5 gekozen wordt. Leid de instrumentcontext af uit de verticale positie: bij een balk voor dat instrument, boven de hele groep voor All instruments.
 
 ### 23. Notes terugvinden en verplaatsen
 
-Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar een andere plek.
+Klik links om een note terug te vinden. Sleep de tekst naar een andere maat; die licht op en wordt overgenomen.
 
 **Promptonderdeel:**
 
-Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en tijdcode zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de tijdcode. Een klein klokje herstelt de onveranderlijk opgeslagen oorspronkelijke tijdcode. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen.
+Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en tijdcode zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de tijdcode. Een klein klokje herstelt de onveranderlijk opgeslagen oorspronkelijke tijdcode. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen. Laat bij het slepen de doelmaat subtiel oplichten op basis van de bestaande scoremapping. Werk bij loslaten maatnummer, pagina/boekpagina en instrumentcontext bij zonder tijdcode, take of tekst te veranderen. Bewaar de gekozen vrije tekstpositie. Boven de volledige instrumentgroep wordt de context All instruments. Annuleren wijzigt niets; Command+Z herstelt positie én metadata.
 
 ### 24. Scorebewerkingen ongedaan maken
 

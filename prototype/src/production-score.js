@@ -84,7 +84,7 @@ function productionScoreView(s){
   return `<div class="score-sheet" data-score-sheet="${page}"><div class="score-paper ${a?'production-score-paper':''}" data-score-source="${s.doc.id}" data-score-page="${page}" data-score-take="${t?.id||''}">${paper}${scoreComparisonLayers(s,page)}<div class="measure-overlays">${cells.map(c=>{
    const chosen=s.measure===c.measure&&(!s.scoreFocus||s.scoreFocus.page===page&&s.scoreFocus.instruments.includes(c.instrument));
    return `<button class="score-measure ${chosen?'chosen':''} ${selected.includes(c.key)?'in-take-selection':''}" style="left:${c.x*100}%;top:${c.y*100}%;width:${c.width*100}%;height:${c.height*100}%" data-score-measure="${c.measure}" data-score-instrument="${c.instrument}" data-score-cell="${c.key}" aria-label="Bar ${c.measure}, ${scoreInstrumentLabel([c.instrument])}" aria-pressed="${selected.includes(c.key)}"></button>`;
-  }).join('')}</div><div class="score-drag-rectangle" hidden></div>${scorePageComments(s,t,page)}${scoreCommentDialog(s,page)}</div></div>`;
+  }).join('')}</div><div class="score-drag-rectangle" hidden></div><div class="score-note-bar-preview" hidden aria-hidden="true"></div>${scorePageComments(s,t,page)}${scoreCommentDialog(s,page)}</div></div>`;
  }).join('')}</div></section>`;
 }
 

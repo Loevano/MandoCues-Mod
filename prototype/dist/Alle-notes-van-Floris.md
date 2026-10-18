@@ -502,3 +502,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Naam, Rondleiding, Vragen en Claude-prompt onderaan de scrollbare opnameweergave, zodat het hoofdpaneel meer ruimte krijgt.
 - De compacte kniplijstbalk blijft behouden.
+
+
+## 56. Scorepositie bepaalt maat bij plaatsen en slepen
+
+- Dubbelklikken vlak boven een maat neemt die maat direct over in de note.
+- Tijdens slepen licht de doelmaat subtiel op; loslaten past het maatnummer en de instrumentcontext aan.
+- Boven de volledige instrumentgroep is All instruments; bij een instrument is de note instrumentgebonden.
+- Notes blijven kale tekst op de gekozen plek; verplaatsen blijft ongedaan te maken.

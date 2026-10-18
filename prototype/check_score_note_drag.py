@@ -36,14 +36,16 @@ with sync_playwright() as p:
         original = saved()
         selection = page.evaluate('scoreSelection(state(), takeById(state(), state().selected))')
         before = start_drag(70, 35)
+        expect(page.locator('.score-note-bar-preview:not([hidden])')).to_have_count(1)
         page.mouse.up()
+        expect(page.locator('.score-note-bar-preview:not([hidden])')).to_have_count(0)
         expect(page.locator('#score-comment-dialog')).to_have_count(0)
         moved = saved()
         after = note.bounding_box()
         assert abs(after['x'] - before['x'] - 70) < 2
         assert abs(after['y'] - before['y'] - 35) < 2
         assert moved['placement'] == 'free'
-        assert {k: v for k, v in original.items() if k not in ('anchor', 'placement')} == {k: v for k, v in moved.items() if k not in ('anchor', 'placement')}
+        assert {k: v for k, v in original.items() if k not in ('anchor', 'placement','measure','measureScope','useMeasure','instruments','page','bookPage')} == {k: v for k, v in moved.items() if k not in ('anchor', 'placement','measure','measureScope','useMeasure','instruments','page','bookPage')}
         assert page.evaluate('scoreSelection(state(), takeById(state(), state().selected))') == selection
         page.locator('[data-score-undo]').click()
         assert saved() == original
