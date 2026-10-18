@@ -510,3 +510,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Tijdens slepen licht de doelmaat subtiel op; loslaten past het maatnummer en de instrumentcontext aan.
 - Boven de volledige instrumentgroep is All instruments; bij een instrument is de note instrumentgebonden.
 - Notes blijven kale tekst op de gekozen plek; verplaatsen blijft ongedaan te maken.
+
+
+## 57. Score-note verwijderen met ⌫
+
+- Bevestigd: Delete/Backspace (⌫), niet de backslash-toets.
+- Klik een bestaande score-note en verwijder hem met ⌫; Command+Z haalt hem terug.
+- In het tekstveld blijft ⌫ gewone tekstbewerking. Bij een bestaande note staat ook Delete naast Cancel.

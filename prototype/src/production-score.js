@@ -77,7 +77,7 @@ function productionScoreView(s){
  const a=scoreAsset(s.doc.id),t=takeById(s,s.selected);
  if(s.doc.url)return `<section class="score-viewer cutlist-viewer">${scoreSettings(s)}<iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe></section>`;
  const selected=scoreSelection(s,t);
- return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${scoreSettings(s)}<div class="score-canvas" style="--score-zoom:${s.zoom||1}">${Array.from({length:s.doc.pages},(_,index)=>{
+ return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${scoreSettings(s)}<div class="score-canvas" tabindex="-1" aria-label="Score pages" style="--score-zoom:${s.zoom||1}">${Array.from({length:s.doc.pages},(_,index)=>{
   const page=index+1,cells=scoreCells(s,page),src=a===assets.production?assets.production.pageImages[index]:a?assets.production.bookImages[a.bookPages[index]]:null;
   const paper=a?`<img draggable="false" class="production-score-image" src="${src}" width="1200" height="1698" alt="${a.cue}, book page ${a.bookPages[index]}">`:assets.pages[index];
   const notes=t?.notes.filter(n=>n.source===s.doc.id&&n.page===page)||[];

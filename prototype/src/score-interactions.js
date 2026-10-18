@@ -116,15 +116,18 @@ function scoreSidebar(s,{workflow=false}={}){
 }
 function openScoreComment(s,measure,anchor,page,instruments,existing=null){
  const t=takeById(s,s.selected);if(!t){toast('Create a take before adding a note.');return;}
- s.cutlistView='score';
+ s.cutlistView='score';s.focusedScoreNote=existing?.id||null;
  s.scoreComment={take:t.id,source:s.doc.id,page,measure:measure||'',text:existing?.text||'',at:existing?.at??position(t),anchor:{...anchor},instruments:[...instruments],placement:existing?.placement||'auto',editId:existing?.id||null};
  s.page=page;s.measure=measure||null;s.scoreFocus={page,measure,instruments};renderDemo();
 }
 function scoreCommentDialog(s,page){
  const c=s.scoreComment;if(!c||c.page!==page)return '';
- return `<div id="score-comment-dialog" class="score-inline-editor " style="--take-color:${scoreTakeColor(takeById(s,c.take))};left:clamp(0px,${c.anchor.x*100}%,max(0px,calc(100% - 285px)));top:${c.anchor.y*100}%" role="dialog" aria-label="Score note"><header><b>${entryLabel(takeById(s,c.take))}</b><label>Bar <input id="score-comment-measure" type="number" min="1" max="99999" value="${c.measure}"></label></header><div class="score-note-options"><label>For<select id="score-comment-instrument"><option value="all" ${c.instruments.length===4?'selected':''}>All instruments</option>${scoreInstruments.map(i=>`<option value="${i.id}" ${c.instruments.length===1&&c.instruments[0]===i.id?'selected':''}>${i.name}</option>`).join('')}</select></label><label>Placement<select id="score-comment-placement">${[['auto','Automatic · above'],['below','Below'],['free','At click position']].map(([value,label])=>`<option value="${value}" ${c.placement===value?'selected':''}>${label}</option>`).join('')}</select></label></div><textarea id="score-comment-text" aria-label="Note" placeholder="Write your note…">${esc(c.text)}</textarea><footer><button data-score-cancel-comment>Cancel</button><button data-score-save-comment>Add</button></footer><small>Enter = add · Shift+Enter = new line</small></div>`;
+ return `<div id="score-comment-dialog" class="score-inline-editor " style="--take-color:${scoreTakeColor(takeById(s,c.take))};left:clamp(0px,${c.anchor.x*100}%,max(0px,calc(100% - 285px)));top:${c.anchor.y*100}%" role="dialog" aria-label="Score note" tabindex="-1"><header><b>${entryLabel(takeById(s,c.take))}</b><label>Bar <input id="score-comment-measure" type="number" min="1" max="99999" value="${c.measure}"></label></header><div class="score-note-options"><label>For<select id="score-comment-instrument"><option value="all" ${c.instruments.length===4?'selected':''}>All instruments</option>${scoreInstruments.map(i=>`<option value="${i.id}" ${c.instruments.length===1&&c.instruments[0]===i.id?'selected':''}>${i.name}</option>`).join('')}</select></label><label>Placement<select id="score-comment-placement">${[['auto','Automatic · above'],['below','Below'],['free','At click position']].map(([value,label])=>`<option value="${value}" ${c.placement===value?'selected':''}>${label}</option>`).join('')}</select></label></div><textarea id="score-comment-text" aria-label="Note" placeholder="Write your note…">${esc(c.text)}</textarea><footer><button data-score-cancel-comment>Cancel</button>${c.editId?`<button data-delete-note="${c.editId}" data-take="${c.take}" title="Delete note · ⌫">Delete</button>`:''}<button data-score-save-comment>${c.editId?'Save':'Add'}</button></footer><small>Enter = ${c.editId?'save':'add'} · Shift+Enter = new line</small></div>`;
 }
-function syncScoreCommentDialog(){document.querySelector('#score-comment-text')?.focus({preventScroll:true});}
+function syncScoreCommentDialog(){
+ const edit=state().scoreComment?.editId;
+ document.querySelector(edit?'#score-comment-dialog':'#score-comment-text')?.focus({preventScroll:true});
+}
 function saveScoreComment(s){
  const c=s.scoreComment,t=takeById(s,c?.take);if(!c||!t||!c.text.trim())return;
  if(c.measure!==''&&(!Number.isInteger(+c.measure)||+c.measure<1||+c.measure>99999)){toast('Enter a valid bar number.');return;}
@@ -220,6 +223,12 @@ document.addEventListener('input',e=>{
 });
 document.addEventListener('keydown',e=>{
  if(active?.id!=='partituur')return;
+ if(['Backspace','Delete'].includes(e.key)&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!e.isComposing&&!e.repeat&&!e.target.closest('input,textarea,select,[contenteditable=true]')){
+  const s=state(),target=e.target.closest('.score-text-annotation,#score-comment-dialog');
+  const id=target?.dataset.scoreNote||s.scoreComment?.editId;
+  const take=target?.dataset.scoreTake||s.scoreComment?.take;
+  if(target&&id&&take){const button=document.querySelector(`.score-note-row [data-delete-note="${id}"][data-take="${take}"]`);if(button){e.preventDefault();e.stopImmediatePropagation();button.click();document.querySelector('.score-canvas')?.focus({preventScroll:true});}return;}
+ }
  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='z'&&!e.altKey&&!e.isComposing&&!e.target.closest('input,textarea,[contenteditable=true]')){e.preventDefault();e.stopImmediatePropagation();undoScoreChange(state(),e.shiftKey);return;}
  if(!state().scoreComment)return;
  if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();const s=state(),t=takeById(s,s.selected);if(t?.scoreCommentDrafts)delete t.scoreCommentDrafts[s.doc.id];s.scoreComment=null;renderDemo();return;}
