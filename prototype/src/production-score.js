@@ -24,7 +24,7 @@ function switchScoreDocument(s,doc,redraw=true){
  s.scoreDrafts??={};
  s.scoreDrafts[s.doc.id]=Object.fromEntries(allTakes(s).map(t=>[t.id,{draft:{...t.draft}}]));
  if(s.doc.url&&s.doc.url!==doc.url)URL.revokeObjectURL(s.doc.url);
- s.doc=doc;s.page=1;s.measure=null;s.zoom=1;s.scoreComment=null;
+ s.doc=doc;s.page=1;s.measure=null;s.scoreComment=null;
  for(const t of allTakes(s)){
   const previous=s.scoreDrafts[doc.id]?.[t.id];
   t.draft=previous?{...previous.draft}:draft();

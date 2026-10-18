@@ -588,3 +588,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Formuleer als vrijblijvende ideeën voor de collega, met korte aanwijzingen om te proberen. Geen uitleg over tussentijdse fixes of onze ontwerphistorie.
 - Kloktijd onderscheiden van take-duur. Details zoals twee cijfers invoeren en het tijdcode-resetknopje blijven in de bediening en implementatieprompt, zonder de rondleiding te belasten.
 - Bestaande suggestie-ID’s en opgeslagen promptkeuzes blijven behouden.
+
+
+## 66. PDF-zoom globaal
+
+- De gekozen zoom/schaal blijft gelijk bij wisselen tussen cues.
+- Geen afzonderlijke zoomstand per cue, take of scorebron herstellen. Alleen zelf zoomen of Fit width gebruiken verandert de schaal.
+- Dit is gewoon gedrag van de werkruimte; geen extra uitleg over de fix in de rondleiding.

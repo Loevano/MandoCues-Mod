@@ -47,6 +47,27 @@ with sync_playwright() as p:
     page.locator('[data-select-take="c0-t1"]').click()
     expect(page.locator('[data-score-zoom-value]')).to_have_text('175%')
     page.locator(f'[data-select-take="{owner}"]').click()
+    # Zoom is one workspace setting, independent of cue/document and saved take views.
+    page.locator('#score-cue').select_option('1')
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('175%')
+    assert abs(paper.bounding_box()['width']/base-1.75)<.01
+    page.locator('[data-score-zoom="in"]').click()
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('200%')
+    page.locator('#score-cue').select_option('0')
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('200%')
+    assert abs(paper.bounding_box()['width']/base-2)<.01
+    assert layers()==saved
+    page.locator('[data-proposal-view="recording"]').click()
+    page.locator('.calm-cue-list [data-select-cue="2"]').click()
+    page.locator('[data-proposal-view="cutlist"]').click()
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('200%')
+    page.locator('.score-canvas').focus();page.keyboard.press('[')
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('200%')
+    page.keyboard.press('[')
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('200%')
+    assert page.evaluate('state().cue')==0 and page.evaluate('state().selected')==owner
+    page.locator('[data-score-zoom="out"]').click()
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('175%')
     for _ in range(5):page.locator('[data-score-zoom="in"]').click()
     expect(page.locator('[data-score-zoom-value]')).to_have_text('300%')
     expect(page.locator('[data-score-zoom="in"]')).to_be_disabled()
@@ -111,4 +132,4 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT/'checks/score-zoom.png'))
     assert not errors,errors
     browser.close()
-print('PASS: continuous pages, viewport space, 50–300% zoom, reading anchor, shared take zoom, scaled selection/note drag, permanently expanded workspace, compact transport and responsive widths')
+print('PASS: continuous pages, viewport space, 50–300% zoom, reading anchor, global cue/take zoom, scaled selection/note drag, permanently expanded workspace, compact transport and responsive widths')

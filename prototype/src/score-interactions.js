@@ -70,7 +70,7 @@ function rememberScoreView(s){
  const paper=document.querySelector('.score-paper'),canvas=document.querySelector('.score-canvas');
  if(paper&&(paper.dataset.scoreTake!==t.id||paper.dataset.scoreSource!==s.doc.id))return;
  t.scoreCommentDrafts??={};if(s.scoreComment?.take===t.id&&s.scoreComment.source===s.doc.id)t.scoreCommentDrafts[s.doc.id]=structuredClone(s.scoreComment);
- t.scoreViews??={};t.scoreViews[s.doc.id]={page:s.page,measure:s.measure,zoom:s.zoom||1,top:canvas?.scrollTop||0,left:canvas?.scrollLeft||0};
+ t.scoreViews??={};t.scoreViews[s.doc.id]={page:s.page,measure:s.measure,top:canvas?.scrollTop||0,left:canvas?.scrollLeft||0};
 }
 function restoreScoreView(s){const v=takeById(s,s.selected)?.scoreViews?.[s.doc.id];s.page=v?.page||1;s.measure=v?.measure??null;s.zoom=s.zoom||1;s.scoreFocus=null;s.focusedScoreNote=null;s.scoreComment=structuredClone(takeById(s,s.selected)?.scoreCommentDrafts?.[s.doc.id]||null);s.pendingScoreScroll={top:v?.top||0,left:v?.left||0};}
 function selectScoreTake(s,id,keepComparison=false,keepPosition=true){const scrollY=window.scrollY,page=s.page;const t=takeById(s,id);if(!t)return;if(!keepComparison){s.scoreCompared??={};s.scoreCompared[s.cue]=[id];}if(s.selected!==id){rememberScoreView(s);s.selected=id;t.collapsed=false;s.scoreComment=null;restoreScoreView(s);if(keepPosition){delete s.pendingScoreScroll;s.page=page;}}renderDemo();if(keepPosition)window.scrollTo({top:scrollY,behavior:'instant'});}
