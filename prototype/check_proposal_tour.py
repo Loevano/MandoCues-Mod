@@ -35,6 +35,9 @@ with sync_playwright() as p:
     for step in steps:
         included=any(line.endswith('. '+step['title']) for line in prompt.splitlines() if line.startswith('## '))
         assert included==(step['id'] in selected),step
+    page.evaluate('Object.defineProperty(navigator,"clipboard",{configurable:true,value:{writeText:async text=>{window.copiedTourPrompt=text;}}})')
+    page.locator('[data-tour-action="copy"]').click()
+    assert page.evaluate('window.copiedTourPrompt')==prompt
     # Touring does not create takes or edit notes, ratings or selections.
     assert take_data()==original
     with page.expect_download() as download:page.locator('[data-tour-action="download"]').click()
@@ -49,6 +52,9 @@ with sync_playwright() as p:
     assert page.evaluate('proposalTourSelection.size')==3
     page.locator('[data-proposal-action="tour"]').click()
     expect(page.locator('[data-tour-choice="sterren"]')).to_be_checked()
+    page.locator('[data-tour-choice="sterren"]').uncheck()
+    assert '## 1. Sterren in plaats van' not in page.evaluate('selectedTourPrompt()')
+    page.locator('[data-tour-choice="sterren"]').check()
     page.keyboard.press('Escape');expect(page.locator('.proposal-tour-card')).to_have_count(0)
     # Guided view changes never stop a live take or lose a draft.
     page.locator('[data-proposal-view="recording"]').click();page.keyboard.press('Meta+Enter')
@@ -73,4 +79,4 @@ with sync_playwright() as p:
     assert not errors,errors
     assert not network,network
     browser.close()
-print('PASS: welcome choices, all tour targets, opt-in exact prompts/download, persistence, open questions, live-take/draft preservation and mobile tour')
+print('PASS: welcome choices, all tour targets, opt-in exact prompts/copy/download, persistence, open questions, live-take/draft preservation and mobile tour')
