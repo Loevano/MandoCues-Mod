@@ -74,3 +74,8 @@ Cmd+Z maakt een selectie- of note-actie ongedaan; tekstinvoer houdt zijn eigen u
 ## Notes-kolom en taal
 
 De titel Notes for Take 1 gebruikt dezelfde takekleur en een bolletje als de take-lijst. Book p. staat direct onder Bar, zonder lege tussenregel. Note, metadata en Edit/Delete staan compact onder elkaar. De GUI is Engels; de collega-uitleg blijft Nederlands. Eigen notities en oorspronkelijke cue-/projectnamen worden niet vertaald.
+
+
+## Grote scoreweergave
+
+De cuepagina’s staan doorlopend onder elkaar, met onafhankelijke scroll naast de takes en notes. Zoom in/uit en Fit width schalen de paginalagen samen. Expand score view verbergt de bovenste overzichtsbalken; Restore of Escape herstelt ze. De compacte opnamebalk en takekolom blijven bereikbaar. Uitgebreide bediening staat in de rondleiding.

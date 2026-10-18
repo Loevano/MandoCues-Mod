@@ -146,6 +146,15 @@
       "prompt": "Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de partituur groot rechts met takes en notes links. Gebruik de bestaande gevalideerde maat-/instrumentmapping waar aanwezig en label benaderingen. Een eigen PDF krijgt niet vanzelf mapping. Wijzig het bron-PDF niet en behoud aparte takegegevens voor cues die dezelfde scorepagina’s delen."
     },
     {
+      "id": "score-zoom",
+      "title": "De partituur groot in beeld",
+      "text": "Zoom in of uit, kies Fit width of vergroot de scoreweergave. Scroll door alle pagina’s.",
+      "target": ".score-settings",
+      "view": "cutlist",
+      "prepare": "score",
+      "prompt": "Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Voeg Zoom in, Zoom out, een percentage, Fit width en Expand/Restore score view toe aan de bestaande compacte scoreknoppenrij. Escape verlaat de vergrote werkweergave. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF."
+    },
+    {
       "id": "score-lagen",
       "title": "Eigen notes en selecties per take",
       "text": "Klik een take om zijn notes en geselecteerde maten te zien. Een nieuwe take begint leeg.",

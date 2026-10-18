@@ -100,7 +100,7 @@ with sync_playwright() as p:
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Small viewports retain an in-bounds card, highlight and functioning next action.
     page.set_viewport_size({'width':390,'height':844})
-    for index in [0,1,5,6,7,16,18,20,24]:
+    for index in [0,1,5,6,7,16,18,20,24,25]:
         page.evaluate('(index)=>openTourStep(index)',index)
         page.wait_for_timeout(60)
         if index==1:

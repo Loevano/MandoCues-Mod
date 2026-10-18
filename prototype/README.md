@@ -13,7 +13,7 @@ python3 -X utf8 check_handoff.py
 
 Op Windows: vervang python3 door py -3. Alle benodigde scorebeelden en mappings zitten in `src/score-assets/`; de oorspronkelijke boeken zijn geen buildvereiste.
 
-De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 25 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
+De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 26 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
 
 ## Browsercontroles
 
@@ -30,6 +30,7 @@ python -X utf8 check_all_takes.py
 python -X utf8 check_score_note_drag.py
 python -X utf8 check_score_settings.py
 python -X utf8 check_score_take_scroll.py
+python -X utf8 check_score_zoom.py
 ```
 
 `browser_support.py` gebruikt Playwright Chromium of een gevonden Chrome-installatie. Je kunt ook PLAYWRIGHT_CHROMIUM_EXECUTABLE instellen. Uitvoer en screenshots komen in `checks/`.

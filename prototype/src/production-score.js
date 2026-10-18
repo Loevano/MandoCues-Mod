@@ -42,19 +42,41 @@ function scoreNoteAnchor(s,n){
  const ids=n.instruments||scoreInstrumentIds,cell=scoreCells(s,n.page).find(c=>c.measure===n.measure&&c.instrument===ids[0]);
  return cell?{x:cell.x+.01,y:cell.y+.01}:null;
 }
+function scoreZoomControls(s){
+ const zoom=s.zoom||1;
+ return `<div class="score-zoom-controls" role="group" aria-label="Score zoom"><button type="button" data-score-zoom="out" aria-label="Zoom out" title="Zoom out" ${zoom<=.5?'disabled':''}>−</button><output data-score-zoom-value aria-live="polite">${Math.round(zoom*100)}%</output><button type="button" data-score-zoom="in" aria-label="Zoom in" title="Zoom in" ${zoom>=3?'disabled':''}>+</button><button type="button" class="score-fit-width" data-score-zoom="fit" title="Fit score to width">Fit width</button></div>`;
+}
+function setScoreZoom(s,action){
+ const canvas=document.querySelector('.score-canvas');if(!canvas)return;
+ const viewport=canvas.getBoundingClientRect(),cx=viewport.left+canvas.clientWidth/2,cy=viewport.top+canvas.clientHeight/2;
+ const papers=[...canvas.querySelectorAll('.score-paper')];
+ const anchor=papers.find(p=>{const r=p.getBoundingClientRect();return r.top<=cy&&r.bottom>=cy;})||papers.find(p=>p.getBoundingClientRect().bottom>viewport.top)||papers[0];
+ if(!anchor)return;
+ const before=anchor.getBoundingClientRect(),x=Math.max(0,Math.min(1,(cx-before.left)/before.width)),y=Math.max(0,Math.min(1,(cy-before.top)/before.height));
+ s.zoom=action==='fit'?1:Math.max(.5,Math.min(3,Math.round(((s.zoom||1)+(action==='in'?.25:-.25))*100)/100));
+ canvas.style.setProperty('--score-zoom',s.zoom);
+ refreshScoreTextPositions();
+ const after=anchor.getBoundingClientRect();
+ canvas.scrollTop+=after.top+after.height*y-cy;
+ canvas.scrollLeft=action==='fit'?0:canvas.scrollLeft+after.left+after.width*x-cx;
+ document.querySelectorAll('[data-score-zoom-value]').forEach(el=>el.textContent=Math.round(s.zoom*100)+'%');
+ document.querySelectorAll('[data-score-zoom="out"]').forEach(el=>el.disabled=s.zoom<=.5);
+ document.querySelectorAll('[data-score-zoom="in"]').forEach(el=>el.disabled=s.zoom>=3);
+ rememberScoreView(s);
+}
 function scoreSettings(s){
  const settings=[
   {key:'scoreLinkInstruments',label:'Link instruments',hint:'Select bars across all instruments',icon:'<path d="M10 13a5 5 0 0 0 7 .1l3-3a5 5 0 0 0-7-7l-2 2 M14 11a5 5 0 0 0-7-.1l-3 3a5 5 0 0 0 7 7l2-2"/>'},
   {key:'scoreSeeOtherTakes',label:'See other takes',hint:'Show background selections from other takes',icon:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'}
  ];
- return `<div class="score-settings" role="group" aria-label="Score settings">${active?.id==='partituur'?scoreViewSwitcher(s):''}${settings.map(({key,label,hint,icon})=>`<button type="button" data-score-setting="${key}" aria-label="${label}" aria-pressed="${s[key]!==false}" title="${label} · ${hint}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg></button>`).join('')}</div>`;
+ return `<div class="score-settings" role="group" aria-label="Score settings">${active?.id==='partituur'?scoreViewSwitcher(s):''}${settings.map(({key,label,hint,icon})=>`<button type="button" data-score-setting="${key}" aria-label="${label}" aria-pressed="${s[key]!==false}" title="${label} · ${hint}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg></button>`).join('')}${s.cutlistView!=='all'&&!s.doc.url?scoreZoomControls(s):''}<button type="button" data-score-expand aria-label="${s.scoreExpanded?'Restore score view':'Expand score view'}" aria-pressed="${!!s.scoreExpanded}" title="${s.scoreExpanded?'Restore score view · Escape':'Expand score view'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5 M16 3h5v5 M3 16v5h5 M21 16v5h-5"/></svg></button></div>`;
 }
 function productionScoreView(s){
  if(active?.id==='partituur'&&s.cutlistView==='all')return scoreAllTakes(s);
  const a=scoreAsset(s.doc.id),t=takeById(s,s.selected);
- if(s.doc.url)return `<section class="score-viewer cutlist-viewer">${scoreSettings(s)}<iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe><p>No bar and staff regions have been mapped for this PDF.</p></section>`;
+ if(s.doc.url)return `<section class="score-viewer cutlist-viewer">${scoreSettings(s)}<iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe></section>`;
  const selected=scoreSelection(s,t);
- return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${scoreSettings(s)}<div class="score-canvas">${Array.from({length:s.doc.pages},(_,index)=>{
+ return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${scoreSettings(s)}<div class="score-canvas" style="--score-zoom:${s.zoom||1}">${Array.from({length:s.doc.pages},(_,index)=>{
   const page=index+1,cells=scoreCells(s,page),src=a===assets.production?assets.production.pageImages[index]:a?assets.production.bookImages[a.bookPages[index]]:null;
   const paper=a?`<img draggable="false" class="production-score-image" src="${src}" width="1200" height="1698" alt="${a.cue}, book page ${a.bookPages[index]}">`:assets.pages[index];
   const notes=t?.notes.filter(n=>n.source===s.doc.id&&n.page===page)||[];
@@ -62,5 +84,5 @@ function productionScoreView(s){
    const chosen=s.measure===c.measure&&(!s.scoreFocus||s.scoreFocus.page===page&&s.scoreFocus.instruments.includes(c.instrument));
    return `<button class="score-measure ${chosen?'chosen':''} ${selected.includes(c.key)?'in-take-selection':''}" style="left:${c.x*100}%;top:${c.y*100}%;width:${c.width*100}%;height:${c.height*100}%" data-score-measure="${c.measure}" data-score-instrument="${c.instrument}" data-score-cell="${c.key}" aria-label="Bar ${c.measure}, ${scoreInstrumentLabel([c.instrument])}" aria-pressed="${selected.includes(c.key)}"></button>`;
   }).join('')}</div><div class="score-drag-rectangle" hidden></div>${scorePageComments(s,t,page)}${scoreCommentDialog(s,page)}</div></div>`;
- }).join('')}</div><div class="cutlist-how"><p><b>Select a take on the left.</b> Each take has its own colour, bars and notes.</p><p><b>Cmd+left-click:</b> add bars. <b>Cmd+right-click:</b> remove bars. Dragging also works. <b>Cmd+Option+left-drag:</b> also remove bars. ${s.scoreLinkInstruments===false?'Select bars per instrument.':'Linked instruments: selections cover all instruments.'}</p><p><b>Double-click:</b> write a note, then press Enter to place the text at that bar. Above the staff, or above the top staff for all instruments. Click a note to edit it. <b>Cmd+Z:</b> undo. Windows: Ctrl.</p></div><small class="cutlist-mapping-hint">${a===assets.production?'Arrival: checked bar regions.':a?'Bar regions are approximate; check the mapping.':'Schematic demo.'} Notes appear as text at their score position.</small></section>`;
+ }).join('')}</div></section>`;
 }

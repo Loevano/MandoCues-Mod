@@ -445,3 +445,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Previous cue, Next cue en Overdub weer zichtbare knoppen. Voor nu ook Break en End session zichtbaar proberen, gegroepeerd onder Take, Cue en Session.
 - Geen bestaande functies of klokken schrappen. Het doel van de oorspronkelijke klokken blijft een korte open vraag voor de collega.
 - Lokale Break/End session zijn demonstratiegedrag: notes en takes blijven bewaard; sessieacties stoppen geen lopende take impliciet. In de echte app blijft de bestaande logica leidend.
+
+
+## 48. Grote partituur met zoom en doorlopende pagina’s
+
+- Zoom in en uit kunnen kiezen, met een percentage en Fit width.
+- De score krijgt de beschikbare breedte en hoogte; Expand score view maakt extra ruimte. Escape herstelt de normale werkruimte.
+- Alle pagina’s doorlopend onder elkaar laten staan. Jens’ onafhankelijke scroll van score en takes/notes en de leespositie bij takekeuze behouden.
+- Het lange uitlegblok onder de score verwijderen uit de GUI. De bediening kort in de rondleiding uitleggen.
+- Notes, kniplijstselecties en vergelijkingen blijven correct op hun plek bij zoomen en vergroten.

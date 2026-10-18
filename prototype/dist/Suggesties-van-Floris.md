@@ -153,7 +153,15 @@ Kies een cue en zie de bijbehorende partituur rechts.
 
 Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de partituur groot rechts met takes en notes links. Gebruik de bestaande gevalideerde maat-/instrumentmapping waar aanwezig en label benaderingen. Een eigen PDF krijgt niet vanzelf mapping. Wijzig het bron-PDF niet en behoud aparte takegegevens voor cues die dezelfde scorepagina’s delen.
 
-### 18. Eigen notes en selecties per take
+### 18. De partituur groot in beeld
+
+Zoom in of uit, kies Fit width of vergroot de scoreweergave. Scroll door alle pagina’s.
+
+**Promptonderdeel:**
+
+Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Voeg Zoom in, Zoom out, een percentage, Fit width en Expand/Restore score view toe aan de bestaande compacte scoreknoppenrij. Escape verlaat de vergrote werkweergave. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF.
+
+### 19. Eigen notes en selecties per take
 
 Klik een take om zijn notes en geselecteerde maten te zien. Een nieuwe take begint leeg.
 
@@ -161,7 +169,7 @@ Klik een take om zijn notes en geselecteerde maten te zien. Een nieuwe take begi
 
 Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-ID én scorebronversie. Een nieuwe take heeft een lege eigen laag. Terugklikken herstelt de juiste gegevens zonder de score onverwacht te verschuiven. Deel deze gegevens met de opnameweergave; de geselecteerde take mag verschillen van de lopende take.
 
-### 19. Bruikbare maten markeren
+### 20. Bruikbare maten markeren
 
 ⌘+linksklik of slepen voegt maten toe. ⌘+rechtsklik verwijdert ze.
 
@@ -169,7 +177,7 @@ Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-
 
 Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit.
 
-### 20. Takes vergelijken op dezelfde score
+### 21. Takes vergelijken op dezelfde score
 
 ⌘+klik op meerdere takes om hun selecties en notes samen op de score te zien.
 
@@ -177,7 +185,7 @@ Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of sl
 
 Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
 
-### 21. Alle takes per maat vergelijken
+### 22. Alle takes per maat vergelijken
 
 Bekijk welke maten je per take hebt geselecteerd. Klik een maat om die in de partituur te openen.
 
@@ -185,7 +193,7 @@ Bekijk welke maten je per take hebt geselecteerd. Klik een maat om die in de par
 
 Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken.
 
-### 22. Instrumenten koppelen en andere takes tonen
+### 23. Instrumenten koppelen en andere takes tonen
 
 Ketting aan: selecteer alle instrumenten tegelijk. Oog aan: toon selecties van andere takes.
 
@@ -193,7 +201,7 @@ Ketting aan: selecteer alle instrumenten tegelijk. Oog aan: toon selecties van a
 
 Behoud Link instruments en See other takes als compacte, benoemde instellingen boven de partituur. Beide beginnen aan. Link instruments bepaalt alleen nieuwe selecties en herschrijft geen eerdere gedeeltelijke selecties. See other takes verbergt alleen achtergrondreferenties; expliciet gekozen vergelijkingstakes en hun notes blijven zichtbaar. Bewaar instellingen bij wisselen van weergave.
 
-### 23. Notes als tekst op de score
+### 24. Notes als tekst op de score
 
 Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumenten staan bovenaan.
 
@@ -201,7 +209,7 @@ Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumente
 
 Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine.
 
-### 24. Notes terugvinden en verplaatsen
+### 25. Notes terugvinden en verplaatsen
 
 Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar een andere plek.
 
@@ -209,7 +217,7 @@ Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar 
 
 Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Geef aparte edit/delete-acties met duidelijke toegankelijkheidslabels. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen.
 
-### 25. Scorebewerkingen ongedaan maken
+### 26. Scorebewerkingen ongedaan maken
 
 ⌘ Z maakt de laatste bewerking ongedaan. ⌘ Shift Z voert hem opnieuw uit.
 

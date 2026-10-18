@@ -23,11 +23,17 @@ with sync_playwright() as p:
         toggle = page.get_by_role('button', name='Show score PDF', exact=True)
         expect(toggle).to_have_count(1)
         def check_toolbar():
-            buttons = page.locator('.score-settings button')
-            expect(buttons).to_have_count(3)
-            boxes = [button.bounding_box() for button in buttons.all()]
-            assert all(box and box['width'] == 36 and box['height'] == 36 for box in boxes)
-            assert max(box['y'] for box in boxes)-min(box['y'] for box in boxes) <= 1
+            icons=page.locator('[data-score-toggle],[data-score-setting],[data-score-expand]')
+            expect(icons).to_have_count(4)
+            size=32 if page.viewport_size['width']<760 else 36
+            boxes=[button.bounding_box() for button in icons.all()]
+            assert all(box and box['width']==size and box['height']==size for box in boxes)
+            zooms=page.locator('[data-score-zoom]')
+            expect(zooms).to_have_count(3 if page.locator('.score-canvas').count() else 0)
+            boxes=[button.bounding_box() for button in page.locator('.score-settings button').all()]
+            if page.viewport_size['width']>=760:
+                assert max(box['y'] for box in boxes)-min(box['y'] for box in boxes)<=1
+            assert all(box['x']>=0 and box['x']+box['width']<=page.viewport_size['width'] for box in boxes)
         check_toolbar()
         expect(toggle).to_have_attribute('aria-pressed', 'true')
         expect(page.locator('.score-canvas')).to_be_visible()
