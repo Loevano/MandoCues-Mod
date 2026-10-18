@@ -21,7 +21,15 @@ with sync_playwright() as p:
                 text:'Watch the entrance',instruments:['vc'],at:0});
             s.scoreSeeOtherTakes=false;
         }''')
-        page.locator('[data-cutlist-view="all"]').click()
+        toggle = page.get_by_role('button', name='Show score PDF', exact=True)
+        expect(toggle).to_have_count(1)
+        expect(toggle).to_have_attribute('aria-pressed', 'true')
+        expect(page.locator('.score-canvas')).to_be_visible()
+        toggle.focus()
+        page.keyboard.press('Space')
+        expect(toggle).to_be_focused()
+        expect(toggle).to_have_attribute('aria-pressed', 'false')
+        expect(page.locator('.score-canvas')).to_have_count(0)
         expect(page.locator('.all-takes-table tbody > tr')).to_have_count(2)
         expect(page.locator('.all-takes-table thead th')).to_have_count(42)
         first = page.locator('.all-takes-table tbody > tr').first
@@ -37,23 +45,25 @@ with sync_playwright() as p:
         first.locator('[data-cutlist-notes="35"]').click()
         expect(page.locator('.all-takes-preview')).to_contain_text('Watch the entrance')
         page.locator('.all-takes-preview [data-cutlist-bar]').click()
-        expect(page.locator('[data-cutlist-view="score"]')).to_have_attribute('aria-pressed', 'true')
+        expect(page.locator('[data-score-toggle]')).to_have_attribute('aria-pressed', 'true')
         assert page.evaluate('state().selected') == 'c0-t1'
         assert page.evaluate('state().page') == 3
         expect(page.locator('.score-paper[data-score-page="3"] .chosen')).to_have_count(4)
         expect(page.locator('.score-paper[data-score-page="3"] .chosen').first).to_be_in_viewport()
         # Sidebar note editing must reveal the score rather than an invisible editor.
-        page.locator('[data-cutlist-view="all"]').click()
+        page.locator('[data-score-toggle]').click()
         page.locator('.cutlist-sidebar [data-score-note="overview-test"]').click()
         expect(page.locator('#score-comment-text')).to_have_value('Watch the entrance')
         page.locator('[data-score-cancel-comment]').click()
         # A normal switch back preserves the score's reading position.
         canvas_top = page.locator('.score-canvas').evaluate('(el)=>el.scrollTop')
-        page.locator('[data-cutlist-view="all"]').click()
-        page.locator('[data-cutlist-view="score"]').click()
+        page.locator('[data-score-toggle]').click()
+        page.keyboard.press('Enter')
+        expect(toggle).to_have_attribute('aria-pressed', 'true')
+        expect(toggle).to_be_focused()
         assert abs(page.locator('.score-canvas').evaluate('(el)=>el.scrollTop')-canvas_top) <= 1
         page.locator('[data-score-setting="scoreLinkInstruments"]').click()
-        page.locator('[data-cutlist-view="all"]').click()
+        page.locator('[data-score-toggle]').click()
         page.locator('[data-cutlist-expand="c0-t1"]').click()
         expect(page.locator('.all-takes-instrument')).to_have_count(4)
         row = page.locator('.all-takes-instrument').first
@@ -65,7 +75,7 @@ with sync_playwright() as p:
         other_selection = page.evaluate('scoreSelection(state(),takeById(state(),"c0-t2"))')
         page.evaluate('toggleRecord(state())')
         live = page.evaluate('running(state()).id')
-        page.locator('[data-cutlist-view="all"]').click()
+        page.locator('[data-score-toggle]').click()
         page.locator('[data-cutlist-take="c0-t2"]').click()
         assert page.evaluate('running(state()).id') == live
         page.locator('[data-cutlist-take="c0-t2"]').click(modifiers=['Meta'])
@@ -73,7 +83,7 @@ with sync_playwright() as p:
         assert page.evaluate('running(state()).id') == live
         assert page.evaluate('scoreSelection(state(),takeById(state(),"c0-t2"))') == other_selection
         page.evaluate('toggleRecord(state())')
-        page.locator('[data-cutlist-view="all"]').click()
+        page.locator('[data-score-toggle]').click()
         page.locator('#score-cue').select_option('1')
         expect(page.locator('.all-takes-view h3')).to_contain_text(page.evaluate('cues[1][0]'))
         expect(page.locator('.all-takes-preview')).to_have_count(0)
