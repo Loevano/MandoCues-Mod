@@ -206,6 +206,19 @@
 .demo::-webkit-scrollbar,.demo ::-webkit-scrollbar{background:#1b1920}
 .demo::-webkit-scrollbar-thumb,.demo ::-webkit-scrollbar-thumb{background:#74677f;border-radius:8px}
 .demo::-webkit-scrollbar-corner,.demo ::-webkit-scrollbar-corner{background:#1b1920}
+
+/* One shared recording / cut-list proposal. */
+.unified-proposal{background:#101114;color:#e8e8ee;min-height:100vh}
+.unified-proposal .site-header{min-height:68px;padding:14px 26px;border-color:#303039;background:#18191e;gap:16px}
+.unified-proposal .wordmark{font-size:15px}.unified-proposal .header-label{color:#aaa9b4}.unified-proposal .divider{color:#555360}
+.proposal-review-actions{display:flex;gap:8px;flex-wrap:wrap}.proposal-review-actions button{font-size:12px;color:#ddd8e8;border-color:#44404e;padding:7px 12px}
+.proposal-review-actions button:hover{background:#2e2937}.proposal-review-actions [data-proposal-selection-count]{display:inline-block;min-width:20px;text-align:center;border-radius:4px;background:#393146;margin-left:6px;font:11px var(--mono)}
+.proposal-shell{max-width:1780px;margin:0 auto;padding:22px 26px 28px}.proposal-view-bar{display:flex;align-items:center;gap:26px;min-height:57px;margin-bottom:18px}.proposal-view-bar h1{font-size:23px;letter-spacing:-.5px;margin:0 0 3px;font-weight:650}.proposal-view-bar small{font-size:11px;color:#9e9aaa}.proposal-view-toggle{display:flex;gap:3px;background:#222028;padding:3px;border:1px solid #39333f;border-radius:8px}.proposal-view-toggle button{border:0;color:#aaa3b5;padding:8px 20px;font-size:12px}.proposal-view-toggle button[aria-pressed=true]{background:#443753;color:#f5edf9}.proposal-view-toggle button:hover{background:#342b40}.proposal-demo-label{margin-left:auto}
+.proposal-shell .browser-frame{box-shadow:none;border-color:#343039;border-radius:9px}.proposal-shell .demo{padding:0;min-height:0}.proposal-shell .calm-scroll{height:calc(100dvh - 218px);min-height:430px;padding:18px 20px}.proposal-shell .calm-content{grid-template-columns:minmax(340px,1.04fr) minmax(320px,1fr);gap:24px}.proposal-shell .calm-main-panel{padding:4px 0 16px}.proposal-shell .calm-notes{top:8px}.proposal-shell .review-filter{min-height:34px;padding:0 0 8px}.proposal-shell .review-filter label{margin:0;display:flex;align-items:center;justify-content:space-between}.proposal-shell .review-filter select{padding:5px 9px;font-size:11px}.proposal-shell .calm-take-row[hidden]{display:none}.proposal-shell .quick-note-suggestions{padding:7px 10px;border-top:1px solid #3e334a;font-size:10px}.proposal-shell .quick-note-suggestions summary{cursor:pointer;color:#c0b1cf}
+.proposal-shell .sticky-slot{top:-18px;margin:0 0 -64px}.proposal-shell .sticky-slot>.transport{left:-20px;width:calc(100% + 40px)}
+.proposal-shell .cutlist-layout{padding:18px;grid-template-columns:minmax(350px,390px) minmax(0,1fr);gap:20px}.proposal-shell .cutlist-viewer .score-canvas{max-height:calc(100dvh - 340px)!important;min-height:350px}.proposal-shell .cutlist-sidebar{max-height:calc(100dvh - 290px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}.proposal-shell .score-take-picker{max-height:220px}.proposal-live-bar{margin-bottom:10px;border:1px solid #39333f;border-radius:8px;padding:8px 14px;background:#1d1b22}.proposal-live-bar .transport{position:static;box-shadow:none;background:transparent;border:0;padding:0;gap:18px;min-height:42px}.proposal-live-bar .transport .timer{margin-left:auto}.proposal-live-bar .transport .record{padding:8px 14px}
+@media(max-width:1000px){.proposal-shell .calm-content{grid-template-columns:minmax(0,1fr)}.proposal-shell .calm-notes{position:static}.proposal-shell .cutlist-layout{grid-template-columns:minmax(280px,340px) minmax(0,1fr)}.proposal-demo-label{display:none}}
+@media(max-width:700px){.unified-proposal .site-header{padding:12px 14px;align-items:start;flex-wrap:wrap;gap:12px}.unified-proposal .header-label{display:none}.proposal-review-actions{gap:5px}.proposal-review-actions button{padding:6px 8px;font-size:11px}.proposal-shell{padding:16px 10px}.proposal-view-bar{gap:12px;justify-content:space-between}.proposal-view-bar h1{font-size:19px}.proposal-view-bar>div>small{font-size:9px}.proposal-view-toggle button{padding:7px 10px;font-size:11px}.proposal-shell .calm-scroll{height:calc(100dvh - 250px);padding:12px;min-height:400px}.proposal-shell .calm-content{display:flex;flex-direction:column-reverse}.proposal-shell .calm-content>*{width:100%}.proposal-shell .sticky-slot{top:-12px}.proposal-shell .sticky-slot>.transport{left:-12px;width:calc(100% + 24px)}.proposal-shell .cutlist-layout{display:block;padding:10px}.proposal-shell .cutlist-sidebar{max-height:none;overflow:visible}.proposal-shell .cutlist-viewer .score-canvas{max-height:70dvh!important;min-height:300px}.proposal-live-bar{padding:8px}.proposal-live-bar .identity small{display:none}.proposal-live-bar .transport{gap:7px;flex-wrap:wrap}.proposal-live-bar .record{font-size:10px}.proposal-live-bar .record kbd{display:none}}
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -912,7 +925,7 @@ function notes(){const s=state();return recordingScreen(s,groupedList(s,{mode:va
 function scoreView(s){return productionScoreView(s);}
 function score(){if(variant==='B')return scoreWorkflow();const s=state();return `<div class="score-layout cutlist-layout">${scoreSidebar(s)}${scoreView(s)}</div>`;}
 function visibleStopButton(el){if(!el||getComputedStyle(el).visibility==='hidden'||el.closest('[inert]'))return false;let box=el.getBoundingClientRect();let left=Math.max(0,box.left),top=Math.max(0,box.top),right=Math.min(innerWidth,box.right),bottom=Math.min(innerHeight,box.bottom);for(let p=el.parentElement;p&&p!==document.body;p=p.parentElement){const cs=getComputedStyle(p);if(cs.overflowY!=='visible'||cs.overflowX!=='visible'){const r=p.getBoundingClientRect();left=Math.max(left,r.left);top=Math.max(top,r.top);right=Math.min(right,r.right);bottom=Math.min(bottom,r.bottom);}}return right-left>30&&bottom-top>20;}
-function syncRecordingDock(){const dock=$('#recording-dock');if(!dock)return;const s=active&&state(),t=s?.takes?running(s):null;if(!t){dock.hidden=true;dock.dataset.key='';return;}const key=active.id+':'+t.id;if(dock.dataset.key!==key){dock.dataset.key=key;dock.innerHTML=`<div><strong>${cues[t.cue][0]} · ${entryLabel(t)}</strong><span>● Recording · <b data-live="${t.id}">${time(position(t))}</b></span></div><button class="dock-stop" data-action="record">■ Stop ${t.kind==='overdub'?'overdub':'take'} <kbd>⌘ Enter</kbd></button>`;}dock.hidden=Array.from(document.querySelectorAll('#demo .stop,#demo .composer-stop')).some(visibleStopButton);}
+function syncRecordingDock(){const dock=$('#recording-dock');if(!dock)return;const s=active&&state(),t=s?.takes?running(s):null;if(!t){dock.hidden=true;dock.dataset.key='';return;}const key=active.id+':'+t.id;if(dock.dataset.key!==key){dock.dataset.key=key;dock.innerHTML=`<div><strong>${cues[t.cue][0]} · ${entryLabel(t)}</strong><span>● Recording · <b data-live="${t.id}">${time(position(t))}</b></span></div><button class="dock-stop" data-action="record">■ Stop ${t.kind==='overdub'?'overdub':'take'} <kbd>⌘ Enter</kbd></button>`;}dock.hidden=Array.from(document.querySelectorAll('#demo .stop,#demo .composer-stop,.proposal-live-bar .stop')).some(visibleStopButton);}
 let recordingControlsFrame=0;
 function scheduleRecordingControls(){if(recordingControlsFrame)return;recordingControlsFrame=requestAnimationFrame(()=>{recordingControlsFrame=0;syncSticky();syncRecordingDock();});}
 document.addEventListener('scroll',scheduleRecordingControls,true);
@@ -931,7 +944,7 @@ function renderDemo(){if(!active)return;const takePicker=document.querySelector(
 }
 function selectCue(s,j){if(active.id==='partituur'){selectScoreCue(s,j);return;}if(s.takes&&running(s)&&j!==s.cue){toast('Stop the active take before switching cues.');return;}s.cue=j;s.open.add(j);if(s.takes){const t=s.takes[j].at(-1);s.selected=t?.id||null;if(t)t.collapsed=false;}renderDemo();}
 function toggleRecord(s,kind='take'){const t=running(s);if(active.id==='partituur'&&!t)rememberScoreView(s);if(t){t.duration=position(t);t.cursor=t.duration;t.rolling=false;}else{const n=nextEntryNumber(s,s.cue,kind),next=newTake(s.cue,n,true,kind);next.base=0;next.cursor=0;next.duration=0;next.started=Date.now();next.rating=0;next.best=false;s.takes[s.cue].push(next);s.selected=next.id;s.open.add(s.cue);if(active.id==='partituur'){s.scoreCompared??={};s.scoreCompared[s.cue]=[next.id];restoreScoreView(s);}}renderDemo();}
-function addNote(id,place){const s=state(),t=takeById(s,id);if(!t||!t.draft.text.trim())return;const d=t.draft;if(d.measure!==''&&(!Number.isInteger(Number(d.measure))||+d.measure<1||+d.measure>99999)){toast('Enter a valid bar number or leave it empty.');return;}t.notes.push({id:'note-'+(++s.noteSerial),text:d.text.trim(),useTime:true,useMeasure:d.measure!=='',at:d.at??position(t),measure:d.measure===''?null:Number(d.measure),page:d.page??(active.id==='partituur'?s.page:null),measureAuto:!!d.measureAuto,source:d.source??(active.id==='partituur'?s.doc.id:null)});syncSavedScorePage(t.notes.at(-1));t.draft={...draft(),measure:d.measure,page:d.page,source:d.source};renderDemo();$(`[data-draft="${id}"]${place?`[data-editor-place="${place}"]`:""}`)?.focus({preventScroll:true});}
+function addNote(id,place){const s=state(),t=takeById(s,id);if(!t||!t.draft.text.trim())return;const d=t.draft;if(d.measure!==''&&(!Number.isInteger(Number(d.measure))||+d.measure<1||+d.measure>99999)){toast('Enter a valid bar number or leave it empty.');return;}t.notes.push({id:'note-'+(++s.noteSerial),text:d.text.trim(),useTime:true,useMeasure:d.measure!=='',at:d.at??position(t),measure:d.measure===''?null:Number(d.measure),page:d.page??(active.id==='partituur'||s.unified?s.page:null),measureAuto:!!d.measureAuto,source:d.source??(active.id==='partituur'||s.unified?s.doc.id:null)});syncSavedScorePage(t.notes.at(-1));t.draft={...draft(),measure:d.measure,page:d.page,source:d.source};renderDemo();$(`[data-draft="${id}"]${place?`[data-editor-place="${place}"]`:""}`)?.focus({preventScroll:true});}
 function addCueNote(c,place){const s=state(),text=s.cueDrafts[c].trim();if(!text)return;s.cueNotes[c].push({id:'cue-note-'+(++s.noteSerial),text});s.cueDrafts[c]='';renderDemo();$(`[data-cue-draft="${c}"]${place?`[data-editor-place="${place}"]`:""}`)?.focus({preventScroll:true});}
 function selectMeasure(n){const s=state(),t=takeById(s,s.selected),loc=scoreLocation(s.doc.id,n);if(!loc){toast('This bar has no mapped score location yet.');return;}s.measure=n;s.page=loc.page;s.scoreFocus=null;if(t){t.followMeasure=false;t.draft.measureAuto=false;t.draft.measure=n;t.draft.page=s.page;t.draft.source=s.doc.id;}renderDemo();revealScoreMeasure();}
 function gotoNote(id,take){const s=state(),t=takeById(s,take),n=t?.notes.find(n=>n.id===id);if(!n)return;if(n.source&&n.source!==s.doc.id){toast('Open the score version associated with this note first.');return;}if(active.id==='partituur')s.cutlistView='score';s.selected=t.id;s.focusedScoreNote=n.id;s.page=n.page||s.page;s.measure=n.measure;s.scoreFocus={page:s.page,measure:n.measure,instruments:n.instruments||scoreInstrumentIds};if(n.useTime!==false)t.cursor=n.at;renderDemo();revealScoreMeasure();}
@@ -1007,5 +1020,84 @@ document.addEventListener('keydown',e=>{if(handleExtraKey(e))return;if(active&&s
 setInterval(()=>{syncExtraClocks();syncScoreWorkflowClocks();if(!active||!state().takes)return;const s=state();document.querySelectorAll('[data-live]').forEach(el=>{const t=takeById(s,el.dataset.live);if(t)el.textContent=time(position(t));});allTakes(s).forEach(t=>{if(t.followMeasure&&t.draft.at===null)syncMeasureInputs(s,t);});document.querySelectorAll('[data-draft-clock]').forEach(el=>{const t=takeById(s,el.dataset.draftClock);if(t)el.textContent=time(t.draft.at??position(t));});document.querySelectorAll('[data-wall-clock]').forEach(el=>el.textContent=new Date().toLocaleTimeString('nl-NL'));},200);
 function route(){const id=location.hash.slice(1)||document.body.dataset.initial;if(id&&ideas.some(i=>i.id===id))openIdea(id);else home();if(id==='vragen'||id==='voor-claude'||id==='extra-input')document.getElementById(id)?.scrollIntoView();else window.scrollTo(0,0);syncRecordingDock();}
 window.addEventListener('hashchange',()=>{document.body.dataset.initial='';route();});route();
+</script><script>// One workspace, one take model. The old layouts remain recoverable in Git.
+const unifiedState=Object.assign(states.partituur,{unified:true,booked:360,elapsed:42,remaining:320});
+for(const id of Object.keys(states))states[id]=unifiedState;
+let proposalView='recording';
+const previousRenderDemo=renderDemo;
+const previousToggleRecord=toggleRecord;
+const previousComposer=composer;
+const previousCalmPanel=calmPanel;
+
+function proposalSchedule(){
+ const timing=scoreWorkflowTiming(unifiedState);
+ // Shared example schedule; never claimed to be DAW timing.
+ if(!unifiedState.unifiedTiming){Object.assign(timing.clock,{booked:360*60,remaining:320*60});unifiedState.unifiedTiming=true;}
+ return `<span class="proposal-schedule" data-proposal-plan>${scoreWorkflowPlanText(scoreWorkflowTiming(unifiedState).delta)}</span>`;
+}
+calmPanel=function(s){return previousCalmPanel(s).replace('<div class="calm-schedule">On schedule</div>',`<div class="calm-schedule">${proposalSchedule()}</div>`);};
+composer=function(s,t,score=false,place='list'){
+ const output=previousComposer(s,t,score,place);
+ return s.unified&&active.id!=='notities'?output.replace('<div class="composer-footer">',quickNoteSuggestions(t,place)+'<div class="composer-footer">'):output;
+};
+function proposalRatingFilter(s){return `<div class="review-filter"><label>Show takes <select data-rating-filter>${[[0,'All ratings'],[3,'3–5 stars'],[4,'4–5 stars'],[5,'Only 5 stars']].map(([n,label])=>`<option value="${n}" ${s.minRating===n?'selected':''}>${label}</option>`).join('')}</select></label></div>`;}
+controls=function(){const s=state();return `<div class="calm-scroll control-scroll" id="cue-scroll" tabindex="0" aria-label="Recording workspace"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
+selectCue=function(s,index){selectScoreCue(s,index);};
+toggleRecord=function(s,kind='take'){
+ const before=running(s);previousToggleRecord(s,kind);
+ if(!before&&running(s)){
+  s.scoreCompared??={};s.scoreCompared[s.cue]=[s.selected];
+  s.scoreComment=null;renderDemo();
+ }
+};
+renderDemo=function(){
+ previousRenderDemo();
+ if(proposalView==='recording'){
+  for(const row of document.querySelectorAll('[data-calm-take]')){
+   const t=takeById(unifiedState,row.dataset.calmTake);row.hidden=!!unifiedState.minRating&&t.rating<unifiedState.minRating;
+  }
+ }
+ const toggle=document.querySelector('[data-proposal-view="'+proposalView+'"]');
+ document.querySelectorAll('[data-proposal-view]').forEach(button=>button.setAttribute('aria-pressed',button===toggle));
+ document.querySelector('.proposal-workspace-title').textContent=proposalView==='recording'?'Recording':'Cut list';
+ const bar=document.querySelector('.proposal-live-bar');
+ if(bar){bar.hidden=proposalView!=='cutlist';bar.innerHTML=proposalView==='cutlist'?transport(unifiedState):'';}
+ syncRecordingDock();
+ if(typeof scheduleTourPosition==='function')scheduleTourPosition();
+};
+function showProposalView(view,{navigate=true}={}){
+ view=view==='cutlist'?'cutlist':'recording';
+ if(active?.id==='partituur')rememberScoreView(unifiedState);
+ if(proposalView==='recording')unifiedState.recordingScroll=document.querySelector('#cue-scroll')?.scrollTop||0;
+ proposalView=view;active=ideas.find(i=>i.id===(view==='cutlist'?'partituur':'bediening'));variant='A';
+ unifiedState.controlsPrevious=false;unifiedState.showMainScore=false;
+ if(navigate)history.replaceState(null,'','#'+view);
+ renderDemo();
+ if(view==='recording'&&document.querySelector('#cue-scroll'))document.querySelector('#cue-scroll').scrollTop=unifiedState.recordingScroll||0;
+ if(view==='cutlist'&&unifiedState.selected){
+  const saved=takeById(unifiedState,unifiedState.selected)?.scoreViews?.[unifiedState.doc.id];
+  if(saved&&document.querySelector('.score-canvas'))document.querySelector('.score-canvas').scrollTop=saved.top||0;
+ }
+ scheduleRecordingControls();
+}
+function mountProposal(){
+ document.body.classList.add('unified-proposal');document.title='MandoCues · voorstel van Floris';
+ document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a><div class="proposal-review-actions"><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
+ document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div><h1 class="proposal-workspace-title">Recording</h1><small>After Party · String quartet · 20 October</small></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Cut list</button></nav><small class="proposal-demo-label">Demo · no audio is recorded</small></header><div class="proposal-live-bar" lang="en" hidden></div><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
+}
+route=function(){
+ if(!document.querySelector('.proposal-shell'))mountProposal();
+ const hash=location.hash.slice(1);showProposalView(['cutlist','partituur'].includes(hash)?'cutlist':'recording',{navigate:false});
+};
+document.addEventListener('click',event=>{
+ const button=event.target.closest('[data-proposal-view]');if(!button)return;
+ showProposalView(button.dataset.proposalView);
+});
+setInterval(()=>{
+ if(!document.body.classList.contains('unified-proposal'))return;
+ const timing=scoreWorkflowTiming(unifiedState);
+ document.querySelectorAll('[data-proposal-plan]').forEach(el=>el.textContent=scoreWorkflowPlanText(timing.delta));
+},200);
+route();
 </script>
 </body></html>
