@@ -571,3 +571,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Chat standaard dicht; lokale proefberichten. PDF toont Recording order of Take sheet en kan via de browser worden afgedrukt.
 - Inspectie-HTML is een gerenderde momentopname, geen volledige JavaScriptbron. Max music heeft daar het aria-label Maximum minutes of music.
 - Nieuwe cues zonder meegeleverde score tonen No score linked; geen verzonnen partituur.
+
+
+## 64. Cuebediening en opnamestatus
+
+- Vorige/volgende cue staan als pijlen bij de cuenaam, met kleine bracket-hints. Overdub blijft bij de takebediening.
+- Break krijgt een koffie-icoon. Standby zegt expliciet Not recording; alleen een lopende take toont de rode Recording-status.
+- Cut list toont een lopende take-tijd, kloktijd en Expected end. Bij een gestopte take staat de vastgelegde duur.
+- Music length is de muziekduur van de cue in minuten:seconden; Planned work is werktijd in expliciete minuten. Demo-planning is geen productiebeleid.

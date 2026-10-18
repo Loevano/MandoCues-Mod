@@ -480,3 +480,30 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 @media(max-width:1100px){body.unified-proposal{--app-sidebar-width:56px}.app-sidebar button span,.app-sidebar .app-brand b,.app-account>div{display:none}.app-brand{padding:12px}.app-sidebar nav{padding:12px 4px}.app-sidebar button{padding:11px 15px}.app-sidebar footer{padding:10px 4px}.session-app-actions{margin-left:0}.session-choice>label{min-width:240px}}
 @media(max-width:759px){body.unified-proposal{--app-sidebar-width:0px}.app-sidebar{display:none}.unified-proposal .proposal-shell{padding:8px}.session-choice{align-items:start;flex-direction:column;gap:5px}.session-choice>span{font-size:9px}.session-setup{gap:10px}.session-setup small{font-size:9px}.session-app-actions{gap:5px}.session-app-actions>button,.session-pdf-menu>summary{padding:7px 8px}.proposal-session-header{margin-bottom:8px;padding-bottom:10px}.session-setup>label{font-size:9px}.session-chat{top:130px}}
 @media print{body>*{display:none!important}.app-dialog[open]{display:block!important;position:static;border:0;max-height:none;overflow:visible;color:black;background:white;width:100%;padding:0}.app-dialog footer,.app-dialog header button{display:none!important}.session-export-preview{overflow:visible}.session-export-preview td,.session-export-preview th{border-color:#ccc}}
+
+/* Cue navigation belongs with the cue; recording state is distinct from its action. */
+.proposal-cue-switcher{display:flex;align-items:center;gap:10px;margin:7px 0;max-width:100%}
+.proposal-cue-switcher .main-cue{margin:0!important;min-width:0;flex:0 1 auto}
+.demo .proposal-cue-switcher>button{display:flex;align-items:center;justify-content:center;gap:5px;flex:0 0 38px;padding:4px;width:38px;height:36px;font-size:22px;color:#d1c6df;border-color:#3f3548;background:#1b1721}
+.proposal-cue-switcher kbd{font:8px var(--mono);color:#b0a2c0}
+.proposal-main-actions{justify-content:space-between;gap:20px}
+.proposal-session-actions button{display:flex;align-items:center;gap:6px}
+.proposal-session-actions svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.unified-proposal .record:not(.stop){background:#41324f;border-color:#806491;color:#f5eafa}
+.unified-proposal .record.stop{background:#fff0f1;border-color:#fca2b2;color:#771d2f}
+.proposal-main-panel.is-recording{border:1px solid #a4475e;border-left:4px solid #ef5f7e;background:#24151b;padding:14px!important;border-radius:8px}
+.proposal-main-panel.is-idle{border:1px solid #39323f;border-left:4px solid #706279;background:#131218;padding:14px!important;border-radius:8px}
+.proposal-main-panel .rec-status,.proposal-live-bar .rec-status{font-size:10px;letter-spacing:.7px}
+.proposal-main-panel .rec-status.rolling,.proposal-live-bar .rec-status.rolling{display:inline-block;padding:4px 7px;border-radius:5px;background:#aa294b;color:#fff;font-weight:700}
+.proposal-main-panel .rec-status.standby,.proposal-live-bar .rec-status.standby{color:#bbb0c5}
+.proposal-live-bar .transport.is-recording{border-left:3px solid #ed6280;padding-left:10px;background:#26151d}
+.transport-clocks{display:flex;gap:12px;margin-left:auto}
+.transport-clocks label,.transport-take-time{display:flex;flex-direction:column;gap:2px;font-size:8px;color:#a59aaf;white-space:nowrap}
+.transport-clocks b{font:11px var(--mono);color:#e3d7ed}
+.transport-take-time .timer{font-size:16px;color:#ede5f3;margin-left:0!important}
+.score-workspace .proposal-live-bar .transport{min-height:44px}
+.score-workspace .proposal-live-bar .identity{flex-wrap:wrap;gap:4px 8px;max-width:260px}
+.score-workspace .proposal-live-bar .identity small{max-width:180px}
+.score-workspace .proposal-live-bar .identity .rec-status{display:inline-block;font-size:8px}
+@media(max-width:1250px){.proposal-main-actions{flex-wrap:wrap}.proposal-main-top{grid-template-columns:minmax(0,1fr)}.proposal-session-clocks{justify-self:start}.proposal-main-panel .main-cue b{font-size:25px}.proposal-main-panel .main-cue strong{font-size:17px}.transport-clocks{gap:6px}.score-workspace .proposal-live-bar .identity{max-width:210px}}
+@media(max-width:759px){.proposal-live-bar .transport{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:7px}.proposal-live-bar .identity{grid-column:1/-1;max-width:none!important}.transport-clocks{margin-left:0}.transport-take-time{grid-row:2;grid-column:2}.proposal-live-bar .record{grid-column:1/-1}.proposal-cue-switcher{gap:6px}.demo .proposal-cue-switcher>button{flex-basis:28px;width:28px}.proposal-session-clocks{display:flex;gap:25px}.proposal-main-panel .calm-cue>small{font-size:9px}.proposal-main-actions{gap:12px}}

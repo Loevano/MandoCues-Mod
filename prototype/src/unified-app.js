@@ -37,16 +37,15 @@ function proposalEndSession(s){
 calmPanel=function(s){
  const status=proposalSchedule(),timing=scoreWorkflowTiming(s),t=running(s),c=cues[s.cue];
  const ready=!s.sessionStarted,paused=!!s.sessionPausedAt;
- const stateLabel=t?'● Recording · '+entryLabel(t):paused?'● On break':s.sessionEnded?'● Session ended':ready?'● Ready to start':'● Standby';
- return `<section id="main-panel" class="calm-main-panel proposal-main-panel" aria-label="Recording controls">
- <div class="proposal-main-top"><div class="calm-cue"><span class="rec-status ${t?'rolling':'standby'}">${stateLabel}</span><div class="main-cue"><b>${c[0]}</b><strong>${esc(c[1])}</strong></div><small>Music ${c[2]} · Planned cue time ${time(cuePlannedMinutes(s.cue)*60)}</small></div>
+ const stateLabel=t?'● Recording · '+entryLabel(t):paused?'On break · Not recording':s.sessionEnded?'Session ended · Not recording':ready?'Ready to start · Not recording':'Standby · Not recording';
+ return `<section id="main-panel" class="calm-main-panel proposal-main-panel ${t?'is-recording':'is-idle'}" aria-label="Recording controls">
+ <div class="proposal-main-top"><div class="calm-cue"><span class="rec-status ${t?'rolling':'standby'}">${stateLabel}</span><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t?'disabled':''} title="Previous cue · [" aria-label="Previous cue"><span>‹</span><kbd>[</kbd></button><div class="main-cue"><b>${c[0]}</b><strong>${esc(c[1])}</strong></div><button data-action="next-cue" ${t?'disabled':''} title="Next cue · ]" aria-label="Next cue"><span>›</span><kbd>]</kbd></button></div><small><span title="Duration of the music in minutes and seconds">Music length ${c[2]}</span> · Planned work ${cuePlannedMinutes(s.cue)} min</small></div>
  <div class="proposal-session-clocks"><label>Time<b data-wall-clock>${new Date().toLocaleTimeString('en-GB')}</b></label><label>Expected end<b data-proposal-expected-end>${proposalEndTime(timing)}</b></label></div></div>
  <div class="proposal-main-actions">
  <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls"><small>Take</small><div>${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button><label class="proposal-take-clock">Take time<b ${t?`data-live="${t.id}"`:''}>${time(t?position(t):0)}</b></label></div></div>
- <div class="proposal-action-group calm-cue-actions" role="group" aria-label="Cue controls"><small>Cue</small><div><button data-action="prev-cue" ${t?'disabled':''}>← Previous cue</button><button data-action="next-cue" ${t?'disabled':''}>Next cue →</button></div></div>
- <div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><small>Session</small><div><button data-session-action="break" ${ready||t?'disabled':''}>${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button></div></div>
+ <div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><small>Session</small><div><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button></div></div>
  </div>
- <div class="proposal-main-planning"><div class="calm-schedule">${status}</div><label>Cue time <b data-proposal-cue-clock>${time(timing.cueElapsed)}</b><span> / <b>${time(timing.budget)}</b> planned</span></label></div>
+ <div class="proposal-main-planning"><div class="calm-schedule">${status}</div><label>Cue time <b data-proposal-cue-clock>${time(timing.cueElapsed)}</b><span> / <b>${cuePlannedMinutes(s.cue)} min</b> planned</span></label></div>
  <details class="calm-session" data-calm-session ${s.calmSessionOpen?'open':''}><summary>Session details</summary>${sourceSessionSummary(s)}<div class="calm-extra-times"><span>Session elapsed <b data-proposal-elapsed>${proposalDuration(timing.elapsed)}</b></span><span>Remaining work <b>${proposalDuration(timing.clock.remaining)}</b></span><span>Planned end <b data-proposal-planned-end>${proposalEndTime(timing,false)}</b></span></div></details>
  </section>`;
 };

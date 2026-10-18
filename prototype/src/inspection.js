@@ -15,7 +15,7 @@ function sourceCueFacts(c,j) {
   return `<span class="cue-source-facts"><span><small>Music</small><b>${c[2]}</b></span><span title="Demo schedule"><small>Planned</small><b>${time(planned*60)}</b></span></span>`;
 }
 function sourceSessionSummary(s=null) {
-  return `<div class="source-session-summary" aria-label="Demo session settings"><span>Session length <b>${s?.booked!==undefined?Math.floor(s.booked/60)+'h '+String(s.booked%60).padStart(2,'0'):'6h 00'}</b></span><span>Preparation <b>3 min/cue</b></span><span>Max. music length <b>60 min</b></span></div>`;
+  return `<div class="source-session-summary" aria-label="Demo session settings"><span>Session length <b>${s?.booked!==undefined?Math.floor(s.booked/60)+'h '+String(s.booked%60).padStart(2,'0'):'6h 00'}</b></span><span>Preparation <b>${s?.prepMinutes??3} min/cue</b></span><span>Max. music length <b>${s?.maxMusicMinutes??60} min</b></span></div>`;
 }
 function sourceCuePlan(s) {
   return `<section class="source-cue-plan" aria-label="Session plan with complete cue codes"><div><b>Session plan</b><small>Demo · click to choose a cue</small></div><nav aria-label="Cue order">${cues.map((c,j)=>`<button data-session-cue="${j}" aria-label="Choose ${c[0]} ${esc(c[1])}" aria-current="${s.cue===j?'true':'false'}" title="${esc(c[1])}">${c[0]}</button>`).join('')}</nav></section>`;
