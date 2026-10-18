@@ -9,6 +9,7 @@ with sync_playwright() as p:
     errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto((ROOT/'dist/index.html').as_uri())
+    page.locator('[data-tour-action="welcome-skip"]').click()
     expect(page.locator('.proposal-shell')).to_have_count(1)
     expect(page.locator('[data-variant],.suggestion-card,.side-nav')).to_have_count(0)
     assert page.evaluate('active.id')=='bediening'
