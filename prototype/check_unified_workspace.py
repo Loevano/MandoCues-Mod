@@ -12,6 +12,12 @@ with sync_playwright() as p:
     page.locator('[data-tour-action="welcome-skip"]').click()
     expect(page.locator('.proposal-shell')).to_have_count(1)
     expect(page.locator('[data-variant],.suggestion-card,.side-nav')).to_have_count(0)
+    page.locator('[data-proposal-action="fullscreen"]').click()
+    assert page.evaluate('document.fullscreenElement===document.documentElement||document.body.classList.contains("proposal-expanded")')
+    page.locator('[data-proposal-view="cutlist"]').click()
+    page.locator('[data-proposal-view="recording"]').click()
+    page.locator('[data-proposal-action="fullscreen"]').click()
+    assert page.evaluate('!document.fullscreenElement&&!document.body.classList.contains("proposal-expanded")')
     assert page.evaluate('active.id')=='bediening'
     expect(page.locator('[data-proposal-plan]')).to_have_class('proposal-schedule is-behind')
     page.locator('[data-calm-session] > summary').click()

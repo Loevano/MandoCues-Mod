@@ -236,6 +236,8 @@
 @media(max-width:700px){.proposal-review-dialog{padding:20px}.proposal-review-dialog h2{font-size:22px}.proposal-tour-card{padding:16px}.proposal-tour-card h2{font-size:17px}.proposal-tour-card p{font-size:11px}.proposal-review-dialog footer{flex-wrap:wrap}}
 
 .proposal-schedule.is-behind{color:#e8b76c}.proposal-schedule.is-ahead{color:#74c4a2}
+
+body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -1101,9 +1103,13 @@ function showProposalView(view,{navigate=true}={}){
  }
  scheduleRecordingControls();
 }
+fullscreenPrototype=async function(){
+ try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else document.body.classList.toggle('proposal-expanded');}catch{document.body.classList.toggle('proposal-expanded');}
+};
+document.addEventListener('keydown',event=>{if(event.key==='Escape')document.body.classList.remove('proposal-expanded');});
 function mountProposal(){
  document.body.classList.add('unified-proposal');document.title='MandoCues · voorstel van Floris';
- document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a><div class="proposal-review-actions"><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
+ document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a><div class="proposal-review-actions"><button type="button" data-proposal-action="fullscreen" aria-label="Schermvullend" title="Schermvullend">⛶</button><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
  document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div><h1 class="proposal-workspace-title">Recording</h1><small>After Party · String quartet · 20 October</small></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Cut list</button></nav><small class="proposal-demo-label">Demo · no audio is recorded</small></header><div class="proposal-live-bar" lang="en" hidden></div><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
 }
 route=function(){
@@ -1223,6 +1229,7 @@ document.addEventListener('click',async event=>{
  event.preventDefault();event.stopImmediatePropagation();
  const action=button.dataset.proposalAction||button.dataset.tourAction;
  if(button.disabled)return;
+ if(action==='fullscreen'){await fullscreenPrototype();return;}
  if(action==='tour'){openTourStep(0);return;}
  if(action==='questions'){openProposalQuestions();return;}
  if(action==='prompt'){openProposalPrompt();return;}

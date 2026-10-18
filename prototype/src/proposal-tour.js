@@ -100,6 +100,7 @@ document.addEventListener('click',async event=>{
  event.preventDefault();event.stopImmediatePropagation();
  const action=button.dataset.proposalAction||button.dataset.tourAction;
  if(button.disabled)return;
+ if(action==='fullscreen'){await fullscreenPrototype();return;}
  if(action==='tour'){openTourStep(0);return;}
  if(action==='questions'){openProposalQuestions();return;}
  if(action==='prompt'){openProposalPrompt();return;}

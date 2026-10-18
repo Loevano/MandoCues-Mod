@@ -234,3 +234,5 @@
 @media(max-width:700px){.proposal-review-dialog{padding:20px}.proposal-review-dialog h2{font-size:22px}.proposal-tour-card{padding:16px}.proposal-tour-card h2{font-size:17px}.proposal-tour-card p{font-size:11px}.proposal-review-dialog footer{flex-wrap:wrap}}
 
 .proposal-schedule.is-behind{color:#e8b76c}.proposal-schedule.is-ahead{color:#74c4a2}
+
+body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
