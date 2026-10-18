@@ -2,13 +2,11 @@
 const proposalTourConfig=JSON.parse(document.querySelector('#proposal-tour-source').textContent);
 const proposalTourSteps=proposalTourConfig.steps;
 const proposalTourSelection=new Set(proposalTourSteps.map(step=>step.id));
+// Store explicit opt-outs; an older partial selection must not turn defaults off.
+const proposalTourStorageKey='mandocues-proposal-tour-v2';
 try{
- const stored=localStorage.getItem('mandocues-proposal-tour-v1');
- const saved=stored===null?null:JSON.parse(stored);
- if(Array.isArray(saved)){
-  proposalTourSelection.clear();
-  for(const id of saved)if(proposalTourSteps.some(step=>step.id===id))proposalTourSelection.add(id);
- }
+ const saved=JSON.parse(localStorage.getItem(proposalTourStorageKey)||'null');
+ if(saved&&Array.isArray(saved.excluded))for(const id of saved.excluded)proposalTourSelection.delete(id);
 }catch{}
 let proposalTourIndex=-1,tourPositionFrame=0,tourTarget=null;
 const tourPromptIntro=proposalTourConfig.promptIntro;
@@ -18,7 +16,7 @@ function selectedTourPrompt(){
  return selected.length?tourPromptIntro+selected.map((step,index)=>`## ${index+1}. ${step.title}\n\n${tourPromptFor(step)}`).join('\n\n---\n\n')+proposalTourConfig.promptClosing:'';
 }
 function persistTourSelection(){
- try{localStorage.setItem('mandocues-proposal-tour-v1',JSON.stringify([...proposalTourSelection]));}catch{}
+ try{localStorage.setItem(proposalTourStorageKey,JSON.stringify({excluded:proposalTourSteps.filter(step=>!proposalTourSelection.has(step.id)).map(step=>step.id)}));}catch{}
  document.querySelectorAll('[data-proposal-selection-count]').forEach(el=>el.textContent=proposalTourSelection.size);
 }
 function reviewDialog(id,title,body){

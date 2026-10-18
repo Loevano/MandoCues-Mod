@@ -7,6 +7,8 @@ with sync_playwright() as p:
     browser=launch_chromium(p)
     context=browser.new_context(viewport={'width':1512,'height':1100})
     page=context.new_page();errors=[];network=[]
+    # Old partial opt-in lists must not disable later suggestions by default.
+    page.add_init_script("localStorage.setItem('mandocues-proposal-tour-v1', JSON.stringify(['sterren','cue-aanklikken','cue-takes','notes-enter','maat-aanpassen']))")
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.on('request',lambda r:network.append(r.url) if r.url.startswith(('http:','https:')) else None)
     page.goto((ROOT/'dist/index.html').as_uri())
@@ -23,6 +25,7 @@ with sync_playwright() as p:
     for index,step in enumerate(steps):
         expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])
         expect(page.locator('.proposal-tour-highlight')).to_be_visible()
+        expect(page.locator('[data-tour-choice]')).to_be_checked()
         page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
         if step['id']=='cue-aanklikken':
             page.locator('.calm-cue-list [data-select-cue="1"]').click()
@@ -99,7 +102,7 @@ with sync_playwright() as p:
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),index
     page.screenshot(path=str(ROOT/'checks/tour-mobile.png'))
     # A deliberate empty selection remains empty after reload.
-    page.evaluate('localStorage.setItem("mandocues-proposal-tour-v1","[]")')
+    page.evaluate('localStorage.setItem("mandocues-proposal-tour-v2",JSON.stringify({excluded:proposalTourSteps.map(step=>step.id)}))')
     page.reload();page.locator('[data-tour-action="welcome-start"]').click()
     expect(page.locator('[data-tour-choice="sterren"]')).not_to_be_checked()
     assert page.evaluate('proposalTourSelection.size')==0

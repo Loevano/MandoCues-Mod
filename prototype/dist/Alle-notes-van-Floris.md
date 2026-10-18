@@ -408,3 +408,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Vul de maat handmatig in of kies hem bewust in de partituur; achteraf blijft het maatcijfer direct aanpasbaar.
 - Follow bar en gesimuleerde maat/tijdvoorstellen uit de actieve demo verwijderen. Een take-timer bepaalt geen gespeelde maat.
 - Tijdcode blijft bij de note; automatisch maatvolgen eventueel later met een betrouwbare bron onderzoeken.
+
+
+## 43. Alle suggesties standaard aangevinkt
+
+- Ook suggesties vanaf 6 en verder standaard selecteren voor de Claude-prompt.
+- Oude gedeeltelijke selecties uit de eerdere opt-in-versie eenmalig vervangen door alles aan.
+- Nieuwe opslag onthoudt alleen expliciet uitgevinkte suggesties. Nieuwe suggesties beginnen aangevinkt; eigen uitvinkkeuzes blijven behouden bij teruggaan en herladen.
