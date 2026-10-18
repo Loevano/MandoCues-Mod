@@ -54,7 +54,7 @@
     {
       "id": "cue-sneltoetsen",
       "title": "Snel naar een andere cue",
-      "text": "Met [ en ] naar de vorige/volgende cue. Met ⌥ 1–9 direct een cue kiezen.",
+      "text": "Met [ en ] naar de vorige/volgende cue. ⌥1–9 kiest plek 1–9 in de cuelijst.",
       "target": ".calm-cue-list",
       "view": "recording",
       "discussion": "cue-sneltoetsen"

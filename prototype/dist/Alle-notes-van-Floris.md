@@ -517,3 +517,16 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Bevestigd: Delete/Backspace (⌫), niet de backslash-toets.
 - Klik een bestaande score-note en verwijder hem met ⌫; Command+Z haalt hem terug.
 - In het tekstveld blijft ⌫ gewone tekstbewerking. Bij een bestaande note staat ook Delete naast Cancel.
+
+
+## 58. Snel wisselen tussen cues en takes — voorstel, nog niet ingevoerd
+
+- Aandachtspunt: Alt+1–9 kiest nu de volgorde in de cuelijst, niet de cuecode. Alt+1 = 1M02 Arrival; Alt+2 = 1M18 Calling Harry. Dat kan verwarren, zeker na herordenen.
+- De huidige sneltoetsen werken alleen in Recording, buiten tekstinvoer. Cuewisseling blijft geblokkeerd bij een lopende take.
+- Voorstel voor dezelfde bediening in Recording en Cut list:
+  - ⌥1–9: direct Take 1–9 binnen de gekozen cue, op werkelijk take-nummer in plaats van zichtbare rijpositie. Een ontbrekende take wordt niet aangemaakt.
+  - ⌥[ / ⌥]: vorige/volgende bestaande take, ook voorbij Take 9.
+  - [ / ]: vorige/volgende cue. De brackets voorlopig niet herbestemmen.
+- Voorbeeld: ⌥1 → eerste twee maten selecteren met Command-drag → ⌥2 → andere maten kiezen → ] naar de volgende cue.
+- Takekeuze verandert alleen de geselecteerde bewerkingslaag, nooit welke take loopt. Scorepositie, concepten en selecties per take behouden; tekstinvoer en open modale vensters krijgen voorrang. Toetsen tijdens een sleepsessie niet laten wisselen van take.
+- Nog een voorstel: de huidige toetsen blijven ongewijzigd totdat Floris de indeling kiest. Gewone take-nummers en overdubnummers moeten bij eventuele uitwerking onderscheidbaar blijven.

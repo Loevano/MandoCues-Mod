@@ -16,6 +16,10 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - Score-notes: dubbelklik neemt de maat op die plek over, ook vlak boven de balk. Slepen toont de doelmaat en past de maat-/instrumentcontext aan. Klik een bestaande score-note en verwijder met ⌫ of Delete naast Cancel; ⌘Z herstelt hem. Tekstvelden houden gewone tekstbewerking.
 - Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
 
+## Nog te kiezen: sneltoetsen
+
+⌥1–9 kiest nu plek 1–9 in de cuelijst (1M02, 1M18, …), alleen in Recording. Nieuw voorstel, nog niet ingevoerd: ⌥1–9 voor echte take-nummers, ⌥[ / ⌥] voor vorige/volgende take en [ / ] voor cues, met dezelfde betekenis in beide weergaven. De vraag staat onder Vragen; zie feedbackpunt 58.
+
 ## Herstelpunt
 
 De versie vóór deze samenvoeging is commit `d5f7119`, Git-tag `before-unified-ui-20261018`. Dezelfde tag staat op GitHub. Je kunt die versie apart bekijken zonder het huidige werk te overschrijven:

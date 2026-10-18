@@ -12,6 +12,7 @@ Alle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. He
 - Waarvoor gebruiken jullie de verschillende klokken tijdens een sessie?
 - Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?
+- ⌥1–9 kiest nu de cuevolgorde, niet de cuecode. Zullen we die cijfers voor take-nummers gebruiken?
 
 ## De rondleiding
 
@@ -67,11 +68,11 @@ Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te h
 
 ### 7. Snel naar een andere cue
 
-Met [ en ] naar de vorige/volgende cue. Met ⌥ 1–9 direct een cue kiezen.
+Met [ en ] naar de vorige/volgende cue. ⌥1–9 kiest plek 1–9 in de cuelijst.
 
 **Promptonderdeel:**
 
-Gebruik [ en ] voor vorige/volgende cue voor en een modifier om direct naar bijvoorbeeld cue 8 te springen. In deze proef gebruikt de bedieningsdemo Alt+1–9 buiten tekstinvoer. Maak de uiteindelijke toetsen configureerbaar en controleer browser-/systeemconflicten. Typen in notes krijgt voorrang; een actieve take wisselt niet stilzwijgend van cue.
+Gebruik [ en ] voor vorige/volgende cue. In de huidige proef kiest Alt+1–9 buiten tekstinvoer plek 1–9 in de sessievolgorde: Alt+1 kiest 1M02 en Alt+2 kiest 1M18. Dit zijn geen cuecodes. De uiteindelijke indeling blijft een open ontwerpkeuze; het voorstel om de cijfers voor echte take-nummers te gebruiken is nog niet geïmplementeerd. Maak toetsen configureerbaar en controleer browser-/systeemconflicten. Typen in notes krijgt voorrang; een actieve take wisselt niet stilzwijgend van cue.
 
 ### 8. Takes herkenbaar onder hun cue
 
