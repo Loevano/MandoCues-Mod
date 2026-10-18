@@ -38,7 +38,7 @@ with sync_playwright() as p:
                 assert after['page'] == before['page'], (variant, before, after)
                 assert abs(after['top'] - before['top']) <= 1, (variant, before, after)
             expect(page.locator('[data-select-take="c0-t2"]')).to_have_attribute('aria-current', 'true')
-            expect(page.locator('.score-take-picker [aria-pressed="true"]')).to_have_count(1)
+            expect(page.locator('.score-take-picker [data-select-take][aria-pressed="true"]')).to_have_count(1)
         # Explicit bar navigation must still move to the requested score location.
         before = page.locator('.score-canvas').evaluate('(canvas)=>canvas.scrollTop')
         document_top = page.evaluate('scrollY')

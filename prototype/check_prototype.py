@@ -305,7 +305,7 @@ with sync_playwright() as p:
             page.locator('[data-variant="B"]').click()
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),id+' B'
             if id=='partituur':
-                assert all(b.bounding_box()['width']>=90 for b in page.locator('.take-picker button').all())
+                assert all(b.bounding_box()['width']>=90 for b in page.locator('.take-picker [data-select-take]').all())
     page.screenshot(path=str(OUT/'07-mobiel.png'),full_page=True)
     assert not errors,errors
     assert not external,external

@@ -47,11 +47,11 @@ with sync_playwright() as p:
  page.locator('[data-select-take="c0-t2"]').click();cell(3,'vc').click(modifiers=['Meta'])
  expect(page.locator('.ghost-range[data-cut-measure="2"]')).to_have_count(1)
  page.locator('[data-select-take="c0-t1"]').click(modifiers=['Meta'])
- expect(page.locator('.score-take-picker [aria-pressed="true"]')).to_have_count(2)
+ expect(page.locator('.score-take-picker [data-select-take][aria-pressed="true"]')).to_have_count(2)
  expect(page.locator('.compared-range[data-cut-measure="2"]')).to_have_count(1)
  expect(page.locator('.compared-range[data-cut-measure="3"]')).to_have_count(1)
  page.locator('[data-select-take="c0-t1"]').click(modifiers=['Meta'])
- expect(page.locator('.score-take-picker [aria-pressed="true"]')).to_have_count(1)
+ expect(page.locator('.score-take-picker [data-select-take][aria-pressed="true"]')).to_have_count(1)
  assert page.evaluate('state().selected')=='c0-t2'
  cell(4,'vln2').hover();assert cell(4,'vln2').evaluate('el=>getComputedStyle(el).backgroundColor')=='rgba(0, 0, 0, 0)'
  cell(4,'vln2').click();expect(page.locator('#score-comment-dialog')).to_have_count(0)
