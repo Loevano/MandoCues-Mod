@@ -542,3 +542,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Modifiers loslaten vóór de cijfers voorkomt dat Command-cijfers als browserbediening bedoeld raken. Tekstvelden houden normale invoer; niet navigeren tijdens slepen of vanuit modale vensters.
 - Directe nummers kiezen gewone takes; brackets met Alt doorlopen de bestaande take-/overdublijst. Selectie, concepten en leespositie blijven behouden, en de lopende take blijft dezelfde.
 - De open vraag uit punt 58 is hiermee beantwoord; de historische notitie over cuevolgorde blijft bewaard.
+
+
+## 60. Metadata tijdens het schrijven
+
+- Maat en tijdcode vóór Enter gebruiken dezelfde bediening als bij een geplaatste note.
+- Bar opent hetzelfde zwevende, scrollbare menu met All en direct typen plus Enter.
+- Tijdcode aanklikken, aanpassen en Enter; klokje herstelt het oorspronkelijke typmoment. Enter in metadata plaatst de note nog niet.
