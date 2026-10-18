@@ -18,7 +18,9 @@ with sync_playwright() as p:
  page.locator('.session-pdf-menu summary').click();page.locator('[data-app-export="order"]').click()
  expect(page.locator('.session-export-preview tbody tr')).to_have_count(26)
  page.locator('.app-dialog [data-app-dialog-close]').first.click()
- page.locator('[data-app-action="add-cues"]').click();expect(page.locator('[data-add-session-cue]')).to_have_count(7)
+ page.locator('[data-app-action="add-cues"]').click()
+ before=page.evaluate('state().sessionStarted');page.keyboard.press('Meta+Enter');assert page.evaluate('state().sessionStarted')==before
+ expect(page.locator('[data-add-session-cue]')).to_have_count(7)
  page.locator('[data-add-session-cue="1M04"]').check();page.locator('[data-app-action="confirm-cues"]').click()
  expect(page.locator('.calm-cue-list')).to_contain_text('Pool Flashback')
  page.evaluate('selectCue(state(),26)');page.locator('[data-proposal-view="cutlist"]').click()
