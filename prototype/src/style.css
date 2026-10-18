@@ -152,7 +152,9 @@
 .score-note-list-heading{padding:9px 0;color:#bcb4c5;font-size:11px}
 .score-note-row{padding:10px 0;border-top:1px solid #2e2934;color:#eee9f3}
 .score-note-row.score-note-focused{background:#b49ad414}
-.cutlist-sidebar .score-note-copy{margin:0!important;padding:0!important;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.5}
+.demo .cutlist-sidebar .score-note-copy{display:block;min-width:0;min-height:0;margin:0!important;padding:0!important;border:0;border-radius:2px;background:transparent;color:inherit;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.5}
+.demo .cutlist-sidebar .score-note-copy:hover{background:transparent;color:#dfc7fc;text-decoration:underline}
+.demo .cutlist-sidebar .score-note-copy:focus-visible{outline:2px solid #c7a5ee;outline-offset:2px}
 .score-note-position{min-width:0;position:relative}
 .score-note-position .measure-picker{margin:0;line-height:18px}
 .score-note-position .measure-picker>summary{margin:0;padding:0!important;white-space:nowrap;font-size:12px}
