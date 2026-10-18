@@ -1,0 +1,345 @@
+# Alle notes van Floris
+
+Bijgewerkt: 18 oktober 2026. Dit overzicht bundelt Floris’ opmerkingen uit deze chat. Latere correcties gaan voor eerdere varianten. Het onderscheid tussen wensen, open vragen en voorstellen blijft behouden.
+
+## 1. Doel en overdracht naar de collega
+
+- Kleine, klikbare prototypes maken om suggesties voor zijn opnameprogramma te laten zien en er een filmpje van te kunnen maken.
+- Per suggestie een eigen omgeving, zodat hij één idee tegelijk kan bekijken en proberen.
+- Bij twijfel A/B-varianten aanbieden, met duidelijk zichtbare verschillen.
+- Per visueel voorbeeld een kort stukje: waarom zou dit handiger zijn? Geen lange lappen tekst op de pagina.
+- De pagina begint met een kort lijstje kleine aanpassingen, zoals sterren in plaats van Good / NG / Hold. Daarna de prototypes, elk met één grotere vraag over indeling of bediening. Benoem dat de kleine voorstellen daarin alvast zijn meegenomen, zodat dezelfde functie niet telkens als nieuw voorstel aanvoelt.
+- Per gekozen variant één complete, direct kopieerbare prompt voor zijn eigen Claude. De prompt moet de benodigde context bevatten en op zijn bestaande code worden afgestemd.
+- Alles is vrijblijvend: zijn programma, zijn Claude en zijn ontwerpkeuzes gaan voor. Hij kan elk idee afzonderlijk overnemen of overslaan.
+- Het overzicht simpel noemen, bijvoorbeeld **Prototypes van Floris**.
+- In de tekst voor de collega niet verwijzen naar screenshots of deze chat; hij kent die achtergrond niet.
+- Achteraf per suggestie kunnen aanvinken wat de collega wil implementeren, met één variant per gekozen A/B-voorstel. Daarna de bestaande teksten samenvoegen of weglaten tot één Claude-prompt, zonder opnieuw genereren. Ook de kleine suggesties los kunnen kiezen.
+- Een overzicht met prototypes, begeleidende tekst en prompts kunnen doorsturen. Filmmodus is handig voor de schermopname.
+
+## 2. Cues, takes en beoordelingen
+
+- Duidelijk laten zien dat takes onderdelen van een cue zijn: eronder groeperen en laten inspringen.
+- Het eerdere cue/take-ontwerpvoorstel is een referentie voor deze manier van presenteren.
+- Laatste keuze: takes altijd kunnen inklappen. Suggestie 1 heeft daarom alleen de inklapbare uitvoering; B met permanent zichtbare takes vervalt.
+- Klikken op cuenummer of titel kiest direct die cue in de lijst, zonder Go to cue nodig te hebben. Een apart pijltje toont of verbergt de takes zonder cuewisseling.
+- Ook de geselecteerde take met notes moet kunnen inklappen, met behoud van concepten en beoordelingen.
+- De eerste suggestie over deze ordening beviel; A/B vergelijken blijft bij de andere suggesties nuttig.
+- Good / NG / Hold vervangen door een beoordeling van **1 tot en met 5 sterren**.
+- Deze cue/take-groepering ook meenemen in de andere relevante prototypes, zodat de collega zijn eigen werkruimte blijft herkennen.
+
+## 3. Suggestie 2: bediening en notes bij scrollen
+
+- Het grote opnamepaneel met cue, status, timers en planning herkenbaar houden. Het mag niet onduidelijk worden of dat paneel verdwijnt of wordt vervangen.
+- Variant A: het grote paneel blijft bovenaan; na scrollen blijft een compacte bedieningsbalk bereikbaar.
+- Variant B: expliciet laten zien wat in een vast zijpaneel staat en wat in de lijst blijft.
+- Duidelijk tonen wat vaststaat en wat scrollt. Zowel A als B moest begrijpelijker worden.
+- Takes en notes niet uit de demonstratie weglaten: anders is niet duidelijk hoe dit op zijn programma aansluit.
+- Geen verzonnen extra introductiepaneel met bijvoorbeeld ‘12 cues, 3 uur gepland’. Toon direct de relevante werkruimte.
+- Notes moeten ook op het beginscherm bij de grote opnamebediening zichtbaar zijn; niet pas onderaan na scrollen.
+- Laatste keuze voor 2A: het aparte scrollvak voor notes vervalt. Laat alle notes bovenin volledig onder elkaar staan. Het paneel groeit mee; alleen de hele werkruimte scrollt.
+- De stopbediening bij suggestie 2 mag niet tussendoor verschijnen en verdwijnen bij scrollen. In 2A neemt de compacte balk het over zodra de grote opnameknop wegscrollt; de zwevende stopknop is alleen een vangnet buiten de zichtbare werkruimte.
+- Bij de notes duidelijk scheiden welke opmerking bij welke take hoort.
+- De interface rustiger maken; de hoeveelheid checkboxes maakte A en B onoverzichtelijk.
+
+## 4. Notes schrijven
+
+- Bij een take kunnen typen en met **Enter** een nieuwe losse note/bullet plaatsen.
+- Daarna meteen verder kunnen typen aan de volgende note.
+- **Shift+Enter** kan een nieuwe regel binnen dezelfde note maken.
+- Een afzonderlijke plek voor **Cue algemeen** en notes bij de laatste of geselecteerde take is een bruikbare mogelijkheid.
+- Altijd duidelijk aangeven bij welke cue en take je schrijft.
+- Tijdcode en eventueel maatnummer als voorstel bij de note tonen; die voorstellen moeten later te wijzigen zijn.
+- Ook na Enter het maatnummer direct kunnen corrigeren door op het cijfer te klikken en een ander nummer te kiezen, bijvoorbeeld uit een verticale cijferlijst. Geen aparte ‘wijzig’-link of verplichte Bewerk-stap. Voor verder gelegen maten ook kunnen typen. Een automatisch voorstel kan verkeerd zijn; een handmatige correctie blijft behouden.
+- Het bedoelde moment automatisch vastleggen bij het schrijven. In de huidige proef wordt daarvoor het begin van het typen gebruikt, zodat later op Enter drukken de positie niet verschuift.
+- Concepten en bestaande notes blijven bij hun eigen take wanneer je wisselt, een take stopt of een nieuwe begint.
+- Geen aparte contextchat voor deze notitieflow toevoegen.
+
+### Correctie over checkboxes
+
+- Floris vroeg **geen afvinkbare opmerkingen of takenlijst** bij teksten zoals ‘Mooie inzet; deze bewaren’. Dat was een eigen invulling van Codex en is teruggedraaid.
+- De bedoelde checkboxes zijn **Volg tijd** en **Volg maat**: automatisch de beschikbare actuele positie aan een nieuwe note koppelen, als dat werkt.
+- Een geplaatste note blijft daarna aan de vastgelegde plek gekoppeld. Tijd en maat moeten achteraf aanpasbaar blijven.
+- De exacte vorm en bronkeuze van deze volgopties moeten nog worden uitgewerkt. De proef heeft nu Volg maat met een vooraf ingestelde voorbeeldkoppeling. Dit is geen echte live herkenning; Volg tijd met bronkeuze blijft een open onderdeel.
+
+## 5. Opnametoets en stoppen tijdens schrijven
+
+- **Spatie is nodig om notes te schrijven en moet daarom geen globale opname-sneltoets zijn.** Alleen rekening houden met tekstfocus is als ontwerp te riskant.
+- Een take kunnen stoppen zonder eerst naar boven te scrollen of de note-invoer te verlaten.
+- De stopknop bij de invoer en een bereikbare vaste bediening zijn daarvoor nuttige mogelijkheden.
+- Een geschikte vervangende sneltoets kiezen die niet met normale tekstinvoer of belangrijke browseracties botst.
+- **Command+R is ongeschikt**, omdat dit de browserpagina herlaadt.
+- Stoppen mag een concept en de vastgelegde positie niet verliezen.
+
+### Voorstel van Codex, geen oorspronkelijke toetskeuze van Floris
+
+- **Mac: ⌘+Enter — Stop take. Windows/Linux: Ctrl+Enter — Stop take.**
+- Deze combinatie stopt alleen de actieve take, ook tijdens typen. Nogmaals indrukken start geen nieuwe take en plaatst geen note.
+- Starten gebeurt in deze proef bewust via de opnameknop. De globale spatiebinding is verwijderd.
+- De uiteindelijke app kan de sneltoets instelbaar maken. Controleer hem in de gebruikte browser, besturingssysteem en eventuele andere actieve muzieksoftware; er is geen universeel conflictvrije toets.
+- Het voorstel geldt wanneer de opnamewerkruimte focus heeft. In de browser-adresbalk houden toetsen hun browserfunctie.
+
+## 6. Welke positie hoort bij de note?
+
+Floris’ open vraag: gebruiken we **filmtijdcode, sessietijd, take-tijd, maatnummer, of een combinatie**? De beschikbare posities zouden bij het schrijf-moment goed vastgelegd moeten worden.
+
+| Verwijzing | Bedoelde plek | Nog te bepalen |
+| --- | --- | --- |
+| Filmtijdcode | Moment in de film | Welke player/recorder levert deze tijd, met welke frame rate en offset? |
+| Sessietijd | Moment binnen de sessie | Bedoelen we sessie-verstreken tijd of de kloktijd? |
+| Take-tijd | Moment binnen deze uitvoering | Is er een echte recorder-/mediaklok of alleen een app-timer? |
+| Maatnummer | Muzikale plek in de score | Is die handmatig gekozen of via een gecontroleerde koppeling bekend? |
+
+- De filmtijdcode bij notes kunnen gebruiken is expliciet gewenst als uitbreiding.
+- Eén note kan meerdere verwijzingen hebben; ze hoeven elkaar niet uit te sluiten.
+- Welke bron standaard wordt gevolgd, is nog een ontwerpkeuze. Het eerdere voorstel van Codex was take-tijd plus filmtijd waar beschikbaar, met maat erbij zodra betrouwbaar bekend.
+- Niet suggereren dat alles al automatisch gesynchroniseerd is. De echte bronkoppelingen en het gedrag bij pauzeren, zoeken, herstarten en herhalingen moeten worden gecontroleerd.
+
+## 7. Partituur en scoretool
+
+- De score/partituur meenemen in de voorstellen; dit is een belangrijk onderdeel dat in de eerste proef ontbrak.
+- Eerst kijken wat in het verwante project al bestaat, in plaats van een volledig werkende implementatie aan te nemen.
+- De genoemde projectnamen waren **Score Analysis Tool** en mogelijk **Orchestral Analysis**. Verwant werk is gevonden in **Composition Study / Score Study**.
+- De collega beschikt over de PDF/score. Onderzoeken hoe die naast de opname en notes bruikbaar kan worden gemaakt.
+- De partituur op brede schermen **rechts**, takekeuze en notes **links**, in beide varianten.
+- Notes aan een maat of scoreplek kunnen koppelen en vanuit de note naar die plek teruggaan.
+- Graag automatisch zien welke maten een take bevat, op basis van de juiste partituur en een koppeling met de uitvoering. Die positie vervolgens als maatvoorstel bij de note aangeven.
+- Het prototype laat dit gedrag zien met vooraf ingestelde maat/tijdankers per voorbeeldtake. Voor echte automatische invulling is een betrouwbare koppeling met de gespeelde positie nodig. Alleen de PDF kennen is daarvoor onvoldoende.
+- De ervaring uit het andere project opnemen in de Claude-overdracht, zodat hij niet opnieuw alles hoeft uit te zoeken.
+
+### Gecontroleerde projectcontext, geen volledige functionaliteitsclaim
+
+- In Composition Study bestaat een specifieke PDF/video-scoreplayer met maatgebieden en handmatige tijdankers. Bestaande verslagen beschrijven tests met echte media; deze player is niet opnieuw getest in deze taak.
+- Dit bewijst geen algemene PDF-importer, automatische noot-/maatherkenning of live score following.
+- De prototypeverzameling gebruikt nu de echte Arrival-score als standaard in prototype 04. De schematische proef met vooraf ingestelde tijdankers blijft apart te kiezen. Een andere PDF kan lokaal geopend worden; pagina en maat worden daarbij handmatig gekozen.
+- De take-klok in deze prototypes is een demonstratie. Er is geen echte recorder- of filmverbinding toegevoegd.
+
+## 8. Tijdweergave
+
+- De tijd onder de takes staat in 24-uursnotatie, terwijl het grote paneel AM/PM toont.
+- Als kleine suggestie opnemen: overal hetzelfde tijdformaat gebruiken, bijvoorbeeld **19:54:59**.
+- Dit gaat over de notatie van een kloktijd, niet over het omzetten van take-duur naar kloktijd.
+
+## 9. Geparkeerd of teruggedraaid
+
+- De aparte opnamestatusvarianten met een rustigere balk of rood kader zijn vooral een smaakkeuze en hebben lage prioriteit. Bewaren voor eventueel later, niet als belangrijk hoofdvoorstel presenteren.
+- Geen contextchat als vervanging van de bedoelde takenotes.
+- Geen afvinkstatus bij de inhoud van opmerkingen.
+- Geen verwijzingen naar screenshots in de collega-presentatie.
+- Geen automatische score-/tijdkoppeling als werkend presenteren wanneer die nog niet gebouwd of gecontroleerd is.
+
+## Technische bron voor de toetskeuze
+
+De officiële [Chrome-sneltoetsen](https://support.google.com/chrome/answer/157179?hl=en) en [Apple-sneltoetsen](https://support.apple.com/en-us/102650) zijn bekeken. Browser- en systeemsneltoetsen zijn contextafhankelijk; de keuze voor ⌘/Ctrl+Enter als uitsluitend Stop is een productvoorstel van Codex, geen aanbeveling van Apple of Google.
+
+
+## 10. Aanvullende input — toegevoegd
+
+Aanvullingen zijn bij de bestaande voorstellen verwerkt; overlappende ideeën blijven bij elkaar.
+
+- **Waarom:** minder onoverzichtelijke papieren aantekeningen, sneller corrigeren en notes kunnen gebruiken in andere workflows.
+- **Valkuil:** één afgesproken take-telling met muzikanten en engineer. Geen verschillende ‘waarheden’ over welk take-nummer wordt opgenomen.
+- **Sterren:** Vijf sterren met een filter, bijvoorbeeld alleen 4–5 sterren.
+- **Beste en Alt:** maximaal één Beste per cue; meerdere reservetakes kunnen Alt krijgen. Sterren blijven apart.
+- **Snelle notes:** suggesties voor Intonatie, Meer expressief, Minder expressief, Strak en Alt take. Nog kunnen aanvullen voordat je Enter drukt.
+- **Bediening:** onderscheid Take, Cue en Sessie; notes bij de hoofdweergave. Dit vult prototype 02 aan.
+- **Cue-sneltoetsen:** [ en ] voor vorige/volgende; een modifier voor direct naar bijvoorbeeld cue 8. In deze proef Alt+1–9 buiten tekstinvoer; uiteindelijke toetsen configureerbaar en op conflicten controleren.
+- **Planning:** snel ‘één minuut achter’ kunnen zien. Groot getal, teken, voor/achter en kleur; leesbaar sessieplan zonder afgekorte cuecodes. Eigen prototype 05.
+- **Benamingen:** Max music, muziekduur, complexiteit, geplande tijd en tijd op de cue met duidelijke eenheden en labels.
+- **Gedeelde take-identiteit:** eerst handmatig afspreken welk nummer telt. Bewaard als ontwerpvraag; het oorspronkelijke prototype 06 is vervallen.
+- **Timen of loggen:** De vraag is of alleen registreren voldoende is, zonder take-duur te hoeven meten. Bewaard als note/vraag, zonder eigen prototype. Registratietijd en echte mediastarttijd zijn verschillende velden.
+- **Creation date en DAW:** Bestandsdatum is genoemd als mogelijke aansluiting op Pro Tools/Logic. Dat is als onderzoeksvraag bewaard; er is geen automatische koppeling vastgesteld of gebouwd. De demo kan alleen handmatig een bestandsnaam aanwijzen, zonder upload.
+- **Kniplijst:** per cue maatbereik; per take meerdere delen includen/excluden. Voorbeeld: Take 1 maat 1–4 en 7–9, Take 2 maat 5–6. Prototype 06 (voorheen 07) met maatbereiken (A) en een eenvoudige maat-tijdlijn (B). Gaten blijven zichtbaar, ook in de concept-CSV.
+- **Complexiteit:** begin handmatig en overzichtelijk. Een maat-CSV is nog geen audio-edit, EDL of DAW-montage; de editor controleert de overgangen.
+
+Aanvullende-input.md bevat de volledige input en de vindplaatsen. Nieuwe ontwerpen en kleinere aanvullingen zijn afzonderlijk te kiezen in de overdracht aan Claude. De vraag over loggen staat onder Nog uit te zoeken; het aparte prototype daarvoor is op verzoek vervallen.
+
+
+## 11. Referentie uit de inspector — uitsluitend lokaal gebruiken
+
+- Floris leverde HTML uit de inspector aan om het prototype herkenbaarder en beter passend te maken. SoundVibeHQ zelf mag hiervoor niet veranderen.
+- De aangeleverde tekst is gerenderde HTML, geen volledige JavaScript-/TypeScript-code. De prototype-aanpassingen zijn uitsluitend lokaal; de pagina en zijn scripts worden niet uitgevoerd.
+- In de momentopname bestaan al uitklappen, gewone takes, overdubs, labels, cuenotities, handmatige planning, Go to cue, Break/End session, aftekenen, Chat en PDF. Die functies moeten in de echte app behouden blijven.
+- Prototype 01 formuleert uitklappen daarom als bestaande functionaliteit met een duidelijker presentatievoorstel.
+- Prototype 02 krijgt meer herkenbare sessiecontext, cuegegevens, een leesbaar cueplan en een Overdub-knop.
+- Take- en overdub-nummers blijven afzonderlijk. Een overdub schuift het volgende gewone take-nummer niet op; notes en labels blijven bij hun eigen registratie.
+- De zichtbare planningsuitleg wordt als context meegenomen, zonder te doen alsof de interne berekening of backend is getest.
+- Bestaand-scherm-context.md geeft de relevante samenvatting voor de collega en Claude; de ruwe inspectiepagina wordt niet meegeleverd.
+
+## 12. Echte scores uit 06_SCORES
+
+- Floris wees de map 06_SCORES aan. Hier staan vijf PDF-boeken: Full Scores (83 pagina’s), viool 1 (29), viool 2 (29), altviool (29) en cello (28).
+- De originele bestanden zijn alleen gelezen. Voor prototype 04 is een apart fragment van 1M02 Arrival gemaakt: boekpagina 7–9, maat 1–41. De drie paginabeelden en maatgebieden zijn visueel gecontroleerd.
+- De echte partituur staat standaard rechts; notes blijven links. Via Ga naar maat kun je een bekende maat kiezen, een note plaatsen, het cijfer achteraf aanpassen en met ↗ naar de scoreplek teruggaan.
+- Fragmentpagina 1–3 en originele boekpagina 7–9 worden uit elkaar gehouden. Bij een bronwissel blijven concepten per take en document bewaard.
+- De echte score heeft nog geen take-specifieke tijdankers. Volg maat staat daarom uit. De schematische proef blijft apart beschikbaar voor het testen van voorbeeldankers.
+- Er is een pagina-index voor alle vijf boeken gemaakt op basis van leesbare cuecodes. 1M02 is in alle vier losse stemmen op PDF-pagina 4 te vinden. De overige stemmen worden niet allemaal in het prototype geladen of aan de ZIP toegevoegd.
+- 1M09AB is één gedeelde scorecue in de boeken. De app-cues 1M09A en 1M09B moeten expliciet aan dat materiaal worden gekoppeld, niet automatisch opgesplitst.
+- Partituren-overzicht.md beschrijft de bron en grenzen. Score-catalogus.json bevat cuepagina’s en SHA-256-versies. Het is geen automatische muziek- of uitvoeringsherkenning.
+
+
+## 13. Scorebediening per cue en take — weer opgepakt
+
+Floris heeft deze uitbreiding na het parkeren weer opgepakt.
+
+- Per cue de bijbehorende scorepagina’s en maten vanuit het overzicht openen.
+- Cmd + links slepen voegt toe aan de selectie; Cmd + rechts slepen verwijdert eruit. Ctrl op Windows/Linux; aparte modi voor touch en toetsenbord.
+- Gewoon links klikken opent een notitievak bij de gekozen scoreplek, met maat en het tijdanker van het klikmoment.
+- Elke nieuwe take begint met een schone scorelaag, zonder notes, concepten of selecties van eerdere takes.
+- Een take-lijst laat je heen en weer wisselen tussen de eigen score-notities, concepten en selecties van iedere take.
+- Selecties mogen uit losse maten en verschillende pagina’s bestaan. Ze blijven apart van de notes: uit de selectie halen wist geen note.
+- Voor Arrival zijn de maatvakken gecontroleerd. Bij de overige cues zijn de vakken uit gedrukte nummers benaderd; meermaatsrusten worden niet automatisch opgesplitst. De twee app-cues 1M09A en 1M09B delen de score 1M09AB, maar niet hun take-notities.
+
+
+## 14. Beste zonder vinkje
+
+- Bij Beste blijft alleen de highlight de geselecteerde status aangeven. Geen extra vinkje dat de knop breder maakt en de sterren laat verschuiven.
+
+
+## 15. Genummerde Alt-takes
+
+- Toon per cue hoeveel Alt-takes er zijn; zonder alts een streepje.
+- Label de gekozen reservetakes Alt 1, Alt 2 enzovoort in take-volgorde. De nummering blijft onafhankelijk van filters.
+- Niet-geselecteerd: Alt –. Een vaste knopbreedte voorkomt dat sterren verschuiven.
+
+
+## 16. Notities verwijderen
+
+- Naast Bewerk staat Verwijder bij iedere take-notitie. Verwijderen raakt alleen die note; de overige notes en het concept blijven staan.
+
+
+## 17. Stopknop gescheiden van notities
+
+- Geen Stop take-knop naast Plaats of de notitie-acties, om onbedoeld stoppen te voorkomen. Dit vervangt het eerdere voorstel voor een stopknop direct bij de invoer.
+- Stop blijft bereikbaar via de afzonderlijke opnamebediening en de compacte bediening bij scrollen.
+
+
+## 18. Prototype 6 wordt alleen een vraag
+
+- Timen of loggen en de gedeelde take-telling blijven onder Nog uit te zoeken staan. Het zelfstandige prototype daarvoor is verwijderd.
+- De kniplijst schuift van prototype 07 naar 06; de eerdere prototypes 01–05 behouden hun nummer.
+
+
+## 19. Geen bronlabels bij de voorstellen
+
+- Persoonlijke bronvermeldingen zijn verwijderd uit het overzicht, de voorbeelden, prompts en overdracht. De suggesties blijven staan.
+
+
+## 20. Eerst kleine suggesties, daarna korte vragen
+
+Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zonder implementatieopdracht:
+
+- Waarom houden we de tijd van elke take bij?
+- Zou ‘Nieuwe take’ maken en selecteren ook werken?
+- Wat gebeurt er met de timers als je vergeet een take te starten?
+- Welke timers gebruiken we tijdens de sessie echt?
+- Is één voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
+- Kunnen we de filmtijdcode ook bij notes bewaren?
+
+
+## 21. Kniplijst op de partituur — vervangt de eerdere scorebediening
+
+- Eén grote, doorlopende partituur; geen A/B en geen bedieningsblokken boven de score.
+- Dubbelklik plaatst een note op de klikplek, gekoppeld aan maat en instrument. De tekst blijft zichtbaar op de score.
+- Cmd+dubbelklik: één instrument. Cmd+Shift+dubbelklik: alle instrumenten. Bij een gewone dubbelklik geldt een volledige selectie in die maat voor alle instrumenten.
+- Cmd+links/rechts slepen: geraakte maten en instrumenten toevoegen/verwijderen. Een drag kan meerdere instrumenten raken; Shift geldt altijd voor alle.
+- Cmd+Z: ongedaan maken van selectie- en note-acties. Normale tekst-undo blijft werken tijdens typen.
+- Elke take behoudt zijn eigen kniplijst. Korte gebruiksuitleg onder de partituur.
+
+
+## 22. Geen apart montageprototype
+
+- Prototype 06 Montage/Kniplijst export is verwijderd, ook uit de navigatie en implementatiekeuzes.
+- Prototype 04 heet gewoon Kniplijst.
+- Alleen als opmerking erbij: ‘Later: deze kniplijst exporteren voor de editor?’ Geen aparte implementatieopdracht.
+
+
+## 23. Gedeelde opnameweergave en nieuwe klikbediening
+
+- De gewone voorstellen gebruiken dezelfde Recording-componenten: opnamepaneel, sessiecontext, cueplan, cue-/takelijst en notes. Geen los nieuw dashboard per suggestie.
+- De kniplijst blijft de aparte partituurweergave, met een lijst van alle takes van de cue. Kiezen wisselt naar de eigen PDF-laag van die take.
+- Cmd+linksklik voegt maat-/instrumentvakken toe; Cmd+rechtsklik verwijdert ze. Slepen en Shift voor alle instrumenten blijven mogelijk.
+- Een gewone linksklik opent nu de commentbox; dubbelklikken is niet meer nodig. Enter plaatst de comment linksboven op die scorepagina.
+- Iedere take heeft een vaste kleur, terug te zien in de take-lijst, maatselectie en commentboxen. Een nieuwe take begint schoon.
+- Concept-comments blijven bij hun eigen take als je tussendoor een andere take kiest.
+
+
+## 24. Geen verschuiving bij Beste
+
+- Beste verandert alleen de highlight, zonder vinkje of extra tekst in de cuekop.
+- Vaste knopbreedtes: sterren, tekst en knoppen blijven staan bij aan- en uitzetten of een andere Beste kiezen.
+
+
+## 25. Partituur-toggle in het hoofdvenster
+
+- Partituur aan/uit vanuit de bestaande opnameweergave; rechts naast bediening en notes.
+- De score volgt de actieve cue. Takes en concepten blijven behouden, net als de leespositie per cue.
+- Op een smal scherm staat de partituur eronder. De leesweergave staat in het hoofdvenster; de kniplijst blijft de plek om scoreselecties en comments te proberen.
+
+
+## 26. Alternatief: werken vanuit de partituur
+
+- Extra alternatief B bij prototype 4: de partituur als hoofdwerkplek voor notes en kniplijst.
+- Links de takes met hun eigen notes en scorelaag; doorklikken om terug te lezen.
+- Rechtsboven een klein sessieblok: cue, lopende take, nieuwe take, cuetijd en voor-/achterstand. Overige tijden ingeklapt.
+- Planning en herinneringen blijven werken, bijvoorbeeld als de cue langer duurt dan gepland.
+- Een oudere take bekijken verandert de lopende take niet. Cue- en sessietijd lopen onafhankelijk door.
+- De bestaande kniplijst en opnameweergave blijven beschikbaar. Een workflow om te proberen, geen voorgeschreven vervanging.
+
+
+## 27. Notes als gewone partituurtekst; kniplijst voor alle instrumenten
+
+- Notes staan als alleen de tekst op hun plek in de score, zonder kaders of labels. De plek bepaalt de context.
+- Details blijven in de notes-lijst links; de tekst op de score blijft aanklikbaar om te bewerken.
+- De kniplijst selecteert altijd volledige maten voor alle instrumenten. Geen aparte instrumentselecties; Shift is niet nodig.
+- Toevoegen, verwijderen, slepen en undo werken op hele maten. Dit geldt in A en B.
+
+
+## 28. Suggestie 2 rustiger, met zichtbare vergelijking
+
+- Take-regels blijven even groot; sterren, Beste en Alt staan altijd op dezelfde plek. Geen groeiende editor in een geselecteerde take-regel.
+- Eén apart notitiepaneel; de bekeken en lopende take blijven onderscheiden.
+- Minder tekst en meteen zichtbare timers; aanvullende sessiegegevens inklapbaar.
+- Het sessieplan blijft een horizontale tijdlijn, met bloklengte naar geplande cuetijd.
+- A: bediening bovenaan met compacte balk na scrollen. B: vaste bediening links. Beide kunnen schermvullend.
+- Vorige/nieuwe versie vergelijkbaar; per wijziging Goed, Liever terug of Twijfel kunnen aangeven en bewaren.
+
+## 29. Takes vergelijken in de kniplijst
+
+- ⌘/Ctrl+klik schakelt takes bij/uit. Een gewone klik kiest weer één take.
+- Er blijft één take bewerkbaar; de werkelijk lopende take verandert niet door vergelijken.
+- Expliciet gekozen takes tonen hun eigen kniplijstkleuren. Andere takes blijven heel licht als achtergrond zichtbaar, zonder hun notes.
+- Een nieuwe take begint schoon en neemt geen vergelijkingslagen over. Kniplijstselecties blijven altijd voor alle instrumenten.
+
+## 30. Dubbelklik en gebruikelijke tekstplaatsing op de score
+
+- Dubbelklik schrijft een note; een gewone klik op bestaande note-tekst opent bewerken. Dit vervangt de eerdere gewone klik om notes te plaatsen.
+- Standaard tekst boven de betreffende notenbalk. Voor Alle instrumenten staat de tekst boven de bovenste balk bij die maat, binnen deze take.
+- Onder en Op klikplek blijven opties. Alleen tekst op de score; details links.
+- Dorico onderscheidt staff-attached en system-attached text. De PDF-proef benadert plaatsing met staflabels en controle op bestaande donkere pixels, zonder een volledige notatie-engine na te bouwen.
+- Geen zwart hovervlak over de partituur.
+
+
+## 31. Compacte notes-kolom en Engelse GUI
+
+- De take bij de notes-kop krijgt dezelfde kleur en hetzelfde bolletje als de take-lijst.
+- Book p. staat direct onder Bar, links uitgelijnd met het maatnummer. Geen lege tussenregel.
+- Minder witruimte tussen note, metadata en Edit/Delete.
+- Alle daadwerkelijke GUI-tekst is Engels: knoppen, labels, opties, invoerhints, tooltips, toegankelijkheidslabels, meldingen en voorbeeldnotities.
+- Vragen, uitleg en voorstellen voor de collega mogen Nederlands blijven. Dit geldt ook voor de toelichting in de Claude-overdracht; die schrijft wel expliciet een Engelse GUI voor.
+- Oorspronkelijke cue-/projectnamen en door de gebruiker geschreven notes worden niet vertaald.
+
+
+## 32. Kniplijstkleuren duidelijker
+
+- Blauwe en groene referenties van andere takes waren te licht. Maak ze duidelijker zichtbaar.
+- Sterkere kleurvlakken en een gekleurde stippelrand voor andere takes; gekozen takes hebben een doorgetrokken rand. De muziek moet leesbaar blijven.
+
+
+## 33. Korte suggesties met context; Mac-sneltoets
+
+- Leg bij kleine suggesties kort uit waarom, zonder een nieuwe workflow voor te schrijven.
+- Start/stop met spatie kan botsen met notes typen. Voorstel nu: Command+Enter voor start én stop op Mac. Dit vervangt de eerdere stop-only-keuze. Gewoon Enter plaatst een note; toetsherhaling doet geen extra start/stop.
+- Stel bij notes automatisch tijdcode en waar mogelijk een maatnummer voor; beide blijven na Enter aanpasbaar.
+- Open vraag: welke tijd past bij notes — film, take, sessie of kloktijd — en kunnen we één vaste bron aanhouden?
+- Vraag waarvoor de duur van iedere take wordt gebruikt en of alleen New take maken/selecteren ook werkt.
+- De voorstellen blijven vrijblijvend; geen verzoek om de hele workflow om te gooien.

@@ -1,0 +1,30 @@
+# 05 — Op schema?
+
+De vraag: Kunnen we meteen zien hoeveel we voor- of achterlopen?
+
+Aanvullend voorstel.
+
+Tijdens een sessie wil je de planning meteen kunnen beoordelen, zonder verschillende klokken te vergelijken.
+
+Kleur ondersteunt het getal en het woord voor/achter. De tijdrekening in dit voorbeeld gebruikt ingevoerde voorbeeldwaarden, geen voorspelling uit echte takes.
+
+Probeer: Verander resterend werk of voeg vijf minuten pauze toe. Bekijk hoe de afwijking en verwachte eindtijd mee veranderen.
+
+### Planning in één oogopslag
+
+Vrijblijvende suggestie van Floris: Op schema?. Pas dit toe op mijn bestaande app. Mijn code, ontwerpkeuzes en oordeel blijven leidend. Bekijk eerst wat er al bestaat; behoud de bestaande visuele stijl en werk met bestaande componenten, state en opslag. Het prototype toont voorbeelddata, geen voorgeschreven architectuur. Alle tekst in de daadwerkelijke GUI moet Engels zijn, inclusief knoppen, labels, hints, tooltips, toegankelijkheidslabels en meldingen. Gebruik bijvoorbeeld Best, Add, Edit, Delete, Bar en Book p. Vragen, uitleg en voorstellen voor de collega mogen Nederlands blijven. Vertaal geen oorspronkelijke cue-/projectnamen of zelf ingevoerde notities.
+
+Gewenst gedrag:
+Maak de hoofdvraag Lopen we op schema? direct zichtbaar met een groot ondertekend verschil in minuten, expliciete tekst voor/achter en ondersteunende kleur. Gebruik de bestaande planning, pauzes en tijdbronnen; verzin geen tweede berekening. Toon de gebruikte geboekte tijd, verstreken tijd en resterende werkinschatting. Maak sessieplanlabels leesbaar zonder afkapping; laat het plan ombreken of een passend detail tonen. Verduidelijk Max music, geplande tijd, tijd op deze cue en muziekduur met eenheden en labels. Het prototype rekent alleen met handmatige voorbeeldwaarden: verwachte duur = verstreken + resterend werk; afwijking = verwachte duur − geboekte duur. Integreer deze wijziging in de bestaande Recording-weergave. Hergebruik hetzelfde opnamepaneel, dezelfde sessiecontext, cue-/takelijst, notitie-invoer en state; maak geen los dashboard of nieuwe algemene UI. In de lokale voorbeelden gebruiken voorstellen 01, 02, 03 en 05 dezelfde componenten. De partituur/kniplijst is de aparte werkweergave.
+
+Uitwerking:
+Vervang alleen het planningsvak in het bestaande grote opnamepaneel door het duidelijke verschil voor/achter. Hergebruik de sessieklokken, cuekeuze en cue-/takelijst. Zet aanpasbare voorbeeldwaarden achter een klein uitklapbaar onderdeel in ditzelfde paneel.
+
+Controle:
+Controleer voor, gelijk en achter op schema, nul resterend werk en pauzes. Een kleur is niet het enige signaal. Cuecodes en titels blijven bereikbaar op kleine schermen. Een planning wijzigen verandert geen take-identiteiten of opgenomen media. Controleer dat takekeuze, notes, sterren en cuebediening dezelfde gegevens gebruiken als de bestaande Recording-componenten.
+
+Context uit het bestaande scherm:
+De aangeleverde inspector-HTML is een momentopname van het gerenderde Recording-scherm, geen volledige JavaScript-/TypeScript-bron en geen geteste integratie. In die momentopname bestaan al een uitklapbare cue/takelijst, afzonderlijke Take- en Overdub-nummers, handmatige geplande tijd, Go to cue, Break, End session, aftekenen/ongedaan maken, Chat en PDF. Controleer de echte code en behoud deze bestaande functies en data; behandel de voorbeelden als voorstellen voor de presentatie of aanvullende invoer. Gebruik niet het totale aantal take- en overdub-rijen om het volgende gewone take-nummer te bepalen. De zichtbare toelichting noemt voorbereiding plus een aandeel in de sessie op basis van muziekduur × complexiteit (easy 0,7×, medium 1×, hard 1,5×). Een ingevulde Planned-tijd is een handmatige override; leegmaken gaat volgens de UI terug naar auto. De interne implementatie is niet gecontroleerd: hergebruik de bestaande planning in plaats van de simpele demoformule over te nemen.
+
+Maak een kleine samenhangende wijziging, controleer de bestaande flows en vat kort samen wat veranderd is. Implementeer alleen dit voorstel. Neem andere suggesties alleen mee waar het hierboven expliciet nodig is voor de getoonde flow.
+

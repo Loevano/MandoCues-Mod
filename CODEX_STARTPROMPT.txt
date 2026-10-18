@@ -1,0 +1,14 @@
+Dit is een overdracht van Floris’ MandoCues-prototypes.
+
+Lees eerst AGENTS.md, HUIDIGE_STAND.md en prototype/README.md.
+Controleer met python3 -X utf8 prototype/check_handoff.py dat broncode en build overeenkomen.
+Gebruik op Windows eventueel py -3 in plaats van python3.
+Open prototype/dist/index.html als je het prototype wilt bekijken.
+
+Werk bij aanpassingen in prototype/src/ en bouw daarna opnieuw met prototype/build.py.
+De actuele stand gaat voor oudere opmerkingen in Alle-notes-van-Floris.md.
+Alle echte GUI-tekst is Engels; vragen en toelichting voor de collega mogen Nederlands blijven.
+Dit zijn vrijblijvende voorstellen, geen opdracht om alles in de echte app te implementeren.
+Verander niets op SoundVibeHQ en upload of publiceer niets zonder mijn opdracht.
+
+Controleer nu alleen of de overdracht werkt en geef kort aan hoe ik kan starten. Wacht daarna op mijn concrete wijzigingsvraag.

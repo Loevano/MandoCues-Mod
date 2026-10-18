@@ -1,0 +1,802 @@
+{
+  "sourceFolder": "06_SCORES",
+  "checked": "2026-10-17",
+  "pageNumbering": "PDF-pagina’s vanaf 1; geen gedrukte cuepaginanummers",
+  "notes": [
+    "Pagina-index op basis van leesbare cuecodes; 1M02 is ook visueel gecontroleerd.",
+    "1M09AB staat als één cue in de boeken; splits niet automatisch naar app-cues 1M09A en 1M09B.",
+    "De index is geen automatische maat- of uitvoeringsherkenning."
+  ],
+  "books": [
+    {
+      "file": "Afterparty - String Quartet - Full Scores (book) v3.pdf",
+      "part": "Full score",
+      "pages": 83,
+      "sha256": "cb5b33c5580198f98e7d592608d5679b8d0404eff9e9723c16070d461aca911f",
+      "cuePages": [
+        {
+          "cue": "1M01",
+          "startPage": 3,
+          "endPage": 5,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M02",
+          "startPage": 7,
+          "endPage": 9,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M05",
+          "startPage": 11,
+          "endPage": 11,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M06",
+          "startPage": 13,
+          "endPage": 13,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M07",
+          "startPage": 15,
+          "endPage": 15,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M09AB",
+          "startPage": 17,
+          "endPage": 20,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M10",
+          "startPage": 21,
+          "endPage": 23,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M11",
+          "startPage": 25,
+          "endPage": 26,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M15",
+          "startPage": 27,
+          "endPage": 32,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M16",
+          "startPage": 33,
+          "endPage": 34,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M17",
+          "startPage": 35,
+          "endPage": 36,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M18",
+          "startPage": 37,
+          "endPage": 45,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M20",
+          "startPage": 47,
+          "endPage": 48,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M21",
+          "startPage": 49,
+          "endPage": 51,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M22",
+          "startPage": 53,
+          "endPage": 55,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M23",
+          "startPage": 57,
+          "endPage": 59,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M24",
+          "startPage": 61,
+          "endPage": 63,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M26",
+          "startPage": 65,
+          "endPage": 66,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M27",
+          "startPage": 67,
+          "endPage": 69,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M28",
+          "startPage": 71,
+          "endPage": 71,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M34",
+          "startPage": 73,
+          "endPage": 76,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M38",
+          "startPage": 77,
+          "endPage": 78,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M40",
+          "startPage": 79,
+          "endPage": 80,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M41",
+          "startPage": 81,
+          "endPage": 82,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M43",
+          "startPage": 83,
+          "endPage": 83,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        }
+      ]
+    },
+    {
+      "file": "Afterparty - String Quartet - Viola (book) v3.pdf",
+      "part": "Viola",
+      "pages": 29,
+      "sha256": "f0bb1a32f0b35de5f7be8b1eb9031c84350e91ece143ec77ed3a4507de110490",
+      "cuePages": [
+        {
+          "cue": "1M01",
+          "startPage": 3,
+          "endPage": 3,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M02",
+          "startPage": 4,
+          "endPage": 4,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M05",
+          "startPage": 5,
+          "endPage": 5,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M06",
+          "startPage": 6,
+          "endPage": 6,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M07",
+          "startPage": 7,
+          "endPage": 7,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M09AB",
+          "startPage": 8,
+          "endPage": 8,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M10",
+          "startPage": 9,
+          "endPage": 9,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M11",
+          "startPage": 10,
+          "endPage": 10,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M15",
+          "startPage": 11,
+          "endPage": 12,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M16",
+          "startPage": 13,
+          "endPage": 13,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M17",
+          "startPage": 14,
+          "endPage": 14,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M18",
+          "startPage": 15,
+          "endPage": 16,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M20",
+          "startPage": 17,
+          "endPage": 17,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M21",
+          "startPage": 18,
+          "endPage": 18,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M22",
+          "startPage": 19,
+          "endPage": 19,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M23",
+          "startPage": 20,
+          "endPage": 20,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M24",
+          "startPage": 21,
+          "endPage": 21,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M26",
+          "startPage": 22,
+          "endPage": 22,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M27",
+          "startPage": 23,
+          "endPage": 23,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M28",
+          "startPage": 24,
+          "endPage": 24,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M34",
+          "startPage": 25,
+          "endPage": 25,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M38",
+          "startPage": 26,
+          "endPage": 26,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M40",
+          "startPage": 27,
+          "endPage": 27,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M41",
+          "startPage": 28,
+          "endPage": 28,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M43",
+          "startPage": 29,
+          "endPage": 29,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        }
+      ]
+    },
+    {
+      "file": "Afterparty - String Quartet - Violin 1 (book) v3.pdf",
+      "part": "Violin 1",
+      "pages": 29,
+      "sha256": "036b3379d041b8aff02fca9e43453dd488105a9e6ea1b6b22fb18a50e1bb3416",
+      "cuePages": [
+        {
+          "cue": "1M01",
+          "startPage": 3,
+          "endPage": 3,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M02",
+          "startPage": 4,
+          "endPage": 4,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M05",
+          "startPage": 5,
+          "endPage": 5,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M06",
+          "startPage": 6,
+          "endPage": 6,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M07",
+          "startPage": 7,
+          "endPage": 7,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M09AB",
+          "startPage": 8,
+          "endPage": 8,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M10",
+          "startPage": 9,
+          "endPage": 9,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M11",
+          "startPage": 10,
+          "endPage": 10,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M15",
+          "startPage": 11,
+          "endPage": 12,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M16",
+          "startPage": 13,
+          "endPage": 13,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M17",
+          "startPage": 14,
+          "endPage": 14,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M18",
+          "startPage": 15,
+          "endPage": 16,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M20",
+          "startPage": 17,
+          "endPage": 17,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M21",
+          "startPage": 18,
+          "endPage": 18,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M22",
+          "startPage": 19,
+          "endPage": 19,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M23",
+          "startPage": 20,
+          "endPage": 20,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M24",
+          "startPage": 21,
+          "endPage": 21,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M26",
+          "startPage": 22,
+          "endPage": 22,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M27",
+          "startPage": 23,
+          "endPage": 23,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M28",
+          "startPage": 24,
+          "endPage": 24,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M34",
+          "startPage": 25,
+          "endPage": 25,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M38",
+          "startPage": 26,
+          "endPage": 26,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M40",
+          "startPage": 27,
+          "endPage": 27,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M41",
+          "startPage": 28,
+          "endPage": 28,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M43",
+          "startPage": 29,
+          "endPage": 29,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        }
+      ]
+    },
+    {
+      "file": "Afterparty - String Quartet - Violin 2 (book) v3.pdf",
+      "part": "Violin 2",
+      "pages": 29,
+      "sha256": "05ca22aacd63a32e6d43616ba48b042d8b7cbeac68efa02f0c354b41a87c48bb",
+      "cuePages": [
+        {
+          "cue": "1M01",
+          "startPage": 3,
+          "endPage": 3,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M02",
+          "startPage": 4,
+          "endPage": 4,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M05",
+          "startPage": 5,
+          "endPage": 5,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M06",
+          "startPage": 6,
+          "endPage": 6,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M07",
+          "startPage": 7,
+          "endPage": 7,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M09AB",
+          "startPage": 8,
+          "endPage": 8,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M10",
+          "startPage": 9,
+          "endPage": 9,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M11",
+          "startPage": 10,
+          "endPage": 10,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M15",
+          "startPage": 11,
+          "endPage": 12,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M16",
+          "startPage": 13,
+          "endPage": 13,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M17",
+          "startPage": 14,
+          "endPage": 14,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M18",
+          "startPage": 15,
+          "endPage": 16,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M20",
+          "startPage": 17,
+          "endPage": 17,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M21",
+          "startPage": 18,
+          "endPage": 18,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M22",
+          "startPage": 19,
+          "endPage": 19,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M23",
+          "startPage": 20,
+          "endPage": 20,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M24",
+          "startPage": 21,
+          "endPage": 21,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M26",
+          "startPage": 22,
+          "endPage": 22,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M27",
+          "startPage": 23,
+          "endPage": 23,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M28",
+          "startPage": 24,
+          "endPage": 24,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M34",
+          "startPage": 25,
+          "endPage": 25,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M38",
+          "startPage": 26,
+          "endPage": 26,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M40",
+          "startPage": 27,
+          "endPage": 27,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M41",
+          "startPage": 28,
+          "endPage": 28,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M43",
+          "startPage": 29,
+          "endPage": 29,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        }
+      ]
+    },
+    {
+      "file": "Afterparty - String Quartet - Violoncello (book) v3.pdf",
+      "part": "Violoncello",
+      "pages": 28,
+      "sha256": "e727dfb3a3104fb525e27f5539f997a08740c4d3dc0b60affe83100bbf9fcebb",
+      "cuePages": [
+        {
+          "cue": "1M01",
+          "startPage": 3,
+          "endPage": 3,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M02",
+          "startPage": 4,
+          "endPage": 4,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M05",
+          "startPage": 5,
+          "endPage": 5,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M06",
+          "startPage": 6,
+          "endPage": 6,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M07",
+          "startPage": 7,
+          "endPage": 7,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M09AB",
+          "startPage": 8,
+          "endPage": 8,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M10",
+          "startPage": 9,
+          "endPage": 9,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M11",
+          "startPage": 10,
+          "endPage": 10,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M15",
+          "startPage": 11,
+          "endPage": 11,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M16",
+          "startPage": 12,
+          "endPage": 12,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M17",
+          "startPage": 13,
+          "endPage": 13,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M18",
+          "startPage": 14,
+          "endPage": 15,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M20",
+          "startPage": 16,
+          "endPage": 16,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M21",
+          "startPage": 17,
+          "endPage": 17,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M22",
+          "startPage": 18,
+          "endPage": 18,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M23",
+          "startPage": 19,
+          "endPage": 19,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M24",
+          "startPage": 20,
+          "endPage": 20,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M26",
+          "startPage": 21,
+          "endPage": 21,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M27",
+          "startPage": 22,
+          "endPage": 22,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M28",
+          "startPage": 23,
+          "endPage": 23,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M34",
+          "startPage": 24,
+          "endPage": 24,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M38",
+          "startPage": 25,
+          "endPage": 25,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M40",
+          "startPage": 26,
+          "endPage": 26,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M41",
+          "startPage": 27,
+          "endPage": 27,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        },
+        {
+          "cue": "1M43",
+          "startPage": 28,
+          "endPage": 28,
+          "basis": "cuecode in PDF-tekst; blanco tekstpagina’s aan einde overgeslagen"
+        }
+      ]
+    }
+  ]
+}

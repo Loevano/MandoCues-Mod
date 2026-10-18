@@ -1,0 +1,396 @@
+{
+  "id": "afterparty-full-v3-cb5b33c55801-1M02",
+  "name": "After Party · 1M02 Arrival · Full score v3",
+  "cue": "1M02",
+  "sourceFile": "Afterparty - String Quartet - Full Scores (book) v3.pdf",
+  "sourceSha256": "cb5b33c5580198f98e7d592608d5679b8d0404eff9e9723c16070d461aca911f",
+  "bookPageCount": 83,
+  "bookPages": [
+    7,
+    8,
+    9
+  ],
+  "pages": 3,
+  "measureRange": [
+    1,
+    41
+  ],
+  "images": [
+    "arrival-1.png",
+    "arrival-2.png",
+    "arrival-3.png"
+  ],
+  "pdf": "Afterparty-1M02-Arrival-excerpt.pdf",
+  "regions": [
+    {
+      "measure": 1,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.245,
+      "y": 0.170789,
+      "width": 0.11,
+      "height": 0.309187
+    },
+    {
+      "measure": 2,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.355,
+      "y": 0.170789,
+      "width": 0.1,
+      "height": 0.309187
+    },
+    {
+      "measure": 3,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.455,
+      "y": 0.170789,
+      "width": 0.054167,
+      "height": 0.309187
+    },
+    {
+      "measure": 4,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.509167,
+      "y": 0.170789,
+      "width": 0.054167,
+      "height": 0.309187
+    },
+    {
+      "measure": 5,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.563333,
+      "y": 0.170789,
+      "width": 0.105,
+      "height": 0.309187
+    },
+    {
+      "measure": 6,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.668333,
+      "y": 0.170789,
+      "width": 0.053333,
+      "height": 0.309187
+    },
+    {
+      "measure": 7,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.721667,
+      "y": 0.170789,
+      "width": 0.055833,
+      "height": 0.309187
+    },
+    {
+      "measure": 8,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.7775,
+      "y": 0.170789,
+      "width": 0.1625,
+      "height": 0.309187
+    },
+    {
+      "measure": 9,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.163333,
+      "y": 0.645465,
+      "width": 0.086667,
+      "height": 0.310954
+    },
+    {
+      "measure": 10,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.25,
+      "y": 0.645465,
+      "width": 0.0875,
+      "height": 0.310954
+    },
+    {
+      "measure": 11,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.3375,
+      "y": 0.645465,
+      "width": 0.128333,
+      "height": 0.310954
+    },
+    {
+      "measure": 12,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.465833,
+      "y": 0.645465,
+      "width": 0.085833,
+      "height": 0.310954
+    },
+    {
+      "measure": 13,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.551667,
+      "y": 0.645465,
+      "width": 0.086667,
+      "height": 0.310954
+    },
+    {
+      "measure": 14,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.638333,
+      "y": 0.645465,
+      "width": 0.1275,
+      "height": 0.310954
+    },
+    {
+      "measure": 15,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.765833,
+      "y": 0.645465,
+      "width": 0.086667,
+      "height": 0.310954
+    },
+    {
+      "measure": 16,
+      "page": 1,
+      "bookPage": 7,
+      "x": 0.8525,
+      "y": 0.645465,
+      "width": 0.0875,
+      "height": 0.310954
+    },
+    {
+      "measure": 17,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.165,
+      "y": 0.097173,
+      "width": 0.115,
+      "height": 0.31331
+    },
+    {
+      "measure": 18,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.28,
+      "y": 0.097173,
+      "width": 0.060833,
+      "height": 0.31331
+    },
+    {
+      "measure": 19,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.340833,
+      "y": 0.097173,
+      "width": 0.086667,
+      "height": 0.31331
+    },
+    {
+      "measure": 20,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.4275,
+      "y": 0.097173,
+      "width": 0.119167,
+      "height": 0.31331
+    },
+    {
+      "measure": 21,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.546667,
+      "y": 0.097173,
+      "width": 0.060833,
+      "height": 0.31331
+    },
+    {
+      "measure": 22,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.6075,
+      "y": 0.097173,
+      "width": 0.06,
+      "height": 0.31331
+    },
+    {
+      "measure": 23,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.6675,
+      "y": 0.097173,
+      "width": 0.106667,
+      "height": 0.31331
+    },
+    {
+      "measure": 24,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.774167,
+      "y": 0.097173,
+      "width": 0.060833,
+      "height": 0.31331
+    },
+    {
+      "measure": 25,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.835,
+      "y": 0.097173,
+      "width": 0.091667,
+      "height": 0.31331
+    },
+    {
+      "measure": 26,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.165,
+      "y": 0.532391,
+      "width": 0.1425,
+      "height": 0.421673
+    },
+    {
+      "measure": 27,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.3075,
+      "y": 0.532391,
+      "width": 0.126667,
+      "height": 0.421673
+    },
+    {
+      "measure": 28,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.434167,
+      "y": 0.532391,
+      "width": 0.126667,
+      "height": 0.421673
+    },
+    {
+      "measure": 29,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.560833,
+      "y": 0.532391,
+      "width": 0.1275,
+      "height": 0.421673
+    },
+    {
+      "measure": 30,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.688333,
+      "y": 0.532391,
+      "width": 0.119167,
+      "height": 0.421673
+    },
+    {
+      "measure": 31,
+      "page": 2,
+      "bookPage": 8,
+      "x": 0.8075,
+      "y": 0.532391,
+      "width": 0.119167,
+      "height": 0.421673
+    },
+    {
+      "measure": 32,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.1525,
+      "y": 0.085984,
+      "width": 0.205,
+      "height": 0.325088
+    },
+    {
+      "measure": 33,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.3575,
+      "y": 0.085984,
+      "width": 0.194167,
+      "height": 0.325088
+    },
+    {
+      "measure": 34,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.551667,
+      "y": 0.085984,
+      "width": 0.194167,
+      "height": 0.325088
+    },
+    {
+      "measure": 35,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.745833,
+      "y": 0.085984,
+      "width": 0.194167,
+      "height": 0.325088
+    },
+    {
+      "measure": 36,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.1525,
+      "y": 0.537102,
+      "width": 0.175833,
+      "height": 0.416961
+    },
+    {
+      "measure": 37,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.328333,
+      "y": 0.537102,
+      "width": 0.165,
+      "height": 0.416961
+    },
+    {
+      "measure": 38,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.493333,
+      "y": 0.537102,
+      "width": 0.1375,
+      "height": 0.416961
+    },
+    {
+      "measure": 39,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.630833,
+      "y": 0.537102,
+      "width": 0.079167,
+      "height": 0.416961
+    },
+    {
+      "measure": 40,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.71,
+      "y": 0.537102,
+      "width": 0.0875,
+      "height": 0.416961
+    },
+    {
+      "measure": 41,
+      "page": 3,
+      "bookPage": 9,
+      "x": 0.7975,
+      "y": 0.537102,
+      "width": 0.1425,
+      "height": 0.416961
+    }
+  ],
+  "mapping": "Handmatig op de drie gerenderde partituurpagina’s gecontroleerde maatgebieden. Geen automatische herkenning of tijdsynchronisatie."
+}

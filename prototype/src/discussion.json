@@ -1,0 +1,144 @@
+[
+  {
+    "id": "tijdformaat",
+    "label": "Kleine suggestie",
+    "title": "Overal hetzelfde tijdformaat?",
+    "text": "Onder de takes staat de tijd in 24-uursnotatie, terwijl de grote klok AM/PM gebruikt. Zullen we dat gelijk trekken, bijvoorbeeld overal 19:54:59?",
+    "small": true,
+    "bullet": "Overal dezelfde kloknotatie, bijvoorbeeld 19:54:59 in plaats van een mix met AM/PM.",
+    "order": 6
+  },
+  {
+    "id": "opnametoets",
+    "label": "Bedieningsvoorstel",
+    "title": "Spatie vervangen door ⌘ Enter?",
+    "text": "Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat je spatie ook voor tekst nodig hebt. Voorstel voor onze Mac-workflow: gebruik Command+Enter om een take te starten en dezelfde combinatie om de lopende take te stoppen, ook tijdens typen. Spatie blijft gewone tekst en standaard browserbediening. Gewoon Enter plaatst een note. Een ingedrukte of herhalende toets mag niet meerdere keren schakelen; negeer IME-compositie. Bewaar concepten, tijdankers en leespositie bij start/stop. De stopknop blijft apart en bereikbaar. Dit is een voorstel voor de toetskeuze; behoud andere bestaande workflows.",
+    "small": true,
+    "bullet": "Start/stop met spatie kan botsen met notes typen. Voorstel: ⌘ Enter voor start én stop.",
+    "order": 5
+  },
+  {
+    "id": "sterren",
+    "label": "Kleine aanpassing",
+    "title": "1–5 sterren voor een take",
+    "bullet": "Zou 1–5 sterren handiger zijn dan Good / NG / Hold, eventueel met een filter?",
+    "text": "Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per take. Bewaar de numerieke beoordeling bij de juiste take. Een nieuwe take mag nog onbeoordeeld zijn. Behoud een eventuele Beste-markering als afzonderlijke keuze. Aanvulling: filter bijvoorbeeld op 4–5 sterren. Filter alleen de weergave; verwijder of hernummer geen takes.",
+    "small": true,
+    "order": 1
+  },
+  {
+    "id": "cue-aanklikken",
+    "label": "Kleine aanpassing",
+    "title": "Een cue direct aanklikken",
+    "bullet": "Een cue direct aanklikken in de lijst, naast Go to cue.",
+    "text": "Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te hoeven gebruiken. Houd cuekeuze los van het pijltje om takes in te klappen. Bewaar concepten en blokkeer cuewisseling zolang een take loopt met een duidelijke melding. Stop of verplaats een take niet impliciet.",
+    "small": true,
+    "order": 2
+  },
+  {
+    "id": "notes-enter",
+    "label": "Kleine aanpassing",
+    "title": "Enter plaatst een losse note",
+    "bullet": "Met Enter een losse note plaatsen, zodat opmerkingen apart terug te lezen zijn.",
+    "text": "Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bij de juiste cue en take. Houd de lege invoer klaar voor de volgende note; Shift+Enter maakt een nieuwe regel. Verstuur niet tijdens IME-compositie. Bewaar concepten per take. Cue-algemene opmerkingen blijven apart. Zorg dat notes ook bij de hoofd bediening zichtbaar moeten zijn, zodat je niet naar beneden hoeft te scrollen om te schrijven.",
+    "small": true,
+    "order": 3
+  },
+  {
+    "id": "maat-aanpassen",
+    "label": "Kleine aanpassing",
+    "title": "Automatisch tijd en maat bij een note?",
+    "bullet": "Bij een note automatisch tijdcode en, waar mogelijk, maatnummer voorstellen. Beide blijven na Enter aanpasbaar.",
+    "text": "Zou het handig zijn om bij het schrijven van een note automatisch de relevante tijdcode en, waar een betrouwbare scorekoppeling bestaat, het maatnummer mee te geven? Bewaar het moment bij beginnen met typen; Enter plaatst de note. Beide waarden blijven daarna aanpasbaar of weg te laten. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Dit is nog een open keuze, geen opdracht om al die bronnen tegelijk te implementeren. Laat een klik op het maatcijfer direct een verticale lijst en een invoerveld openen. Overschrijf handmatige correcties niet automatisch. Zonder betrouwbare koppeling geen verzonnen automatisch maatnummer; een PDF alleen is daarvoor onvoldoende.",
+    "small": true,
+    "order": 4
+  },
+  {
+    "id": "alt-best",
+    "label": "Aanvulling",
+    "title": "Alt-label en één Beste per cue",
+    "bullet": "Best voor de favoriete take en genummerde Alt-labels voor reservetakes, los van de sterren.",
+    "text": "Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetakes. Maak Beste een toggle met maximaal één Beste per cue; een nieuwe Beste heft de vorige binnen die cue op. Sterren blijven apart. Bewaar alles bij de vaste take-ID. Nummer Alt-takes per cue in take-volgorde als Alt 1, Alt 2 enzovoort, onafhankelijk van het sterrenfilter. Toon het totale aantal alts bij de cue; zonder alts staat er een streepje. Niet-geselecteerde Alt-knoppen tonen Alt –. Houd de knopbreedte gelijk zodat sterren niet verschuiven. Bij verwijderen wordt de nummering opnieuw aaneengesloten. Beste verandert alleen de highlight: geen vinkje of wisselende Beste-tekst in de cuekop. Reserveer een vaste breedte voor Beste en Alt in alle toestanden; sterren, cuegegevens en omliggende tekst blijven op dezelfde plaats bij aan- en uitzetten.",
+    "small": true,
+    "order": 7,
+    "group": "aanvullend"
+  },
+  {
+    "id": "snelle-notes",
+    "label": "Aanvulling",
+    "title": "Snelle suggesties voor notes",
+    "bullet": "Veelgebruikte notes als snelle, aanpasbare suggesties, zoals Intonation of More expressive.",
+    "text": "Aanvulling: bied veelvoorkomende notities als aanpasbare suggesties aan, bijvoorbeeld Intonatie, Meer expressief, Minder expressief, Strak en Alt take. Een klik vult het concept bij de juiste take; daarna kun je aanpassen en Enter drukken. Bewaar bestaand concept en leg het bedoelde moment bij de eerste invoer vast.",
+    "small": true,
+    "order": 8,
+    "group": "aanvullend"
+  },
+  {
+    "id": "duidelijke-labels",
+    "label": "Aanvulling",
+    "title": "Labels en bedieningsgroepen verduidelijken",
+    "bullet": "Duidelijker benoemen wat de tijden betekenen en welke knoppen bij Take, Cue of Session horen.",
+    "text": "Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping.",
+    "small": true,
+    "order": 9,
+    "group": "aanvullend"
+  },
+  {
+    "id": "cue-sneltoetsen",
+    "label": "Aanvulling",
+    "title": "Vorige, volgende en direct naar cue",
+    "bullet": "Met [ en ] naar de vorige/volgende cue; bijvoorbeeld ⌥ 1–9 om direct een cue te kiezen.",
+    "text": "Gebruik [ en ] voor vorige/volgende cue voor en een modifier om direct naar bijvoorbeeld cue 8 te springen. In deze proef gebruikt de bedieningsdemo Alt+1–9 buiten tekstinvoer. Maak de uiteindelijke toetsen configureerbaar en controleer browser-/systeemconflicten. Typen in notes krijgt voorrang; een actieve take wisselt niet stilzwijgend van cue.",
+    "small": true,
+    "order": 10,
+    "group": "aanvullend"
+  },
+  {
+    "id": "loggen-vraag",
+    "title": "Waarvoor gebruiken we de duur van elke take?",
+    "text": "",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "nieuwe-take-vraag",
+    "title": "Zou ‘New take’ maken en selecteren ook werken, zonder start/stop?",
+    "text": "",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "take-vergeten-vraag",
+    "title": "Wat gebeurt er met de sessietimers als je vergeet een take te starten?",
+    "text": "",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "timers-vraag",
+    "title": "Welke timers hebben we tijdens de sessie echt nodig?",
+    "text": "",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "voor-achter-vraag",
+    "title": "Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?",
+    "text": "",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "filmtijdcode",
+    "title": "Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?",
+    "text": "",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  }
+]
