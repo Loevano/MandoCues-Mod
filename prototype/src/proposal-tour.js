@@ -31,7 +31,7 @@ function showProposalWelcome(){
  reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Bekijk de suggesties in de werkruimte. Vink uit wat je niet aan Claude wilt meegeven.</p><p class="review-muted">Neem alleen mee wat bij jouw programma past.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
 }
 function closeProposalTour(){
- proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes');
+ proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes','tour-note-metadata');
  document.querySelector('.proposal-tour-card')?.remove();document.querySelector('.proposal-tour-highlight')?.remove();
  document.querySelector('[data-proposal-action="tour"]')?.focus({preventScroll:true});
 }
@@ -40,6 +40,7 @@ function openTourStep(index){
  proposalTourIndex=index;const step=proposalTourSteps[index],s=unifiedState;
  document.body.classList.toggle('tour-cue-selection',step.id==='cue-aanklikken');
  document.body.classList.toggle('tour-take-notes',step.id==='noteplek');
+ document.body.classList.toggle('tour-note-metadata',step.id==='maat-aanpassen');
  showProposalView(step.view);
  if(step.view==='recording')s.open.add(s.cue);
  if(step.prepare==='session')s.calmSessionOpen=true;
@@ -84,7 +85,8 @@ function positionProposalTour(){
  const card=document.querySelector('.proposal-tour-card'),highlight=document.querySelector('.proposal-tour-highlight');if(!card||!highlight)return;
  tourTarget=findTourTarget(proposalTourSteps[proposalTourIndex]);if(!tourTarget)return;
  const step=proposalTourSteps[proposalTourIndex];
- const rects=[tourTarget,...(step.relatedTargets||[]).map(selector=>document.querySelector(selector)).filter(Boolean)].map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);
+ const popup=step.id==='maat-aanpassen'?document.querySelector('.measure-picker[open] .measure-picker-panel'):null;
+ const rects=[tourTarget,...(step.relatedTargets||[]).map(selector=>document.querySelector(selector)).filter(Boolean),...(popup?[popup]:[])].map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);
  const r={left:Math.min(...rects.map(r=>r.left)),top:Math.min(...rects.map(r=>r.top)),right:Math.max(...rects.map(r=>r.right)),bottom:Math.max(...rects.map(r=>r.bottom))},margin=12,padding=5;
  const left=Math.max(4,r.left-padding),top=Math.max(4,r.top-padding),right=Math.min(innerWidth-4,r.right+padding),bottom=Math.min(innerHeight-4,r.bottom+padding);
  highlight.hidden=right<=left||bottom<=top;
@@ -133,6 +135,7 @@ document.addEventListener('change',event=>{
 });
 document.addEventListener('keydown',event=>{
  if(event.target.closest('.proposal-review-dialog[open]')&&event.key==='Enter'&&event.metaKey){event.preventDefault();event.stopImmediatePropagation();return;}
+ if(event.key==='Escape'&&event.target.closest('.measure-picker[open],.note-time-value:not([readonly])'))return;
  if(event.key==='Escape'&&proposalTourIndex>=0){event.preventDefault();event.stopImmediatePropagation();closeProposalTour();}
 },true);
 document.addEventListener('scroll',scheduleTourPosition,true);window.addEventListener('resize',scheduleTourPosition);

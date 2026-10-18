@@ -17,15 +17,47 @@ Alle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. He
 
 De onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevinkt. Er wordt geen nieuwe prompt gegenereerd.
 
-### 1. Sterren in plaats van Good / NG / Hold
+### 1. Het hoofdpaneel
 
-Beoordeel takes met 1–5 sterren. Filter bijvoorbeeld op 4–5 sterren.
+Ik heb de bediening en de belangrijkste tijden bij elkaar gezet.
 
 **Promptonderdeel:**
 
-Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per take. Bewaar de numerieke beoordeling bij de juiste take. Een nieuwe take mag nog onbeoordeeld zijn. Behoud een eventuele Beste-markering als afzonderlijke keuze. Aanvulling: filter bijvoorbeeld op 4–5 sterren. Filter alleen de weergave; verwijder of hernummer geen takes.
+Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie.
 
-### 2. Een cue direct aanklikken
+### 2. Start de sessie met ⌘ Enter
+
+Spatie heb je nodig voor notes. ⌘ Enter start de sessie; daarna start of stopt dezelfde toets een take.
+
+**Promptonderdeel:**
+
+Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat je spatie ook voor tekst nodig hebt. Voorstel voor onze Mac-workflow: gebruik Command+Enter eerst voor Start session. Als de sessie loopt, start dezelfde combinatie een take of stopt de lopende take, ook tijdens typen. Sessiestart maakt nog geen take. De sneltoets moet direct na laden en tijdens de rondleiding werken, ook als het rondleidingstekstje de focus heeft; een handmatige klik in de app mag niet nodig zijn. In het welkomstscherm en andere modale uitleg-/promptvensters blijft opnamebediening geblokkeerd. Spatie blijft gewone tekst en standaard browserbediening. Gewoon Enter plaatst een note. Een ingedrukte of herhalende toets mag niet meerdere keren schakelen; negeer IME-compositie. Bewaar concepten, tijdankers en leespositie bij start/stop. De stopknop blijft apart en bereikbaar. Dit is een voorstel voor de toetskeuze; behoud andere bestaande workflows.
+
+### 3. Voor- of achterlopen in één oogopslag
+
+Cue-tijd, voor-/achterstand en verwachte eindtijd in één overzicht.
+
+**Promptonderdeel:**
+
+Houd in het hoofdpaneel de cue, muziekduur, geplande cuetijd, take-tijd, cue-tijd tegenover de planning, kloktijd en verwachte eindtijd zichtbaar. Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Overige sessietijden blijven beschikbaar onder Session details. Haal geen bestaande klokken of functies weg; behoud hun bestaande berekening en bron. Het doel van de verschillende klokken blijft een open vraag. De demo is een presentatievoorstel; neem zijn voorbeeldberekening en pauzebeleid niet over als vervanging van bestaande planningslogica.
+
+### 4. Overal dezelfde kloknotatie
+
+De grote klok en take-tijden allebei in 24-uursnotatie, bijvoorbeeld 19:54:59.
+
+**Promptonderdeel:**
+
+Onder de takes staat de tijd in 24-uursnotatie, terwijl de grote klok AM/PM gebruikt. Zullen we dat gelijk trekken, bijvoorbeeld overal 19:54:59?
+
+### 5. Het sessieplan blijft een tijdlijn
+
+Langere blokken betekenen meer geplande opnametijd.
+
+**Promptonderdeel:**
+
+Behoud het sessieplan als één horizontale tijdlijn, met bloklengtes evenredig aan de geplande cuetijd. Houd volledige cuecodes leesbaar en laat horizontaal scrollen waar nodig. Een klik kiest de cue met dezelfde bestaande veiligheidsregels; wissel niet stilzwijgend tijdens een lopende take.
+
+### 6. Een cue direct aanklikken
 
 Klik verschillende cues. Het opnamepaneel en de takes wisselen mee.
 
@@ -33,7 +65,15 @@ Klik verschillende cues. Het opnamepaneel en de takes wisselen mee.
 
 Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te hoeven gebruiken. Houd cuekeuze los van het pijltje om takes in te klappen. Bewaar concepten en blokkeer cuewisseling zolang een take loopt met een duidelijke melding. Stop of verplaats een take niet impliciet. Markeer alleen de gekozen cue duidelijk in de lijst: kleur de volledige cuekop en toon links een lichte accentlijn. Laat de markering meewisselen met de cuekeuze, ook tijdens de rondleiding. Houd de afzonderlijke take-selectie herkenbaar.
 
-### 3. Takes herkenbaar onder hun cue
+### 7. Snel naar een andere cue
+
+Met [ en ] naar de vorige/volgende cue. Met ⌥ 1–9 direct een cue kiezen.
+
+**Promptonderdeel:**
+
+Gebruik [ en ] voor vorige/volgende cue voor en een modifier om direct naar bijvoorbeeld cue 8 te springen. In deze proef gebruikt de bedieningsdemo Alt+1–9 buiten tekstinvoer. Maak de uiteindelijke toetsen configureerbaar en controleer browser-/systeemconflicten. Typen in notes krijgt voorrang; een actieve take wisselt niet stilzwijgend van cue.
+
+### 8. Takes herkenbaar onder hun cue
 
 Takes staan onder hun cue. Met het pijltje klap je ze in of uit.
 
@@ -41,53 +81,13 @@ Takes staan onder hun cue. Met het pijltje klap je ze in of uit.
 
 Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels. Plaats take-labels rechts van het cuenummer met een subtiele verticale verbindingslijn. Behoud de bestaande takegrootte; maak het cuenummer minstens even prominent en groter dan het take-label. Een apart cuepijltje klapt die regels in of uit. Houd sterren, Best en Alt op vaste posities; selecteren maakt geen grotere editor in de regel. Bewaar concepten en beoordelingen bij inklappen. De geselecteerde take en de werkelijk lopende take blijven herkenbaar en onafhankelijk.
 
-### 4. Enter plaatst een losse note
+### 9. Sterren in plaats van Good / NG / Hold
 
-Typ een opmerking en druk Enter voor een losse note. Shift+Enter maakt een nieuwe regel.
-
-**Promptonderdeel:**
-
-Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bij de juiste cue en take. Houd de lege invoer klaar voor de volgende note; Shift+Enter maakt een nieuwe regel. Verstuur niet tijdens IME-compositie. Bewaar concepten per take. Cue-algemene opmerkingen blijven apart. Zorg dat notes ook bij de hoofd bediening zichtbaar moeten zijn, zodat je niet naar beneden hoeft te scrollen om te schrijven.
-
-### 5. Maat en tijdcode direct aanpassen
-
-Klik op maat of tijdcode om te wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.
+Beoordeel takes met 1–5 sterren. Filter bijvoorbeeld op 4–5 sterren.
 
 **Promptonderdeel:**
 
-Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen als onveranderlijke oorspronkelijke tijdcode. Een klein klokje herstelt die waarde na een handmatige wijziging; gebruik niet de actuele afspeelpositie. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Geen maat afleiden uit de take-timer. Een nieuwe take begint zonder maatnummer. Schrap de aparte Edit-knop bij notes. Klikken op Bar opent een scrollbaar menu met All (de hele take, zonder specifieke maat) en alle bekende maatnummers van de cue, met wat ruimte voor extra maten. Geef het invoerveld direct focus: typen en Enter kiest de maat. Geen Another bar-label of Choose bar-knop. De tijdcode is direct aanklikbaar en met Enter aanpasbaar; Escape annuleert. Bewaar de oorspronkelijke tijdcode ook bij andere note-bewerkingen en undo/redo. Delete blijft apart. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen blijft een latere uitbreiding bij een betrouwbare koppeling met de uitvoering.
-
-### 6. Notes per take
-
-Klik verschillende takes. Het paneel toont de notes van de gekozen take.
-
-**Promptonderdeel:**
-
-Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt.
-
-### 7. Spatie is ook nodig voor tekst
-
-Spatie heb je nodig voor notes. Gebruik ⌘ Enter voor Start session en voor start/stop van takes.
-
-**Promptonderdeel:**
-
-Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat je spatie ook voor tekst nodig hebt. Voorstel voor onze Mac-workflow: gebruik Command+Enter eerst voor Start session. Als de sessie loopt, start dezelfde combinatie een take of stopt de lopende take, ook tijdens typen. Sessiestart maakt nog geen take. De sneltoets moet direct na laden en tijdens de rondleiding werken, ook als het rondleidingstekstje de focus heeft; een handmatige klik in de app mag niet nodig zijn. In het welkomstscherm en andere modale uitleg-/promptvensters blijft opnamebediening geblokkeerd. Spatie blijft gewone tekst en standaard browserbediening. Gewoon Enter plaatst een note. Een ingedrukte of herhalende toets mag niet meerdere keren schakelen; negeer IME-compositie. Bewaar concepten, tijdankers en leespositie bij start/stop. De stopknop blijft apart en bereikbaar. Dit is een voorstel voor de toetskeuze; behoud andere bestaande workflows.
-
-### 8. Stoppen zonder terug te scrollen
-
-Een compacte start/stopbalk blijft bereikbaar als je naar beneden scrolt.
-
-**Promptonderdeel:**
-
-Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten de interne scrollweergave valt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen.
-
-### 9. Overal dezelfde kloknotatie
-
-De grote klok en take-tijden allebei in 24-uursnotatie, bijvoorbeeld 19:54:59.
-
-**Promptonderdeel:**
-
-Onder de takes staat de tijd in 24-uursnotatie, terwijl de grote klok AM/PM gebruikt. Zullen we dat gelijk trekken, bijvoorbeeld overal 19:54:59?
+Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per take. Bewaar de numerieke beoordeling bij de juiste take. Een nieuwe take mag nog onbeoordeeld zijn. Behoud een eventuele Beste-markering als afzonderlijke keuze. Aanvulling: filter bijvoorbeeld op 4–5 sterren. Filter alleen de weergave; verwijder of hernummer geen takes.
 
 ### 10. Een favoriete take en alternatieven
 
@@ -97,7 +97,31 @@ Eén Best per cue; genummerde Alt-labels voor reservetakes.
 
 Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetakes. Maak Beste een toggle met maximaal één Beste per cue; een nieuwe Beste heft de vorige binnen die cue op. Sterren blijven apart. Bewaar alles bij de vaste take-ID. Nummer Alt-takes per cue in take-volgorde als Alt 1, Alt 2 enzovoort, onafhankelijk van het sterrenfilter. Toon het totale aantal alts bij de cue; zonder alts staat er een streepje. Niet-geselecteerde Alt-knoppen tonen Alt –. Houd de knopbreedte gelijk zodat sterren niet verschuiven. Bij verwijderen wordt de nummering opnieuw aaneengesloten. Beste verandert alleen de highlight: geen vinkje of wisselende Beste-tekst in de cuekop. Reserveer een vaste breedte voor Beste en Alt in alle toestanden; sterren, cuegegevens en omliggende tekst blijven op dezelfde plaats bij aan- en uitzetten.
 
-### 11. Veelgebruikte notes sneller invullen
+### 11. Notes per take
+
+Klik verschillende takes. Het paneel toont de notes van de gekozen take.
+
+**Promptonderdeel:**
+
+Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt.
+
+### 12. Enter plaatst een losse note
+
+Typ een opmerking en druk Enter voor een losse note. Shift+Enter maakt een nieuwe regel.
+
+**Promptonderdeel:**
+
+Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bij de juiste cue en take. Houd de lege invoer klaar voor de volgende note; Shift+Enter maakt een nieuwe regel. Verstuur niet tijdens IME-compositie. Bewaar concepten per take. Cue-algemene opmerkingen blijven apart. Zorg dat notes ook bij de hoofd bediening zichtbaar moeten zijn, zodat je niet naar beneden hoeft te scrollen om te schrijven.
+
+### 13. Maat en tijdcode direct aanpassen
+
+Klik op maat of tijdcode om te wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.
+
+**Promptonderdeel:**
+
+Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen als onveranderlijke oorspronkelijke tijdcode. Een klein klokje herstelt die waarde na een handmatige wijziging; gebruik niet de actuele afspeelpositie. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Geen maat afleiden uit de take-timer. Een nieuwe take begint zonder maatnummer. Schrap de aparte Edit-knop bij notes. Klikken op Bar opent een scrollbaar menu met All (de hele take, zonder specifieke maat) en alle bekende maatnummers van de cue, met wat ruimte voor extra maten. Geef het invoerveld direct focus: typen en Enter kiest de maat. Geen Another bar-label of Choose bar-knop. De tijdcode is direct aanklikbaar en met Enter aanpasbaar; Escape annuleert. Bewaar de oorspronkelijke tijdcode ook bij andere note-bewerkingen en undo/redo. Delete blijft apart. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen blijft een latere uitbreiding bij een betrouwbare koppeling met de uitvoering.
+
+### 14. Veelgebruikte notes sneller invullen
 
 Kies bijvoorbeeld Intonation of More expressive en pas de tekst zo nodig aan.
 
@@ -105,37 +129,13 @@ Kies bijvoorbeeld Intonation of More expressive en pas de tekst zo nodig aan.
 
 Aanvulling: bied veelvoorkomende notities als aanpasbare suggesties aan, bijvoorbeeld Intonatie, Meer expressief, Minder expressief, Strak en Alt take. Een klik vult het concept bij de juiste take; daarna kun je aanpassen en Enter drukken. Bewaar bestaand concept en leg het bedoelde moment bij de eerste invoer vast.
 
-### 12. Duidelijke labels en knoppen
+### 15. Stoppen zonder terug te scrollen
 
-Knoppen voor Take, Cue en Session staan bij elkaar in het hoofdpaneel.
-
-**Promptonderdeel:**
-
-Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie.
-
-### 13. Snel naar een andere cue
-
-Met [ en ] naar de vorige/volgende cue. Met ⌥ 1–9 direct een cue kiezen.
+Een compacte start/stopbalk blijft bereikbaar als je naar beneden scrolt.
 
 **Promptonderdeel:**
 
-Gebruik [ en ] voor vorige/volgende cue voor en een modifier om direct naar bijvoorbeeld cue 8 te springen. In deze proef gebruikt de bedieningsdemo Alt+1–9 buiten tekstinvoer. Maak de uiteindelijke toetsen configureerbaar en controleer browser-/systeemconflicten. Typen in notes krijgt voorrang; een actieve take wisselt niet stilzwijgend van cue.
-
-### 14. Het sessieplan blijft een tijdlijn
-
-Langere blokken betekenen meer geplande opnametijd.
-
-**Promptonderdeel:**
-
-Behoud het sessieplan als één horizontale tijdlijn, met bloklengtes evenredig aan de geplande cuetijd. Houd volledige cuecodes leesbaar en laat horizontaal scrollen waar nodig. Een klik kiest de cue met dezelfde bestaande veiligheidsregels; wissel niet stilzwijgend tijdens een lopende take.
-
-### 15. Voor- of achterlopen in één oogopslag
-
-Cue-tijd, voor-/achterstand en verwachte eindtijd in één overzicht.
-
-**Promptonderdeel:**
-
-Houd in het hoofdpaneel de cue, muziekduur, geplande cuetijd, take-tijd, cue-tijd tegenover de planning, kloktijd en verwachte eindtijd zichtbaar. Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Overige sessietijden blijven beschikbaar onder Session details. Haal geen bestaande klokken of functies weg; behoud hun bestaande berekening en bron. Het doel van de verschillende klokken blijft een open vraag. De demo is een presentatievoorstel; neem zijn voorbeeldberekening en pauzebeleid niet over als vervanging van bestaande planningslogica.
+Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten de interne scrollweergave valt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen.
 
 ### 16. Opname en kniplijst in één werkruimte
 
@@ -169,31 +169,7 @@ Klik een take om zijn notes en geselecteerde maten te zien. Een nieuwe take begi
 
 Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-ID én scorebronversie. Een nieuwe take heeft een lege eigen laag. Terugklikken herstelt de juiste gegevens zonder de score onverwacht te verschuiven. Deel deze gegevens met de opnameweergave; de geselecteerde take mag verschillen van de lopende take.
 
-### 20. Bruikbare maten markeren
-
-⌘+linksklik of slepen voegt maten toe. ⌘+rechtsklik verwijdert ze.
-
-**Promptonderdeel:**
-
-Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit.
-
-### 21. Takes vergelijken op dezelfde score
-
-⌘+klik op meerdere takes om hun selecties en notes samen op de score te zien.
-
-**Promptonderdeel:**
-
-Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
-
-### 22. Alle takes per maat vergelijken
-
-Bekijk welke maten je per take hebt geselecteerd. Klik een maat om die in de partituur te openen.
-
-**Promptonderdeel:**
-
-Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken.
-
-### 23. Instrumenten koppelen en andere takes tonen
+### 20. Instrumenten koppelen en andere takes tonen
 
 Ketting aan: selecteer alle instrumenten tegelijk. Oog aan: toon selecties van andere takes.
 
@@ -201,7 +177,15 @@ Ketting aan: selecteer alle instrumenten tegelijk. Oog aan: toon selecties van a
 
 Behoud Link instruments en See other takes als compacte, benoemde instellingen boven de partituur. Beide beginnen aan. Link instruments bepaalt alleen nieuwe selecties en herschrijft geen eerdere gedeeltelijke selecties. See other takes verbergt alleen achtergrondreferenties; expliciet gekozen vergelijkingstakes en hun notes blijven zichtbaar. Bewaar instellingen bij wisselen van weergave.
 
-### 24. Notes als tekst op de score
+### 21. Bruikbare maten markeren
+
+⌘+linksklik of slepen voegt maten toe. ⌘+rechtsklik verwijdert ze.
+
+**Promptonderdeel:**
+
+Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit.
+
+### 22. Notes als tekst op de score
 
 Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumenten staan bovenaan.
 
@@ -209,7 +193,7 @@ Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumente
 
 Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine.
 
-### 25. Notes terugvinden en verplaatsen
+### 23. Notes terugvinden en verplaatsen
 
 Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar een andere plek.
 
@@ -217,13 +201,29 @@ Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar 
 
 Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en tijdcode zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de tijdcode. Een klein klokje herstelt de onveranderlijk opgeslagen oorspronkelijke tijdcode. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen.
 
-### 26. Scorebewerkingen ongedaan maken
+### 24. Scorebewerkingen ongedaan maken
 
 ⌘ Z maakt de laatste bewerking ongedaan. ⌘ Shift Z voert hem opnieuw uit.
 
 **Promptonderdeel:**
 
 Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score-notes en maatselecties, per take en scorebron. Command+Z maakt ongedaan, Command+Shift+Z voert opnieuw uit. Onderschep geen normale tekst-undo binnen invoervelden. Andere takes en de oorspronkelijke PDF veranderen niet.
+
+### 25. Takes vergelijken op dezelfde score
+
+⌘+klik op meerdere takes om hun selecties en notes samen op de score te zien.
+
+**Promptonderdeel:**
+
+Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
+
+### 26. Alle takes per maat vergelijken
+
+Bekijk welke maten je per take hebt geselecteerd. Klik een maat om die in de partituur te openen.
+
+**Promptonderdeel:**
+
+Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken.
 
 ## Gedeelde promptinleiding
 

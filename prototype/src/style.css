@@ -354,3 +354,5 @@ body.score-workspace{height:100dvh;display:flex;flex-direction:column;overflow:h
 .demo .measure-picker-panel input{font-size:12px}
 .score-note-list-heading,.score-note-row{grid-template-columns:48px minmax(0,1fr) 74px 28px;gap:6px}
 .score-note-time{min-width:0}
+
+.tour-note-metadata .proposal-tour-highlight{box-shadow:none}

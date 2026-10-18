@@ -463,3 +463,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Direct een nummer kunnen typen en Enter drukken. Another bar en Choose bar vervallen.
 - Tijdcode aanklikken, tekst wijzigen en Enter drukken; Escape annuleert.
 - Een klein klokje herstelt de oorspronkelijke tijdcode, niet de huidige positie. De tijdcode wordt bij het beginnen met typen vastgelegd; deze oorspronkelijke waarde blijft bewaard na correcties en andere note-bewerkingen.
+
+
+## 50. Rondleiding volgt de sessieworkflow
+
+- Eerst het hoofdpaneel kort toelichten vanuit Floris: bediening en belangrijkste tijden bij elkaar.
+- Daarna sessiestart en take-start/stop met Command+Enter; spatie blijft voor het typen van notes.
+- Vervolgens planning, cue- en takekeuze, beoordeling en notes maken/bewerken; daarna naar de partituur en kniplijst.
+- Vragen over de verschillende klokken en het nut van take-timing staan apart onder Vragen, zonder extra tekst in de introductie.
+- Bestaande promptkeuzes blijven aan dezelfde suggestie-ID gekoppeld bij het herordenen.
