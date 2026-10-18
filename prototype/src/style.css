@@ -243,3 +243,8 @@ body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
 .tour-cue-selection .calm-cue-heading [data-select-cue][aria-current=true]{background:#51405f!important;outline-color:#d6b7f0}
 
 .tour-cue-selection #cue-scroll{scroll-padding-top:80px;scroll-padding-bottom:290px}
+
+/* Cue headings are the parent level; takes retain their existing row size. */
+.demo .calm-cue-heading button[data-select-cue]{font-size:12px;font-weight:600}
+.calm-cue-heading button[data-select-cue] b{font-size:13px;font-weight:700}
+.calm-cue-takes{margin-left:29px;padding-left:10px;border-left:1px solid #49404f}

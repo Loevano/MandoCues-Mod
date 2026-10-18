@@ -386,3 +386,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Bij direct aanklikken meerdere cues zichtbaar en klikbaar maken, in plaats van één cue uitlichten.
 - Korte uitnodiging om verschillende cues te proberen; opnamepaneel, geselecteerde cue en takes moeten zichtbaar meewisselen.
+
+
+## 40. Cue als hoofdniveau, takes daaronder
+
+- Take-regels rechts van de cue inspringen, zodat ze duidelijk bij die cue horen.
+- De huidige takegrootte behouden; cuenummers minstens even prominent maken.
+- De bestaande inklapbare lijst behouden, met een subtiele verticale lijn voor de onderliggende takes.

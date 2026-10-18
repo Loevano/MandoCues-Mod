@@ -39,7 +39,7 @@ Takes staan onder hun cue. Met het pijltje klap je ze in of uit.
 
 **Promptonderdeel:**
 
-Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels. Een apart cuepijltje klapt die regels in of uit. Houd sterren, Best en Alt op vaste posities; selecteren maakt geen grotere editor in de regel. Bewaar concepten en beoordelingen bij inklappen. De geselecteerde take en de werkelijk lopende take blijven herkenbaar en onafhankelijk.
+Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels. Plaats take-labels rechts van het cuenummer met een subtiele verticale verbindingslijn. Behoud de bestaande takegrootte; maak het cuenummer minstens even prominent en groter dan het take-label. Een apart cuepijltje klapt die regels in of uit. Houd sterren, Best en Alt op vaste posities; selecteren maakt geen grotere editor in de regel. Bewaar concepten en beoordelingen bij inklappen. De geselecteerde take en de werkelijk lopende take blijven herkenbaar en onafhankelijk.
 
 ### 4. Enter plaatst een losse note
 

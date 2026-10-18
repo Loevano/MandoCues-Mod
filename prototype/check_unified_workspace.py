@@ -24,7 +24,29 @@ with sync_playwright() as p:
     expect(page.locator('[data-proposal-elapsed]')).to_contain_text('42:')
     expect(page.locator('.calm-extra-times')).to_contain_text('5:20:00')
     page.locator('[data-calm-session] > summary').click()
+    # A cue is the parent: its label is larger, with takes visibly to its right.
+    for width in [390,1512]:
+        page.set_viewport_size({'width':width,'height':1100})
+        cue=page.locator('.calm-cue-heading [data-select-cue="0"] b')
+        take=page.locator('[data-calm-take="c0-t1"] .calm-take-name b')
+        assert take.bounding_box()['x']>=cue.bounding_box()['x']+12,width
+        assert cue.evaluate('(el)=>parseFloat(getComputedStyle(el).fontSize)')>take.evaluate('(el)=>parseFloat(getComputedStyle(el).fontSize)'),width
+        row=page.locator('[data-calm-take="c0-t1"]')
+        assert row.locator('.calm-take-name').bounding_box()['x']+row.locator('.calm-take-name').bounding_box()['width']<=row.locator('.take-tools').bounding_box()['x'],width
+        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
+    page.locator('[data-open-cue="0"]').click()
+    expect(page.locator('[data-calm-take="c0-t1"]')).to_be_hidden()
+    page.locator('[data-open-cue="0"]').click()
+    expect(page.locator('[data-calm-take="c0-t1"]')).to_be_visible()
+    tools=page.locator('[data-calm-take="c0-t2"] .take-tools')
+    before=tools.bounding_box()
     page.locator('[data-take-best="c0-t2"]').click()
+    page.locator('[data-select-take="c0-t1"]').click()
+    after=tools.bounding_box()
+    assert all(abs(before[key]-after[key])<1 for key in ('x','y','width','height')),(before,after)
+    page.locator('[data-select-take="c0-t2"]').click()
+    page.locator('#cue-scroll').evaluate('(el)=>{el.scrollTop=0}')
+    page.screenshot(path=str(ROOT/'checks/cue-take-hierarchy.png'))
     page.locator('[data-rating-key="c0-t2"][data-stars="5"]').click()
     field=page.locator('[data-draft="c0-t2"]')
     field.fill('Same note in both views')
