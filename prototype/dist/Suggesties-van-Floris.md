@@ -107,11 +107,11 @@ Aanvulling: bied veelvoorkomende notities als aanpasbare suggesties aan, bijvoor
 
 ### 12. Duidelijke labels en knoppen
 
-Aparte bediening voor Take, Cue en Session, met duidelijke namen voor de tijden.
+Knoppen voor Take, Cue en Session staan bij elkaar in het hoofdpaneel.
 
 **Promptonderdeel:**
 
-Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping.
+Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie.
 
 ### 13. Snel naar een andere cue
 
@@ -131,11 +131,11 @@ Behoud het sessieplan als één horizontale tijdlijn, met bloklengtes evenredig 
 
 ### 15. Voor- of achterlopen in één oogopslag
 
-Eén status voor voor-/achterlopen, bijvoorbeeld +02:00 behind. Extra tijden staan onder Session details.
+Cue-tijd, voor-/achterstand en verwachte eindtijd in één overzicht.
 
 **Promptonderdeel:**
 
-Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Houd aanvullende sessietimers onder Session details. Hergebruik de bestaande planning en klokken; een voorbeeldberekening is geen bewezen voorspelling uit echte takes. Het nut van de take-timer en de definitieve tijdcodebron blijven aparte open vragen.
+Houd in het hoofdpaneel de cue, muziekduur, geplande cuetijd, take-tijd, cue-tijd tegenover de planning, kloktijd en verwachte eindtijd zichtbaar. Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Overige sessietijden blijven beschikbaar onder Session details. Haal geen bestaande klokken of functies weg; behoud hun bestaande berekening en bron. Het doel van de verschillende klokken blijft een open vraag. De demo is een presentatievoorstel; neem zijn voorbeeldberekening en pauzebeleid niet over als vervanging van bestaande planningslogica.
 
 ### 16. Opname en kniplijst in één werkruimte
 

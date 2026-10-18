@@ -436,3 +436,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Kort en neutraal vragen waarvoor de verschillende klokken tijdens een sessie gebruikt worden.
 - Het huidige voorstel kiest een presentatie; het gebruiksdoel van de bestaande timers is nog een open vraag. Geen opdracht om die timers of hun logica te verwijderen.
+
+
+## 47. Middenweg voor het hoofdpaneel
+
+- Direct zichtbaar: cue met muziekduur en geplande werktijd, start/stop, take-tijd, cue-tijd tegenover gepland en voor-/achterstand.
+- Gekozen extra tijden: kloktijd en verwachte eindtijd. Overige sessietijden uitklapbaar behouden.
+- Previous cue, Next cue en Overdub weer zichtbare knoppen. Voor nu ook Break en End session zichtbaar proberen, gegroepeerd onder Take, Cue en Session.
+- Geen bestaande functies of klokken schrappen. Het doel van de oorspronkelijke klokken blijft een korte open vraag voor de collega.
+- Lokale Break/End session zijn demonstratiegedrag: notes en takes blijven bewaard; sessieacties stoppen geen lopende take impliciet. In de echte app blijft de bestaande logica leidend.

@@ -25,6 +25,7 @@ python -m playwright install chromium
 python -X utf8 check_unified_workspace.py
 python -X utf8 check_proposal_tour.py
 python -X utf8 check_recording_shortcut.py
+python -X utf8 check_main_panel.py
 python -X utf8 check_all_takes.py
 python -X utf8 check_score_note_drag.py
 python -X utf8 check_score_settings.py

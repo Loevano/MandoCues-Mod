@@ -1,18 +1,18 @@
 // Optional score-first layout; reuses the existing take layers and score tools.
 function scoreWorkflowTiming(s){
- const now=Date.now();
+ const actualNow=Date.now(),now=s.sessionPausedAt??actualNow;
  const clock=s.scoreWorkflowClock??={started:now,sessionBase:42*60,remaining:140*60,booked:180*60,offset:0,cueStarted:now,cueIndex:s.cue,cueBase:s.cue===0?8*60:0,cueOffset:0,cueSpent:{}};
  if(s.unified&&s.sessionStarted===false){clock.started=now;clock.cueStarted=now;}
  const elapsed=clock.sessionBase+Math.floor((now-clock.started)/1000)+clock.offset;
  const cueElapsed=clock.cueBase+Math.floor((now-clock.cueStarted)/1000)+clock.offset-clock.cueOffset;
- const budget=cuePlannedMinutes(s.cue)*60,delta=elapsed+clock.remaining-clock.booked;
+ const budget=cuePlannedMinutes(s.cue)*60,breakTime=(clock.breakSeconds||0)+(s.sessionPausedAt?Math.floor((actualNow-s.sessionPausedAt)/1000):0),delta=elapsed+clock.remaining-clock.booked+breakTime;
  return {clock,elapsed,cueElapsed,budget,delta};
 }
 function scoreWorkflowSwitchCue(s,index){
  if(!s.scoreWorkflowClock)return;
  const {clock,cueElapsed}=scoreWorkflowTiming(s);
  clock.cueSpent[s.cue]=cueElapsed;clock.cueBase=clock.cueSpent[index]||0;
- clock.cueStarted=Date.now();clock.cueIndex=index;clock.cueOffset=clock.offset;
+ clock.cueStarted=s.sessionPausedAt??Date.now();clock.cueIndex=index;clock.cueOffset=clock.offset;
 }
 function scoreWorkflowPlanText(delta){return (delta>0?'+':delta<0?'−':'')+time(Math.abs(delta))+' '+(delta>0?'behind':delta<0?'ahead':'on schedule');}
 function scoreWorkflowReminder(timing){return timing.cueElapsed>timing.budget?'Cue '+time(timing.cueElapsed-timing.budget)+' over budget':'';}

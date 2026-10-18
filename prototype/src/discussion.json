@@ -78,7 +78,7 @@
     "label": "Aanvulling",
     "title": "Labels en bedieningsgroepen verduidelijken",
     "bullet": "Duidelijker benoemen wat de tijden betekenen en welke knoppen bij Take, Cue of Session horen.",
-    "text": "Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping.",
+    "text": "Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie.",
     "small": true,
     "order": 9,
     "group": "aanvullend"

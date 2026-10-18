@@ -100,11 +100,10 @@
     {
       "id": "duidelijke-labels",
       "title": "Duidelijke labels en knoppen",
-      "text": "Aparte bediening voor Take, Cue en Session, met duidelijke namen voor de tijden.",
-      "target": ".calm-session",
+      "text": "Knoppen voor Take, Cue en Session staan bij elkaar in het hoofdpaneel.",
+      "target": ".proposal-main-actions",
       "view": "recording",
-      "discussion": "duidelijke-labels",
-      "prepare": "session"
+      "discussion": "duidelijke-labels"
     },
     {
       "id": "cue-sneltoetsen",
@@ -125,10 +124,10 @@
     {
       "id": "planning",
       "title": "Voor- of achterlopen in één oogopslag",
-      "text": "Eén status voor voor-/achterlopen, bijvoorbeeld +02:00 behind. Extra tijden staan onder Session details.",
-      "target": ".calm-schedule",
+      "text": "Cue-tijd, voor-/achterstand en verwachte eindtijd in één overzicht.",
+      "target": "#main-panel",
       "view": "recording",
-      "prompt": "Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Houd aanvullende sessietimers onder Session details. Hergebruik de bestaande planning en klokken; een voorbeeldberekening is geen bewezen voorspelling uit echte takes. Het nut van de take-timer en de definitieve tijdcodebron blijven aparte open vragen."
+      "prompt": "Houd in het hoofdpaneel de cue, muziekduur, geplande cuetijd, take-tijd, cue-tijd tegenover de planning, kloktijd en verwachte eindtijd zichtbaar. Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Overige sessietijden blijven beschikbaar onder Session details. Haal geen bestaande klokken of functies weg; behoud hun bestaande berekening en bron. Het doel van de verschillende klokken blijft een open vraag. De demo is een presentatievoorstel; neem zijn voorbeeldberekening en pauzebeleid niet over als vervanging van bestaande planningslogica."
     },
     {
       "id": "view-toggle",

@@ -264,3 +264,37 @@ body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
 .tour-take-notes .calm-cue-list .cue-group.current,
 .tour-take-notes .calm-notes{outline:2px solid #d6b7f0;outline-offset:4px}
 .tour-take-notes #cue-scroll{scroll-padding-top:90px;scroll-padding-bottom:290px}
+
+/* Main controls and key timing stay in view; extra session data remains foldable. */
+.proposal-shell .proposal-main-panel{display:block;padding:4px 0 14px}
+.proposal-main-top{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.proposal-session-clocks{display:flex;gap:28px;flex-shrink:0}
+.proposal-session-clocks label,.demo .proposal-take-clock{display:flex;flex-direction:column;gap:5px;color:#a99eaf;font-size:10px;white-space:nowrap}
+.proposal-session-clocks b{font:21px var(--mono);color:#ece7f1;min-width:5ch}
+.proposal-session-clocks [data-wall-clock]{min-width:8ch}
+.proposal-main-actions{display:flex;justify-content:space-between;align-items:end;gap:14px 24px;flex-wrap:wrap;margin:19px 0 17px}
+.proposal-main-actions .proposal-action-group{display:block;margin:0}
+.proposal-action-group>small{display:block;font-size:9px;color:#b6a8c0;margin-bottom:6px}
+.proposal-action-group>div{display:flex;gap:7px;align-items:center;flex-wrap:wrap;min-height:43px}
+.demo .proposal-action-group button{font-size:11px;padding:8px 10px;white-space:nowrap}
+.proposal-action-group button:disabled{opacity:.4;cursor:default}
+.proposal-main-actions .proposal-session-actions{margin-left:0}
+.proposal-main-actions .proposal-take-clock{margin:0 0 0 7px;min-width:6ch}
+.proposal-take-clock b{font:16px var(--mono);color:#eee7f2}
+.demo .proposal-main-actions .proposal-end-session{color:#f3a3ad;border-color:#663840}
+.proposal-main-planning{display:flex;align-items:center;gap:12px 28px;flex-wrap:wrap;border-top:1px solid #302b36;padding-top:13px;margin-bottom:10px}
+.proposal-main-planning .calm-schedule{font-size:16px;font-weight:600}
+.proposal-main-planning>label{font-size:11px;color:#c8bfce}
+.proposal-main-planning>label b{font:12px var(--mono);margin-left:6px;color:#eee7f2}
+.proposal-main-planning>label span{color:#9b90a3}
+.proposal-main-panel>.calm-session{margin-top:6px}
+.proposal-main-panel .calm-extra-times{font-size:10px}
+@media(max-width:700px){
+ .proposal-main-top{gap:16px}
+ .proposal-session-clocks{gap:22px}
+ .proposal-session-clocks b{font-size:17px}
+ .proposal-main-actions{justify-content:flex-start;gap:13px 18px;margin-top:16px}
+ .proposal-main-actions .proposal-session-actions{margin-left:0}
+ .proposal-main-planning{gap:10px}
+ .proposal-main-actions .calm-transport{margin:0}
+}

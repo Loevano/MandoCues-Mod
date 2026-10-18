@@ -67,7 +67,7 @@ function openTourStep(index){
   syncSticky();
  }else tourTarget?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
  document.querySelector('#proposal-tour-title').focus({preventScroll:true});
- scheduleTourPosition();
+ positionProposalTour();scheduleTourPosition();
 }
 function findTourTarget(step){
  for(const selector of step.target.split(','))for(const el of document.querySelectorAll(selector.trim())){
