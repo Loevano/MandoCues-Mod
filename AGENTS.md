@@ -1,5 +1,6 @@
 # Werken aan deze overdracht
 
+- Maak voor iedere afzonderlijke wijziging een eigen Git-commit. Bundel geen onafhankelijke wijzigingen in één commit; valideer elke wijziging voordat je die commit.
 - Lees `HUIDIGE_STAND.md` voor de huidige keuzes. `prototype/src/feedback.md` is chronologische geschiedenis; latere correcties gaan voor eerdere wensen.
 - Dit is een lokaal suggestieprototype, geen werkende opname-app. Behoud het karakter van vrijblijvende voorstellen en de bestaande vormgeving. Verander geen externe app, originele scoreboeken of ander project.
 - Alle daadwerkelijke GUI-tekst is Engels, inclusief hints, toegankelijkheidslabels en meldingen. Vragen, prompts en toelichting buiten de demo mogen Nederlands blijven. Vertaal geen oorspronkelijke cue-/projectnamen of zelf getypte notes.
