@@ -10,9 +10,8 @@ with sync_playwright() as p:
     page = browser.new_page(viewport={'width': 1512, 'height': 1100})
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.goto((ROOT / 'dist/index.html').as_uri() + '#partituur')
-    for variant in ['A', 'B']:
-        page.locator(f'[data-variant="{variant}"]').click()
-        page.locator('[data-action="reset"]').click()
+    for variant in ['unified']:
+        page.reload();page.locator('[data-tour-action="welcome-skip"]').click()
         page.wait_for_function('Array.from(document.querySelectorAll(".production-score-image")).every(i=>i.complete&&i.naturalWidth)')
         # Compact rows keep separate rating/Best/Alt controls in fixed columns.
         def take_layout():
@@ -86,4 +85,4 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT / 'checks/compact-take-list.png'), full_page=True)
     assert not errors, errors
     browser.close()
-print('PASS: take switching and comparison preserve the reading position in 04A/B; bar navigation still scrolls')
+print('PASS: take switching and comparison preserve the reading position in the shared score view; bar navigation still scrolls')

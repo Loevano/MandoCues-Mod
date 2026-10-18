@@ -10,9 +10,8 @@ with sync_playwright() as p:
     page = browser.new_page(viewport={'width': 1512, 'height': 1100})
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.goto((ROOT / 'dist/index.html').as_uri() + '#partituur')
-    for variant in ['A', 'B']:
-        page.locator(f'[data-variant="{variant}"]').click()
-        page.locator('[data-action="reset"]').click()
+    for variant in ['unified']:
+        page.reload();page.locator('[data-tour-action="welcome-skip"]').click()
         page.evaluate('''() => {
             const s=state(),t=s.takes[s.cue][0];
             t.best=false;t.alt=false;
@@ -110,7 +109,7 @@ with sync_playwright() as p:
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.set_viewport_size({'width': 1512, 'height': 1100})
         # Selecting a later take must not reset the scrollable take picker.
-        page.locator('[data-action="reset"]').click()
+        page.reload();page.locator('[data-tour-action="welcome-skip"]').click()
         page.evaluate('''() => {
             const s=state();
             for(let n=3;n<=14;n++)s.takes[s.cue].push(newTake(s.cue,n));
@@ -139,4 +138,4 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT / 'checks/all-takes.png'), full_page=True)
     assert not errors, errors
     browser.close()
-print('PASS: all-takes overview in 04A/B, fixed controls, notes, instruments and score navigation')
+print('PASS: all-takes overview in the shared score view, fixed controls, notes, instruments and score navigation')

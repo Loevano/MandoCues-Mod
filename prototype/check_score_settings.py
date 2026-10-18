@@ -9,7 +9,8 @@ with sync_playwright() as p:
     page = browser.new_page(viewport={'width': 1512, 'height': 1100})
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
-    page.goto((ROOT / 'dist/index.html').as_uri() + '#partituur')
+    page.goto((ROOT / 'dist/index.html').as_uri() + '#cutlist')
+    page.locator('[data-tour-action="welcome-skip"]').click()
     link = page.get_by_role('button', name='Link instruments', exact=True)
     eye = page.get_by_role('button', name='See other takes', exact=True)
     expect(link).to_have_attribute('aria-pressed', 'true')
@@ -67,7 +68,8 @@ with sync_playwright() as p:
     page.locator(f'[data-select-take="{second}"]').click(modifiers=['Meta'])
     page.locator(f'[data-select-take="{second}"]').click(modifiers=['Meta'])
     expect(page.locator('.comparison-note')).to_contain_text('Comparison remains visible')
-    page.locator('[data-variant="B"]').click()
+    page.locator('[data-proposal-view="recording"]').click()
+    page.locator('[data-proposal-view="cutlist"]').click()
     expect(eye).to_have_attribute('aria-pressed', 'false')
     expect(link).to_have_attribute('aria-pressed', 'true')
     page.set_viewport_size({'width': 390, 'height': 844})
@@ -76,4 +78,4 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT / 'checks/score-settings-mobile.png'))
     assert not errors, errors
     browser.close()
-print('PASS: score settings, linked/unlinked clicks and drags, undo, partial layer preservation, ghost visibility, explicit comparisons, both layouts and mobile width')
+print('PASS: score settings, linked/unlinked clicks and drags, undo, partial layer preservation, ghost visibility, explicit comparisons, workspace switching and mobile width')

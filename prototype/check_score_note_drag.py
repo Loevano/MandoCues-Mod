@@ -1,4 +1,4 @@
-"""Exercise note dragging, editing, history and take isolation in both score views."""
+"""Exercise note dragging, editing, history and take isolation in the shared score view."""
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from browser_support import launch_chromium
@@ -9,16 +9,11 @@ with sync_playwright() as p:
     browser = launch_chromium(p)
     page = browser.new_page(viewport={'width': 1512, 'height': 1100})
     page.on('pageerror', lambda error: errors.append(str(error)))
-    for variant in ['A', 'B']:
+    for variant in ['unified']:
         page.goto((ROOT / 'dist/index.html').as_uri() + '#partituur')
-        page.locator('[data-action="reset"]').click()
-        page.locator(f'[data-variant="{variant}"]').click()
+        page.reload();page.locator('[data-tour-action="welcome-skip"]').click()
         def new_take():
-            if variant == 'A':
-                page.locator('[data-score-new-take]').click()
-            else:
-                page.locator('.score-session-actions [data-action="record"]').click()
-                page.locator('.score-session-actions [data-action="record"]').click()
+            page.locator('[data-score-new-take]').click()
 
         new_take()
         cell = page.locator('[data-score-page="1"] [data-score-measure="2"][data-score-instrument="vln2"]')
