@@ -118,6 +118,8 @@
 .demo button.score-note-text.score-text-annotation:hover{background:transparent;color:#29232d;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .demo button.score-note-text.score-text-annotation.is-focused{outline:0}
 .demo button.score-note-text.score-text-annotation:focus-visible{outline:2px solid #8974b1;outline-offset:3px}
+.demo button.score-text-annotation{cursor:grab;touch-action:none}
+.demo button.score-text-annotation.is-dragging{cursor:grabbing;text-decoration:none;z-index:8}
 @media(max-width:680px){.demo button.score-note-text.score-text-annotation{font-size:11px;max-width:65%}}
 
 /* Proposal 02: fewer competing surfaces, stable take rows, notes in one place. */

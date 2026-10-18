@@ -6,7 +6,7 @@ function scorePageComments(s,t,page){
  const positions=scoreTextPlacements(s,page);
  return `<div class="score-annotation-layer" aria-label="Notes on score page ${page}">${scoreVisibleTakes(s).map(owner=>owner.notes.filter(n=>n.source===s.doc.id&&n.page===page&&n.id!==s.scoreComment?.editId).map(n=>{
   const anchor=positions.get(owner.id+':'+n.id);if(!anchor)return '';
-  return `<button type="button" class="score-note-text score-text-annotation ${owner.id!==s.selected?'comparison-note':''} ${anchor.x>.78?'opens-left':''} ${s.focusedScoreNote===n.id?'is-focused':''}" data-score-note="${n.id}" data-score-take="${owner.id}" style="left:${anchor.x*100}%;top:${anchor.y*100}%;--take-color:${scoreTakeColor(owner)}" aria-label="Edit ${entryLabel(owner)}: ${esc(n.text)}">${esc(n.text)}</button>`;
+  return `<button type="button" class="score-note-text score-text-annotation ${owner.id!==s.selected?'comparison-note':''} ${anchor.x>.78?'opens-left':''} ${s.focusedScoreNote===n.id?'is-focused':''}" data-score-note="${n.id}" data-score-take="${owner.id}" style="left:${anchor.x*100}%;top:${anchor.y*100}%;--take-color:${scoreTakeColor(owner)}" title="Click to edit · Drag to move" aria-label="Edit ${entryLabel(owner)}: ${esc(n.text)}">${esc(n.text)}</button>`;
  }).join('')).join('')}</div>`;
 }
 function scoreInstrumentLabel(ids){return !ids||ids.length===4?'All instruments':scoreInstruments.filter(i=>ids.includes(i.id)).map(i=>i.name).join(', ');}
@@ -175,3 +175,40 @@ function relocateScoreNote(n,value){
  const after=scoreCells(s,loc.page).find(c=>c.measure===+value&&c.instrument===(n.instruments?.[0]||'vln1'));
  if(after)n.anchor={x:after.x+Math.max(0,Math.min(after.width*.8,n.anchor&&before?n.anchor.x-before.x:.01)),y:after.y+Math.max(0,Math.min(after.height*.8,n.anchor&&before?n.anchor.y-before.y:.01))};
 }
+
+// Drag the displayed text without changing its musical or take context.
+let scoreNoteDrag=null;
+function cancelScoreNoteDrag(){
+ const g=scoreNoteDrag;if(!g)return;scoreNoteDrag=null;
+ Object.assign(g.button.style,g.originalStyle);g.button.classList.remove('is-dragging');
+ if(g.button.hasPointerCapture(g.pointer))g.button.releasePointerCapture(g.pointer);
+}
+document.addEventListener('pointerdown',e=>{
+ if(active?.id!=='partituur'||e.button!==0||e.metaKey||e.ctrlKey||scoreNoteDrag)return;
+ const button=e.target.closest('.score-text-annotation'),paper=button?.closest('.score-paper');if(!paper)return;
+ const s=state(),t=takeById(s,button.dataset.scoreTake),n=t?.notes.find(n=>n.id===button.dataset.scoreNote);if(!n)return;
+ if(s.scoreComment?.text.trim())return;
+ const r=paper.getBoundingClientRect(),b=button.getBoundingClientRect();
+ scoreNoteDrag={button,paper,pointer:e.pointerId,s,t,n,source:s.doc.id,start:{x:e.clientX,y:e.clientY},anchor:{x:(b.left-r.left)/r.width,y:(b.top-r.top)/r.height},originalStyle:{left:button.style.left,top:button.style.top},moved:false};
+ button.setPointerCapture(e.pointerId);
+});
+document.addEventListener('pointermove',e=>{
+ const g=scoreNoteDrag;if(!g||g.pointer!==e.pointerId)return;
+ if(!g.button.isConnected||active?.id!=='partituur'||state()!==g.s||g.s.doc.id!==g.source){cancelScoreNoteDrag();return;}
+ g.moved||=Math.hypot(e.clientX-g.start.x,e.clientY-g.start.y)>4;if(!g.moved)return;
+ e.preventDefault();const r=g.paper.getBoundingClientRect(),b=g.button.getBoundingClientRect();
+ g.end={x:Math.max(0,Math.min(Math.max(0,1-b.width/r.width),g.anchor.x+(e.clientX-g.start.x)/r.width)),y:Math.max(0,Math.min(Math.max(0,1-b.height/r.height),g.anchor.y+(e.clientY-g.start.y)/r.height))};
+ g.button.classList.add('is-dragging');Object.assign(g.button.style,{left:g.end.x*100+'%',top:g.end.y*100+'%'});
+});
+document.addEventListener('pointerup',e=>{
+ const g=scoreNoteDrag;if(!g||g.pointer!==e.pointerId)return;
+ const valid=g.button.isConnected&&active?.id==='partituur'&&state()===g.s&&g.s.doc.id===g.source;
+ cancelScoreNoteDrag();if(!g.moved||!valid)return;
+ e.preventDefault();ignoreScoreClickUntil=performance.now()+200;setTimeout(()=>{ignoreScoreClickUntil=0;},0);
+ if(g.end.x===g.anchor.x&&g.end.y===g.anchor.y)return;
+ if(g.t.id!==g.s.selected)selectScoreTake(g.s,g.t.id,true);
+ rememberScoreChange(g.s,g.t);g.n.anchor=g.end;g.n.placement='free';g.s.focusedScoreNote=g.n.id;renderDemo();
+});
+document.addEventListener('pointercancel',cancelScoreNoteDrag);
+document.addEventListener('lostpointercapture',e=>{if(scoreNoteDrag?.pointer===e.pointerId)cancelScoreNoteDrag();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&scoreNoteDrag){e.preventDefault();e.stopImmediatePropagation();cancelScoreNoteDrag();}},true);
