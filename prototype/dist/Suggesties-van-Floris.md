@@ -9,7 +9,7 @@ Alle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. He
 - Waarvoor gebruiken we de duur van elke take?
 - Zou ‘New take’ maken en selecteren ook werken, zonder start/stop?
 - Wat gebeurt er met de sessietimers als je vergeet een take te starten?
-- Welke timers hebben we tijdens de sessie echt nodig?
+- Waarvoor gebruiken jullie de verschillende klokken tijdens een sessie?
 - Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?
 

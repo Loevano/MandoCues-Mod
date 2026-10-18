@@ -430,3 +430,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Eerste druk start de sessie; daarna start en stopt dezelfde combinatie een take. Sessiestart maakt geen take.
 - Focus op rondleidingstekst mag de sneltoets niet blokkeren. Welkomst- en promptvensters blijven afgeschermd.
 - Spatie blijft tekst; Enter plaatst een note. Geen herhaalde acties door een ingedrukte toets of IME-compositie.
+
+
+## 46. Vraag naar het doel van de verschillende klokken
+
+- Kort en neutraal vragen waarvoor de verschillende klokken tijdens een sessie gebruikt worden.
+- Het huidige voorstel kiest een presentatie; het gebruiksdoel van de bestaande timers is nog een open vraag. Geen opdracht om die timers of hun logica te verwijderen.
