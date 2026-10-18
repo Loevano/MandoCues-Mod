@@ -39,12 +39,14 @@ with sync_playwright() as p:
  page.keyboard.press('Meta+Shift+z');expect(note('Viool een op deze plek')).to_have_count(1)
  cell(3,'vln2').dblclick();write('Alleen tweede viool')
  assert saved('Alleen tweede viool')['instruments']==['vln2']
- def drag(m1,i1,m2,i2,shift=False,button='left',p=1):
+ def drag(m1,i1,m2,i2,shift=False,button='left',p=1,alt=False):
   start=cell(m1,i1,p);start.scroll_into_view_if_needed();a=start.bounding_box();z=cell(m2,i2,p).bounding_box()
   page.keyboard.down('Meta')
   if shift:page.keyboard.down('Shift')
+  if alt:page.keyboard.down('Alt')
   page.mouse.move(a['x']+a['width']*.45,a['y']+a['height']*.5);page.mouse.down(button=button)
   page.mouse.move(z['x']+z['width']*.55,z['y']+z['height']*.5,steps=12);page.mouse.up(button=button)
+  if alt:page.keyboard.up('Alt')
   if shift:page.keyboard.up('Shift')
   page.keyboard.up('Meta')
  def keys():return page.evaluate('scoreSelection(state(),takeById(state(),state().selected))')
@@ -52,6 +54,11 @@ with sync_playwright() as p:
  assert set(keys())=={f'{m}:{i}' for m in [4,5] for i in ['vln1','vln2','vla','vc']},keys()
  drag(4,'vln1',5,'vln1',button='right')
  assert not keys(),keys()
+ page.locator('[data-score-undo]').click();assert len(keys())==8
+ drag(4,'vln1',5,'vln1',alt=True)
+ assert not keys(),keys()
+ page.locator('[data-score-undo]').click();assert len(keys())==8
+ page.locator('[data-score-redo]').click();assert not keys()
  page.locator('[data-score-undo]').click();assert len(keys())==8
  drag(6,'vc',7,'vc',shift=True)
  assert all(f'{m}:{i}' in keys() for m in [6,7] for i in ['vln1','vln2','vla','vc'])

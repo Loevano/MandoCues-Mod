@@ -381,7 +381,7 @@ function productionScoreView(s){
    const chosen=s.measure===c.measure&&(!s.scoreFocus||s.scoreFocus.page===page&&s.scoreFocus.instruments.includes(c.instrument));
    return `<button class="score-measure ${chosen?'chosen':''} ${selected.includes(c.key)?'in-take-selection':''}" style="left:${c.x*100}%;top:${c.y*100}%;width:${c.width*100}%;height:${c.height*100}%" data-score-measure="${c.measure}" data-score-instrument="${c.instrument}" data-score-cell="${c.key}" aria-label="Bar ${c.measure}, ${scoreInstrumentLabel([c.instrument])}" aria-pressed="${selected.includes(c.key)}"></button>`;
   }).join('')}</div><div class="score-drag-rectangle" hidden></div>${scorePageComments(s,t,page)}${scoreCommentDialog(s,page)}</div></div>`;
- }).join('')}</div><div class="cutlist-how"><p><b>Select a take on the left.</b> Each take has its own colour, bars and notes.</p><p><b>Cmd+left-click:</b> add bars. <b>Cmd+right-click:</b> remove bars. Dragging also works. ${s.scoreLinkInstruments===false?'Select bars per instrument.':'Linked instruments: selections cover all instruments.'}</p><p><b>Double-click:</b> write a note, then press Enter to place the text at that bar. Above the staff, or above the top staff for all instruments. Click a note to edit it. <b>Cmd+Z:</b> undo. Windows: Ctrl.</p></div><small class="cutlist-mapping-hint">${a===assets.production?'Arrival: checked bar regions.':a?'Bar regions are approximate; check the mapping.':'Schematic demo.'} Notes appear as text at their score position.</small></section>`;
+ }).join('')}</div><div class="cutlist-how"><p><b>Select a take on the left.</b> Each take has its own colour, bars and notes.</p><p><b>Cmd+left-click:</b> add bars. <b>Cmd+right-click:</b> remove bars. Dragging also works. <b>Cmd+Option+left-drag:</b> also remove bars. ${s.scoreLinkInstruments===false?'Select bars per instrument.':'Linked instruments: selections cover all instruments.'}</p><p><b>Double-click:</b> write a note, then press Enter to place the text at that bar. Above the staff, or above the top staff for all instruments. Click a note to edit it. <b>Cmd+Z:</b> undo. Windows: Ctrl.</p></div><small class="cutlist-mapping-hint">${a===assets.production?'Arrival: checked bar regions.':a?'Bar regions are approximate; check the mapping.':'Schematic demo.'} Notes appear as text at their score position.</small></section>`;
 }
 </script><script>// Independent cut-list layers; original score PDFs are never modified.
 const scoreInstruments=[{id:'vln1',name:'Violin 1',short:'Vln 1'},{id:'vln2',name:'Violin 2',short:'Vln 2'},{id:'vla',name:'Viola',short:'Vla'},{id:'vc',name:'Cello',short:'Vc'}];
@@ -511,7 +511,7 @@ document.addEventListener('pointerdown',e=>{
  const paper=e.target.closest('.score-paper');if(!paper||![0,2].includes(e.button)||!(e.metaKey||e.ctrlKey))return;
  if(!state().selected){toast('Create a take before making a selection.');return;}
  e.preventDefault();paper.setPointerCapture(e.pointerId);const start=scorePoint(e,paper);
- scoreGesture={paper,page:+paper.dataset.scorePage,pointer:e.pointerId,mode:e.button===2?'remove':'add',start,end:start,screenStart:{x:e.clientX,y:e.clientY},moved:false,all:e.shiftKey};
+ scoreGesture={paper,page:+paper.dataset.scorePage,pointer:e.pointerId,mode:e.button===2||e.altKey?'remove':'add',start,end:start,screenStart:{x:e.clientX,y:e.clientY},moved:false,all:e.shiftKey};
 });
 document.addEventListener('pointermove',e=>{
  if(!scoreGesture||scoreGesture.pointer!==e.pointerId)return;e.preventDefault();const g=scoreGesture;

@@ -126,7 +126,7 @@ document.addEventListener('pointerdown',e=>{
  const paper=e.target.closest('.score-paper');if(!paper||![0,2].includes(e.button)||!(e.metaKey||e.ctrlKey))return;
  if(!state().selected){toast('Create a take before making a selection.');return;}
  e.preventDefault();paper.setPointerCapture(e.pointerId);const start=scorePoint(e,paper);
- scoreGesture={paper,page:+paper.dataset.scorePage,pointer:e.pointerId,mode:e.button===2?'remove':'add',start,end:start,screenStart:{x:e.clientX,y:e.clientY},moved:false,all:e.shiftKey};
+ scoreGesture={paper,page:+paper.dataset.scorePage,pointer:e.pointerId,mode:e.button===2||e.altKey?'remove':'add',start,end:start,screenStart:{x:e.clientX,y:e.clientY},moved:false,all:e.shiftKey};
 });
 document.addEventListener('pointermove',e=>{
  if(!scoreGesture||scoreGesture.pointer!==e.pointerId)return;e.preventDefault();const g=scoreGesture;
