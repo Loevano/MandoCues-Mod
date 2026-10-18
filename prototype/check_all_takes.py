@@ -109,6 +109,30 @@ with sync_playwright() as p:
         check_toolbar()
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.set_viewport_size({'width': 1512, 'height': 1100})
+        # Selecting a later take must not reset the scrollable take picker.
+        page.locator('[data-action="reset"]').click()
+        page.evaluate('''() => {
+            const s=state();
+            for(let n=3;n<=14;n++)s.takes[s.cue].push(newTake(s.cue,n));
+            renderDemo();
+        }''')
+        take10 = page.locator('[data-select-take="c0-t10"]')
+        take10.scroll_into_view_if_needed()
+        picker = page.locator('.score-take-picker')
+        offset = picker.evaluate('(el)=>el.scrollTop')
+        assert offset > 0
+        take10.click()
+        assert page.evaluate('state().selected') == 'c0-t10'
+        assert picker.evaluate('(el)=>el.scrollTop') == offset
+        expect(take10).to_be_in_viewport()
+        page.locator('[data-select-take="c0-t9"]').click(modifiers=['Meta'])
+        assert picker.evaluate('(el)=>el.scrollTop') == offset
+        page.locator('[data-take-best="c0-t10"]').click()
+        assert picker.evaluate('(el)=>el.scrollTop') == offset
+        page.locator('[data-score-toggle]').click()
+        page.locator('[data-select-take="c0-t10"]').click()
+        expect(page.locator('[data-score-toggle]')).to_have_attribute('aria-pressed', 'false')
+        assert picker.evaluate('(el)=>el.scrollTop') == offset
     page.locator('#score-cue').select_option('0')
     page.locator('.all-takes-scroll').evaluate('(el)=>el.scrollLeft=0')
     (ROOT / 'checks').mkdir(exist_ok=True)
