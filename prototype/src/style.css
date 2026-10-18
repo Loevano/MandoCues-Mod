@@ -340,11 +340,11 @@ body.score-workspace{height:100dvh;display:flex;flex-direction:column;overflow:h
 }
 
 /* Saved note metadata is edited at the value, without a separate Edit section. */
-.demo .note-time-control{display:inline-flex;align-items:center;gap:2px;white-space:nowrap}
-.demo input.note-time-value{min-width:0;max-width:11ch;height:22px;padding:1px 2px;font:10px var(--mono);color:#d8cbe3;background:transparent;border:1px solid transparent;border-radius:3px;cursor:pointer}
+.demo .note-time-control{display:inline-flex;flex-shrink:0;align-items:center;gap:2px;white-space:nowrap}
+.demo input.note-time-value{box-sizing:content-box;flex:0 0 auto;min-width:6ch;max-width:none;height:22px;padding:1px 2px;font:10px var(--mono);color:#d8cbe3;background:transparent;border:1px solid transparent;border-radius:3px;cursor:pointer}
 .demo input.note-time-value[readonly]:hover{border-bottom-color:#8d739e}
 .demo input.note-time-value:not([readonly]){background:#251c2e;border-color:#a58bb9;cursor:text}
-.demo .note-time-reset{display:inline-grid;place-items:center;width:18px;height:20px;min-height:0;padding:2px;border:0;background:transparent;color:#a89ab4}
+.demo .note-time-reset{display:inline-grid;place-items:center;width:18px;flex:0 0 18px;height:20px;min-height:0;padding:2px;border:0;background:transparent;color:#a89ab4}
 .note-time-reset svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round}
 .demo .note-time-reset:hover{background:transparent;color:#e3c9f7}
 .note-time-source{font:8px var(--sans);align-self:center;color:#a99bb5}
@@ -352,7 +352,7 @@ body.score-workspace{height:100dvh;display:flex;flex-direction:column;overflow:h
 .measure-picker-panel{position:fixed;z-index:60;width:156px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);gap:6px;margin:0;padding:7px;box-shadow:0 6px 24px #0007}
 .measure-choices{position:relative;max-height:196px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;gap:1px}
 .demo .measure-picker-panel input{font-size:12px}
-.score-note-list-heading,.score-note-row{grid-template-columns:48px minmax(0,1fr) 74px 28px;gap:6px}
+.score-note-list-heading,.score-note-row{grid-template-columns:48px minmax(0,1fr) minmax(74px,max-content) 28px;gap:6px}
 .score-note-time{min-width:0}
 
 .tour-note-metadata .proposal-tour-highlight{box-shadow:none}

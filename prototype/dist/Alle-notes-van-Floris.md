@@ -637,3 +637,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Planned is geplande werktijd in minuten, Actual de werkelijk bestede werktijd per cue (niet alleen take-duur).
 - Voeg het handmatige afvinkvakje voor een afgeronde cue terug toe. Afgerond en geselecteerd blijven aparte statussen.
 - Geen nieuwe workflow nodig waar de oorspronkelijke site dit al goed deed; takes blijven inklapbaar onder de cue en notes blijven behouden.
+
+
+## 73. Tijdcode volledig zichtbaar
+
+- Het laatste cijfer van het tijdcodeveld bij notes werd afgeknipt.
+- Houd alle cijfers zichtbaar in concepten en geplaatste notes, ook bij langere tijdcodes en tijdens bewerken.
+- Het klokje en maatnummer mogen de tekst niet overlappen. Dit is een weergavefix, geen extra uitleg voor de rondleiding.

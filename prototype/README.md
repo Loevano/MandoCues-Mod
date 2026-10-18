@@ -29,6 +29,7 @@ python -X utf8 check_main_panel.py
 python -X utf8 check_cue_fields.py
 python -X utf8 check_recording_scroll.py
 python -X utf8 check_note_metadata.py
+python -X utf8 check_note_time_width.py
 python -X utf8 check_all_takes.py
 python -X utf8 check_score_note_drag.py
 python -X utf8 check_score_settings.py
