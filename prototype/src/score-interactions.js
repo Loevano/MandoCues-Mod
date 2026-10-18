@@ -86,9 +86,8 @@ function scoreAllTakes(s){
 }
 function scoreNoteList(s,t){
  const notes=t.notes.filter(n=>n.source===s.doc.id);
- const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z M14 5l5 5"/></svg>';
  const deleteIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18 M9 6V3h6v3 M5 6l1 15h12l1-15 M10 10v7 M14 10v7"/></svg>';
- return `<section class="cutlist-notes-list" aria-label="Notes for the selected take"><div class="score-note-list-heading" aria-hidden="true"><span>Bar</span><span>Note</span><span>Time</span><span></span></div><div class="note-list" role="list" data-notes-for="${t.id}">${notes.map(n=>`<article role="listitem" class="score-note-row ${s.focusedScoreNote===n.id?'score-note-focused':''}" data-note-id="${n.id}"><div class="score-note-position">${noteMeasure(s,t,n,true,'score-list')}</div><button type="button" class="score-note-copy" data-goto="${n.id}" data-take="${t.id}" aria-label="Show note in score: ${esc(n.text)}" title="Show note in score">${esc(n.text)}</button><span class="score-note-time" title="Take time">${n.useTime!==false?time(n.at):'—'}</span><div class="score-note-row-actions"><button type="button" class="score-note-icon" data-score-note="${n.id}" data-score-take="${t.id}" aria-label="Edit note: ${esc(n.text)}" title="Edit note">${editIcon}</button><button type="button" class="score-note-icon note-delete" data-delete-note="${n.id}" data-take="${t.id}" aria-label="Delete note: ${esc(n.text)}" title="Delete note">${deleteIcon}</button></div></article>`).join('')}${notes.length?'':'<p class="notes-empty">No notes for this take yet.</p>'}</div></section>`;
+ return `<section class="cutlist-notes-list" aria-label="Notes for the selected take"><div class="score-note-list-heading" aria-hidden="true"><span>Bar</span><span>Note</span><span>Time</span><span></span></div><div class="note-list" role="list" data-notes-for="${t.id}">${notes.map(n=>`<article role="listitem" class="score-note-row ${s.focusedScoreNote===n.id?'score-note-focused':''}" data-note-id="${n.id}"><div class="score-note-position">${noteMeasure(s,t,n,true,'score-list')}</div><button type="button" class="score-note-copy" data-goto="${n.id}" data-take="${t.id}" aria-label="Show note in score: ${esc(n.text)}" title="Show note in score">${esc(n.text)}</button><span class="score-note-time">${noteTime(s,t,n,'score-list')}</span><div class="score-note-row-actions"><button type="button" class="score-note-icon note-delete" data-delete-note="${n.id}" data-take="${t.id}" aria-label="Delete note: ${esc(n.text)}" title="Delete note">${deleteIcon}</button></div></article>`).join('')}${notes.length?'':'<p class="notes-empty">No notes for this take yet.</p>'}</div></section>`;
 }
 function scoreSidebar(s,{workflow=false}={}){
  const t=takeById(s,s.selected);
@@ -111,7 +110,7 @@ function saveScoreComment(s){
  if(c.measure!==''&&(!Number.isInteger(+c.measure)||+c.measure<1||+c.measure>99999)){toast('Enter a valid bar number.');return;}
  if(!c.instruments.length){toast('Choose an instrument or All.');return;}
  rememberScoreChange(s,t);
- const n={id:c.editId||'note-'+(++s.noteSerial),text:c.text.trim(),useTime:true,at:c.at,measure:c.measure===''?null:+c.measure,useMeasure:c.measure!=='',page:c.page,source:c.source,anchor:{...c.anchor},placement:c.placement,instruments:[...c.instruments]};
+ const n={id:c.editId||'note-'+(++s.noteSerial),text:c.text.trim(),useTime:true,at:c.at,originalAt:t.notes.find(n=>n.id===c.editId)?.originalAt??t.notes.find(n=>n.id===c.editId)?.at??c.at,measure:c.measure===''?null:+c.measure,useMeasure:c.measure!=='',page:c.page,source:c.source,anchor:{...c.anchor},placement:c.placement,instruments:[...c.instruments]};
  syncSavedScorePage(n);if(c.editId)t.notes[t.notes.findIndex(n=>n.id===c.editId)]=n;else t.notes.push(n);
  if(t.scoreCommentDrafts)delete t.scoreCommentDrafts[s.doc.id];s.scoreComment=null;s.focusedScoreNote=n.id;renderDemo();
 }

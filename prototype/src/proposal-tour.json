@@ -37,9 +37,9 @@
     },
     {
       "id": "maat-aanpassen",
-      "title": "Tijd en maat bij je note",
-      "text": "Een tijdcode bij je note. Het maatnummer vul je zelf in of kies je in de partituur.",
-      "target": ".calm-notes .composer-footer",
+      "title": "Maat en tijdcode direct aanpassen",
+      "text": "Klik op maat of tijdcode om te wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.",
+      "target": ".calm-notes .note-meta",
       "view": "recording",
       "discussion": "maat-aanpassen"
     },
@@ -212,7 +212,7 @@
       "text": "Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar een andere plek.",
       "target": ".cutlist-notes-list",
       "view": "cutlist",
-      "prompt": "Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Geef aparte edit/delete-acties met duidelijke toegankelijkheidslabels. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen."
+      "prompt": "Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en tijdcode zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de tijdcode. Een klein klokje herstelt de onveranderlijk opgeslagen oorspronkelijke tijdcode. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen."
     },
     {
       "id": "score-undo",

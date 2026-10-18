@@ -10,6 +10,7 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
 - GUI Engels; uitleg en vragen Nederlands. Command+Enter start eerst de sessie en daarna een take, of stopt de lopende take. Dit werkt ook met focus op de rondleiding. Enter plaatst een note en spatie is tekst.
 - Hoofdpaneel: zichtbare Take-/Cue-/Session-knoppen, inclusief Break en End session. Cue-tijd/gepland, take-tijd, voor-/achterstand, kloktijd en verwachte eindtijd blijven in beeld; overige sessietijden onder Session details. Het doel van de verschillende klokken is een open vraag.
+- Note-metadata direct bewerken: scrollbare Bar-lijst met All voor de hele take, typen plus Enter voor een maat, tijdcode aanklikken en Enter. Het klokje herstelt het oorspronkelijke typmoment. Alleen Delete blijft als aparte actie.
 - Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
 
 ## Herstelpunt

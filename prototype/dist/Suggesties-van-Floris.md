@@ -49,13 +49,13 @@ Typ een opmerking en druk Enter voor een losse note. Shift+Enter maakt een nieuw
 
 Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bij de juiste cue en take. Houd de lege invoer klaar voor de volgende note; Shift+Enter maakt een nieuwe regel. Verstuur niet tijdens IME-compositie. Bewaar concepten per take. Cue-algemene opmerkingen blijven apart. Zorg dat notes ook bij de hoofd bediening zichtbaar moeten zijn, zodat je niet naar beneden hoeft te scrollen om te schrijven.
 
-### 5. Tijd en maat bij je note
+### 5. Maat en tijdcode direct aanpassen
 
-Een tijdcode bij je note. Het maatnummer vul je zelf in of kies je in de partituur.
+Klik op maat of tijdcode om te wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.
 
 **Promptonderdeel:**
 
-Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Leid geen maat af uit de take-timer en toon geen Follow bar-optie of gesimuleerde maatvoorstellen. Een nieuwe take begint zonder maatnummer. Enter plaatst de note; tijdcode en maat blijven bewerkbaar of weg te laten. Laat een klik op het maatcijfer direct een verticale lijst en een invoerveld openen. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen is pas een latere uitbreiding bij een betrouwbare koppeling met de uitvoering, geen onderdeel van deze suggestie.
+Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen als onveranderlijke oorspronkelijke tijdcode. Een klein klokje herstelt die waarde na een handmatige wijziging; gebruik niet de actuele afspeelpositie. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Geen maat afleiden uit de take-timer. Een nieuwe take begint zonder maatnummer. Schrap de aparte Edit-knop bij notes. Klikken op Bar opent een scrollbaar menu met All (de hele take, zonder specifieke maat) en alle bekende maatnummers van de cue, met wat ruimte voor extra maten. Geef het invoerveld direct focus: typen en Enter kiest de maat. Geen Another bar-label of Choose bar-knop. De tijdcode is direct aanklikbaar en met Enter aanpasbaar; Escape annuleert. Bewaar de oorspronkelijke tijdcode ook bij andere note-bewerkingen en undo/redo. Delete blijft apart. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen blijft een latere uitbreiding bij een betrouwbare koppeling met de uitvoering.
 
 ### 6. Notes per take
 
@@ -215,7 +215,7 @@ Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar 
 
 **Promptonderdeel:**
 
-Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Geef aparte edit/delete-acties met duidelijke toegankelijkheidslabels. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen.
+Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en tijdcode zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de tijdcode. Een klein klokje herstelt de onveranderlijk opgeslagen oorspronkelijke tijdcode. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen.
 
 ### 26. Scorebewerkingen ongedaan maken
 

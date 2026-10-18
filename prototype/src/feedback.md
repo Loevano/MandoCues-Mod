@@ -454,3 +454,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Alle pagina’s doorlopend onder elkaar laten staan. Jens’ onafhankelijke scroll van score en takes/notes en de leespositie bij takekeuze behouden.
 - Het lange uitlegblok onder de score verwijderen uit de GUI. De bediening kort in de rondleiding uitleggen.
 - Notes, kniplijstselecties en vergelijkingen blijven correct op hun plek bij zoomen en vergroten.
+
+
+## 49. Maat en tijdcode direct bewerken
+
+- Geen aparte Edit-knop naast notes; Delete blijft.
+- Bar opent een scrollbaar menu met All en de maatnummers van de cue (met wat extra ruimte). All is bevestigd als een note voor de hele take, zonder specifiek maatnummer.
+- Direct een nummer kunnen typen en Enter drukken. Another bar en Choose bar vervallen.
+- Tijdcode aanklikken, tekst wijzigen en Enter drukken; Escape annuleert.
+- Een klein klokje herstelt de oorspronkelijke tijdcode, niet de huidige positie. De tijdcode wordt bij het beginnen met typen vastgelegd; deze oorspronkelijke waarde blijft bewaard na correcties en andere note-bewerkingen.
