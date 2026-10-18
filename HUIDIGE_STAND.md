@@ -18,6 +18,8 @@ Bij 02 kun je New layout en Previous layout vergelijken met dezelfde takes/notes
 
 ## Kniplijst: bediening
 
+- Score / All takes schakelt tussen de partituur en een raster met alle takes van de huidige cue. De maatkolommen delen één horizontale as; takekleuren tonen selecties, strepen betekenen gedeeltelijke instrumentselecties. Klik op een maat om die take op de juiste scoreplek te openen; een stip toont de notes bij die maat. Sterren, Best en Alt blijven vast naast de take staan. Met Link instruments uit zijn instrumentrijen per take uitklapbaar.
+
 - Klik op een take om die te kiezen. Cmd/Ctrl+klik voegt een take toe aan de vergelijking of haalt die eruit. De laatst toegevoegde take is bewerkbaar; de lopende take verandert niet.
 - Gekozen takes hebben eigen kleuren. Andere kniplijstbereiken hebben een zachter maar duidelijk zichtbaar kleurvlak met een gekleurde stippelrand als referentie; gekozen takes hebben een doorgetrokken rand; hun notes verschijnen pas bij expliciete vergelijking.
 - Cmd/Ctrl+links klikken of slepen selecteert hele maten voor alle instrumenten. Cmd/Ctrl+rechts verwijdert ze. Boven de PDF staat een uitbreidbare rij met instellingen: Link instruments (ketting) en See other takes (oog), standaard beide aan. Met Link instruments uit selecteer je per instrument; opnieuw inschakelen verandert bestaande selecties niet. See other takes verbergt alleen achtergrondselecties, terwijl expliciet vergeleken takes zichtbaar blijven.

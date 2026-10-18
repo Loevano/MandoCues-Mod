@@ -45,6 +45,7 @@ function undoScoreChange(s,redo=false){
  const previous=from.pop();t.notes=[...t.notes.filter(n=>n.source!==s.doc.id),...previous.notes];t.scoreSelections[s.doc.id]=previous.selection;if(t.scoreCommentDrafts)delete t.scoreCommentDrafts[s.doc.id];s.scoreComment=null;s.focusedScoreNote=null;renderDemo();
 }
 function rememberScoreView(s){
+ if(s.cutlistView==='all')return;
  const t=takeById(s,s.selected);if(!t)return;
  const paper=document.querySelector('.score-paper'),canvas=document.querySelector('.score-canvas');
  if(paper&&(paper.dataset.scoreTake!==t.id||paper.dataset.scoreSource!==s.doc.id))return;
@@ -60,6 +61,29 @@ function scoreCueOverview(s){
  return `<div class="score-cue-overview"><label>Cue<select id="score-cue" aria-label="Choose a cue and its score">${cues.map((c,j)=>`<option value="${j}" ${j===s.cue?'selected':''}>${c[0]} · ${esc(c[1])}</option>`).join('')}</select></label><p><span>Bars ${a.measureRange.join('–')} · ${a.pages} pages</span>${a.cue==='1M09AB'?'<small>Shared score 1M09AB; separate takes per cue.</small>':''}</p></div>`;
 }
 function scoreTakeList(s,{newButton=true}={}){const compared=scoreVisibleTakes(s).map(t=>t.id);return `<section class="score-take-list"><header><h3>Takes</h3>${newButton?'<button data-score-new-take>+ New take</button>':''}</header><div class="take-picker score-take-picker" role="group" aria-label="Select a take">${s.takes[s.cue].map(t=>`<div class="score-take-row"><button data-select-take="${t.id}" style="--take-color:${scoreTakeColor(t)}" aria-pressed="${compared.includes(t.id)}" aria-current="${s.selected===t.id}"><b><i class="take-color-dot" aria-hidden="true"></i>${entryLabel(t)}</b><small>${t.rolling?'● Recording · ':''}${s.selected===t.id?'Editing · ':compared.includes(t.id)?'Comparing · ':''}${t.notes.filter(n=>n.source===s.doc.id).length} ${t.notes.filter(n=>n.source===s.doc.id).length===1?'note':'notes'}</small></button>${starRating(t.rating,t.id,cues[t.cue][0]+' '+entryLabel(t))}</div>`).join('')||'<p class="notes-empty">Create a take to get started.</p>'}</div><small class="score-compare-help">⌘/Ctrl+click: compare takes</small></section>`;}
+// Overview of the current cue; bar selections and score notes are edited on the score.
+function scoreViewSwitcher(s){
+ return `<div class="cutlist-view-switch" role="group" aria-label="Cut list view">${[['score','Score'],['all','All takes']].map(([view,label])=>`<button type="button" data-cutlist-view="${view}" aria-pressed="${(s.cutlistView||'score')===view}">${label}</button>`).join('')}</div>`;
+}
+function scoreAllTakes(s){
+ const bars=[...new Set(Array.from({length:s.doc.pages},(_,i)=>scoreRegions(s,i+1)).flat().map(r=>r.measure))].sort((a,b)=>a-b);
+ const preview=s.cutlistNotePreview,owner=takeById(s,preview?.take);
+ const previewNotes=owner?.cue===s.cue?owner.notes.filter(n=>n.source===s.doc.id&&n.measure===preview.bar):[];
+ function cells(t,instrument=null){
+  const selection=new Set(scoreSelection(s,t));
+  return bars.map(bar=>{
+   const count=scoreInstrumentIds.filter(id=>selection.has(scoreCellKey(bar,id))).length;
+   const selected=instrument?selection.has(scoreCellKey(bar,instrument)):count>0;
+   const notes=t.notes.filter(n=>n.source===s.doc.id&&n.measure===bar&&(!instrument||!n.instruments||n.instruments.includes(instrument)));
+   const label=`${entryLabel(t)}, bar ${bar}${instrument?', '+scoreInstrumentLabel([instrument]):''}: ${selected?(instrument||count===4?'selected':'some instruments selected'):'no selection'}`;
+   return `<td class="all-takes-cell ${selected?'has-selection':''} ${!instrument&&count>0&&count<4?'partial-selection':''}"><button type="button" data-cutlist-bar="${bar}" data-take="${t.id}" data-instrument="${instrument||''}" aria-label="${esc(label)} · Open score" title="${esc(label)}"><span aria-hidden="true">${selected?'━':''}</span></button>${notes.length?`<button type="button" class="all-takes-note" data-cutlist-notes="${bar}" data-take="${t.id}" aria-label="Show ${notes.length} ${notes.length===1?'note':'notes'} for ${entryLabel(t)}, bar ${bar}" title="Show notes">●</button>`:''}</td>`;
+  }).join('');
+ }
+ return `<section class="score-viewer cutlist-viewer all-takes-view">${scoreViewSwitcher(s)}<h3>All takes · ${esc(cues[s.cue][0])}</h3><p class="all-takes-help">Coloured bars show selections. Stripes mean some instruments are selected. Click a bar to open the score; click a dot to read notes.</p>${bars.length?`<div class="all-takes-scroll" tabindex="0" role="region" aria-label="All takes by bar"><table class="all-takes-table"><caption class="sr-only">Selections and notes for every take in this cue</caption><thead><tr><th scope="col">Take / Bar</th>${bars.map(bar=>`<th scope="col">${bar}</th>`).join('')}</tr></thead><tbody>${s.takes[s.cue].map(t=>{
+  const expanded=s.scoreLinkInstruments===false&&s.cutlistExpanded?.[t.id];
+  return `<tr style="--take-color:${scoreTakeColor(t)}" class="${s.selected===t.id?'current-take':''}"><th scope="row"><div class="all-takes-label"><button type="button" data-cutlist-take="${t.id}" aria-current="${s.selected===t.id}"><i class="take-color-dot" style="--take-color:${scoreTakeColor(t)}" aria-hidden="true"></i>${entryLabel(t)}${t.rolling?' · Recording':''}</button><div class="all-takes-tools">${starRating(t.rating,t.id,cues[t.cue][0]+' '+entryLabel(t))}<button class="best" data-take-best="${t.id}" aria-pressed="${t.best}">Best</button><button class="alt" data-take-alt="${t.id}" aria-pressed="${!!t.alt}">${altLabel(s,t.cue,t.id)}</button></div>${s.scoreLinkInstruments===false?`<button type="button" class="all-takes-expand" data-cutlist-expand="${t.id}" aria-expanded="${!!expanded}">${expanded?'⌄':'›'} Instruments</button>`:''}</div></th>${cells(t)}</tr>${expanded?scoreInstruments.map(i=>`<tr class="all-takes-instrument" style="--take-color:${scoreTakeColor(t)}"><th scope="row">${i.name}</th>${cells(t,i.id)}</tr>`).join(''):''}`;
+ }).join('')}</tbody></table></div>`:'<p>No mapped bars are available for this score. Open Score to view the PDF.</p>'}${previewNotes.length?`<section class="all-takes-preview" aria-label="Notes at the selected bar" tabindex="-1"><h4>${entryLabel(owner)} · Bar ${preview.bar}</h4>${previewNotes.map(n=>`<p><small>${scoreInstrumentLabel(n.instruments)}</small>${esc(n.text)}</p>`).join('')}<button data-cutlist-bar="${preview.bar}" data-take="${owner.id}">Open in score</button></section>`:''}</section>`;
+}
 function scoreNoteList(s,t){
  const notes=t.notes.filter(n=>n.source===s.doc.id);
  const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z M14 5l5 5"/></svg>';
@@ -73,6 +97,7 @@ function scoreSidebar(s,{workflow=false}={}){
 }
 function openScoreComment(s,measure,anchor,page,instruments,existing=null){
  const t=takeById(s,s.selected);if(!t){toast('Create a take before adding a note.');return;}
+ s.cutlistView='score';
  s.scoreComment={take:t.id,source:s.doc.id,page,measure:measure||'',text:existing?.text||'',at:existing?.at??position(t),anchor:{...anchor},instruments:[...instruments],placement:existing?.placement||'auto',editId:existing?.id||null};
  s.page=page;s.measure=measure||null;s.scoreFocus={page,measure,instruments};renderDemo();
 }
@@ -92,6 +117,14 @@ function saveScoreComment(s){
 }
 function handleScoreClick(b,event){
  if(active?.id!=='partituur')return false;const s=state();
+ if(b.dataset.cutlistView){if(b.dataset.cutlistView==='all')rememberScoreView(s);else restoreScoreView(s);s.cutlistView=b.dataset.cutlistView;renderDemo();document.querySelector(`[data-cutlist-view="${s.cutlistView}"]`)?.focus({preventScroll:true});return true;}
+ if(b.dataset.cutlistTake){if(event?.metaKey||event?.ctrlKey)toggleScoreComparison(s,b.dataset.cutlistTake);else selectScoreTake(s,b.dataset.cutlistTake);return true;}
+ if(b.dataset.cutlistExpand){s.cutlistExpanded??={};s.cutlistExpanded[b.dataset.cutlistExpand]=!s.cutlistExpanded[b.dataset.cutlistExpand];renderDemo();document.querySelector(`[data-cutlist-expand="${b.dataset.cutlistExpand}"]`)?.focus({preventScroll:true});return true;}
+ if(b.dataset.cutlistNotes){s.cutlistNotePreview={take:b.dataset.take,bar:+b.dataset.cutlistNotes};renderDemo();document.querySelector('.all-takes-preview')?.focus({preventScroll:true});return true;}
+ if(b.dataset.cutlistBar){
+  const loc=scoreLocation(s.doc.id,+b.dataset.cutlistBar);if(!loc)return true;
+  selectScoreTake(s,b.dataset.take,false,false);s.cutlistView='score';s.page=loc.page;s.measure=+b.dataset.cutlistBar;s.scoreFocus={page:loc.page,measure:s.measure,instruments:b.dataset.instrument?[b.dataset.instrument]:scoreInstrumentIds};renderDemo();revealScoreMeasure();document.querySelector('.score-measure.chosen')?.focus({preventScroll:true});return true;
+ }
  if(b.dataset.scoreSetting){const key=b.dataset.scoreSetting;if(!['scoreLinkInstruments','scoreSeeOtherTakes'].includes(key))return false;s[key]=s[key]===false;renderDemo();document.querySelector(`[data-score-setting="${key}"]`)?.focus({preventScroll:true});return true;}
  if(b.dataset.selectTake){if(event?.metaKey||event?.ctrlKey)toggleScoreComparison(s,b.dataset.selectTake);else selectScoreTake(s,b.dataset.selectTake);return true;}
  if(b.hasAttribute('data-score-workflow-later')){scoreWorkflowTiming(s).clock.offset+=120;const live=running(s);if(live)live.base+=120;syncScoreWorkflowClocks();return true;}

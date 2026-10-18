@@ -24,6 +24,7 @@ python -m pip install playwright
 python -m playwright install chromium
 python -X utf8 check_english_ui.py
 python -X utf8 check_revision_oct18.py
+python -X utf8 check_all_takes.py
 ```
 
 Deze controles testen de Engelse interface, note-layout, rustige A/B-bediening, vaste knopposities, opnamebediening, vergelijken en score-notes. `check_prototype.py` controleert ook de homepagina en promptselectie. Aanvullende `check_*.py`-bestanden testen specifieke flows. Uitvoer en screenshots komen in `checks/`.
