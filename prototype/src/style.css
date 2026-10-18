@@ -114,8 +114,8 @@
 @media(max-width:700px){.score-first-stage{grid-template-columns:minmax(0,1fr)}.score-session-dock{grid-column:1;grid-row:1;width:min(100%,320px);justify-self:end;top:8px}.score-first-intro{display:none}.score-first-layout .cutlist-sidebar .cutlist-notes-list{display:block}}
 
 /* Score notes are ordinary text at the source position, without cards or labels. */
-.demo button.score-note-text.score-text-annotation{position:absolute;display:block;width:max-content;max-width:min(230px,75%);padding:0!important;min-height:0!important;white-space:pre-wrap;overflow-wrap:anywhere;border:0;border-radius:0;background:transparent;box-shadow:none;color:#29232d;font:14px/1.35 var(--sans);text-align:left;z-index:7}
-.demo button.score-note-text.score-text-annotation:hover{background:transparent;color:#29232d;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.demo button.score-note-text.score-text-annotation{position:absolute;display:block;width:max-content;max-width:min(230px,75%);padding:0!important;min-height:0!important;white-space:pre-wrap;overflow-wrap:anywhere;border:0;border-radius:0;background:transparent;box-shadow:none;color:var(--take-color);font:14px/1.35 var(--sans);text-align:left;z-index:7}
+.demo button.score-note-text.score-text-annotation:hover{background:transparent;color:var(--take-color);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
 .demo button.score-note-text.score-text-annotation.is-focused{outline:0}
 .demo button.score-note-text.score-text-annotation:focus-visible{outline:2px solid #8974b1;outline-offset:3px}
 .demo button.score-text-annotation{cursor:grab;touch-action:none}
@@ -137,7 +137,7 @@
 .demo .cutlist-viewer button.score-measure,.demo .cutlist-viewer button.score-measure:hover:not(:disabled),.demo .cutlist-viewer button.score-measure[aria-pressed=true],.demo .cutlist-viewer button.score-measure.in-take-selection{background:transparent!important;box-shadow:none!important}
 .score-compare-help{display:block;font-size:9px;color:#b8a8c6;margin-top:8px}.score-take-picker button[aria-current=true]{outline:1px solid var(--take-color);outline-offset:-2px}.score-take-picker button[aria-pressed=true]:not([aria-current=true]){background:color-mix(in srgb,var(--take-color) 10%,#211e29)!important}
 .score-note-options{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0}.score-note-options label{font-size:9px!important;min-width:0}.score-note-options select{width:100%;font-size:10px!important;padding:4px!important}
-.score-paper{container-type:inline-size}.demo button.score-note-text.score-text-annotation{font-size:1.4cqw;max-width:23cqw;line-height:1.35}.demo button.score-text-annotation.comparison-note{color:color-mix(in srgb,var(--take-color) 60%,#18131c)}
+.score-paper{container-type:inline-size}.demo button.score-note-text.score-text-annotation{font-size:1.4cqw;max-width:23cqw;line-height:1.35}
 .calm-scroll .sticky-slot{top:-14px;height:64px;margin:0 0 -64px}.calm-scroll .sticky-slot>.transport{left:-14px;width:calc(100% + 28px)}
 @media(max-width:700px){.calm-scroll .sticky-slot{top:-9px;margin:0 0 -64px}.calm-scroll .sticky-slot>.transport{left:-9px;width:calc(100% + 18px)}}
 @container(max-width:760px){.recording-score-body .calm-content,.recording-score-body .calm-side{display:block}.recording-score-body .calm-notes{position:static;margin-top:14px}.recording-score-body .calm-main-panel{display:block}.recording-score-body .calm-transport{margin:12px 0}}
