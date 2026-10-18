@@ -14,6 +14,30 @@ with sync_playwright() as p:
         page.locator(f'[data-variant="{variant}"]').click()
         page.locator('[data-action="reset"]').click()
         page.wait_for_function('Array.from(document.querySelectorAll(".production-score-image")).every(i=>i.complete&&i.naturalWidth)')
+        # Compact rows keep separate rating/Best/Alt controls in fixed columns.
+        def take_layout():
+            return page.locator('.score-take-row').evaluate_all("""rows=>rows.map(row=>{
+                const r=row.getBoundingClientRect();
+                return [r.height,...Array.from(row.querySelectorAll('.star-rating,.score-take-flags')).flatMap(el=>{
+                    const b=el.getBoundingClientRect();return [b.x-r.x,b.y-r.y,b.width,b.height];
+                })];
+            })""")
+        layout = take_layout()
+        assert all(row[0] <= 60 for row in layout), layout
+        selected = page.evaluate('state().selected')
+        for take in ['c0-t2', 'c0-t1']:
+            row = page.locator(f'.score-take-row:has([data-select-take="{take}"])')
+            alt = row.locator('[data-take-alt]')
+            previous_alt = alt.get_attribute('aria-pressed')
+            row.locator('[data-take-best]').click()
+            expect(row.locator('[data-take-best]')).to_have_attribute('aria-pressed', 'true')
+            expect(page.locator('.score-take-flags .best[aria-pressed="true"]')).to_have_count(1)
+            alt.click()
+            expect(alt).to_have_attribute('aria-pressed', 'false' if previous_alt == 'true' else 'true')
+            row.locator('[data-stars="4"]').click()
+            expect(row.locator('[data-stars="4"]')).to_have_attribute('aria-pressed', 'true')
+            assert page.evaluate('state().selected') == selected
+            assert take_layout() == layout
         # An older take may have a different saved page and document offset.
         page.evaluate('''() => {
             const s=state(),t=takeById(s,'c0-t1');
@@ -56,6 +80,10 @@ with sync_playwright() as p:
         assert canvas.evaluate('(el)=>el.scrollTop') > 0
         assert abs(page.evaluate('scrollY') - document_top) <= 1
         assert page.locator('.cutlist-sidebar').bounding_box()['y'] == sidebar_top
+    page.set_viewport_size({'width': 390, 'height': 844})
+    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+    assert page.locator('.score-take-picker').evaluate('(el)=>el.scrollWidth<=el.clientWidth')
+    page.screenshot(path=str(ROOT / 'checks/compact-take-list.png'), full_page=True)
     assert not errors, errors
     browser.close()
 print('PASS: take switching and comparison preserve the reading position in 04A/B; bar navigation still scrolls')
