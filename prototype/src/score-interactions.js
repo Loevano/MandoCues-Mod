@@ -69,7 +69,7 @@ function scoreNoteList(s,t){
 function scoreSidebar(s,{workflow=false}={}){
  const t=takeById(s,s.selected);
  const selection=scoreSelection(s,t),measures=scoreSelectionMeasures(selection);
- return `<aside class="score-notes cutlist-sidebar">${scoreCueOverview(s)}${scoreTakeList(s,{newButton:!workflow})}<div class="cutlist-undo"><button data-score-undo ${!t?.scoreUndo?.[s.doc.id]?.length?'disabled':''}>↶ Undo</button><button data-score-redo aria-label="Redo" title="Redo" ${!t?.scoreRedo?.[s.doc.id]?.length?'disabled':''}>↷</button></div><p class="cutlist-selection">${measures.length?'Selection · bar '+formatScoreMeasures(measures):'No selection'}</p>${selection.length?'<button class="cutlist-clear" data-score-clear-selection>Clear selection</button>':''}${t?scoreNoteList(s,t):''}</aside>`;
+ return `<aside class="score-notes cutlist-sidebar">${scoreCueOverview(s)}${scoreTakeList(s,{newButton:!workflow})}<div class="cutlist-undo"><button data-score-undo ${!t?.scoreUndo?.[s.doc.id]?.length?'disabled':''}>↶ Undo</button><button data-score-redo ${!t?.scoreRedo?.[s.doc.id]?.length?'disabled':''}>↷ Redo</button><button data-score-clear-selection ${!selection.length?'disabled':''}>Clear</button></div><p class="cutlist-selection">Selection: ${measures.length?'bar '+formatScoreMeasures(measures):'None'}</p>${t?scoreNoteList(s,t):''}</aside>`;
 }
 function openScoreComment(s,measure,anchor,page,instruments,existing=null){
  const t=takeById(s,s.selected);if(!t){toast('Create a take before adding a note.');return;}
