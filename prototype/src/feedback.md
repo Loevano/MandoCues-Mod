@@ -614,3 +614,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Previous cue en Next cue naast elkaar op een vaste rij onder de cuenaam.
 - Hun positie hangt niet af van de lengte van de cuenaam. Brackets en de grenzen aan begin/einde blijven behouden.
+
+
+## 70. Duidelijkere lopende take
+
+- Alleen een duidelijkere opnamestatus; geen rood schermkader.
+- Een duidelijk leesbare rode Recording-badge in grote en compacte bediening. Markeer ook de lopende take bij takes/notes.
+- Een andere take selecteren mag de zichtbaarheid van de lopende take niet wegnemen of een gestopte take als lopend tonen.
