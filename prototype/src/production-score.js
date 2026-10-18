@@ -49,15 +49,14 @@ function scoreSettings(s){
   {key:'scoreLinkInstruments',label:'Link instruments',hint:'Select bars across all instruments',icon:'<path d="M10 13a5 5 0 0 0 7 .1l3-3a5 5 0 0 0-7-7l-2 2 M14 11a5 5 0 0 0-7-.1l-3 3a5 5 0 0 0 7 7l2-2"/>'},
   {key:'scoreSeeOtherTakes',label:'See other takes',hint:'Show background selections from other takes',icon:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'}
  ];
- return `<div class="score-settings" role="group" aria-label="Score settings">${settings.map(({key,label,hint,icon})=>`<button type="button" data-score-setting="${key}" aria-label="${label}" aria-pressed="${s[key]!==false}" title="${label} · ${hint}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg></button>`).join('')}</div>`;
+ return `<div class="score-settings" role="group" aria-label="Score settings">${active?.id==='partituur'?scoreViewSwitcher(s):''}${settings.map(({key,label,hint,icon})=>`<button type="button" data-score-setting="${key}" aria-label="${label}" aria-pressed="${s[key]!==false}" title="${label} · ${hint}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg></button>`).join('')}</div>`;
 }
 function productionScoreView(s){
  if(active?.id==='partituur'&&s.cutlistView==='all')return scoreAllTakes(s);
- const viewSwitch=active?.id==='partituur'?scoreViewSwitcher(s):'';
  const a=scoreAsset(s.doc.id),t=takeById(s,s.selected);
- if(s.doc.url)return `<section class="score-viewer cutlist-viewer">${viewSwitch}${scoreSettings(s)}<iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe><p>No bar and staff regions have been mapped for this PDF.</p></section>`;
+ if(s.doc.url)return `<section class="score-viewer cutlist-viewer">${scoreSettings(s)}<iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe><p>No bar and staff regions have been mapped for this PDF.</p></section>`;
  const selected=scoreSelection(s,t);
- return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${viewSwitch}${scoreSettings(s)}<div class="score-canvas">${Array.from({length:s.doc.pages},(_,index)=>{
+ return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${scoreSettings(s)}<div class="score-canvas">${Array.from({length:s.doc.pages},(_,index)=>{
   const page=index+1,cells=scoreCells(s,page),src=a===assets.production?assets.production.pageImages[index]:a?assets.production.bookImages[a.bookPages[index]]:null;
   const paper=a?`<img draggable="false" class="production-score-image" src="${src}" width="1200" height="1698" alt="${a.cue}, book page ${a.bookPages[index]}">`:assets.pages[index];
   const notes=t?.notes.filter(n=>n.source===s.doc.id&&n.page===page)||[];

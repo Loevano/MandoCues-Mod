@@ -18,7 +18,7 @@ Bij 02 kun je New layout en Previous layout vergelijken met dezelfde takes/notes
 
 ## Kniplijst: bediening
 
-- Eén muzieknootknop schakelt tussen de partituur en een raster met alle takes van de huidige cue: aan toont de PDF, uit toont alle takes. De maatkolommen delen één horizontale as; takekleuren tonen selecties, strepen betekenen gedeeltelijke instrumentselecties. Klik op een maat om die take op de juiste scoreplek te openen; een stip toont de notes bij die maat. Best en Alt blijven vast naast de take staan; sterren worden in dit overzicht niet getoond. Met Link instruments uit zijn instrumentrijen per take uitklapbaar.
+- Muzieknoot, ketting en oog blijven samen op één regel zichtbaar, ook in All takes. De muzieknootknop schakelt tussen de partituur en een raster met alle takes van de huidige cue: aan toont de PDF, uit toont alle takes. De maatkolommen delen één horizontale as; takekleuren tonen selecties, strepen betekenen gedeeltelijke instrumentselecties. Klik op een maat om die take op de juiste scoreplek te openen; een stip toont de notes bij die maat. Best en Alt blijven vast naast de take staan; sterren worden in dit overzicht niet getoond. Met Link instruments uit zijn instrumentrijen per take uitklapbaar.
 
 - De takekiezer links is een compacte lijst met sterren, Best en Alt op vaste posities, zonder losse kaders per take.
 - Klik op een take om die te kiezen. Cmd/Ctrl+klik voegt een take toe aan de vergelijking of haalt die eruit. De laatst toegevoegde take is bewerkbaar; de lopende take verandert niet.

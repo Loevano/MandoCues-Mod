@@ -23,6 +23,13 @@ with sync_playwright() as p:
         }''')
         toggle = page.get_by_role('button', name='Show score PDF', exact=True)
         expect(toggle).to_have_count(1)
+        def check_toolbar():
+            buttons = page.locator('.score-settings button')
+            expect(buttons).to_have_count(3)
+            boxes = [button.bounding_box() for button in buttons.all()]
+            assert all(box and box['width'] == 36 and box['height'] == 36 for box in boxes)
+            assert max(box['y'] for box in boxes)-min(box['y'] for box in boxes) <= 1
+        check_toolbar()
         expect(toggle).to_have_attribute('aria-pressed', 'true')
         expect(page.locator('.score-canvas')).to_be_visible()
         toggle.focus()
@@ -30,6 +37,13 @@ with sync_playwright() as p:
         expect(toggle).to_be_focused()
         expect(toggle).to_have_attribute('aria-pressed', 'false')
         expect(page.locator('.score-canvas')).to_have_count(0)
+        check_toolbar()
+        eye = page.get_by_role('button', name='See other takes', exact=True)
+        expect(eye).to_have_attribute('aria-pressed', 'false')
+        eye.click()
+        expect(eye).to_have_attribute('aria-pressed', 'true')
+        eye.click()
+        check_toolbar()
         expect(page.locator('.all-takes-table tbody > tr')).to_have_count(2)
         expect(page.locator('.all-takes-table thead th')).to_have_count(42)
         first = page.locator('.all-takes-table tbody > tr').first
@@ -92,6 +106,7 @@ with sync_playwright() as p:
         page.locator('.all-takes-tools [data-take-best]').first.click()
         assert page.locator('.all-takes-scroll').evaluate('(el)=>el.scrollLeft') == offset
         page.set_viewport_size({'width': 640, 'height': 1000})
+        check_toolbar()
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.set_viewport_size({'width': 1512, 'height': 1100})
     page.locator('#score-cue').select_option('0')
