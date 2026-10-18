@@ -95,7 +95,7 @@ function handleExtraChange(el) {
 function syncExtraClocks(){if(active?.id==='take-afspraak'&&state().live){const el=$('[data-registry-clock]');if(el)el.textContent=time(Math.floor((Date.now()-state().live.started)/1000));}}
 
 function quickNoteSuggestions(t,place) {
-  return `<details class="quick-note-suggestions"><summary>Quick notes</summary><div>${['Intonation','More expressive','Less expressive','Tight','Alt take'].map(text=>`<button type="button" data-quick-note="${text}" data-take="${t.id}" data-editor-place="${place}">${text}</button>`).join('')}</div></details>`;
+  return `<section class="quick-note-suggestions" aria-label="Quick notes"><span>Quick notes</span><div>${['Intonation','More expressive','Less expressive','Tight','Alt take'].map(text=>`<button type="button" data-quick-note="${text}" data-take="${t.id}" data-editor-place="${place}">${text}</button>`).join('')}</div></section>`;
 }
 function handleExtraKey(e) {
   if(!active||e.isComposing||e.repeat)return false;

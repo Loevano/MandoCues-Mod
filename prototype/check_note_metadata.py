@@ -11,6 +11,9 @@ with sync_playwright() as p:
     page.goto((ROOT/'dist/index.html').as_uri())
     page.locator('[data-tour-action="welcome-skip"]').click()
     page.keyboard.press('Meta+Enter');page.keyboard.press('Meta+Enter')
+    expect(page.locator('.quick-note-suggestions')).not_to_have_attribute('open','')
+    expect(page.locator('details.quick-note-suggestions')).to_have_count(0)
+    expect(page.locator('[data-quick-note="Intonation"]')).to_be_visible()
     take=page.evaluate('running(state()).id')
     page.clock.run_for(2200)
     field=page.locator(f'[data-draft="{take}"]');field.fill('Frozen at first key')
@@ -26,7 +29,10 @@ with sync_playwright() as p:
     expect(row.locator('[data-delete-note]')).to_have_count(1)
     def choose_bar(value):
         picker=page.locator(f'[data-measure-menu="{note_id}"]')
+        before=row.bounding_box()
         picker.locator('summary').click()
+        assert row.bounding_box()==before, 'Opening the bar menu moved the note row'
+        assert picker.locator('.measure-picker-panel').evaluate('(el)=>getComputedStyle(el).position')=='fixed'
         input=picker.locator('[data-picker-measure]')
         expect(input).to_be_focused()
         choices=picker.locator('.measure-choices')

@@ -47,7 +47,6 @@ function openTourStep(index){
  if(step.prepare==='all'&&s.cutlistView!=='all'){rememberScoreView(s);s.cutlistView='all';}
  if(step.prepare==='score'&&s.cutlistView==='all'){s.cutlistView='score';restoreScoreView(s);}
  renderDemo();
- if(step.prepare==='quick'){const details=document.querySelector('.quick-note-suggestions');if(details)details.open=true;}
  if(step.prepare==='sticky'){
   const scroll=document.querySelector('#cue-scroll');scroll.scrollTop=document.querySelector('#main-panel').offsetHeight+100;syncSticky();
  }

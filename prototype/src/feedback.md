@@ -472,3 +472,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Vervolgens planning, cue- en takekeuze, beoordeling en notes maken/bewerken; daarna naar de partituur en kniplijst.
 - Vragen over de verschillende klokken en het nut van take-timing staan apart onder Vragen, zonder extra tekst in de introductie.
 - Bestaande promptkeuzes blijven aan dezelfde suggestie-ID gekoppeld bij het herordenen.
+
+
+## 51. Quick notes direct zichtbaar
+
+- Veelgebruikte notes staan direct als knoppen bij de editor, zonder uitklapmenu.
