@@ -530,3 +530,15 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Voorbeeld: ⌥1 → eerste twee maten selecteren met Command-drag → ⌥2 → andere maten kiezen → ] naar de volgende cue.
 - Takekeuze verandert alleen de geselecteerde bewerkingslaag, nooit welke take loopt. Scorepositie, concepten en selecties per take behouden; tekstinvoer en open modale vensters krijgen voorrang. Toetsen tijdens een sleepsessie niet laten wisselen van take.
 - Nog een voorstel: de huidige toetsen blijven ongewijzigd totdat Floris de indeling kiest. Gewone take-nummers en overdubnummers moeten bij eventuele uitwerking onderscheidbaar blijven.
+
+
+## 59. Sneltoetsen gekozen en ingevoerd
+
+- Alt is voor takes; zonder Alt wisselen brackets tussen cues, in Recording én Cut list.
+- [ = vorige cue. ] = volgende cue. Alt+[ = vorige take. Alt+] = volgende take.
+- Alt+1 t/m 9 kiest het echte take-nummer binnen deze cue; de oude cijferkeuze op cuevolgorde vervalt.
+- Voor Take 12 of 34: Alt+Command indrukken, beide loslaten en twee cijfers typen. Een klein vast statusbericht toont Take __ en de ingevoerde cijfers.
+- Escape, vijf seconden zonder invoer, klikken, focus verliezen of een andere actie annuleert. Een ontbrekende take wordt niet aangemaakt.
+- Modifiers loslaten vóór de cijfers voorkomt dat Command-cijfers als browserbediening bedoeld raken. Tekstvelden houden normale invoer; niet navigeren tijdens slepen of vanuit modale vensters.
+- Directe nummers kiezen gewone takes; brackets met Alt doorlopen de bestaande take-/overdublijst. Selectie, concepten en leespositie blijven behouden, en de lopende take blijft dezelfde.
+- De open vraag uit punt 58 is hiermee beantwoord; de historische notitie over cuevolgorde blijft bewaard.

@@ -12,7 +12,6 @@ Alle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. He
 - Waarvoor gebruiken jullie de verschillende klokken tijdens een sessie?
 - Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?
-- ⌥1–9 kiest nu de cuevolgorde, niet de cuecode. Zullen we die cijfers voor take-nummers gebruiken?
 
 ## De rondleiding
 
@@ -66,13 +65,13 @@ Klik verschillende cues. Het opnamepaneel en de takes wisselen mee.
 
 Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te hoeven gebruiken. Houd cuekeuze los van het pijltje om takes in te klappen. Bewaar concepten en blokkeer cuewisseling zolang een take loopt met een duidelijke melding. Stop of verplaats een take niet impliciet. Markeer alleen de gekozen cue duidelijk in de lijst: kleur de volledige cuekop en toon links een lichte accentlijn. Laat de markering meewisselen met de cuekeuze, ook tijdens de rondleiding. Houd de afzonderlijke take-selectie herkenbaar.
 
-### 7. Snel naar een andere cue
+### 7. Snel wisselen tussen cues en takes
 
-Met [ en ] naar de vorige/volgende cue. ⌥1–9 kiest plek 1–9 in de cuelijst.
+Met [ en ] wissel je cues. Met Alt erbij wissel je takes. Alt+1 t/m 9 kiest een take. Voor Take 12: Alt+Command indrukken, loslaten, 1 en 2 typen.
 
 **Promptonderdeel:**
 
-Gebruik [ en ] voor vorige/volgende cue. In de huidige proef kiest Alt+1–9 buiten tekstinvoer plek 1–9 in de sessievolgorde: Alt+1 kiest 1M02 en Alt+2 kiest 1M18. Dit zijn geen cuecodes. De uiteindelijke indeling blijft een open ontwerpkeuze; het voorstel om de cijfers voor echte take-nummers te gebruiken is nog niet geïmplementeerd. Maak toetsen configureerbaar en controleer browser-/systeemconflicten. Typen in notes krijgt voorrang; een actieve take wisselt niet stilzwijgend van cue.
+Gebruik in Recording en Cut list dezelfde toetsen: [ voor vorige cue, ] voor volgende cue, Alt+[ voor vorige take, Alt+] voor volgende take en Alt+1 t/m 9 voor het echte take-nummer binnen de gekozen cue. Verwijder de eerdere Alt+cijfer-koppeling aan cuevolgorde; een cijfer is geen cuecode. Voor twee cijfers: druk Alt+Command in, laat beide los en typ bijvoorbeeld 1 en 2 voor Take 12 of 3 en 4 voor Take 34. Toon kort de twee cijferposities als Take __ en daarna Take 1_; na het tweede cijfer kies je de bestaande take. Escape, vijf seconden zonder invoer, klikken, vensterfocus verliezen of een andere actie annuleert de invoer. Cijfers onder ingedrukte Command/Alt-modifiers voeren de keuze niet uit: vraag eerst de modifiers los te laten om browsercombinaties te vermijden. Gebruik fysieke toetscodes voor Option-cijfers en brackets, omdat Option het tekstteken verandert. Key-repeat en IME voeren geen extra acties uit. Normale tekstinvoer, open modale vensters en actieve sleepacties krijgen voorrang. Directe nummers kiezen gewone takes op werkelijk take-nummer, onafhankelijk van filters en ontbrekende nummers; maak ontbrekende takes niet aan en onderscheid overdubs met hetzelfde nummer. Vorige/volgende take volgt de bestaande lijst, inclusief overdubs, en blijft bij de eerste/laatste staan. Behoud leespositie, notes, concepten en selectie per take. Wisselen kiest de bewerkingslaag en start of stopt niets; een lopende take verandert niet. Cuewisseling tijdens een take blijft geblokkeerd. Behoud configureerbare toetsen en test de browsers en toetsenbordindelingen die de gebruiker inzet.
 
 ### 8. Takes herkenbaar onder hun cue
 

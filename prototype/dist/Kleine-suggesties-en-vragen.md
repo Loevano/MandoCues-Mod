@@ -11,7 +11,7 @@
 - Best voor de favoriete take en genummerde Alt-labels voor reservetakes, los van de sterren.
 - Veelgebruikte notes als snelle, aanpasbare suggesties, zoals Intonation of More expressive.
 - Duidelijker benoemen wat de tijden betekenen en welke knoppen bij Take, Cue of Session horen.
-- Met [ en ] naar de vorige/volgende cue; ⌥1–9 kiest nu plek 1–9 in de cuelijst.
+- Brackets kiezen cues. Alt met brackets kiest takes; Alt+1 t/m 9 kiest direct het take-nummer.
 
 ## Vragen
 
@@ -21,4 +21,3 @@
 - Waarvoor gebruiken jullie de verschillende klokken tijdens een sessie?
 - Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?
-- ⌥1–9 kiest nu de cuevolgorde, niet de cuecode. Zullen we die cijfers voor take-nummers gebruiken?

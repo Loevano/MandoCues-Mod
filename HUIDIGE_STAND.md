@@ -16,9 +16,9 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - Score-notes: dubbelklik neemt de maat op die plek over, ook vlak boven de balk. Slepen toont de doelmaat en past de maat-/instrumentcontext aan. Klik een bestaande score-note en verwijder met ⌫ of Delete naast Cancel; ⌘Z herstelt hem. Tekstvelden houden gewone tekstbewerking.
 - Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
 
-## Nog te kiezen: sneltoetsen
+## Sneltoetsen
 
-⌥1–9 kiest nu plek 1–9 in de cuelijst (1M02, 1M18, …), alleen in Recording. Nieuw voorstel, nog niet ingevoerd: ⌥1–9 voor echte take-nummers, ⌥[ / ⌥] voor vorige/volgende take en [ / ] voor cues, met dezelfde betekenis in beide weergaven. De vraag staat onder Vragen; zie feedbackpunt 58.
+In beide weergaven: [ vorige cue, ] volgende cue; Alt+[ vorige take, Alt+] volgende take. Alt+1 t/m 9 kiest het echte take-nummer. Voor Take 12: Alt+Command indrukken, loslaten, 1 en 2 typen. Escape of vijf seconden zonder invoer annuleert. De eerdere keuze op cuevolgorde vervalt; de open vraag hierover is beantwoord. Takekeuze verandert de bewerkingslaag, nooit de lopende opname.
 
 ## Herstelpunt
 
@@ -39,6 +39,7 @@ De demo is geen recorder en heeft geen echte DAW-/filmtijd of live score followi
 - `prototype/src/proposal-tour.js`: welkomstkeuze, highlights, opt-in selectie en prompt-export.
 - `prototype/src/app.js`, `controls-calm.js`, `score-interactions.js`, `production-score.js` en `score-compare.js`: bestaande onderdelen en handlers. Oude presentatiefuncties zijn geen actieve losse prototypes meer.
 - `prototype/build.py`: één offline HTML-app plus actuele uitleg. Oude genummerde HTML-links verwijzen door naar de gedeelde werkruimte; oude variantprompts worden niet meer uitgegeven.
+- `prototype/check_navigation_keys.py`: dezelfde cue-/takebediening in beide weergaven, twee cijfers, leespositie, concepten, live take en beschermde tekst-/sleep-/modale interacties.
 - `prototype/check_unified_workspace.py` en `check_proposal_tour.py`: gedeelde gegevens, live take, promptkeuze en telefoonformaat.
 - `prototype/check_review_footer.py`, `check_score_note_location.py` en `check_score_note_delete.py`: reviewbediening onderaan, note-plaatsing/slepen en verwijderen met herstel.
 - `prototype/check_note_metadata.py`, `check_tour_scroll.py`, `check_score_pinch.py` en `check_score_zoom.py`: directe metadata, automatische rondleidingnavigatie, trackpadzoom en compacte scorewerkruimte.

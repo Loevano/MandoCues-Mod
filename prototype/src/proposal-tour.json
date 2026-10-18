@@ -53,8 +53,8 @@
     },
     {
       "id": "cue-sneltoetsen",
-      "title": "Snel naar een andere cue",
-      "text": "Met [ en ] naar de vorige/volgende cue. ⌥1–9 kiest plek 1–9 in de cuelijst.",
+      "title": "Snel wisselen tussen cues en takes",
+      "text": "Met [ en ] wissel je cues. Met Alt erbij wissel je takes. Alt+1 t/m 9 kiest een take. Voor Take 12: Alt+Command indrukken, loslaten, 1 en 2 typen.",
       "target": ".calm-cue-list",
       "view": "recording",
       "discussion": "cue-sneltoetsen"

@@ -89,8 +89,8 @@ with sync_playwright() as p:
     target=ROOT/'checks/tour-prompt.md';download.value.save_as(str(target));assert target.read_text()==prompt
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     page.locator('[data-proposal-action="questions"]').click()
-    expect(page.locator('#proposal-questions li')).to_have_count(7)
-    expect(page.locator('#proposal-questions')).to_contain_text('⌥1–9 kiest nu de cuevolgorde, niet de cuecode.')
+    expect(page.locator('#proposal-questions li')).to_have_count(6)
+    expect(page.locator('#proposal-questions')).not_to_contain_text('⌥1–9 kiest nu de cuevolgorde, niet de cuecode.')
     expect(page.locator('#proposal-questions input[type=checkbox]')).to_have_count(0)
     page.locator('#proposal-questions [data-tour-action="close-dialog"]').first.click()
     # Selection survives reopening, unlike temporary demo notes.

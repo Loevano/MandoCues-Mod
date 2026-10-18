@@ -89,6 +89,7 @@ renderDemo=function(){
  if(typeof scheduleTourPosition==='function')scheduleTourPosition();
 };
 function showProposalView(view,{navigate=true}={}){
+ cancelTakeNumberEntry();
  view=view==='cutlist'?'cutlist':'recording';
  if(active?.id==='partituur')rememberScoreView(unifiedState);
  if(proposalView==='recording')unifiedState.recordingScroll=document.querySelector('#cue-scroll')?.scrollTop||0;

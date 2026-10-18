@@ -16,9 +16,9 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - Score-notes: dubbelklik neemt de maat op die plek over, ook vlak boven de balk. Slepen toont de doelmaat en past de maat-/instrumentcontext aan. Klik een bestaande score-note en verwijder met ⌫ of Delete naast Cancel; ⌘Z herstelt hem. Tekstvelden houden gewone tekstbewerking.
 - Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
 
-## Nog te kiezen: sneltoetsen
+## Sneltoetsen
 
-⌥1–9 kiest nu plek 1–9 in de cuelijst (1M02, 1M18, …), alleen in Recording. Nieuw voorstel, nog niet ingevoerd: ⌥1–9 voor echte take-nummers, ⌥[ / ⌥] voor vorige/volgende take en [ / ] voor cues, met dezelfde betekenis in beide weergaven. De vraag staat onder Vragen; zie feedbackpunt 58.
+In beide weergaven: [ vorige cue, ] volgende cue; Alt+[ vorige take, Alt+] volgende take. Alt+1 t/m 9 kiest het echte take-nummer. Voor Take 12: Alt+Command indrukken, loslaten, 1 en 2 typen. Escape of vijf seconden zonder invoer annuleert. De eerdere keuze op cuevolgorde vervalt; de open vraag hierover is beantwoord. Takekeuze verandert de bewerkingslaag, nooit de lopende opname.
 
 ## Herstelpunt
 

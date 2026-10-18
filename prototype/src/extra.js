@@ -97,14 +97,86 @@ function syncExtraClocks(){if(active?.id==='take-afspraak'&&state().live){const 
 function quickNoteSuggestions(t,place) {
   return `<section class="quick-note-suggestions" aria-label="Quick notes"><span>Quick notes</span><div>${['Intonation','More expressive','Less expressive','Tight','Alt take'].map(text=>`<button type="button" data-quick-note="${text}" data-take="${t.id}" data-editor-place="${place}">${text}</button>`).join('')}</div></section>`;
 }
+// Navigation has the same meaning in Recording and Cut list.
+let takeNumberEntry=null,takeNumberTimer=null;
+function navigationKeysAvailable(event){
+ return active&&['bediening','partituur'].includes(active.id)
+  &&!document.querySelector('dialog[open]')
+  &&!event.target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"])')
+  &&!scoreGesture&&!scoreNoteDrag;
+}
+function cancelTakeNumberEntry(){
+ takeNumberEntry=null;clearTimeout(takeNumberTimer);
+ document.querySelector('.take-number-entry')?.remove();
+}
+function showTakeNumberEntry(release=false){
+ let panel=document.querySelector('.take-number-entry');
+ if(!panel){panel=document.createElement('div');panel.className='take-number-entry';panel.lang='en';panel.setAttribute('role','status');panel.setAttribute('aria-live','polite');document.body.append(panel);}
+ panel.textContent='Take '+takeNumberEntry.digits.padEnd(2,'_')+' · '+(release?'Release ⌥⌘, then type two digits':'Type two digits')+' · Esc to cancel';
+ clearTimeout(takeNumberTimer);takeNumberTimer=setTimeout(cancelTakeNumberEntry,5000);
+}
+function takeShortcutTitle(t){
+ if(t.kind==='overdub')return 'View '+entryLabel(t)+' · ⌥[ previous take · ⌥] next take';
+ return t.num<=9?'Go to '+entryLabel(t)+' · ⌥'+t.num:t.num<=99?'Go to '+entryLabel(t)+' · ⌥⌘, release, then type '+String(t.num).padStart(2,'0'):'View '+entryLabel(t);
+}
+function selectNavigationTake(s,t){
+ if(!t){toast('That take does not exist in this cue.');return;}
+ if(active.id==='partituur')selectScoreTake(s,t.id);
+ else if(s.selected!==t.id){
+  s.selected=t.id;t.collapsed=false;s.open.add(s.cue);
+  s.scoreCompared??={};s.scoreCompared[s.cue]=[t.id];
+  restoreScoreView(s);renderDemo();
+ }
+ const picker=document.querySelector('.score-take-picker'),button=picker?.querySelector(`[data-select-take="${t.id}"]`);
+ if(picker&&button){const r=button.getBoundingClientRect(),b=picker.getBoundingClientRect();if(r.top<b.top)picker.scrollTop-=b.top-r.top;else if(r.bottom>b.bottom)picker.scrollTop+=r.bottom-b.bottom;}
+ document.querySelector(active.id==='partituur'?'.score-canvas, .all-takes-scroll':'#cue-scroll')?.focus({preventScroll:true});
+}
+function chooseTakeNumber(number){
+ const s=state(),t=s.takes[s.cue].find(t=>(!t.kind||t.kind==='take')&&t.num===number);
+ selectNavigationTake(s,t);
+}
+function handleTakeNumberEntry(e){
+ if(!navigationKeysAvailable(e)){if(takeNumberEntry)cancelTakeNumberEntry();return;}
+ const modifier=['Alt','Meta'].includes(e.key);
+ if(!takeNumberEntry&&modifier&&e.altKey&&e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.repeat&&!e.isComposing){
+  e.preventDefault();e.stopImmediatePropagation();takeNumberEntry={digits:'',cue:state().cue};showTakeNumberEntry(true);return;
+ }
+ if(!takeNumberEntry)return;
+ if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();cancelTakeNumberEntry();return;}
+ if(modifier||e.isComposing)return;
+ const digit=/^(Digit|Numpad)[0-9]$/.test(e.code)?e.code.slice(-1):null;
+ if(digit!==null&&!e.ctrlKey&&!e.shiftKey){
+  e.preventDefault();e.stopImmediatePropagation();
+  if(e.repeat)return;
+  if(e.altKey||e.metaKey){showTakeNumberEntry(true);return;}
+  takeNumberEntry.digits+=digit;showTakeNumberEntry();
+  if(takeNumberEntry.digits.length===2){const number=Number(takeNumberEntry.digits);cancelTakeNumberEntry();chooseTakeNumber(number);}
+  return;
+ }
+ cancelTakeNumberEntry();
+}
+document.addEventListener('keydown',handleTakeNumberEntry,true);
+document.addEventListener('keyup',e=>{if(takeNumberEntry&&!e.altKey&&!e.metaKey)showTakeNumberEntry();},true);
+document.addEventListener('pointerdown',cancelTakeNumberEntry,true);
+document.addEventListener('focusin',e=>{if(takeNumberEntry&&!navigationKeysAvailable(e))cancelTakeNumberEntry();});
+window.addEventListener('blur',cancelTakeNumberEntry);
 function handleExtraKey(e) {
-  if(!active||e.isComposing||e.repeat)return false;
-  if(active.id==='take-afspraak'&&e.key==='Enter'&&(e.metaKey||e.ctrlKey)&&!e.shiftKey&&!e.altKey){e.preventDefault();if(state().live)registerDemoTake(state(),'timed');else toast('Er is recording geen take-registratie om te stoppen.');return true;}
-  if(active.id!=='bediening'||e.target.closest('input,textarea,select,[contenteditable=true]'))return false;
-  let cue=null;
-  if(!e.metaKey&&!e.ctrlKey&&!e.altKey&&!e.shiftKey&&(e.key==='['||e.key===']'))cue=(state().cue+(e.key==='['?cues.length-1:1))%cues.length;
-  if(e.altKey&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&/^Digit[1-9]$/.test(e.code))cue=+e.code.slice(-1)-1;
-  if(cue===null)return false;e.preventDefault();selectCue(state(),cue);return true;
+ if(!active||e.isComposing||e.repeat)return false;
+ if(active.id==='take-afspraak'&&e.key==='Enter'&&(e.metaKey||e.ctrlKey)&&!e.shiftKey&&!e.altKey){e.preventDefault();if(state().live)registerDemoTake(state(),'timed');else toast('Er is recording geen take-registratie om te stoppen.');return true;}
+ if(!navigationKeysAvailable(e)||e.metaKey||e.ctrlKey||e.shiftKey)return false;
+ const direction=e.code==='BracketLeft'?-1:e.code==='BracketRight'?1:0;
+ if(direction){
+  e.preventDefault();const s=state();
+  if(e.altKey){
+   const takes=s.takes[s.cue],index=takes.findIndex(t=>t.id===s.selected);
+   if(!takes.length){toast('No takes in this cue yet.');return true;}
+   const next=index<0?(direction>0?0:takes.length-1):Math.max(0,Math.min(takes.length-1,index+direction));
+   if(takes[next].id!==s.selected)selectNavigationTake(s,takes[next]);
+  }else selectCue(s,(s.cue+direction+cues.length)%cues.length);
+  return true;
+ }
+ if(e.altKey&&/^(Digit|Numpad)[1-9]$/.test(e.code)){e.preventDefault();chooseTakeNumber(+e.code.slice(-1));return true;}
+ return false;
 }
 function extraPurpose() {
   return `<details class="extra-purpose" id="extra-input"><summary>Aanvullende input · waarom, aandachtspunten en aanvullingen</summary><div><h3>Wat willen we oplossen?</h3><ul><li>Notes op papier raken onoverzichtelijk en je kunt niet altijd snel genoeg meeschrijven.</li><li>Digitaal kun je makkelijker corrigeren en de informatie doorgeven aan andere workflows.</li><li>De hoofdtaken: planning bewaken, snel noteren en een kniplijst voor de editor maken.</li></ul><h3>Eén gedeelde take-telling</h3><p>Aandachtspunt: spreek met muzikanten en engineer af wanneer iets als take telt en welk nummer het krijgt. De app mag geen tweede, afwijkende waarheid creëren.</p><p>De kniplijst staat bij prototype 04; export naar de editor is voorlopig een opmerking. Timen of alleen loggen blijft een ontwerpvraag onder Vragen.</p><button class="text-button" data-action="export-extra">Lees of bewaar de aanvullende input ↓</button></div></details>`;
