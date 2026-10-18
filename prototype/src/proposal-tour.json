@@ -57,7 +57,7 @@
     {
       "id": "opnametoets",
       "title": "Spatie is ook nodig voor tekst",
-      "text": "Spatie heb je nodig voor notes. Voorstel: ⌘ Enter om een take te starten of stoppen.",
+      "text": "Spatie heb je nodig voor notes. Gebruik ⌘ Enter voor Start session en voor start/stop van takes.",
       "target": "#main-panel .record",
       "view": "recording",
       "discussion": "opnametoets"

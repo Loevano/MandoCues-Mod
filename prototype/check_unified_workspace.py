@@ -74,6 +74,8 @@ with sync_playwright() as p:
     expect(page.locator('[data-calm-take="c0-t1"]')).to_be_hidden()
     page.locator('[data-rating-filter]').select_option('0')
     page.keyboard.press('Meta+Enter')
+    assert page.evaluate('state().sessionStarted&&!running(state())')
+    page.keyboard.press('Meta+Enter')
     live=page.evaluate('running(state()).id')
     assert live=='c0-t3'
     field=page.locator(f'[data-draft="{live}"]');field.fill('Draft with ordinary spaces')
@@ -104,6 +106,8 @@ with sync_playwright() as p:
     manual.on('pageerror',lambda e:errors.append(str(e)))
     manual.goto((ROOT/'dist/index.html').as_uri())
     manual.locator('[data-tour-action="welcome-skip"]').click()
+    manual.keyboard.press('Meta+Enter')
+    assert manual.evaluate('state().sessionStarted&&!running(state())'),manual.evaluate('({started:state().sessionStarted,live:running(state())?.id,focus:document.activeElement.outerHTML})')
     for source in ['production','example']:
         manual.evaluate('(source)=>switchScoreDocument(state(),source==="example"?schematicScoreDoc():productionScoreDoc())',source)
         expect(manual.locator('[data-follow-measure]')).to_have_count(0)

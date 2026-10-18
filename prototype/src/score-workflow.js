@@ -2,6 +2,7 @@
 function scoreWorkflowTiming(s){
  const now=Date.now();
  const clock=s.scoreWorkflowClock??={started:now,sessionBase:42*60,remaining:140*60,booked:180*60,offset:0,cueStarted:now,cueIndex:s.cue,cueBase:s.cue===0?8*60:0,cueOffset:0,cueSpent:{}};
+ if(s.unified&&s.sessionStarted===false){clock.started=now;clock.cueStarted=now;}
  const elapsed=clock.sessionBase+Math.floor((now-clock.started)/1000)+clock.offset;
  const cueElapsed=clock.cueBase+Math.floor((now-clock.cueStarted)/1000)+clock.offset-clock.cueOffset;
  const budget=cuePlannedMinutes(s.cue)*60,delta=elapsed+clock.remaining-clock.booked;

@@ -132,7 +132,7 @@ document.addEventListener('change',event=>{
  event.target.checked?proposalTourSelection.add(id):proposalTourSelection.delete(id);persistTourSelection();refreshPromptPreview();
 });
 document.addEventListener('keydown',event=>{
- if(event.target.closest('.proposal-review-dialog,.proposal-tour-card')&&event.key==='Enter'&&event.metaKey){event.preventDefault();event.stopImmediatePropagation();return;}
+ if(event.target.closest('.proposal-review-dialog[open]')&&event.key==='Enter'&&event.metaKey){event.preventDefault();event.stopImmediatePropagation();return;}
  if(event.key==='Escape'&&proposalTourIndex>=0){event.preventDefault();event.stopImmediatePropagation();closeProposalTour();}
 },true);
 document.addEventListener('scroll',scheduleTourPosition,true);window.addEventListener('resize',scheduleTourPosition);

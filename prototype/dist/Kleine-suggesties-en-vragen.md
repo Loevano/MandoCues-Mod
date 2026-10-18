@@ -6,7 +6,7 @@
 - Een cue direct aanklikken in de lijst, naast Go to cue.
 - Met Enter een losse note plaatsen, zodat opmerkingen apart terug te lezen zijn.
 - Een tijdcode bij je note; het maatnummer vul je zelf in of kies je in de partituur.
-- Start/stop met spatie kan botsen met notes typen. Voorstel: ⌘ Enter voor start én stop.
+- Spatie blijft voor tekst. ⌘ Enter voor Start session en daarna start/stop van takes.
 - Overal dezelfde kloknotatie, bijvoorbeeld 19:54:59 in plaats van een mix met AM/PM.
 - Best voor de favoriete take en genummerde Alt-labels voor reservetakes, los van de sterren.
 - Veelgebruikte notes als snelle, aanpasbare suggesties, zoals Intonation of More expressive.

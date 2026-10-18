@@ -67,11 +67,11 @@ Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take
 
 ### 7. Spatie is ook nodig voor tekst
 
-Spatie heb je nodig voor notes. Voorstel: ⌘ Enter om een take te starten of stoppen.
+Spatie heb je nodig voor notes. Gebruik ⌘ Enter voor Start session en voor start/stop van takes.
 
 **Promptonderdeel:**
 
-Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat je spatie ook voor tekst nodig hebt. Voorstel voor onze Mac-workflow: gebruik Command+Enter om een take te starten en dezelfde combinatie om de lopende take te stoppen, ook tijdens typen. Spatie blijft gewone tekst en standaard browserbediening. Gewoon Enter plaatst een note. Een ingedrukte of herhalende toets mag niet meerdere keren schakelen; negeer IME-compositie. Bewaar concepten, tijdankers en leespositie bij start/stop. De stopknop blijft apart en bereikbaar. Dit is een voorstel voor de toetskeuze; behoud andere bestaande workflows.
+Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat je spatie ook voor tekst nodig hebt. Voorstel voor onze Mac-workflow: gebruik Command+Enter eerst voor Start session. Als de sessie loopt, start dezelfde combinatie een take of stopt de lopende take, ook tijdens typen. Sessiestart maakt nog geen take. De sneltoets moet direct na laden en tijdens de rondleiding werken, ook als het rondleidingstekstje de focus heeft; een handmatige klik in de app mag niet nodig zijn. In het welkomstscherm en andere modale uitleg-/promptvensters blijft opnamebediening geblokkeerd. Spatie blijft gewone tekst en standaard browserbediening. Gewoon Enter plaatst een note. Een ingedrukte of herhalende toets mag niet meerdere keren schakelen; negeer IME-compositie. Bewaar concepten, tijdankers en leespositie bij start/stop. De stopknop blijft apart en bereikbaar. Dit is een voorstel voor de toetskeuze; behoud andere bestaande workflows.
 
 ### 8. Stoppen zonder terug te scrollen
 

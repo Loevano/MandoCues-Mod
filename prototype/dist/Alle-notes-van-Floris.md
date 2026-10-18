@@ -422,3 +422,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Bij suggestie 6 zowel de takes als hun notitiepaneel uitlichten.
 - Takeknoppen aanklikbaar houden en het paneel zichtbaar laten meewisselen bij het kiezen van een andere take.
 - De uitleg kort houden: verschillende takes aanklikken en hun notes zien.
+
+
+## 45. Command+Enter ook direct en voor sessiestart
+
+- Suggestie 7 direct met Command+Enter kunnen proberen, zonder eerst met de muis op de opnameknop te klikken.
+- Eerste druk start de sessie; daarna start en stopt dezelfde combinatie een take. Sessiestart maakt geen take.
+- Focus op rondleidingstekst mag de sneltoets niet blokkeren. Welkomst- en promptvensters blijven afgeschermd.
+- Spatie blijft tekst; Enter plaatst een note. Geen herhaalde acties door een ingedrukte toets of IME-compositie.

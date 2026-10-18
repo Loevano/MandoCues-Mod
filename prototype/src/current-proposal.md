@@ -8,7 +8,7 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - Bij openen: Rondleiding starten of Zelf bekijken. Later opnieuw openen via Rondleiding.
 - De rondleiding bevat 25 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
-- GUI Engels; uitleg en vragen Nederlands. Command+Enter start/stopt, Enter plaatst een note en spatie is tekst.
+- GUI Engels; uitleg en vragen Nederlands. Command+Enter start eerst de sessie en daarna een take, of stopt de lopende take. Dit werkt ook met focus op de rondleiding. Enter plaatst een note en spatie is tekst.
 - Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
 
 ## Herstelpunt

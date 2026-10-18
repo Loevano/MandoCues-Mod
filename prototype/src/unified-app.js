@@ -1,5 +1,5 @@
 // One workspace, one take model. The old layouts remain recoverable in Git.
-const unifiedState=Object.assign(states.partituur,{unified:true,booked:360,elapsed:42,remaining:320});
+const unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:42,remaining:320});
 for(const id of Object.keys(states))states[id]=unifiedState;
 let proposalView='recording';
 const previousRenderDemo=renderDemo;
@@ -26,6 +26,7 @@ function proposalRatingFilter(s){return `<div class="review-filter"><label>Show 
 controls=function(){const s=state();return `<div class="calm-scroll control-scroll" id="cue-scroll" tabindex="0" aria-label="Recording workspace"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
 selectCue=function(s,index){selectScoreCue(s,index);};
 toggleRecord=function(s,kind='take'){
+ s.sessionStarted=true;
  const before=running(s);previousToggleRecord(s,kind);
  if(!before&&running(s)){
   s.scoreCompared??={};s.scoreCompared[s.cue]=[s.selected];

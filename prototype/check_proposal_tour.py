@@ -87,6 +87,8 @@ with sync_playwright() as p:
     page.keyboard.press('Escape');expect(page.locator('.proposal-tour-card')).to_have_count(0)
     # Guided view changes never stop a live take or lose a draft.
     page.locator('[data-proposal-view="recording"]').click();page.keyboard.press('Meta+Enter')
+    assert page.evaluate('state().sessionStarted&&!running(state())')
+    page.keyboard.press('Meta+Enter')
     live=page.evaluate('running(state()).id');page.locator('[data-draft]').fill('Draft kept through tour')
     page.evaluate("openTourStep(proposalTourSteps.findIndex(s=>s.id==='score-per-cue'))")
     assert page.evaluate('running(state()).id')==live
