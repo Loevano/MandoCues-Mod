@@ -1,6 +1,7 @@
 // One workspace, one take model. The old layouts remain recoverable in Git.
 const unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:42,remaining:320,sessionEnded:false,sessionPausedAt:null});
 for(const id of Object.keys(states))states[id]=unifiedState;
+cuePlanningState=unifiedState;
 let proposalView='recording';
 const previousRenderDemo=renderDemo;
 const previousToggleRecord=toggleRecord;
@@ -60,6 +61,10 @@ composer=function(s,t,score=false,place='list'){
  const output=previousComposer(s,t,score,place);
  return s.unified&&active.id!=='notities'?output.replace('<div class="composer-footer">',quickNoteSuggestions(t,place)+'<div class="composer-footer">'):output;
 };
+function cueSettings(s,j){s.cueSettings??={};return s.cueSettings[j]??={complexity:'Medium',planned:cuePlannedMinutes(j),complete:false};}
+function cueActualSeconds(s,j){const timing=scoreWorkflowTiming(s);return j===s.cue?timing.cueElapsed:timing.clock.cueSpent[j]??null;}
+function cueActualClass(s,j,seconds){if(seconds===null)return '';const over=seconds-cuePlannedMinutes(j)*60;return over>0?proposalPlanClass(over):cueSettings(s,j).complete?'is-complete':'';}
+function cueActual(s,j){const seconds=cueActualSeconds(s,j);return `<span class="cue-actual ${cueActualClass(s,j,seconds)}" data-cue-actual="${j}" aria-label="Actual work time for ${cues[j][0]}">${seconds===null?'—':proposalDuration(seconds)}</span>`;}
 function proposalRatingFilter(s){return `<div class="review-filter"><label>Show takes <select data-rating-filter>${[[0,'All ratings'],[3,'3–5 stars'],[4,'4–5 stars'],[5,'Only 5 stars']].map(([n,label])=>`<option value="${n}" ${s.minRating===n?'selected':''}>${label}</option>`).join('')}</select></label></div>`;}
 controls=function(){const s=state();return `<div class="calm-scroll control-scroll"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
 selectCue=function(s,index){selectScoreCue(s,index);};
@@ -124,6 +129,15 @@ route=function(){
  if(!document.querySelector('.proposal-shell'))mountProposal();
  const hash=location.hash.slice(1);showProposalView(['cutlist','partituur'].includes(hash)?'cutlist':'recording',{navigate:false});
 };
+document.addEventListener('change',event=>{
+ const el=event.target;
+ if(el.dataset.cueComplexity!==undefined){if(['Low','Medium','High'].includes(el.value))cueSettings(unifiedState,+el.dataset.cueComplexity).complexity=el.value;else return;}
+ else if(el.dataset.cuePlanned!==undefined){const value=Number(el.value);if(!el.value.trim()||!Number.isFinite(value)||value<1||value>1440){el.value=cuePlannedMinutes(+el.dataset.cuePlanned);return;}cueSettings(unifiedState,+el.dataset.cuePlanned).planned=value;}
+ else if(el.dataset.cueComplete!==undefined)cueSettings(unifiedState,+el.dataset.cueComplete).complete=el.checked;
+ else return;
+ renderDemo();
+});
+document.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target.matches('[data-cue-planned]')&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.isComposing){event.preventDefault();event.target.blur();}});
 document.addEventListener('click',event=>{
  const action=event.target.closest('[data-session-action]');
  if(action){if(!action.disabled){if(action.dataset.sessionAction==='break')proposalSessionBreak(unifiedState);else proposalEndSession(unifiedState);}return;}
@@ -136,6 +150,7 @@ setInterval(()=>{
  document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.className='proposal-schedule '+proposalPlanClass(timing.delta);el.setAttribute('aria-label',proposalPlanLabel(timing.delta));el.title=proposalPlanLabel(timing.delta);});
  document.querySelectorAll('[data-proposal-elapsed]').forEach(el=>el.textContent=proposalDuration(timing.elapsed));
  document.querySelectorAll('[data-proposal-cue-clock]').forEach(el=>el.textContent=time(timing.cueElapsed));
+ document.querySelectorAll('[data-cue-actual]').forEach(el=>{const j=+el.dataset.cueActual,seconds=cueActualSeconds(unifiedState,j);el.textContent=seconds===null?'—':proposalDuration(seconds);el.className='cue-actual '+cueActualClass(unifiedState,j,seconds);});
  document.querySelectorAll('[data-proposal-planned-end]').forEach(el=>el.textContent=proposalEndTime(timing,false));
 },200);
 route();

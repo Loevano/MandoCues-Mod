@@ -629,3 +629,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Alleen het teken en de tijd: − voor achterstand, + voor voorsprong; geen zichtbare behind/ahead-tekst.
 - Achterstand onder vijf minuten oranje, vanaf vijf minuten rood (grens bevestigd). Voorsprong groen, nul neutraal.
 - Cue time is de bestede werktijd per cue; de geplande minuten zijn het werkbudget per cue. De demo gebruikt vaste voorbeeldwaarden uit de eerdere weergave; behoud bestaande productieberekeningen.
+
+
+## 72. Oorspronkelijke cuegegevens behouden
+
+- Complexity, Planned en Actual horen ook in onze weergave bij iedere cue. Behoud de muziekduur.
+- Planned is geplande werktijd in minuten, Actual de werkelijk bestede werktijd per cue (niet alleen take-duur).
+- Voeg het handmatige afvinkvakje voor een afgeronde cue terug toe. Afgerond en geselecteerd blijven aparte statussen.
+- Geen nieuwe workflow nodig waar de oorspronkelijke site dit al goed deed; takes blijven inklapbaar onder de cue en notes blijven behouden.

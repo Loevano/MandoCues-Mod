@@ -558,3 +558,36 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .unified-proposal .transport-clocks .proposal-schedule{font-size:16px}
 @media(max-width:1250px){.proposal-session-clocks{justify-self:start;align-items:flex-start}.proposal-session-clocks label{align-items:flex-start}}
 @media(max-width:759px){.proposal-session-clocks{gap:4px}.proposal-session-clocks [data-wall-clock]{font-size:34px}.unified-proposal .transport-clocks [data-wall-clock]{font-size:17px}.unified-proposal .transport-clocks .proposal-schedule{font-size:14px}}
+
+/* Keep the original per-cue planning and completion fields beside each cue. */
+.cue-column-headings,.calm-cue-heading{display:grid;grid-template-columns:18px minmax(115px,1fr) 42px 79px 56px 58px 24px;gap:6px;align-items:center}
+.cue-column-headings{padding:0 0 7px;color:#a69bab;font-size:9px;line-height:1.25}
+.calm-cue-heading{padding:9px 0}
+.calm-cue-heading>button[data-select-cue]{display:block;min-width:0}
+.cue-name-line{display:flex;align-items:center;gap:5px;justify-content:space-between;min-width:0}
+.calm-cue-heading .cue-name-line small{font-size:8px;white-space:nowrap}
+.cue-title{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:400;margin-top:2px}
+.cue-music-length,.cue-actual{font:10px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.calm-cue-heading label{margin:0;min-width:0}
+.cue-complexity>span,.cue-planned>span,.cue-actual-field>span:first-child{display:none}
+.demo .cue-complexity select,.demo .cue-planned input{width:100%;min-width:0;max-width:none;padding:6px 5px;font-size:10px;background:#17171d;border-color:#3b3443;border-radius:6px}
+.demo input.cue-complete{appearance:auto;accent-color:#00bf90;width:16px;height:16px;min-height:16px;margin:0;cursor:pointer;padding:0;justify-self:center}
+.cue-actual.is-behind{color:#edac54}.cue-actual.is-late{color:#ff6a7f}.cue-actual.is-complete{color:#73c7a3}
+.calm-cue-list .cue-group.is-complete:not(.current)>.calm-cue-heading{background:#10231d}
+.calm-cue-list .cue-group.is-complete:not(.current) [data-select-cue] b{color:#73c7a3}
+.cue-timeline button{position:relative}.cue-timeline button.is-complete:after{content:'✓';position:absolute;top:0;right:3px;font-size:8px;color:#7fddbd}
+@media(max-width:700px){
+ .cue-column-headings{display:none}
+ .calm-cue-heading{grid-template-columns:18px minmax(0,1fr) 24px;gap:8px 6px}
+ .calm-cue-heading>[data-open-cue]{grid-column:1;grid-row:1}
+ .calm-cue-heading>[data-select-cue]{grid-column:2;grid-row:1}
+ .calm-cue-heading>.cue-complete{grid-column:3;grid-row:1}
+ .cue-music-length{grid-column:2;grid-row:2;font-size:9px;color:#b5aabb}
+ .cue-complexity,.cue-planned,.cue-actual-field{grid-row:3}
+ .calm-cue-heading{grid-template-columns:18px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 24px}
+ .calm-cue-heading>[data-select-cue]{grid-column:2/5}
+ .calm-cue-heading>.cue-complete{grid-column:5}
+ .cue-complexity{grid-column:2}.cue-planned{grid-column:3}.cue-actual-field{grid-column:4}
+ .cue-complexity>span,.cue-planned>span,.cue-actual-field>span:first-child{display:block;font-size:9px;color:#afa2bb;margin-bottom:4px;white-space:nowrap}
+ .cue-actual-field>.cue-actual{display:block;min-height:28px;line-height:28px}
+}

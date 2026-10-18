@@ -9,7 +9,8 @@ function entryCountText(s,cue,fallback=0) {
   const overdubs=s.takes[cue].filter(t=>t.kind==='overdub').length;
   return takes+' '+(takes===1?'take':'takes')+(overdubs?' · '+overdubs+' '+(overdubs===1?'overdub':'overdubs'):'');
 }
-function cuePlannedMinutes(j) { return [10,25,20,12,14,8,12,8,10,12,13,25][j]||10; }
+let cuePlanningState=null;
+function cuePlannedMinutes(j) { return cuePlanningState?.cueSettings?.[j]?.planned??([10,25,20,12,14,8,12,8,10,12,13,25][j]||10); }
 function sourceCueFacts(c,j) {
   const planned=cuePlannedMinutes(j);
   return `<span class="cue-source-facts"><span><small>Music</small><b>${c[2]}</b></span><span title="Demo schedule"><small>Planned</small><b>${time(planned*60)}</b></span></span>`;
