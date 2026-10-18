@@ -25,7 +25,7 @@ Bij 02 kun je New layout en Previous layout vergelijken met dezelfde takes/notes
 - Tekst staat standaard boven het instrument; All instruments boven de bovenste balk bij die maat. Below en At click position blijven beschikbaar om te corrigeren.
 - Cmd/Ctrl+Z maakt scorebewerkingen ongedaan; Shift erbij herhaalt ze. Tijdens typen blijft normale tekst-undo werken.
 - Een nieuwe take krijgt een lege eigen laag. Vergelijken kopieert geen notes of selecties.
-- Score-notes staan in een compacte lijst met kolommen Bar, Note en Time, plus edit/delete-iconen met hover- en toetsenbordhighlight. De gekozen take staat boven de lijst; geen dubbele notes-kop, Go to bar of Score source in deze view. Book p. staat onder het aanklikbare maatnummer.
+- Score-notes staan in een compacte lijst met kolommen Bar, Note en Time, plus edit/delete-iconen met hover- en toetsenbordhighlight. De gekozen take staat boven de lijst; geen dubbele notes-kop, Go to bar of Score source in deze view. Alleen het aanklikbare maatnummer wordt getoond; geen boekpagina eronder.
 
 ## Wat echt is, wat voorbeeld is
 
