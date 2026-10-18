@@ -173,3 +173,6 @@
 .demo .score-settings button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:8px;border-radius:6px;color:#aaa0b6}
 .demo .score-settings button[aria-pressed=true]{color:#d5c4ee;background:#3a2e48;border-color:#8e73aa}
 .score-settings svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* Read the PDF independently while takes and notes stay alongside it. */
+.cutlist-viewer .score-canvas{max-height:65vh!important;overflow:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable}

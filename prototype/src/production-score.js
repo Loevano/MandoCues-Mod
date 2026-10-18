@@ -35,7 +35,8 @@ function switchScoreDocument(s,doc,redraw=true){
 }
 function revealScoreMeasure(){
  const s=state(),paper=document.querySelector(`.score-paper[data-score-page="${s.page}"]`),chosen=paper?.querySelector('.score-measure.chosen');
- (chosen||paper)?.scrollIntoView({block:'center',inline:'nearest',behavior:'auto'});
+ const target=chosen||paper,canvas=paper?.closest('.score-canvas');
+ if(target&&canvas)canvas.scrollTo({top:canvas.scrollTop+target.getBoundingClientRect().top-canvas.getBoundingClientRect().top-(canvas.clientHeight-target.getBoundingClientRect().height)/2,behavior:'auto'});
 }
 function scoreRegions(s,page=s.page){const a=scoreAsset(s.doc.id);return a?a.regions.filter(r=>r.page===page):s.doc.id==='example-v1'?Array.from({length:8},(_,n)=>({measure:17+(page-1)*8+n,page,x:(110+(n%4)*185)/900,y:(70+Math.floor(n/4)*225)/560,width:185/900,height:180/560})):[];}
 function scoreNoteAnchor(s,n){

@@ -175,6 +175,9 @@
 .demo .score-settings button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:8px;border-radius:6px;color:#aaa0b6}
 .demo .score-settings button[aria-pressed=true]{color:#d5c4ee;background:#3a2e48;border-color:#8e73aa}
 .score-settings svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* Read the PDF independently while takes and notes stay alongside it. */
+.cutlist-viewer .score-canvas{max-height:65vh!important;overflow:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable}
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -354,7 +357,8 @@ function switchScoreDocument(s,doc,redraw=true){
 }
 function revealScoreMeasure(){
  const s=state(),paper=document.querySelector(`.score-paper[data-score-page="${s.page}"]`),chosen=paper?.querySelector('.score-measure.chosen');
- (chosen||paper)?.scrollIntoView({block:'center',inline:'nearest',behavior:'auto'});
+ const target=chosen||paper,canvas=paper?.closest('.score-canvas');
+ if(target&&canvas)canvas.scrollTo({top:canvas.scrollTop+target.getBoundingClientRect().top-canvas.getBoundingClientRect().top-(canvas.clientHeight-target.getBoundingClientRect().height)/2,behavior:'auto'});
 }
 function scoreRegions(s,page=s.page){const a=scoreAsset(s.doc.id);return a?a.regions.filter(r=>r.page===page):s.doc.id==='example-v1'?Array.from({length:8},(_,n)=>({measure:17+(page-1)*8+n,page,x:(110+(n%4)*185)/900,y:(70+Math.floor(n/4)*225)/560,width:185/900,height:180/560})):[];}
 function scoreNoteAnchor(s,n){
@@ -434,9 +438,9 @@ function rememberScoreView(s){
  const paper=document.querySelector('.score-paper'),canvas=document.querySelector('.score-canvas');
  if(paper&&(paper.dataset.scoreTake!==t.id||paper.dataset.scoreSource!==s.doc.id))return;
  t.scoreCommentDrafts??={};if(s.scoreComment?.take===t.id&&s.scoreComment.source===s.doc.id)t.scoreCommentDrafts[s.doc.id]=structuredClone(s.scoreComment);
- t.scoreViews??={};t.scoreViews[s.doc.id]={page:s.page,measure:s.measure,zoom:1,top:canvas?Math.max(0,-canvas.getBoundingClientRect().top):0,left:0};
+ t.scoreViews??={};t.scoreViews[s.doc.id]={page:s.page,measure:s.measure,zoom:1,top:canvas?.scrollTop||0,left:0};
 }
-function restoreScoreView(s){const v=takeById(s,s.selected)?.scoreViews?.[s.doc.id];s.page=v?.page||1;s.measure=v?.measure??null;s.zoom=1;s.scoreFocus=null;s.focusedScoreNote=null;s.scoreComment=structuredClone(takeById(s,s.selected)?.scoreCommentDrafts?.[s.doc.id]||null);s.pendingScoreScroll={top:v?.top||0,left:0,document:true};}
+function restoreScoreView(s){const v=takeById(s,s.selected)?.scoreViews?.[s.doc.id];s.page=v?.page||1;s.measure=v?.measure??null;s.zoom=1;s.scoreFocus=null;s.focusedScoreNote=null;s.scoreComment=structuredClone(takeById(s,s.selected)?.scoreCommentDrafts?.[s.doc.id]||null);s.pendingScoreScroll={top:v?.top||0,left:0};}
 function selectScoreTake(s,id,keepComparison=false,keepPosition=true){const scrollY=window.scrollY,page=s.page;const t=takeById(s,id);if(!t)return;if(!keepComparison){s.scoreCompared??={};s.scoreCompared[s.cue]=[id];}if(s.selected!==id){rememberScoreView(s);s.selected=id;t.collapsed=false;s.scoreComment=null;restoreScoreView(s);if(keepPosition){delete s.pendingScoreScroll;s.page=page;}}renderDemo();if(keepPosition)window.scrollTo({top:scrollY,behavior:'instant'});}
 function selectScoreCue(s,index){if(index===s.cue)return;if(running(s)){renderDemo();toast('Stop the active take before switching cues.');return;}rememberScoreView(s);s.scoreSelectedTakes??={};s.scoreSelectedTakes[s.cue]=s.selected;scoreWorkflowSwitchCue(s,index);s.cue=index;s.open.add(index);const previous=s.scoreSelectedTakes[index];s.selected=s.takes[index].some(t=>t.id===previous)?previous:s.takes[index].at(-1)?.id||null;switchScoreDocument(s,productionScoreDoc(cues[index][0]),false);renderDemo();}
 function newEmptyScoreTake(s){if(running(s)){toast('Stop the active take first.');return;}rememberScoreView(s);const t=newTake(s.cue,nextEntryNumber(s,s.cue));Object.assign(t,{duration:0,cursor:0,base:0,rating:0,best:false,followMeasure:false});s.takes[s.cue].push(t);s.selected=t.id;s.scoreCompared??={};s.scoreCompared[s.cue]=[t.id];restoreScoreView(s);renderDemo();}
@@ -858,7 +862,7 @@ function renderDemo(){if(!active)return;const previousScore=$('.main-score-pages
  $('#demo').innerHTML=({'cue-take':hierarchy,bediening:controls,notities:notes,partituur:score,planning:planningDemo}[active.id])();
  mountMainScore(s);syncFullscreenButtons();
  if($('#cue-scroll')){$('#cue-scroll').scrollTop=scroll;}
- if(scorePosition&&scorePosition.source===s.doc?.id&&+scorePosition.page===s.page&&scorePosition.take===s.selected){const canvas=$('.score-canvas');if(canvas){canvas.scrollTop=scorePosition.top;canvas.scrollLeft=scorePosition.left;}}if(s.pendingScoreScroll){const canvas=$('.score-canvas');if(canvas){if(s.pendingScoreScroll.document)window.scrollTo({top:window.scrollY+canvas.getBoundingClientRect().top+s.pendingScoreScroll.top,behavior:'auto'});else{canvas.scrollTop=s.pendingScoreScroll.top;canvas.scrollLeft=s.pendingScoreScroll.left;}}delete s.pendingScoreScroll;}syncSticky();syncRecordingDock();if(focusKey){const attr='data-'+focusKey[0].replace(/[A-Z]/g,c=>'-'+c.toLowerCase());const place=focused.dataset.editorPlace;const target=document.querySelector(`[${attr}="${focusKey[1]}"]${place?`[data-editor-place="${place}"]`:""}`);if(target){target.focus({preventScroll:true});if(selection&&selection[0]!==null&&target.setSelectionRange)target.setSelectionRange(...selection);}}
+ if(scorePosition&&scorePosition.source===s.doc?.id){const canvas=$('.score-canvas');if(canvas){canvas.scrollTop=scorePosition.top;canvas.scrollLeft=scorePosition.left;}}if(s.pendingScoreScroll){const canvas=$('.score-canvas');if(canvas){if(s.pendingScoreScroll.document)window.scrollTo({top:window.scrollY+canvas.getBoundingClientRect().top+s.pendingScoreScroll.top,behavior:'auto'});else{canvas.scrollTop=s.pendingScoreScroll.top;canvas.scrollLeft=s.pendingScoreScroll.left;}}delete s.pendingScoreScroll;}syncSticky();syncRecordingDock();if(focusKey){const attr='data-'+focusKey[0].replace(/[A-Z]/g,c=>'-'+c.toLowerCase());const place=focused.dataset.editorPlace;const target=document.querySelector(`[${attr}="${focusKey[1]}"]${place?`[data-editor-place="${place}"]`:""}`);if(target){target.focus({preventScroll:true});if(selection&&selection[0]!==null&&target.setSelectionRange)target.setSelectionRange(...selection);}}
  if(active.id==='partituur'){syncScoreCommentDialog();refreshScoreTextPositions();}
 }
 function selectCue(s,j){if(active.id==='partituur'){selectScoreCue(s,j);return;}if(s.takes&&running(s)&&j!==s.cue){toast('Stop the active take before switching cues.');return;}s.cue=j;s.open.add(j);if(s.takes){const t=s.takes[j].at(-1);s.selected=t?.id||null;if(t)t.collapsed=false;}renderDemo();}
