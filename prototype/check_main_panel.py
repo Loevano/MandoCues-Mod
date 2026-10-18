@@ -13,10 +13,27 @@ with sync_playwright() as p:
     page.clock.install(time=datetime(2026,10,18,10,0,tzinfo=timezone.utc))
     page.goto((ROOT/'dist/index.html').as_uri())
     page.locator('[data-tour-action="welcome-skip"]').click()
-    for selector in ['[data-action="prev-cue"]','[data-action="next-cue"]','[data-action="record-overdub"]','[data-session-action="break"]','[data-session-action="end"]','[data-wall-clock]','[data-proposal-expected-end]','[data-proposal-cue-clock]']:
+    for selector in ['[data-action="prev-cue"]','[data-action="next-cue"]','[data-action="record-overdub"]','[data-session-action="break"]','[data-session-action="end"]','[data-wall-clock]','[data-proposal-plan]','[data-proposal-cue-clock]']:
         el=page.locator('#main-panel '+selector)
         expect(el).to_be_visible()
         assert not el.evaluate('(el)=>!!el.closest("details")'),selector
+    expect(page.locator('[data-proposal-expected-end]')).to_have_count(0)
+    assert page.locator('#main-panel [data-wall-clock]').evaluate('(el)=>parseFloat(getComputedStyle(el).fontSize)')>=40
+    plan=page.locator('#main-panel [data-proposal-plan]')
+    clock=page.locator('#main-panel [data-wall-clock]').bounding_box()
+    assert plan.bounding_box()['y']>=clock['y']+clock['height']
+    # Existing math remains positive for delay; only the presentation reverses its sign.
+    base=page.evaluate('state().scoreWorkflowClock.sessionBase')
+    for delta,text,css,color in [(0,'00:00','is-on-time','rgb(187, 177, 198)'),(1,'−00:01','is-behind','rgb(237, 172, 84)'),(299,'−04:59','is-behind','rgb(237, 172, 84)'),(300,'−05:00','is-late','rgb(255, 106, 127)'),(-120,'+02:00','is-ahead','rgb(115, 199, 163)')]:
+        page.evaluate('(delta)=>{const c=state().scoreWorkflowClock;c.sessionBase=c.booked-c.remaining+delta;renderDemo()}',delta)
+        expect(plan).to_have_text(text)
+        expect(plan).to_have_class('proposal-schedule '+css)
+        assert plan.evaluate('(el)=>getComputedStyle(el).color')==color
+        page.evaluate("showProposalView('cutlist')")
+        expect(page.locator('.proposal-live-bar [data-proposal-plan]')).to_have_text(text)
+        expect(page.locator('[data-proposal-expected-end]')).to_have_count(0)
+        page.evaluate("showProposalView('recording')")
+    page.evaluate('(base)=>{state().scoreWorkflowClock.sessionBase=base;renderDemo()}',base)
     # Cue names must not move the navigation buttons horizontally or vertically.
     for width in [1512,390]:
         page.set_viewport_size({'width':width,'height':1100})

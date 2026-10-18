@@ -12,9 +12,12 @@ function initializeProposalTiming(s){
  if(s.unified&&!s.unifiedTiming){Object.assign(timing.clock,{booked:s.booked*60,remaining:s.remaining*60,plannedEndAt:Date.now()+(s.booked*60-timing.elapsed)*1000});s.unifiedTiming=true;}
  return scoreWorkflowTiming(s);
 }
+const PROPOSAL_DELAY_RED_AFTER=5*60;
+function proposalPlanClass(delta){return delta>0?(delta>=PROPOSAL_DELAY_RED_AFTER?'is-late':'is-behind'):delta<0?'is-ahead':'is-on-time';}
+function proposalPlanLabel(delta){return delta===0?'On schedule':time(Math.abs(delta))+(delta>0?' behind schedule':' ahead of schedule');}
 function proposalSchedule(){
  const timing=initializeProposalTiming(unifiedState);
- return `<span class="proposal-schedule ${timing.delta>0?'is-behind':'is-ahead'}" data-proposal-plan>${scoreWorkflowPlanText(timing.delta)}</span>`;
+ return `<span class="proposal-schedule ${proposalPlanClass(timing.delta)}" data-proposal-plan aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span>`;
 }
 function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
 function proposalClockTime(ms){return new Date(ms).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
@@ -39,17 +42,17 @@ function proposalEndSession(s){
  s.sessionStarted=false;s.sessionEnded=true;renderDemo();
 }
 calmPanel=function(s){
- const status=proposalSchedule(),timing=scoreWorkflowTiming(s),t=running(s),c=cues[s.cue];
+ const timing=scoreWorkflowTiming(s),t=running(s),c=cues[s.cue];
  const ready=!s.sessionStarted,paused=!!s.sessionPausedAt;
  const stateLabel=t?'● Recording · '+entryLabel(t):paused?'On break · Not recording':s.sessionEnded?'Session ended · Not recording':ready?'Ready to start · Not recording':'Standby · Not recording';
  return `<section id="main-panel" class="calm-main-panel proposal-main-panel ${t?'is-recording':'is-idle'}" aria-label="Recording controls">
  <div class="proposal-main-top"><div class="calm-cue"><span class="rec-status ${t?'rolling':'standby'}">${stateLabel}</span><div class="main-cue"><b>${c[0]}</b><strong title="${esc(c[1])}">${esc(c[1])}</strong></div><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t||s.cue===0?'disabled':''} title="Previous cue · ["><span>←</span> Previous cue <kbd>[</kbd></button><button data-action="next-cue" ${t||s.cue===cues.length-1?'disabled':''} title="Next cue · ]">Next cue <span>→</span><kbd>]</kbd></button></div><small><span title="Duration of the music in minutes and seconds">Music length ${c[2]}</span> · Planned work ${cuePlannedMinutes(s.cue)} min</small></div>
- <div class="proposal-session-clocks"><label>Time<b data-wall-clock>${new Date().toLocaleTimeString('en-GB')}</b></label><label>Expected end<b data-proposal-expected-end>${proposalEndTime(timing)}</b></label></div></div>
+ <div class="proposal-session-clocks"><label>Time<b data-wall-clock>${new Date().toLocaleTimeString('en-GB')}</b></label><div class="proposal-clock-plan">${proposalSchedule()}</div></div></div>
  <div class="proposal-main-actions">
  <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls"><small>Take</small><div>${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button><label class="proposal-take-clock">Take time<b ${t?`data-live="${t.id}"`:''}>${time(t?position(t):0)}</b></label></div></div>
  <div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><small>Session</small><div><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button></div></div>
  </div>
- <div class="proposal-main-planning"><div class="calm-schedule">${status}</div><label>Cue time <b data-proposal-cue-clock>${time(timing.cueElapsed)}</b><span> / <b>${cuePlannedMinutes(s.cue)} min</b> planned</span></label></div>
+ <div class="proposal-main-planning"><label>Cue time <b data-proposal-cue-clock>${time(timing.cueElapsed)}</b><span> / <b>${cuePlannedMinutes(s.cue)} min</b> planned</span></label></div>
  <details class="calm-session" data-calm-session ${s.calmSessionOpen?'open':''}><summary>Session details</summary>${sourceSessionSummary(s)}<div class="calm-extra-times"><span>Session elapsed <b data-proposal-elapsed>${proposalDuration(timing.elapsed)}</b></span><span>Remaining work <b>${proposalDuration(timing.clock.remaining)}</b></span><span>Planned end <b data-proposal-planned-end>${proposalEndTime(timing,false)}</b></span></div></details>
  </section>`;
 };
@@ -130,10 +133,9 @@ document.addEventListener('click',event=>{
 setInterval(()=>{
  if(!document.body.classList.contains('unified-proposal'))return;
  const timing=scoreWorkflowTiming(unifiedState);
- document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.classList.toggle('is-behind',timing.delta>0);el.classList.toggle('is-ahead',timing.delta<=0);});
+ document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.className='proposal-schedule '+proposalPlanClass(timing.delta);el.setAttribute('aria-label',proposalPlanLabel(timing.delta));el.title=proposalPlanLabel(timing.delta);});
  document.querySelectorAll('[data-proposal-elapsed]').forEach(el=>el.textContent=proposalDuration(timing.elapsed));
  document.querySelectorAll('[data-proposal-cue-clock]').forEach(el=>el.textContent=time(timing.cueElapsed));
- document.querySelectorAll('[data-proposal-expected-end]').forEach(el=>el.textContent=proposalEndTime(timing));
  document.querySelectorAll('[data-proposal-planned-end]').forEach(el=>el.textContent=proposalEndTime(timing,false));
 },200);
 route();

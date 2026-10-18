@@ -14,7 +14,7 @@ function scoreWorkflowSwitchCue(s,index){
  clock.cueSpent[s.cue]=cueElapsed;clock.cueBase=clock.cueSpent[index]||0;
  clock.cueStarted=s.sessionPausedAt??Date.now();clock.cueIndex=index;clock.cueOffset=clock.offset;
 }
-function scoreWorkflowPlanText(delta){return (delta>0?'+':delta<0?'−':'')+time(Math.abs(delta))+' '+(delta>0?'behind':delta<0?'ahead':'on schedule');}
+function scoreWorkflowPlanText(delta){return (delta>0?'−':delta<0?'+':'')+time(Math.abs(delta));}
 function scoreWorkflowReminder(timing){return timing.cueElapsed>timing.budget?'Cue '+time(timing.cueElapsed-timing.budget)+' over budget':'';}
 function scoreWorkflowDock(s){
  const timing=scoreWorkflowTiming(s),t=running(s),selected=takeById(s,s.selected);

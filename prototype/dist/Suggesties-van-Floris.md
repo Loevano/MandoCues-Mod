@@ -10,7 +10,7 @@ Alle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. He
 - Zou ‘New take’ maken en selecteren ook werken, zonder start/stop?
 - Wat gebeurt er met de sessietimers als je vergeet een take te starten?
 - Waarvoor gebruiken jullie de verschillende klokken tijdens een sessie?
-- Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
+- Zou een klok met de voor-/achterstand genoeg overzicht geven tijdens de sessie?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?
 
 ## De rondleiding
@@ -23,7 +23,7 @@ Cuekeuze bij de cuenaam, takebediening bij elkaar. Zou deze indeling passen bij 
 
 **Promptonderdeel:**
 
-Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik Engelse labels met eenheid: Session length (min), Prep per cue (min), Max music (min), Music length (minutes:seconds) en Planned work (min). Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie. Houd de bestaande zijbalk, sessiekeuze, Add cues, inklapbare Chat en PDF-acties herkenbaar aanwezig. Plaats Previous cue en Next cue samen op een vaste rij onder de cuenaam, Overdub bij de takeknop en een koffie-icoon bij Break; toon subtiele bracket-hints. Maak Not recording en Recording duidelijk verschillend; alleen een lopende take krijgt de rode status. Gebruik een goed leesbare rode Recording-badge in de grote en compacte bediening en een duidelijke status bij de lopende take. Houd lopende en geselecteerde take gescheiden, ook bij scrollen en wisselen van weergave. Geen rood schermkader. Neem ook in de kniplijst take-tijd, kloktijd en Expected end mee. De lokale planner is voorbeelddata; behoud de echte bestaande berekeningen.
+Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik Engelse labels met eenheid: Session length (min), Prep per cue (min), Max music (min), Music length (minutes:seconds) en Planned work (min). Toon − voor achterstand en + voor voorsprong, zonder zichtbare ahead/behind-tekst. Gebruik oranje onder vijf minuten achterstand en rood vanaf vijf minuten; voorsprong groen en nul neutraal. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie. Houd de bestaande zijbalk, sessiekeuze, Add cues, inklapbare Chat en PDF-acties herkenbaar aanwezig. Plaats Previous cue en Next cue samen op een vaste rij onder de cuenaam, Overdub bij de takeknop en een koffie-icoon bij Break; toon subtiele bracket-hints. Maak Not recording en Recording duidelijk verschillend; alleen een lopende take krijgt de rode status. Gebruik een goed leesbare rode Recording-badge in de grote en compacte bediening en een duidelijke status bij de lopende take. Houd lopende en geselecteerde take gescheiden, ook bij scrollen en wisselen van weergave. Geen rood schermkader. Maak Time groter met de voor-/achterstand eronder. Laat Expected end voorlopig weg uit de hoofd- en compacte bediening, ook in Cut list; behoud take-tijd, kloktijd en planningsafwijking. De lokale planner is voorbeelddata; behoud de echte bestaande berekeningen.
 
 ### 2. ⌘ Enter voor start en stop?
 
@@ -35,11 +35,11 @@ Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat j
 
 ### 3. De planning in één overzicht
 
-Tijd op de cue, voor-/achterstand en verwachte eindtijd bij elkaar, met de overige tijden onder Session details.
+Een grotere klok met de voor-/achterstand eronder. − is achter, + is voor. Zou dit genoeg overzicht geven?
 
 **Promptonderdeel:**
 
-Houd in het hoofdpaneel de cue, muziekduur, geplande cuetijd, take-tijd, cue-tijd tegenover de planning, kloktijd en verwachte eindtijd zichtbaar. Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Overige sessietijden blijven beschikbaar onder Session details. Haal geen bestaande klokken of functies weg; behoud hun bestaande berekening en bron. Het doel van de verschillende klokken blijft een open vraag. De demo is een presentatievoorstel; neem zijn voorbeeldberekening en pauzebeleid niet over als vervanging van bestaande planningslogica.
+Toon de kloktijd groter, met de sessieafwijking eronder; laat Expected end voorlopig uit de hoofd- en compacte bediening. Gebruik − voor achterstand, + voor voorsprong en 00:00 op schema, zonder zichtbare ahead/behind-tekst. Achterstand onder vijf minuten is oranje; vanaf vijf minuten rood. Voorsprong is groen en nul neutraal. Geef dezelfde betekenis in toegankelijke labels en tooltips en gebruik deze presentatie ook in Recording, de compacte scrollbalk en Cut list. Cue-tijd tegenover geplande werktijd en de take-tijd blijven beschikbaar; overige sessietijden blijven onder Session details. Behoud de bestaande planningsberekeningen en bron; de demo bevat voorbeelddata en bewijst geen productiebeleid.
 
 ### 4. Kloktijden in 24-uursnotatie
 

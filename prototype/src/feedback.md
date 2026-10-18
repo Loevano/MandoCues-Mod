@@ -621,3 +621,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Alleen een duidelijkere opnamestatus; geen rood schermkader.
 - Een duidelijk leesbare rode Recording-badge in grote en compacte bediening. Markeer ook de lopende take bij takes/notes.
 - Een andere take selecteren mag de zichtbaarheid van de lopende take niet wegnemen of een gestopte take als lopend tonen.
+
+
+## 71. Klok groter en voor-/achterstand compacter
+
+- Time groter. Expected end voorlopig weg; plaats voor-/achterstand bij of onder de klok.
+- Alleen het teken en de tijd: − voor achterstand, + voor voorsprong; geen zichtbare behind/ahead-tekst.
+- Achterstand onder vijf minuten oranje, vanaf vijf minuten rood (grens bevestigd). Voorsprong groen, nul neutraal.
+- Cue time is de bestede werktijd per cue; de geplande minuten zijn het werkbudget per cue. De demo gebruikt vaste voorbeeldwaarden uit de eerdere weergave; behoud bestaande productieberekeningen.

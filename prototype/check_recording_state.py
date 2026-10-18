@@ -29,7 +29,7 @@ with sync_playwright() as p:
  page.screenshot(path=str(ROOT/'checks/recording-status-scroll.png'))
  page.locator('[data-proposal-view="cutlist"]').click()
  expect(page.locator('.proposal-live-bar [data-wall-clock]')).to_be_visible()
- expect(page.locator('.proposal-live-bar [data-proposal-expected-end]')).to_be_visible()
+ expect(page.locator('.proposal-live-bar [data-proposal-plan]')).to_be_visible()
  expect(page.locator('.proposal-live-bar .rec-status.rolling')).to_be_in_viewport()
  expect(page.locator('.proposal-live-bar .identity')).to_contain_text('Take 3')
  expect(page.locator('.score-take-row.is-recording [data-select-take]')).to_have_attribute('data-select-take',live)
@@ -58,7 +58,7 @@ with sync_playwright() as p:
  assert not errors,errors
  direct=browser.new_page(viewport={'width':1512,'height':1100})
  direct.goto((ROOT/'dist/index.html').as_uri()+'#cutlist');direct.locator('[data-tour-action="welcome-skip"]').click()
- expect(direct.locator('.proposal-live-bar [data-proposal-expected-end]')).not_to_have_text('Invalid Date')
+ expect(direct.locator('.proposal-live-bar [data-proposal-plan]')).not_to_have_text('Invalid Date')
  assert direct.evaluate('scoreWorkflowTiming(state()).clock.booked')==360*60
  browser.close()
-print('PASS: explicit global idle/live styling, live take distinct from editing selection, scrolled recording status, cut-list take clock advances, wall/expected clocks visible and stopped duration retained')
+print('PASS: explicit global idle/live styling, live take distinct from editing selection, scrolled recording status, cut-list take clock advances, wall clock and schedule difference visible and stopped duration retained')

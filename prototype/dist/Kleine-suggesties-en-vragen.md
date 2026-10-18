@@ -19,5 +19,5 @@
 - Zou ‘New take’ maken en selecteren ook werken, zonder start/stop?
 - Wat gebeurt er met de sessietimers als je vergeet een take te starten?
 - Waarvoor gebruiken jullie de verschillende klokken tijdens een sessie?
-- Is alleen de voor-/achterstand genoeg, bijvoorbeeld ‘1:20 behind’ of ‘+01:20’?
+- Zou een klok met de voor-/achterstand genoeg overzicht geven tijdens de sessie?
 - Welke tijd gebruiken we bij notes: film, take, sessie of kloktijd? Zullen we één vaste bron kiezen?

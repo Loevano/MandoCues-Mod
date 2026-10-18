@@ -542,3 +542,19 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
  .recording-workspace .sticky-slot .transport-take-time{flex-direction:row;align-items:center;gap:7px}
  .recording-workspace .sticky-slot .record{font-size:11px;padding:6px 10px;min-height:34px;white-space:nowrap}
 }
+
+/* Wall clock and signed schedule difference share one compact group. */
+.proposal-session-clocks{flex-direction:column;gap:5px;align-items:flex-end}
+.proposal-session-clocks label{align-items:flex-end}
+.proposal-session-clocks [data-wall-clock]{font-size:clamp(32px,3.4vw,48px);line-height:1.15;letter-spacing:-1px;min-width:8ch}
+.proposal-clock-plan{min-height:30px}
+.unified-proposal .proposal-schedule{font:600 22px/1.3 var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.unified-proposal .proposal-schedule.is-behind{color:#edac54}
+.unified-proposal .proposal-schedule.is-late{color:#ff6a7f}
+.unified-proposal .proposal-schedule.is-ahead{color:#73c7a3}
+.unified-proposal .proposal-schedule.is-on-time{color:#bbb1c6}
+.unified-proposal .transport-clocks{align-items:center;gap:14px}
+.unified-proposal .transport-clocks [data-wall-clock]{font-size:20px;line-height:1.2}
+.unified-proposal .transport-clocks .proposal-schedule{font-size:16px}
+@media(max-width:1250px){.proposal-session-clocks{justify-self:start;align-items:flex-start}.proposal-session-clocks label{align-items:flex-start}}
+@media(max-width:759px){.proposal-session-clocks{gap:4px}.proposal-session-clocks [data-wall-clock]{font-size:34px}.unified-proposal .transport-clocks [data-wall-clock]{font-size:17px}.unified-proposal .transport-clocks .proposal-schedule{font-size:14px}}
