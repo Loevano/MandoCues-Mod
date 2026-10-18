@@ -1,6 +1,4 @@
 function scoreAsset(source){return source===assets.production.id?assets.production:assets.production.documents.find(d=>d.id===source);}
-function canFollowMeasure(s,t){return s.doc.id==='example-v1'&&t.cue===0&&t.kind!=='overdub';}
-function measureSourceHint(s,t){if(scoreAsset(s.doc.id))return 'No take timing anchors · choose a bar on the right';return measureSuggestion(s,t,t.draft.at??position(t))?'Demo mapping · bar remains editable':'No bar mapping · enter manually';}
 function productionScoreDoc(cue='1M02'){
  const code=['1M09A','1M09B'].includes(cue)?'1M09AB':cue;
  const a=code==='1M02'?assets.production:assets.production.documents.find(d=>d.cue===code);
@@ -23,12 +21,12 @@ function scoreSourceReference(n){const a=scoreAsset(n.source);return a&&n.page?`
 function switchScoreDocument(s,doc,redraw=true){
  rememberScoreView(s);
  s.scoreDrafts??={};
- s.scoreDrafts[s.doc.id]=Object.fromEntries(allTakes(s).map(t=>[t.id,{draft:{...t.draft},followMeasure:t.followMeasure}]));
+ s.scoreDrafts[s.doc.id]=Object.fromEntries(allTakes(s).map(t=>[t.id,{draft:{...t.draft}}]));
  if(s.doc.url&&s.doc.url!==doc.url)URL.revokeObjectURL(s.doc.url);
  s.doc=doc;s.page=1;s.measure=null;s.zoom=1;s.scoreComment=null;
  for(const t of allTakes(s)){
   const previous=s.scoreDrafts[doc.id]?.[t.id];
-  t.draft=previous?{...previous.draft}:draft();t.followMeasure=previous?.followMeasure??true;
+  t.draft=previous?{...previous.draft}:draft();
  }
  restoreScoreView(s);
  if(redraw)renderDemo();

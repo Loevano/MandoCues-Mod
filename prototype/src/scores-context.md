@@ -18,7 +18,7 @@ De cuekiezer toont de juiste pagina’s en maatnummers. Links wissel je tussen t
 
 Notes bewaren de documentversie en cuegebonden pagina; de weergave toont ook de oorspronkelijke boekpagina. Voor Arrival is fragmentpagina 1–3 gelijk aan boekpagina 7–9.
 
-De echte score heeft geen take-specifieke tijdankers. Maat kiezen en later corrigeren werken; de demo-timer bepaalt niet automatisch welke maat werkelijk gespeeld wordt. Het schematische technische voorbeeld blijft apart te kiezen om vooraf ingestelde tijd/maatankers te demonstreren.
+De echte score heeft geen take-specifieke tijdankers. Maat kiezen en later corrigeren werken; de demo-timer bepaalt niet automatisch welke maat werkelijk gespeeld wordt. Ook het schematische voorbeeld gebruikt handmatig gekozen maatnummers; er is geen gesimuleerd maatvolgen.
 
 ## Cue-index van het volledige boek
 

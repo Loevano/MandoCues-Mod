@@ -51,11 +51,11 @@ Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bi
 
 ### 5. Tijd en maat bij je note
 
-Automatisch een tijdcode en, waar mogelijk, een maatnummer bij je note.
+Een tijdcode bij je note. Het maatnummer vul je zelf in of kies je in de partituur.
 
 **Promptonderdeel:**
 
-Zou het handig zijn om bij het schrijven van een note automatisch de relevante tijdcode en, waar een betrouwbare scorekoppeling bestaat, het maatnummer mee te geven? Bewaar het moment bij beginnen met typen; Enter plaatst de note. Beide waarden blijven daarna aanpasbaar of weg te laten. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Dit is nog een open keuze, geen opdracht om al die bronnen tegelijk te implementeren. Laat een klik op het maatcijfer direct een verticale lijst en een invoerveld openen. Overschrijf handmatige correcties niet automatisch. Zonder betrouwbare koppeling geen verzonnen automatisch maatnummer; een PDF alleen is daarvoor onvoldoende.
+Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Leid geen maat af uit de take-timer en toon geen Follow bar-optie of gesimuleerde maatvoorstellen. Een nieuwe take begint zonder maatnummer. Enter plaatst de note; tijdcode en maat blijven bewerkbaar of weg te laten. Laat een klik op het maatcijfer direct een verticale lijst en een invoerveld openen. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen is pas een latere uitbreiding bij een betrouwbare koppeling met de uitvoering, geen onderdeel van deze suggestie.
 
 ### 6. Notes per take
 

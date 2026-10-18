@@ -9,6 +9,7 @@ De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 - De rondleiding bevat 25 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; bestaande opgeslagen keuzes blijven behouden. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
 - GUI Engels; uitleg en vragen Nederlands. Command+Enter start/stopt, Enter plaatst een note en spatie is tekst.
+- Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
 
 ## Herstelpunt
 

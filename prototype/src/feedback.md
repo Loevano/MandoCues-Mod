@@ -400,3 +400,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - De gekozen cue moet ook in de lijst direct herkenbaar zijn, naast de bestaande markering in het opnamepaneel en de timeline.
 - Geef de volledige cuekop een gekleurde achtergrond en een lichte accentlijn links; laat die meewisselen bij cuekeuze.
 - Behoud het onderscheid tussen de gekozen cue en de geselecteerde take, ook in de rondleiding.
+
+
+## 42. Maatnummers voorlopig handmatig
+
+- Zonder betrouwbare koppeling met de uitvoering geen automatische maatnummers voorstellen.
+- Vul de maat handmatig in of kies hem bewust in de partituur; achteraf blijft het maatcijfer direct aanpasbaar.
+- Follow bar en gesimuleerde maat/tijdvoorstellen uit de actieve demo verwijderen. Een take-timer bepaalt geen gespeelde maat.
+- Tijdcode blijft bij de note; automatisch maatvolgen eventueel later met een betrouwbare bron onderzoeken.

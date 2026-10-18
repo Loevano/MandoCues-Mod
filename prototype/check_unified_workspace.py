@@ -99,6 +99,34 @@ with sync_playwright() as p:
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
         page.locator('[data-proposal-view="cutlist"]').click()
     page.screenshot(path=str(ROOT/'checks/unified-cutlist.png'))
+    # No clock-derived bars, including in the former schematic timing demo.
+    manual=browser.new_page(viewport={'width':1512,'height':1100})
+    manual.on('pageerror',lambda e:errors.append(str(e)))
+    manual.goto((ROOT/'dist/index.html').as_uri())
+    manual.locator('[data-tour-action="welcome-skip"]').click()
+    for source in ['production','example']:
+        manual.evaluate('(source)=>switchScoreDocument(state(),source==="example"?schematicScoreDoc():productionScoreDoc())',source)
+        expect(manual.locator('[data-follow-measure]')).to_have_count(0)
+        bar=manual.locator('[data-measure-input="c0-t2"]')
+        expect(bar).to_have_value('')
+        field=manual.locator('[data-draft="c0-t2"]')
+        field.fill('A note without a bar')
+        manual.wait_for_timeout(250)
+        expect(bar).to_have_value('')
+        field.press('Enter')
+        assert manual.evaluate('takeById(state(),"c0-t2").notes.at(-1).measure') is None
+        bar.fill('18');field.fill('A manually located note');field.press('Enter')
+        note_id=manual.evaluate('takeById(state(),"c0-t2").notes.at(-1).id')
+        manual.locator(f'[data-measure-menu="{note_id}"] > summary').click()
+        manual.locator(f'[data-note-id="{note_id}"][data-pick-measure="19"]').click()
+        assert manual.evaluate('takeById(state(),"c0-t2").notes.at(-1).measure')==19
+        manual.keyboard.press('Meta+Enter')
+        expect(manual.locator('[data-draft="c0-t3"]')).to_have_value('')
+        expect(manual.locator('[data-measure-input="c0-t3"]')).to_have_value('')
+        manual.keyboard.press('Meta+Enter')
+        manual.locator('[data-select-take="c0-t2"]').click()
+        manual.evaluate('state().takes[0]=state().takes[0].filter(t=>t.id!=="c0-t3")')
+    manual.close()
     assert not errors,errors
     browser.close()
 print('PASS: one workspace, shared notes/ratings/cues, live take isolation, clean score layers, drafts and mobile width')

@@ -38,7 +38,7 @@
     {
       "id": "maat-aanpassen",
       "title": "Tijd en maat bij je note",
-      "text": "Automatisch een tijdcode en, waar mogelijk, een maatnummer bij je note.",
+      "text": "Een tijdcode bij je note. Het maatnummer vul je zelf in of kies je in de partituur.",
       "target": ".calm-notes .composer-footer",
       "view": "recording",
       "discussion": "maat-aanpassen"
