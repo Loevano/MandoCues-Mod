@@ -13,6 +13,11 @@ with sync_playwright() as p:
     expect(page.locator('.proposal-shell')).to_have_count(1)
     expect(page.locator('[data-variant],.suggestion-card,.side-nav')).to_have_count(0)
     assert page.evaluate('active.id')=='bediening'
+    expect(page.locator('[data-proposal-plan]')).to_have_class('proposal-schedule is-behind')
+    page.locator('[data-calm-session] > summary').click()
+    expect(page.locator('[data-proposal-elapsed]')).to_contain_text('42:')
+    expect(page.locator('.calm-extra-times')).to_contain_text('5:20:00')
+    page.locator('[data-calm-session] > summary').click()
     page.locator('[data-take-best="c0-t2"]').click()
     page.locator('[data-rating-key="c0-t2"][data-stars="5"]').click()
     field=page.locator('[data-draft="c0-t2"]')

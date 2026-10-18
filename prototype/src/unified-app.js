@@ -11,9 +11,13 @@ function proposalSchedule(){
  const timing=scoreWorkflowTiming(unifiedState);
  // Shared example schedule; never claimed to be DAW timing.
  if(!unifiedState.unifiedTiming){Object.assign(timing.clock,{booked:360*60,remaining:320*60});unifiedState.unifiedTiming=true;}
- return `<span class="proposal-schedule" data-proposal-plan>${scoreWorkflowPlanText(scoreWorkflowTiming(unifiedState).delta)}</span>`;
+ return `<span class="proposal-schedule ${scoreWorkflowTiming(unifiedState).delta>0?'is-behind':'is-ahead'}" data-proposal-plan>${scoreWorkflowPlanText(scoreWorkflowTiming(unifiedState).delta)}</span>`;
 }
-calmPanel=function(s){return previousCalmPanel(s).replace('<div class="calm-schedule">On schedule</div>',`<div class="calm-schedule">${proposalSchedule()}</div>`);};
+function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
+calmPanel=function(s){
+ const status=proposalSchedule(),timing=scoreWorkflowTiming(s);
+ return previousCalmPanel(s).replace('<div class="calm-schedule">On schedule</div>',`<div class="calm-schedule">${status}</div>`).replace('<b>14:42</b>',`<b data-proposal-elapsed>${proposalDuration(timing.elapsed)}</b>`).replace('<b>5:45:18</b>',`<b>${proposalDuration(timing.clock.remaining)}</b>`);
+};
 composer=function(s,t,score=false,place='list'){
  const output=previousComposer(s,t,score,place);
  return s.unified&&active.id!=='notities'?output.replace('<div class="composer-footer">',quickNoteSuggestions(t,place)+'<div class="composer-footer">'):output;
@@ -74,6 +78,7 @@ document.addEventListener('click',event=>{
 setInterval(()=>{
  if(!document.body.classList.contains('unified-proposal'))return;
  const timing=scoreWorkflowTiming(unifiedState);
- document.querySelectorAll('[data-proposal-plan]').forEach(el=>el.textContent=scoreWorkflowPlanText(timing.delta));
+ document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.classList.toggle('is-behind',timing.delta>0);el.classList.toggle('is-ahead',timing.delta<=0);});
+ document.querySelectorAll('[data-proposal-elapsed]').forEach(el=>el.textContent=proposalDuration(timing.elapsed));
 },200);
 route();

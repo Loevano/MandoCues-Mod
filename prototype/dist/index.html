@@ -234,6 +234,8 @@
 .proposal-live-bar button.record{background:#d83c4e;border-color:#e75c6b;color:#fff}.proposal-live-bar button.record.stop{background:#f1f1f4;border-color:#fff;color:#17171c}
 @media(prefers-reduced-motion:reduce){.proposal-tour-highlight{transition:none}}
 @media(max-width:700px){.proposal-review-dialog{padding:20px}.proposal-review-dialog h2{font-size:22px}.proposal-tour-card{padding:16px}.proposal-tour-card h2{font-size:17px}.proposal-tour-card p{font-size:11px}.proposal-review-dialog footer{flex-wrap:wrap}}
+
+.proposal-schedule.is-behind{color:#e8b76c}.proposal-schedule.is-ahead{color:#74c4a2}
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -1048,9 +1050,13 @@ function proposalSchedule(){
  const timing=scoreWorkflowTiming(unifiedState);
  // Shared example schedule; never claimed to be DAW timing.
  if(!unifiedState.unifiedTiming){Object.assign(timing.clock,{booked:360*60,remaining:320*60});unifiedState.unifiedTiming=true;}
- return `<span class="proposal-schedule" data-proposal-plan>${scoreWorkflowPlanText(scoreWorkflowTiming(unifiedState).delta)}</span>`;
+ return `<span class="proposal-schedule ${scoreWorkflowTiming(unifiedState).delta>0?'is-behind':'is-ahead'}" data-proposal-plan>${scoreWorkflowPlanText(scoreWorkflowTiming(unifiedState).delta)}</span>`;
 }
-calmPanel=function(s){return previousCalmPanel(s).replace('<div class="calm-schedule">On schedule</div>',`<div class="calm-schedule">${proposalSchedule()}</div>`);};
+function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
+calmPanel=function(s){
+ const status=proposalSchedule(),timing=scoreWorkflowTiming(s);
+ return previousCalmPanel(s).replace('<div class="calm-schedule">On schedule</div>',`<div class="calm-schedule">${status}</div>`).replace('<b>14:42</b>',`<b data-proposal-elapsed>${proposalDuration(timing.elapsed)}</b>`).replace('<b>5:45:18</b>',`<b>${proposalDuration(timing.clock.remaining)}</b>`);
+};
 composer=function(s,t,score=false,place='list'){
  const output=previousComposer(s,t,score,place);
  return s.unified&&active.id!=='notities'?output.replace('<div class="composer-footer">',quickNoteSuggestions(t,place)+'<div class="composer-footer">'):output;
@@ -1111,7 +1117,8 @@ document.addEventListener('click',event=>{
 setInterval(()=>{
  if(!document.body.classList.contains('unified-proposal'))return;
  const timing=scoreWorkflowTiming(unifiedState);
- document.querySelectorAll('[data-proposal-plan]').forEach(el=>el.textContent=scoreWorkflowPlanText(timing.delta));
+ document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.classList.toggle('is-behind',timing.delta>0);el.classList.toggle('is-ahead',timing.delta<=0);});
+ document.querySelectorAll('[data-proposal-elapsed]').forEach(el=>el.textContent=proposalDuration(timing.elapsed));
 },200);
 route();
 </script><script>// The tour only selects existing, static prompt sections; it never generates text.
