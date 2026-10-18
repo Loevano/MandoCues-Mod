@@ -489,3 +489,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - In- en uitzoomen door te knijpen op het trackpad boven de partituur.
 - De plek onder de vingers blijft het anker; normaal scrollen blijft onafhankelijk werken.
+
+
+## 54. Kniplijst permanent groot, één bovenbalk
+
+- Recording/Cut list, cue/take en opnamebediening staan samen in één compacte balk boven de kniplijst.
+- Geen aparte titel-/projectrij en geen Expand/Restore-stap meer; de score vult meteen de beschikbare werkruimte.
+- Rondleiding, Vragen en Claude-prompt blijven bereikbaar. Op smalle schermen mag de compacte balk over twee regels lopen.

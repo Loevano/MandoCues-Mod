@@ -73,33 +73,42 @@ with sync_playwright() as p:
     moved=note.bounding_box();assert abs(moved['x']-box['x']-40)<3 and abs(moved['y']-box['y']-20)<3
     page.locator('[data-score-undo]').click()
     assert layers()==saved
-    before=canvas.bounding_box()['height']
-    page.locator('[data-score-expand]').click()
+    # The cut list is always expanded; navigation and transport share one row.
     expect(page.locator('.site-header')).to_be_hidden()
+    expect(page.locator('[data-score-expand]')).to_have_count(0)
     expect(page.locator('.cutlist-sidebar')).to_be_visible()
-    assert canvas.bounding_box()['height']>before+100
+    expect(page.locator('[data-proposal-action="tour"]')).to_be_visible()
+    expect(page.locator('[data-proposal-action="prompt"]')).to_be_visible()
+    assert canvas.bounding_box()['height']>900
     assert canvas.bounding_box()['y']+canvas.bounding_box()['height']<=1100
+    toggle=page.locator('.proposal-view-toggle').bounding_box()
+    transport=page.locator('.proposal-live-bar').bounding_box()
+    assert abs(toggle['y']+toggle['height']/2-transport['y']-transport['height']/2)<3
     expect(page.locator('[data-score-zoom-value]')).to_have_text('125%')
     canvas.evaluate('(el)=>{el.scrollTop=el.scrollHeight}')
     expect(page.locator('.score-paper').last).to_be_in_viewport()
     assert page.locator('.score-take-picker').evaluate('(el)=>el.scrollTop')==0
     page.screenshot(path=str(ROOT/'checks/score-expanded.png'))
     page.keyboard.press('Escape')
-    expect(page.locator('.site-header')).to_be_visible()
-    expect(page.locator('[data-score-expand]')).to_have_attribute('aria-pressed','false')
+    expect(page.locator('.site-header')).to_be_hidden()
     assert layers()==saved
-    for width in [390,1512]:
+    for width in [390,1024,1512]:
         page.set_viewport_size({'width':width,'height':1100})
         page.locator('[data-score-zoom="fit"]').click()
         page.locator('[data-score-zoom="in"]').click()
-        assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
-        page.locator('[data-score-expand]').click()
         assert canvas.bounding_box()['height']>450,width
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
-        page.keyboard.press('Escape')
+        for selector in ['[data-proposal-view="recording"]','[data-proposal-view="cutlist"]','.proposal-live-bar .record','[data-proposal-action="tour"]']:
+            box=page.locator(selector).bounding_box()
+            assert box['x']>=0 and box['x']+box['width']<=width,(width,selector,box)
+    # Switching back restores review actions and the main recording panel.
+    page.locator('[data-proposal-view="recording"]').click()
+    expect(page.locator('.site-header')).to_be_visible()
+    expect(page.locator('.site-header [data-proposal-action="tour"]')).to_be_visible()
+    page.locator('[data-proposal-view="cutlist"]').click()
     page.locator('[data-score-zoom="fit"]').click()
     canvas.evaluate('(el)=>{el.scrollTop=0}')
     page.screenshot(path=str(ROOT/'checks/score-zoom.png'))
     assert not errors,errors
     browser.close()
-print('PASS: continuous pages, viewport space, 50–300% zoom, reading anchor, shared take zoom, scaled selection/note drag, expand/Escape and mobile width')
+print('PASS: continuous pages, viewport space, 50–300% zoom, reading anchor, shared take zoom, scaled selection/note drag, permanently expanded workspace, compact transport and responsive widths')

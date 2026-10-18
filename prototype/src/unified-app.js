@@ -67,7 +67,7 @@ toggleRecord=function(s,kind='take'){
 };
 renderDemo=function(){
  document.body.classList.toggle('score-workspace',proposalView==='cutlist');
- document.body.classList.toggle('score-expanded',proposalView==='cutlist'&&!!unifiedState.scoreExpanded);
+ document.body.classList.toggle('score-expanded',proposalView==='cutlist');
  previousRenderDemo();
  if(proposalView==='recording'){
   for(const row of document.querySelectorAll('[data-calm-take]')){
@@ -79,6 +79,8 @@ renderDemo=function(){
  document.querySelector('.proposal-workspace-title').textContent=proposalView==='recording'?'Recording':'Cut list';
  const bar=document.querySelector('.proposal-live-bar');
  if(bar){bar.hidden=proposalView!=='cutlist';bar.innerHTML=proposalView==='cutlist'?transport(unifiedState):'';}
+ const review=document.querySelector('.proposal-review-actions'),reviewHome=document.querySelector(proposalView==='cutlist'?'.proposal-cutlist-review':'.site-header');
+ if(review&&reviewHome&&review.parentElement!==reviewHome)reviewHome.append(review);
  syncRecordingDock();
  if(typeof scheduleTourPosition==='function')scheduleTourPosition();
 };
@@ -100,11 +102,11 @@ function showProposalView(view,{navigate=true}={}){
 fullscreenPrototype=async function(){
  try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else document.body.classList.toggle('proposal-expanded');}catch{document.body.classList.toggle('proposal-expanded');}
 };
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.body.classList.remove('proposal-expanded');if(unifiedState.scoreExpanded){rememberScoreView(unifiedState);unifiedState.scoreExpanded=false;renderDemo();}}});
+document.addEventListener('keydown',event=>{if(event.key==='Escape')document.body.classList.remove('proposal-expanded');});
 function mountProposal(){
  document.body.classList.add('unified-proposal');document.title='MandoCues · voorstel van Floris';
  document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a><div class="proposal-review-actions"><button type="button" data-proposal-action="fullscreen" aria-label="Schermvullend" title="Schermvullend">⛶</button><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
- document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div><h1 class="proposal-workspace-title">Recording</h1><small>After Party · String quartet · 20 October</small></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Cut list</button></nav><small class="proposal-demo-label">Demo · no audio is recorded</small></header><div class="proposal-live-bar" lang="en" hidden></div><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
+ document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div class="proposal-project-heading"><h1 class="proposal-workspace-title">Recording</h1><small>After Party · String quartet · 20 October</small></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Cut list</button></nav><div class="proposal-live-bar" lang="en" hidden></div><small class="proposal-demo-label">Demo · no audio is recorded</small><div class="proposal-cutlist-review" lang="nl"></div></header><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
 }
 route=function(){
  if(!document.querySelector('.proposal-shell'))mountProposal();

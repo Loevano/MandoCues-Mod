@@ -321,7 +321,7 @@ body.score-workspace{height:100dvh;display:flex;flex-direction:column;overflow:h
 .score-zoom-controls output{font:11px var(--mono);min-width:4ch;text-align:center;color:#d7cde0}
 .demo .score-zoom-controls button{font-size:20px;padding:0}
 .demo .score-zoom-controls .score-fit-width{font:10px var(--sans);width:auto;padding:0 9px;white-space:nowrap}
-.score-workspace.score-expanded>.site-header,.score-expanded .proposal-view-bar{display:none}
+.score-workspace.score-expanded>.site-header{display:none}
 .score-expanded .proposal-shell{padding:6px}
 @media(max-width:759px){
  body.score-workspace:not(.score-expanded){display:block;height:auto;overflow:auto}
@@ -356,3 +356,39 @@ body.score-workspace{height:100dvh;display:flex;flex-direction:column;overflow:h
 .score-note-time{min-width:0}
 
 .tour-note-metadata .proposal-tour-highlight{box-shadow:none}
+
+/* The cut list always fills the workspace beneath one compact transport row. */
+.proposal-cutlist-review{display:none}
+.score-workspace.score-expanded .proposal-view-bar{display:flex;min-height:44px;gap:12px;padding:4px 6px;margin:0 0 6px;border-bottom:1px solid #343039;flex-wrap:nowrap}
+.score-workspace .proposal-project-heading,.score-workspace .proposal-demo-label{display:none}
+.score-workspace .proposal-live-bar{flex:1;min-width:0;margin:0;padding:0;border:0;background:transparent}
+.score-workspace .proposal-live-bar .transport{gap:10px;min-height:38px;flex-wrap:nowrap}
+.score-workspace .proposal-live-bar .identity{min-width:0;gap:8px;flex-wrap:nowrap}
+.score-workspace .proposal-live-bar .identity .cue-id{font:600 13px var(--mono)}
+.score-workspace .proposal-live-bar .identity small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}
+.score-workspace .proposal-live-bar .rec-status{font-size:8px;letter-spacing:.6px;white-space:nowrap}
+.score-workspace .proposal-live-bar .timer{font-size:15px;white-space:nowrap}
+.score-workspace .proposal-live-bar .record{font-size:11px;white-space:nowrap;padding:7px 10px;min-height:34px}
+.score-workspace .proposal-live-bar kbd{font-size:8px}
+.score-workspace .proposal-view-toggle{flex-shrink:0}
+.score-workspace .proposal-view-toggle button{padding:6px 10px;font-size:11px}
+.score-workspace .proposal-cutlist-review{display:block;flex:0 0 auto;margin-left:8px}
+.score-workspace .proposal-review-actions{gap:5px;flex-wrap:nowrap}
+.score-workspace .proposal-review-actions button{font-size:10px;padding:5px 7px;white-space:nowrap}
+@media(max-width:1150px){
+ .score-workspace .proposal-live-bar .identity small{max-width:110px}
+ .score-workspace .proposal-live-bar .rec-status{display:none}
+ .score-workspace .proposal-live-bar kbd{display:none}
+ .score-workspace .proposal-view-bar{gap:8px}
+ .score-workspace .proposal-review-actions [data-proposal-selection-count]{display:none}
+}
+@media(max-width:759px){
+ .score-workspace.score-expanded .proposal-view-bar{flex-wrap:wrap;gap:5px 8px}
+ .score-workspace .proposal-view-toggle{order:0}
+ .score-workspace .proposal-cutlist-review{order:1;margin-left:auto}
+ .score-workspace .proposal-live-bar{order:2;flex-basis:100%}
+ .score-workspace .proposal-live-bar .identity small{max-width:140px}
+ .score-workspace .proposal-review-actions{gap:3px}
+ .score-workspace .proposal-review-actions button{padding:5px;font-size:9px}
+ .score-workspace .proposal-live-bar .transport{min-height:34px}
+}

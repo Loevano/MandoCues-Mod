@@ -24,7 +24,7 @@ with sync_playwright() as p:
         expect(toggle).to_have_count(1)
         def check_toolbar():
             icons=page.locator('[data-score-toggle],[data-score-setting],[data-score-expand]')
-            expect(icons).to_have_count(4)
+            expect(icons).to_have_count(3)
             size=32 if page.viewport_size['width']<760 else 36
             boxes=[button.bounding_box() for button in icons.all()]
             assert all(box and box['width']==size and box['height']==size for box in boxes)
@@ -69,11 +69,9 @@ with sync_playwright() as p:
         assert page.evaluate('state().page') == 3
         expect(page.locator('.score-paper[data-score-page="3"] .chosen')).to_have_count(4)
         expect(page.locator('.score-paper[data-score-page="3"] .chosen').first).to_be_in_viewport()
-        # Sidebar note editing must reveal the score rather than an invisible editor.
-        page.locator('[data-score-toggle]').click()
-        page.locator('.cutlist-sidebar [data-score-note="overview-test"]').click()
-        expect(page.locator('#score-comment-text')).to_have_value('Watch the entrance')
-        page.locator('[data-score-cancel-comment]').click()
+        # Notes use direct metadata editing and a separate Delete action.
+        expect(page.locator('.cutlist-sidebar [data-score-note="overview-test"]')).to_have_count(0)
+        expect(page.locator('.cutlist-sidebar [data-delete-note="overview-test"]')).to_have_count(1)
         # A normal switch back preserves the score's reading position.
         canvas_top = page.locator('.score-canvas').evaluate('(el)=>el.scrollTop')
         page.locator('[data-score-toggle]').click()

@@ -117,7 +117,6 @@ function saveScoreComment(s){
 function handleScoreClick(b,event){
  if(active?.id!=='partituur')return false;const s=state();
  if(b.dataset.scoreZoom){setScoreZoom(s,b.dataset.scoreZoom);return true;}
- if(b.hasAttribute('data-score-expand')){rememberScoreView(s);s.scoreExpanded=!s.scoreExpanded;renderDemo();document.querySelector('[data-score-expand]')?.focus({preventScroll:true});return true;}
  if(b.hasAttribute('data-score-toggle')){const showScore=s.cutlistView==='all';if(showScore)restoreScoreView(s);else rememberScoreView(s);s.cutlistView=showScore?'score':'all';renderDemo();document.querySelector('[data-score-toggle]')?.focus({preventScroll:true});return true;}
  if(b.dataset.cutlistTake){if(event?.metaKey||event?.ctrlKey)toggleScoreComparison(s,b.dataset.cutlistTake);else selectScoreTake(s,b.dataset.cutlistTake);return true;}
  if(b.dataset.cutlistExpand){s.cutlistExpanded??={};s.cutlistExpanded[b.dataset.cutlistExpand]=!s.cutlistExpanded[b.dataset.cutlistExpand];renderDemo();document.querySelector(`[data-cutlist-expand="${b.dataset.cutlistExpand}"]`)?.focus({preventScroll:true});return true;}
