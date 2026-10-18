@@ -169,6 +169,12 @@
 .demo .score-note-row-actions .note-delete:hover{background:#512c37;color:#ffc3cb;border-color:#80505e}
 .demo .score-note-row-actions .score-note-icon:focus-visible{outline:2px solid #c7a5ee;outline-offset:2px;background:#393040;color:#fff}
 @media(max-width:680px){.score-layout.cutlist-layout{display:block}}
+
+/* Extensible score settings row above the PDF pages. */
+.score-settings{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:9px 0 12px;border-bottom:1px solid #39333f;margin-bottom:12px}
+.demo .score-settings button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:8px;border-radius:6px;color:#aaa0b6}
+.demo .score-settings button[aria-pressed=true]{color:#d5c4ee;background:#3a2e48;border-color:#8e73aa}
+.score-settings svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -356,11 +362,18 @@ function scoreNoteAnchor(s,n){
  const ids=n.instruments||scoreInstrumentIds,cell=scoreCells(s,n.page).find(c=>c.measure===n.measure&&c.instrument===ids[0]);
  return cell?{x:cell.x+.01,y:cell.y+.01}:null;
 }
+function scoreSettings(s){
+ const settings=[
+  {key:'scoreLinkInstruments',label:'Link instruments',hint:'Select bars across all instruments',icon:'<path d="M10 13a5 5 0 0 0 7 .1l3-3a5 5 0 0 0-7-7l-2 2 M14 11a5 5 0 0 0-7-.1l-3 3a5 5 0 0 0 7 7l2-2"/>'},
+  {key:'scoreSeeOtherTakes',label:'See other takes',hint:'Show background selections from other takes',icon:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'}
+ ];
+ return `<div class="score-settings" role="group" aria-label="Score settings">${settings.map(({key,label,hint,icon})=>`<button type="button" data-score-setting="${key}" aria-label="${label}" aria-pressed="${s[key]!==false}" title="${label} · ${hint}"><svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg></button>`).join('')}</div>`;
+}
 function productionScoreView(s){
  const a=scoreAsset(s.doc.id),t=takeById(s,s.selected);
- if(s.doc.url)return `<section class="score-viewer cutlist-viewer"><iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe><p>No bar and staff regions have been mapped for this PDF.</p></section>`;
+ if(s.doc.url)return `<section class="score-viewer cutlist-viewer">${scoreSettings(s)}<iframe class="pdf-native" title="Custom PDF score" src="${esc(s.doc.url)}#view=FitH"></iframe><p>No bar and staff regions have been mapped for this PDF.</p></section>`;
  const selected=scoreSelection(s,t);
- return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}"><div class="score-canvas">${Array.from({length:s.doc.pages},(_,index)=>{
+ return `<section class="score-viewer cutlist-viewer" style="--take-color:${scoreTakeColor(t)}">${scoreSettings(s)}<div class="score-canvas">${Array.from({length:s.doc.pages},(_,index)=>{
   const page=index+1,cells=scoreCells(s,page),src=a===assets.production?assets.production.pageImages[index]:a?assets.production.bookImages[a.bookPages[index]]:null;
   const paper=a?`<img draggable="false" class="production-score-image" src="${src}" width="1200" height="1698" alt="${a.cue}, book page ${a.bookPages[index]}">`:assets.pages[index];
   const notes=t?.notes.filter(n=>n.source===s.doc.id&&n.page===page)||[];
@@ -368,7 +381,7 @@ function productionScoreView(s){
    const chosen=s.measure===c.measure&&(!s.scoreFocus||s.scoreFocus.page===page&&s.scoreFocus.instruments.includes(c.instrument));
    return `<button class="score-measure ${chosen?'chosen':''} ${selected.includes(c.key)?'in-take-selection':''}" style="left:${c.x*100}%;top:${c.y*100}%;width:${c.width*100}%;height:${c.height*100}%" data-score-measure="${c.measure}" data-score-instrument="${c.instrument}" data-score-cell="${c.key}" aria-label="Bar ${c.measure}, ${scoreInstrumentLabel([c.instrument])}" aria-pressed="${selected.includes(c.key)}"></button>`;
   }).join('')}</div><div class="score-drag-rectangle" hidden></div>${scorePageComments(s,t,page)}${scoreCommentDialog(s,page)}</div></div>`;
- }).join('')}</div><div class="cutlist-how"><p><b>Select a take on the left.</b> Each take has its own colour, bars and notes.</p><p><b>Cmd+left-click:</b> add bars. <b>Cmd+right-click:</b> remove bars. Dragging also works. Cut-list selections always cover all instruments.</p><p><b>Double-click:</b> write a note, then press Enter to place the text at that bar. Above the staff, or above the top staff for all instruments. Click a note to edit it. <b>Cmd+Z:</b> undo. Windows: Ctrl.</p></div><small class="cutlist-mapping-hint">${a===assets.production?'Arrival: checked bar regions.':a?'Bar regions are approximate; check the mapping.':'Schematic demo.'} Notes appear as text at their score position.</small></section>`;
+ }).join('')}</div><div class="cutlist-how"><p><b>Select a take on the left.</b> Each take has its own colour, bars and notes.</p><p><b>Cmd+left-click:</b> add bars. <b>Cmd+right-click:</b> remove bars. Dragging also works. ${s.scoreLinkInstruments===false?'Select bars per instrument.':'Linked instruments: selections cover all instruments.'}</p><p><b>Double-click:</b> write a note, then press Enter to place the text at that bar. Above the staff, or above the top staff for all instruments. Click a note to edit it. <b>Cmd+Z:</b> undo. Windows: Ctrl.</p></div><small class="cutlist-mapping-hint">${a===assets.production?'Arrival: checked bar regions.':a?'Bar regions are approximate; check the mapping.':'Schematic demo.'} Notes appear as text at their score position.</small></section>`;
 }
 </script><script>// Independent cut-list layers; original score PDFs are never modified.
 const scoreInstruments=[{id:'vln1',name:'Violin 1',short:'Vln 1'},{id:'vln2',name:'Violin 2',short:'Vln 2'},{id:'vla',name:'Viola',short:'Vla'},{id:'vc',name:'Cello',short:'Vc'}];
@@ -386,9 +399,12 @@ function scoreCellKey(measure,instrument){return measure+':'+instrument;}
 function scoreSelection(s,t){
  if(!t)return [];t.scoreSelections??={};
  const values=t.scoreSelections[s.doc.id]||[];
- // Existing partial selections become whole measures as well.
- const measures=[...new Set(values.map(v=>Number(String(v).split(':')[0])))].filter(n=>Number.isInteger(n)&&n>0).sort((a,b)=>a-b);
- return t.scoreSelections[s.doc.id]=measures.flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)));
+ // Preserve instrument selections; legacy bar-only values cover every staff.
+ return t.scoreSelections[s.doc.id]=[...new Set(values.flatMap(value=>{
+  const [bar,instrument]=String(value).split(':'),measure=Number(bar);
+  if(!Number.isInteger(measure)||measure<1)return [];
+  return instrument?(scoreInstrumentIds.includes(instrument)?[scoreCellKey(measure,instrument)]:[]):scoreInstrumentIds.map(i=>scoreCellKey(measure,i));
+ }))].sort();
 }
 function scoreSelectionMeasures(selection){return [...new Set(selection.map(key=>Number(key.split(':')[0])))].sort((a,b)=>a-b);}
 function formatScoreMeasures(values){const numbers=[...new Set(values)].sort((a,b)=>a-b),ranges=[];for(let i=0;i<numbers.length;i++){let start=numbers[i],end=start;while(numbers[i+1]===end+1)end=numbers[++i];ranges.push(start===end?String(start):start+'–'+end);}return ranges.join(', ');}
@@ -461,6 +477,7 @@ function saveScoreComment(s){
 }
 function handleScoreClick(b,event){
  if(active?.id!=='partituur')return false;const s=state();
+ if(b.dataset.scoreSetting){const key=b.dataset.scoreSetting;if(!['scoreLinkInstruments','scoreSeeOtherTakes'].includes(key))return false;s[key]=s[key]===false;renderDemo();document.querySelector(`[data-score-setting="${key}"]`)?.focus({preventScroll:true});return true;}
  if(b.dataset.selectTake){if(event?.metaKey||event?.ctrlKey)toggleScoreComparison(s,b.dataset.selectTake);else selectScoreTake(s,b.dataset.selectTake);return true;}
  if(b.hasAttribute('data-score-workflow-later')){scoreWorkflowTiming(s).clock.offset+=120;const live=running(s);if(live)live.base+=120;syncScoreWorkflowClocks();return true;}
  if(b.hasAttribute('data-score-new-take')){newEmptyScoreTake(s);return true;}
@@ -476,8 +493,8 @@ function handleScoreClick(b,event){
 }
 function changeScoreSelection(s,keys,mode){
  const t=takeById(s,s.selected);if(!t){toast('Create a take before making a selection.');return;}
- const measures=scoreSelectionMeasures(keys),wholeMeasures=measures.flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)));
- const current=new Set(scoreSelection(s,t));for(const key of wholeMeasures){if(mode==='remove')current.delete(key);else current.add(key);}
+ const measures=scoreSelectionMeasures(keys),selection=s.scoreLinkInstruments===false?keys:measures.flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)));
+ const current=new Set(scoreSelection(s,t));for(const key of selection){if(mode==='remove')current.delete(key);else current.add(key);}
  const next=[...current].sort();if(JSON.stringify([...scoreSelection(s,t)].sort())===JSON.stringify(next))return;
  rememberScoreChange(s,t);t.scoreSelections[s.doc.id]=next;renderDemo();
 }
@@ -486,6 +503,7 @@ let scoreGesture=null,ignoreScoreClickUntil=0;
 function scoreGestureKeys(s,g){
  const left=Math.min(g.start.x,g.end.x),right=Math.max(g.start.x,g.end.x),top=Math.min(g.start.y,g.end.y),bottom=Math.max(g.start.y,g.end.y);
  const cells=scoreCells(s,g.page),hit=cells.filter(r=>right>=r.x&&left<=r.x+r.width&&bottom>=r.y&&top<=r.y+r.height);
+ if(s.scoreLinkInstruments===false)return hit.map(c=>c.key);
  const measures=new Set(hit.map(c=>c.measure));return cells.filter(c=>measures.has(c.measure)).map(c=>c.key);
 }
 document.addEventListener('pointerdown',e=>{
@@ -647,9 +665,13 @@ function toggleScoreComparison(s,id){
 }
 function scoreComparisonLayers(s,page){
  const visible=new Set(scoreVisibleTakes(s).map(t=>t.id));
- const layers=s.takes[s.cue].map(t=>({t,measures:new Set(scoreSelectionMeasures(scoreSelection(s,t)))}));
- return `<div class="score-comparison-layer" aria-hidden="true">${scoreRegions(s,page).map(r=>{
-  const explicit=layers.filter(l=>visible.has(l.t.id)&&l.measures.has(r.measure)),ghosts=layers.filter(l=>!visible.has(l.t.id)&&l.measures.has(r.measure));
+ const layers=s.takes[s.cue].filter(t=>visible.has(t.id)||s.scoreSeeOtherTakes!==false).map(t=>({t,selection:new Set(scoreSelection(s,t))}));
+ const regions=scoreRegions(s,page).flatMap(r=>{
+  const partial=layers.some(l=>{const count=scoreInstrumentIds.filter(i=>l.selection.has(scoreCellKey(r.measure,i))).length;return count>0&&count<scoreInstrumentIds.length;});
+  return partial?scoreCells(s,page).filter(c=>c.measure===r.measure):[r];
+ });
+ return `<div class="score-comparison-layer" aria-hidden="true">${regions.map(r=>{
+  const explicit=layers.filter(l=>visible.has(l.t.id)&&l.selection.has(scoreCellKey(r.measure,r.instrument||scoreInstrumentIds[0]))),ghosts=layers.filter(l=>!visible.has(l.t.id)&&l.selection.has(scoreCellKey(r.measure,r.instrument||scoreInstrumentIds[0])));
   const shown=explicit.length?explicit:ghosts;if(!shown.length)return '';
   const alpha=explicit.length?28:16;
   const colours=shown.map(l=>`color-mix(in srgb,${scoreTakeColor(l.t)} ${alpha}%,transparent)`);

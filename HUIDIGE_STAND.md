@@ -20,7 +20,7 @@ Bij 02 kun je New layout en Previous layout vergelijken met dezelfde takes/notes
 
 - Klik op een take om die te kiezen. Cmd/Ctrl+klik voegt een take toe aan de vergelijking of haalt die eruit. De laatst toegevoegde take is bewerkbaar; de lopende take verandert niet.
 - Gekozen takes hebben eigen kleuren. Andere kniplijstbereiken hebben een zachter maar duidelijk zichtbaar kleurvlak met een gekleurde stippelrand als referentie; gekozen takes hebben een doorgetrokken rand; hun notes verschijnen pas bij expliciete vergelijking.
-- Cmd/Ctrl+links klikken of slepen selecteert hele maten voor alle instrumenten. Cmd/Ctrl+rechts verwijdert ze. Geen individuele instrumentselectie voor een kniplijst.
+- Cmd/Ctrl+links klikken of slepen selecteert hele maten voor alle instrumenten. Cmd/Ctrl+rechts verwijdert ze. Boven de PDF staat een uitbreidbare rij met instellingen: Link instruments (ketting) en See other takes (oog), standaard beide aan. Met Link instruments uit selecteer je per instrument; opnieuw inschakelen verandert bestaande selecties niet. See other takes verbergt alleen achtergrondselecties, terwijl expliciet vergeleken takes zichtbaar blijven.
 - Dubbelklik op de score opent een note. Enter plaatst kale tekst. Klik op bestaande tekst om te bewerken. Instrument en maat volgen de klikplek. All instruments betekent alle instrumenten binnen deze take, niet alle takes.
 - Tekst staat standaard boven het instrument; All instruments boven de bovenste balk bij die maat. Below en At click position blijven beschikbaar om te corrigeren.
 - Cmd/Ctrl+Z maakt scorebewerkingen ongedaan; Shift erbij herhaalt ze. Tijdens typen blijft normale tekst-undo werken.

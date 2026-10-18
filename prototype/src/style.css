@@ -167,3 +167,9 @@
 .demo .score-note-row-actions .note-delete:hover{background:#512c37;color:#ffc3cb;border-color:#80505e}
 .demo .score-note-row-actions .score-note-icon:focus-visible{outline:2px solid #c7a5ee;outline-offset:2px;background:#393040;color:#fff}
 @media(max-width:680px){.score-layout.cutlist-layout{display:block}}
+
+/* Extensible score settings row above the PDF pages. */
+.score-settings{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:9px 0 12px;border-bottom:1px solid #39333f;margin-bottom:12px}
+.demo .score-settings button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:8px;border-radius:6px;color:#aaa0b6}
+.demo .score-settings button[aria-pressed=true]{color:#d5c4ee;background:#3a2e48;border-color:#8e73aa}
+.score-settings svg{display:block;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}

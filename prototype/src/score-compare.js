@@ -10,9 +10,13 @@ function toggleScoreComparison(s,id){
 }
 function scoreComparisonLayers(s,page){
  const visible=new Set(scoreVisibleTakes(s).map(t=>t.id));
- const layers=s.takes[s.cue].map(t=>({t,measures:new Set(scoreSelectionMeasures(scoreSelection(s,t)))}));
- return `<div class="score-comparison-layer" aria-hidden="true">${scoreRegions(s,page).map(r=>{
-  const explicit=layers.filter(l=>visible.has(l.t.id)&&l.measures.has(r.measure)),ghosts=layers.filter(l=>!visible.has(l.t.id)&&l.measures.has(r.measure));
+ const layers=s.takes[s.cue].filter(t=>visible.has(t.id)||s.scoreSeeOtherTakes!==false).map(t=>({t,selection:new Set(scoreSelection(s,t))}));
+ const regions=scoreRegions(s,page).flatMap(r=>{
+  const partial=layers.some(l=>{const count=scoreInstrumentIds.filter(i=>l.selection.has(scoreCellKey(r.measure,i))).length;return count>0&&count<scoreInstrumentIds.length;});
+  return partial?scoreCells(s,page).filter(c=>c.measure===r.measure):[r];
+ });
+ return `<div class="score-comparison-layer" aria-hidden="true">${regions.map(r=>{
+  const explicit=layers.filter(l=>visible.has(l.t.id)&&l.selection.has(scoreCellKey(r.measure,r.instrument||scoreInstrumentIds[0]))),ghosts=layers.filter(l=>!visible.has(l.t.id)&&l.selection.has(scoreCellKey(r.measure,r.instrument||scoreInstrumentIds[0])));
   const shown=explicit.length?explicit:ghosts;if(!shown.length)return '';
   const alpha=explicit.length?28:16;
   const colours=shown.map(l=>`color-mix(in srgb,${scoreTakeColor(l.t)} ${alpha}%,transparent)`);

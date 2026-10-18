@@ -14,9 +14,12 @@ function scoreCellKey(measure,instrument){return measure+':'+instrument;}
 function scoreSelection(s,t){
  if(!t)return [];t.scoreSelections??={};
  const values=t.scoreSelections[s.doc.id]||[];
- // Existing partial selections become whole measures as well.
- const measures=[...new Set(values.map(v=>Number(String(v).split(':')[0])))].filter(n=>Number.isInteger(n)&&n>0).sort((a,b)=>a-b);
- return t.scoreSelections[s.doc.id]=measures.flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)));
+ // Preserve instrument selections; legacy bar-only values cover every staff.
+ return t.scoreSelections[s.doc.id]=[...new Set(values.flatMap(value=>{
+  const [bar,instrument]=String(value).split(':'),measure=Number(bar);
+  if(!Number.isInteger(measure)||measure<1)return [];
+  return instrument?(scoreInstrumentIds.includes(instrument)?[scoreCellKey(measure,instrument)]:[]):scoreInstrumentIds.map(i=>scoreCellKey(measure,i));
+ }))].sort();
 }
 function scoreSelectionMeasures(selection){return [...new Set(selection.map(key=>Number(key.split(':')[0])))].sort((a,b)=>a-b);}
 function formatScoreMeasures(values){const numbers=[...new Set(values)].sort((a,b)=>a-b),ranges=[];for(let i=0;i<numbers.length;i++){let start=numbers[i],end=start;while(numbers[i+1]===end+1)end=numbers[++i];ranges.push(start===end?String(start):start+'–'+end);}return ranges.join(', ');}
@@ -89,6 +92,7 @@ function saveScoreComment(s){
 }
 function handleScoreClick(b,event){
  if(active?.id!=='partituur')return false;const s=state();
+ if(b.dataset.scoreSetting){const key=b.dataset.scoreSetting;if(!['scoreLinkInstruments','scoreSeeOtherTakes'].includes(key))return false;s[key]=s[key]===false;renderDemo();document.querySelector(`[data-score-setting="${key}"]`)?.focus({preventScroll:true});return true;}
  if(b.dataset.selectTake){if(event?.metaKey||event?.ctrlKey)toggleScoreComparison(s,b.dataset.selectTake);else selectScoreTake(s,b.dataset.selectTake);return true;}
  if(b.hasAttribute('data-score-workflow-later')){scoreWorkflowTiming(s).clock.offset+=120;const live=running(s);if(live)live.base+=120;syncScoreWorkflowClocks();return true;}
  if(b.hasAttribute('data-score-new-take')){newEmptyScoreTake(s);return true;}
@@ -104,8 +108,8 @@ function handleScoreClick(b,event){
 }
 function changeScoreSelection(s,keys,mode){
  const t=takeById(s,s.selected);if(!t){toast('Create a take before making a selection.');return;}
- const measures=scoreSelectionMeasures(keys),wholeMeasures=measures.flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)));
- const current=new Set(scoreSelection(s,t));for(const key of wholeMeasures){if(mode==='remove')current.delete(key);else current.add(key);}
+ const measures=scoreSelectionMeasures(keys),selection=s.scoreLinkInstruments===false?keys:measures.flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)));
+ const current=new Set(scoreSelection(s,t));for(const key of selection){if(mode==='remove')current.delete(key);else current.add(key);}
  const next=[...current].sort();if(JSON.stringify([...scoreSelection(s,t)].sort())===JSON.stringify(next))return;
  rememberScoreChange(s,t);t.scoreSelections[s.doc.id]=next;renderDemo();
 }
@@ -114,6 +118,7 @@ let scoreGesture=null,ignoreScoreClickUntil=0;
 function scoreGestureKeys(s,g){
  const left=Math.min(g.start.x,g.end.x),right=Math.max(g.start.x,g.end.x),top=Math.min(g.start.y,g.end.y),bottom=Math.max(g.start.y,g.end.y);
  const cells=scoreCells(s,g.page),hit=cells.filter(r=>right>=r.x&&left<=r.x+r.width&&bottom>=r.y&&top<=r.y+r.height);
+ if(s.scoreLinkInstruments===false)return hit.map(c=>c.key);
  const measures=new Set(hit.map(c=>c.measure));return cells.filter(c=>measures.has(c.measure)).map(c=>c.key);
 }
 document.addEventListener('pointerdown',e=>{
