@@ -37,16 +37,16 @@
     },
     {
       "id": "maat-aanpassen",
-      "title": "Tijd en maat als aanpasbaar voorstel",
-      "text": "Automatisch tijdcode en waar mogelijk een maatnummer bij je note. Beide kun je na Enter aanpassen.",
+      "title": "Tijd en maat bij je note",
+      "text": "Een tijdcode en, waar mogelijk, maatnummer bij iedere note. Beide kun je na Enter aanpassen.",
       "target": ".calm-notes .composer-footer",
       "view": "recording",
       "discussion": "maat-aanpassen"
     },
     {
       "id": "noteplek",
-      "title": "Eén plek om notes te schrijven",
-      "text": "Alle notes van de gekozen take op één plek. Algemene cue-notes staan apart.",
+      "title": "Notes per take",
+      "text": "Klik op een take. Hier lees en schrijf je de notes voor die take.",
       "target": ".calm-notes",
       "view": "recording",
       "prompt": "Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt."
@@ -145,8 +145,8 @@
     },
     {
       "id": "score-lagen",
-      "title": "Een eigen scorelaag per take",
-      "text": "Kies een take om zijn notes en kniplijst te zien. Een nieuwe take begint met een lege scorelaag.",
+      "title": "Eigen notes en selecties per take",
+      "text": "Klik een take om zijn notes en geselecteerde maten te zien. Een nieuwe take begint leeg.",
       "target": ".score-take-list",
       "view": "cutlist",
       "prompt": "Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-ID én scorebronversie. Een nieuwe take heeft een lege eigen laag. Terugklikken herstelt de juiste gegevens zonder de score onverwacht te verschuiven. Deel deze gegevens met de opnameweergave; de geselecteerde take mag verschillen van de lopende take."
@@ -170,8 +170,8 @@
     },
     {
       "id": "score-overzicht",
-      "title": "Alle takes naast dezelfde maten",
-      "text": "Bekijk de maatselecties van alle takes in één raster. Klik een maat om naar de score te gaan.",
+      "title": "Alle takes per maat vergelijken",
+      "text": "Bekijk welke maten je per take hebt geselecteerd. Klik een maat om die in de partituur te openen.",
       "target": ".all-takes-view",
       "view": "cutlist",
       "prompt": "Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken.",
@@ -179,8 +179,8 @@
     },
     {
       "id": "score-instellingen",
-      "title": "Instrumenten en referenties aan of uit",
-      "text": "Ketting: alle instrumenten samen selecteren. Oog: selecties van andere takes als referentie tonen.",
+      "title": "Instrumenten koppelen en andere takes tonen",
+      "text": "Ketting aan: selecteer alle instrumenten tegelijk. Oog aan: toon selecties van andere takes.",
       "target": ".score-settings",
       "view": "cutlist",
       "prompt": "Behoud Link instruments en See other takes als compacte, benoemde instellingen boven de partituur. Beide beginnen aan. Link instruments bepaalt alleen nieuwe selecties en herschrijft geen eerdere gedeeltelijke selecties. See other takes verbergt alleen achtergrondreferenties; expliciet gekozen vergelijkingstakes en hun notes blijven zichtbaar. Bewaar instellingen bij wisselen van weergave.",
@@ -197,8 +197,8 @@
     },
     {
       "id": "score-notes-bewerken",
-      "title": "Terugvinden, aanpassen en verplaatsen",
-      "text": "Klik op een note om naar zijn plek te gaan. Sleep de tekst op de score om hem te verplaatsen.",
+      "title": "Notes terugvinden en verplaatsen",
+      "text": "Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar een andere plek.",
       "target": ".cutlist-notes-list",
       "view": "cutlist",
       "prompt": "Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Geef aparte edit/delete-acties met duidelijke toegankelijkheidslabels. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen."

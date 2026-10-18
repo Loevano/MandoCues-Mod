@@ -368,3 +368,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Rondleidingtekst beperken tot de suggestie en hoe je die probeert.
 - Geen uitleg over normale kwaliteitseisen of eigen bugfixes, zoals niet-verspringende sterren en knoppen. Die gewoon goed laten werken.
 - Technische details blijven in de Claude-prompt, niet in de korte uitleg voor de collega.
+
+
+## 37. Concreet uitleggen wat een paneel doet
+
+- Take-notes kort uitleggen: klik een take; lees en schrijf zijn notes in het getoonde paneel.
+- Algemene cue-notes niet door diezelfde uitleg mengen. Ze bestaan apart onder Cue notes en gaan over de hele cue.
+- Ook overige uitleg concreet formuleren: wat klik je aan en wat zie je dan, zonder abstracte termen of extra bijzinnen.

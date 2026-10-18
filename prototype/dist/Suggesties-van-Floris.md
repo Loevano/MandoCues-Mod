@@ -49,17 +49,17 @@ Typ een opmerking en druk Enter voor een losse note. Shift+Enter maakt een nieuw
 
 Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bij de juiste cue en take. Houd de lege invoer klaar voor de volgende note; Shift+Enter maakt een nieuwe regel. Verstuur niet tijdens IME-compositie. Bewaar concepten per take. Cue-algemene opmerkingen blijven apart. Zorg dat notes ook bij de hoofd bediening zichtbaar moeten zijn, zodat je niet naar beneden hoeft te scrollen om te schrijven.
 
-### 5. Tijd en maat als aanpasbaar voorstel
+### 5. Tijd en maat bij je note
 
-Automatisch tijdcode en waar mogelijk een maatnummer bij je note. Beide kun je na Enter aanpassen.
+Een tijdcode en, waar mogelijk, maatnummer bij iedere note. Beide kun je na Enter aanpassen.
 
 **Promptonderdeel:**
 
 Zou het handig zijn om bij het schrijven van een note automatisch de relevante tijdcode en, waar een betrouwbare scorekoppeling bestaat, het maatnummer mee te geven? Bewaar het moment bij beginnen met typen; Enter plaatst de note. Beide waarden blijven daarna aanpasbaar of weg te laten. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Dit is nog een open keuze, geen opdracht om al die bronnen tegelijk te implementeren. Laat een klik op het maatcijfer direct een verticale lijst en een invoerveld openen. Overschrijf handmatige correcties niet automatisch. Zonder betrouwbare koppeling geen verzonnen automatisch maatnummer; een PDF alleen is daarvoor onvoldoende.
 
-### 6. Eén plek om notes te schrijven
+### 6. Notes per take
 
-Alle notes van de gekozen take op één plek. Algemene cue-notes staan apart.
+Klik op een take. Hier lees en schrijf je de notes voor die take.
 
 **Promptonderdeel:**
 
@@ -153,9 +153,9 @@ Kies een cue en zie de bijbehorende partituur rechts.
 
 Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de partituur groot rechts met takes en notes links. Gebruik de bestaande gevalideerde maat-/instrumentmapping waar aanwezig en label benaderingen. Een eigen PDF krijgt niet vanzelf mapping. Wijzig het bron-PDF niet en behoud aparte takegegevens voor cues die dezelfde scorepagina’s delen.
 
-### 18. Een eigen scorelaag per take
+### 18. Eigen notes en selecties per take
 
-Kies een take om zijn notes en kniplijst te zien. Een nieuwe take begint met een lege scorelaag.
+Klik een take om zijn notes en geselecteerde maten te zien. Een nieuwe take begint leeg.
 
 **Promptonderdeel:**
 
@@ -177,17 +177,17 @@ Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of sl
 
 Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
 
-### 21. Alle takes naast dezelfde maten
+### 21. Alle takes per maat vergelijken
 
-Bekijk de maatselecties van alle takes in één raster. Klik een maat om naar de score te gaan.
+Bekijk welke maten je per take hebt geselecteerd. Klik een maat om die in de partituur te openen.
 
 **Promptonderdeel:**
 
 Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken.
 
-### 22. Instrumenten en referenties aan of uit
+### 22. Instrumenten koppelen en andere takes tonen
 
-Ketting: alle instrumenten samen selecteren. Oog: selecties van andere takes als referentie tonen.
+Ketting aan: selecteer alle instrumenten tegelijk. Oog aan: toon selecties van andere takes.
 
 **Promptonderdeel:**
 
@@ -201,9 +201,9 @@ Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumente
 
 Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine.
 
-### 24. Terugvinden, aanpassen en verplaatsen
+### 24. Notes terugvinden en verplaatsen
 
-Klik op een note om naar zijn plek te gaan. Sleep de tekst op de score om hem te verplaatsen.
+Klik links op een note om hem in de partituur te zien. Sleep de tekst daar naar een andere plek.
 
 **Promptonderdeel:**
 
