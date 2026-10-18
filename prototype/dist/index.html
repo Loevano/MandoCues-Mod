@@ -180,7 +180,7 @@
 .cutlist-viewer .score-canvas{max-height:65vh!important;overflow:auto!important;overscroll-behavior:contain;scrollbar-gutter:stable}
 
 /* Keep take selection and rating as separate controls in each cut-list row. */
-.score-take-row{min-width:0}.score-take-row .star-rating{display:flex;justify-content:flex-end;padding:2px 7px 0}.score-take-picker .star-rating button{min-width:0!important;flex:0 0 20px}.score-take-picker [data-select-take]{flex-direction:column;align-items:flex-start;gap:3px}
+.score-take-row{position:relative;min-width:0}.score-take-row .star-rating{position:absolute;right:7px;bottom:5px;display:flex;justify-content:flex-end}.score-take-picker .star-rating button{min-width:0!important;flex:0 0 20px}.cutlist-sidebar .score-take-picker [data-select-take]{flex-direction:column;align-items:flex-start;gap:3px;padding-bottom:33px!important}
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
