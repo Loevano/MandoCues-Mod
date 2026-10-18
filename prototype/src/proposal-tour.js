@@ -28,7 +28,7 @@ function reviewDialog(id,title,body){
  return dialog;
 }
 function showProposalWelcome(){
- reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Bekijk de suggesties in de werkruimte. Vink uit wat je niet aan Claude wilt meegeven.</p><p class="review-muted">Neem alleen mee wat bij jouw programma past.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
+ reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Bekijk de suggesties in de werkruimte. Vink uit wat je niet aan Claude wilt meegeven.</p><p class="review-muted">Vrijblijvende ideeën in een voorbeeldsessie. Neem mee wat past.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
 }
 function closeProposalTour(){
  proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes','tour-note-metadata');

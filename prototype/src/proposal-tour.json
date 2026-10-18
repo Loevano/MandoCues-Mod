@@ -22,7 +22,7 @@
     {
       "id": "planning",
       "title": "Voor- of achterlopen in één oogopslag",
-      "text": "Cue-tijd, voor-/achterstand en verwachte eindtijd in één overzicht.",
+      "text": "Zou dit overzicht van cue-tijd, voor-/achterstand en verwachte eindtijd handig zijn?",
       "target": "#main-panel",
       "view": "recording",
       "prompt": "Houd in het hoofdpaneel de cue, muziekduur, geplande cuetijd, take-tijd, cue-tijd tegenover de planning, kloktijd en verwachte eindtijd zichtbaar. Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, ondersteund door kleur. Overige sessietijden blijven beschikbaar onder Session details. Haal geen bestaande klokken of functies weg; behoud hun bestaande berekening en bron. Het doel van de verschillende klokken blijft een open vraag. De demo is een presentatievoorstel; neem zijn voorbeeldberekening en pauzebeleid niet over als vervanging van bestaande planningslogica."
@@ -70,7 +70,7 @@
     {
       "id": "sterren",
       "title": "Sterren in plaats van Good / NG / Hold",
-      "text": "Beoordeel takes met 1–5 sterren. Filter bijvoorbeeld op 4–5 sterren.",
+      "text": "Zouden 1–5 sterren handig zijn? Klik de sterren en probeer bijvoorbeeld het filter 4–5 sterren.",
       "target": ".calm-take-row .star-rating, .review-filter",
       "view": "recording",
       "discussion": "sterren"
@@ -105,7 +105,7 @@
     {
       "id": "maat-aanpassen",
       "title": "Maat en tijdcode direct aanpassen",
-      "text": "Klik op maat of tijdcode om te wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.",
+      "text": "Maat en tijdcode kun je ook tijdens typen wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.",
       "target": ".calm-notes .note-meta",
       "view": "recording",
       "discussion": "maat-aanpassen"

@@ -74,12 +74,12 @@ with sync_playwright() as p:
     page.locator('[data-score-undo]').click()
     assert layers()==saved
     # The cut list is always expanded; navigation and transport share one row.
-    expect(page.locator('.site-header')).to_be_hidden()
+    expect(page.locator('.site-header')).to_be_visible()
     expect(page.locator('[data-score-expand]')).to_have_count(0)
     expect(page.locator('.cutlist-sidebar')).to_be_visible()
     expect(page.locator('[data-proposal-action="tour"]')).to_be_visible()
     expect(page.locator('[data-proposal-action="prompt"]')).to_be_visible()
-    assert canvas.bounding_box()['height']>900
+    assert 0<=1100-canvas.bounding_box()['y']-canvas.bounding_box()['height']<=35
     assert canvas.bounding_box()['y']+canvas.bounding_box()['height']<=1100
     toggle=page.locator('.proposal-view-toggle').bounding_box()
     transport=page.locator('.proposal-live-bar').bounding_box()
@@ -90,7 +90,7 @@ with sync_playwright() as p:
     assert page.locator('.score-take-picker').evaluate('(el)=>el.scrollTop')==0
     page.screenshot(path=str(ROOT/'checks/score-expanded.png'))
     page.keyboard.press('Escape')
-    expect(page.locator('.site-header')).to_be_hidden()
+    expect(page.locator('.site-header')).to_be_visible()
     assert layers()==saved
     for width in [390,1024,1512]:
         page.set_viewport_size({'width':width,'height':1100})

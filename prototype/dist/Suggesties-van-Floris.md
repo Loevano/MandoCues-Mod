@@ -23,7 +23,7 @@ Een idee: bediening en belangrijke tijden bij elkaar. Zou deze indeling fijn wer
 
 **Promptonderdeel:**
 
-Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik bijvoorbeeld Maximale muziekduur (min), Muziekduur, Complexiteit, Geplande werktijd en Aan deze cue gewerkt. Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie.
+Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande werktijd en tijd op deze cue. Gebruik Engelse labels met eenheid: Session length (min), Prep per cue (min), Max music (min), Music length (minutes:seconds) en Planned work (min). Toon voor/achter met een expliciet teken en tekst, niet alleen Behind. Scheid Take Controls, Cue Controls en Session Controls zichtbaar. Houd cuecodes in het sessieplan leesbaar zonder afkapping. Houd Previous cue, Next cue, Overdub, Break en End session als zichtbare knoppen in het hoofdpaneel, gegroepeerd onder Take, Cue en Session. Verstop deze handelingen niet in Session details. Laat de bestaande sessie- en pauzeregels van de app leidend; de lokale demo bewijst die niet. Stop of verplaats een take niet impliciet bij een cuewissel of sessieactie. Houd de bestaande zijbalk, sessiekeuze, Add cues, inklapbare Chat en PDF-acties herkenbaar aanwezig. Plaats cuepijlen bij de cuenaam, Overdub bij de takeknop en een koffie-icoon bij Break; toon subtiele bracket-hints. Maak Not recording en Recording duidelijk verschillend; alleen een lopende take krijgt de rode status. Neem ook in de kniplijst take-tijd, kloktijd en Expected end mee. De lokale planner is voorbeelddata; behoud de echte bestaande berekeningen.
 
 ### 2. Start de sessie met ⌘ Enter
 
@@ -35,7 +35,7 @@ Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat j
 
 ### 3. Voor- of achterlopen in één oogopslag
 
-Cue-tijd, voor-/achterstand en verwachte eindtijd in één overzicht.
+Zou dit overzicht van cue-tijd, voor-/achterstand en verwachte eindtijd handig zijn?
 
 **Promptonderdeel:**
 
@@ -83,7 +83,7 @@ Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels.
 
 ### 9. Sterren in plaats van Good / NG / Hold
 
-Beoordeel takes met 1–5 sterren. Filter bijvoorbeeld op 4–5 sterren.
+Zouden 1–5 sterren handig zijn? Klik de sterren en probeer bijvoorbeeld het filter 4–5 sterren.
 
 **Promptonderdeel:**
 
@@ -115,11 +115,11 @@ Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bi
 
 ### 13. Maat en tijdcode direct aanpassen
 
-Klik op maat of tijdcode om te wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.
+Maat en tijdcode kun je ook tijdens typen wijzigen. Het klokje zet de oorspronkelijke tijdcode terug.
 
 **Promptonderdeel:**
 
-Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen als onveranderlijke oorspronkelijke tijdcode. Een klein klokje herstelt die waarde na een handmatige wijziging; gebruik niet de actuele afspeelpositie. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Geen maat afleiden uit de take-timer. Een nieuwe take begint zonder maatnummer. Schrap de aparte Edit-knop bij notes. Klikken op Bar opent een scrollbaar menu met All (de hele take, zonder specifieke maat) en alle bekende maatnummers van de cue, met wat ruimte voor extra maten. Geef het invoerveld direct focus: typen en Enter kiest de maat. Geen Another bar-label of Choose bar-knop. De tijdcode is direct aanklikbaar en met Enter aanpasbaar; Escape annuleert. Bewaar de oorspronkelijke tijdcode ook bij andere note-bewerkingen en undo/redo. Delete blijft apart. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen blijft een latere uitbreiding bij een betrouwbare koppeling met de uitvoering.
+Voeg bij een note de tijdcode toe; bewaar het moment bij beginnen met typen als onveranderlijke oorspronkelijke tijdcode. Een klein klokje herstelt die waarde na een handmatige wijziging; gebruik niet de actuele afspeelpositie. Maatnummers worden voorlopig handmatig ingevuld of bewust in de partituur gekozen. Geen maat afleiden uit de take-timer. Een nieuwe take begint zonder maatnummer. Schrap de aparte Edit-knop bij notes. Klikken op Bar opent een scrollbaar menu met All (de hele take, zonder specifieke maat) en alle bekende maatnummers van de cue, met wat ruimte voor extra maten. Geef het invoerveld direct focus: typen en Enter kiest de maat. Geen Another bar-label of Choose bar-knop. De tijdcode is direct aanklikbaar en met Enter aanpasbaar; Escape annuleert. Bewaar de oorspronkelijke tijdcode ook bij andere note-bewerkingen en undo/redo. Delete blijft apart. Kies voor de tijdcode samen één relevante bron: film, take, sessie of kloktijd. Automatisch maatvolgen blijft een latere uitbreiding bij een betrouwbare koppeling met de uitvoering. Gebruik dezelfde metadata-editor bij het concept vóór Enter en bij een geplaatste note: dezelfde zwevende scrollbare maatkeuze, All, typen plus Enter, tijdcode aanklikken, Enter en het klokje. Enter in een metadataveld bevestigt die waarde en verstuurt de opmerking niet. Bewaar concept, oorspronkelijke tijdcode en gekozen maat bij wisselen en plaatsen.
 
 ### 14. Veelgebruikte notes sneller invullen
 
