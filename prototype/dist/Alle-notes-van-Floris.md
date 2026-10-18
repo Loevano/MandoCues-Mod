@@ -483,3 +483,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Elke stap brengt het bijbehorende onderdeel automatisch in beeld, ook na zelf scrollen.
 - Het sessieplan wordt als tijdlijn zichtbaar gemaakt; rekening houden met de vaste opnamebalk.
+
+
+## 53. Trackpadzoom
+
+- In- en uitzoomen door te knijpen op het trackpad boven de partituur.
+- De plek onder de vingers blijft het anker; normaal scrollen blijft onafhankelijk werken.

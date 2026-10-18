@@ -155,11 +155,11 @@ Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de pa
 
 ### 18. De partituur groot in beeld
 
-Zoom in of uit, kies Fit width of vergroot de scoreweergave. Scroll door alle pagina’s.
+Zoom met je trackpad of de knoppen. Fit width toont de volle breedte. Scroll door alle pagina’s.
 
 **Promptonderdeel:**
 
-Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Voeg Zoom in, Zoom out, een percentage, Fit width en Expand/Restore score view toe aan de bestaande compacte scoreknoppenrij. Escape verlaat de vergrote werkweergave. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF.
+Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Voeg Zoom in, Zoom out, een percentage, Fit width en Expand/Restore score view toe aan de bestaande compacte scoreknoppenrij. Escape verlaat de vergrote werkweergave. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF. Ondersteun ook trackpad-knijpzoom binnen het scorevlak (Chromium ctrl-wheel en Safari gesture-events), met het punt onder de vingers als anker. Gewoon scrollen blijft scrollen; de rest van de pagina zoomt niet mee.
 
 ### 19. Eigen notes en selecties per take
 

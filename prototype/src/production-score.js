@@ -46,14 +46,15 @@ function scoreZoomControls(s){
  const zoom=s.zoom||1;
  return `<div class="score-zoom-controls" role="group" aria-label="Score zoom"><button type="button" data-score-zoom="out" aria-label="Zoom out" title="Zoom out" ${zoom<=.5?'disabled':''}>−</button><output data-score-zoom-value aria-live="polite">${Math.round(zoom*100)}%</output><button type="button" data-score-zoom="in" aria-label="Zoom in" title="Zoom in" ${zoom>=3?'disabled':''}>+</button><button type="button" class="score-fit-width" data-score-zoom="fit" title="Fit score to width">Fit width</button></div>`;
 }
-function setScoreZoom(s,action){
+function setScoreZoom(s,action,point=null){
  const canvas=document.querySelector('.score-canvas');if(!canvas)return;
- const viewport=canvas.getBoundingClientRect(),cx=viewport.left+canvas.clientWidth/2,cy=viewport.top+canvas.clientHeight/2;
+ const viewport=canvas.getBoundingClientRect(),cx=point?.x??viewport.left+canvas.clientWidth/2,cy=point?.y??viewport.top+canvas.clientHeight/2;
  const papers=[...canvas.querySelectorAll('.score-paper')];
  const anchor=papers.find(p=>{const r=p.getBoundingClientRect();return r.top<=cy&&r.bottom>=cy;})||papers.find(p=>p.getBoundingClientRect().bottom>viewport.top)||papers[0];
  if(!anchor)return;
  const before=anchor.getBoundingClientRect(),x=Math.max(0,Math.min(1,(cx-before.left)/before.width)),y=Math.max(0,Math.min(1,(cy-before.top)/before.height));
- s.zoom=action==='fit'?1:Math.max(.5,Math.min(3,Math.round(((s.zoom||1)+(action==='in'?.25:-.25))*100)/100));
+ const requested=typeof action==='number'?action:action==='fit'?1:Math.round(((s.zoom||1)+(action==='in'?.25:-.25))*100)/100;
+ s.zoom=Math.max(.5,Math.min(3,requested));
  canvas.style.setProperty('--score-zoom',s.zoom);
  refreshScoreTextPositions();
  const after=anchor.getBoundingClientRect();
@@ -86,3 +87,28 @@ function productionScoreView(s){
   }).join('')}</div><div class="score-drag-rectangle" hidden></div>${scorePageComments(s,t,page)}${scoreCommentDialog(s,page)}</div></div>`;
  }).join('')}</div></section>`;
 }
+
+// Trackpad pinch is a ctrl-wheel stream in Chromium and a gesture stream in Safari.
+// Ordinary two-finger scrolling remains native and never changes zoom.
+let scorePinchGesture=null;
+document.addEventListener('wheel',event=>{
+ const canvas=event.target.closest?.('.score-canvas');
+ if(!canvas||!event.ctrlKey||active?.id!=='partituur')return;
+ event.preventDefault();
+ if(scorePinchGesture)return;
+ const delta=event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?canvas.clientHeight:1);
+ setScoreZoom(state(),(state().zoom||1)*Math.exp(-Math.max(-80,Math.min(80,delta))*.01),{x:event.clientX,y:event.clientY});
+},{passive:false});
+document.addEventListener('gesturestart',event=>{
+ const canvas=event.target.closest?.('.score-canvas');if(!canvas||active?.id!=='partituur')return;
+ event.preventDefault();scorePinchGesture={canvas,zoom:state().zoom||1};
+},{passive:false});
+document.addEventListener('gesturechange',event=>{
+ if(!scorePinchGesture)return;
+ event.preventDefault();
+ if(!scorePinchGesture.canvas.isConnected){scorePinchGesture=null;return;}
+ if(Number.isFinite(event.scale))setScoreZoom(state(),scorePinchGesture.zoom*event.scale,{x:event.clientX,y:event.clientY});
+},{passive:false});
+document.addEventListener('gestureend',event=>{
+ if(scorePinchGesture){event.preventDefault();scorePinchGesture=null;}
+},{passive:false});
