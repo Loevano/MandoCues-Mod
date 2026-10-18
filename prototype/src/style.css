@@ -236,3 +236,10 @@
 .proposal-schedule.is-behind{color:#e8b76c}.proposal-schedule.is-ahead{color:#74c4a2}
 
 body.proposal-expanded{position:fixed;inset:0;z-index:100;overflow:auto}
+
+/* Keep the result visible while the visitor tries different cues. */
+.tour-cue-selection .proposal-tour-highlight{box-shadow:none}
+.tour-cue-selection .calm-cue-heading [data-select-cue]{background:#302639!important;border-radius:4px;outline:1px solid #856896;padding:5px 7px!important}
+.tour-cue-selection .calm-cue-heading [data-select-cue][aria-current=true]{background:#51405f!important;outline-color:#d6b7f0}
+
+.tour-cue-selection #cue-scroll{scroll-padding-top:80px;scroll-padding-bottom:290px}

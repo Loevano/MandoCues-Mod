@@ -380,3 +380,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 38. Vanzelfsprekende bewerkbaarheid niet uitleggen
 
 - Bij tijdcode en maat alleen noemen wat automatisch wordt toegevoegd. Dat beide altijd bewerkbaar zijn hoeft niet in de korte toelichting.
+
+
+## 39. Cuekeuze kunnen proberen in de rondleiding
+
+- Bij direct aanklikken meerdere cues zichtbaar en klikbaar maken, in plaats van één cue uitlichten.
+- Korte uitnodiging om verschillende cues te proberen; opnamepaneel, geselecteerde cue en takes moeten zichtbaar meewisselen.

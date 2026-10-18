@@ -14,8 +14,8 @@
     {
       "id": "cue-aanklikken",
       "title": "Een cue direct aanklikken",
-      "text": "Kies een cue direct in de lijst, zonder Go to cue.",
-      "target": ".calm-cue-heading [data-select-cue]",
+      "text": "Klik verschillende cues. Het opnamepaneel en de takes wisselen mee.",
+      "target": ".calm-cue-list",
       "view": "recording",
       "discussion": "cue-aanklikken"
     },

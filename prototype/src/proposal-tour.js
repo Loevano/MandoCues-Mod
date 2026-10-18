@@ -33,13 +33,14 @@ function showProposalWelcome(){
  reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Bekijk de suggesties in de werkruimte. Vink uit wat je niet aan Claude wilt meegeven.</p><p class="review-muted">Neem alleen mee wat bij jouw programma past.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
 }
 function closeProposalTour(){
- proposalTourIndex=-1;tourTarget=null;
+ proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection');
  document.querySelector('.proposal-tour-card')?.remove();document.querySelector('.proposal-tour-highlight')?.remove();
  document.querySelector('[data-proposal-action="tour"]')?.focus({preventScroll:true});
 }
 function openTourStep(index){
  if(index<0||index>=proposalTourSteps.length)return;
  proposalTourIndex=index;const step=proposalTourSteps[index],s=unifiedState;
+ document.body.classList.toggle('tour-cue-selection',step.id==='cue-aanklikken');
  showProposalView(step.view);
  if(step.view==='recording')s.open.add(s.cue);
  if(step.prepare==='session')s.calmSessionOpen=true;
@@ -56,7 +57,11 @@ function openTourStep(index){
  document.body.append(card);
  if(!document.querySelector('.proposal-tour-highlight')){const highlight=document.createElement('div');highlight.className='proposal-tour-highlight';highlight.setAttribute('aria-hidden','true');document.body.append(highlight);}
  tourTarget=findTourTarget(step);
- tourTarget?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+ if(step.id==='cue-aanklikken'){
+  const scroll=document.querySelector('#cue-scroll');
+  if(innerWidth<760){scroll.scrollTop+=tourTarget.getBoundingClientRect().top-scroll.getBoundingClientRect().top-80;}else scroll.scrollTop=0;
+  syncSticky();
+ }else tourTarget?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
  document.querySelector('#proposal-tour-title').focus({preventScroll:true});
  scheduleTourPosition();
 }
@@ -81,7 +86,7 @@ function positionProposalTour(){
  const width=card.offsetWidth,height=card.offsetHeight;
  const positions=[{x:right+16,y:top},{x:left-width-16,y:top},{x:left,y:bottom+16},{x:left,y:top-height-16}];
  const fit=positions.find(p=>p.x>=margin&&p.x+width<=innerWidth-margin&&p.y>=margin&&p.y+height<=innerHeight-margin);
- const preferred=fit||{x:innerWidth-width-margin,y:innerHeight-height-margin};
+ const preferred=proposalTourSteps[proposalTourIndex].id==='cue-aanklikken'&&innerWidth<760?{x:margin,y:innerHeight-height-margin}:fit||{x:innerWidth-width-margin,y:innerHeight-height-margin};
  Object.assign(card.style,{left:Math.max(margin,Math.min(innerWidth-width-margin,preferred.x))+'px',top:Math.max(margin,Math.min(innerHeight-height-margin,preferred.y))+'px'});
 }
 function tourChoiceRow(step){return `<label class="tour-summary-choice"><input type="checkbox" data-tour-choice="${step.id}" ${proposalTourSelection.has(step.id)?'checked':''}><span>${esc(step.title)}</span></label>`;}

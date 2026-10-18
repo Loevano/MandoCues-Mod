@@ -24,6 +24,17 @@ with sync_playwright() as p:
         expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])
         expect(page.locator('.proposal-tour-highlight')).to_be_visible()
         page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
+        if step['id']=='cue-aanklikken':
+            page.locator('.calm-cue-list [data-select-cue="1"]').click()
+            expect(page.locator('#main-panel .main-cue')).to_contain_text('1M18')
+            expect(page.locator('.calm-notes > header')).to_contain_text('1M18')
+            expect(page.locator('.calm-cue-list [data-select-cue="1"]')).to_have_attribute('aria-current','true')
+            expect(page.locator('[data-tour-choice="cue-aanklikken"]')).not_to_be_checked()
+            page.locator('.calm-cue-list [data-select-cue="0"]').click()
+            expect(page.locator('#main-panel .main-cue')).to_contain_text('1M02')
+            assert page.evaluate('proposalTourSteps[proposalTourIndex].id')=='cue-aanklikken'
+            page.wait_for_timeout(150)
+            page.screenshot(path=str(ROOT/'checks/tour-click-cues.png'))
         page.wait_for_timeout(30)
         card=page.locator('.proposal-tour-card').bounding_box()
         assert card['x']>=0 and card['y']>=0 and card['x']+card['width']<=1512 and card['y']+card['height']<=1100,(step,card)
@@ -70,9 +81,14 @@ with sync_playwright() as p:
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Small viewports retain an in-bounds card, highlight and functioning next action.
     page.set_viewport_size({'width':390,'height':844})
-    for index in [0,6,7,16,18,20,24]:
+    for index in [0,1,6,7,16,18,20,24]:
         page.evaluate('(index)=>openTourStep(index)',index)
         page.wait_for_timeout(60)
+        if index==1:
+            page.locator('.calm-cue-list [data-select-cue="1"]').click()
+            expect(page.locator('#main-panel .main-cue')).to_contain_text('1M18')
+            page.locator('.calm-cue-list [data-select-cue="0"]').click()
+            expect(page.locator('#main-panel .main-cue')).to_contain_text('1M02')
         r=page.locator('.proposal-tour-card').bounding_box()
         assert r['x']>=0 and r['y']>=0 and r['x']+r['width']<=390 and r['y']+r['height']<=844,(index,r)
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),index

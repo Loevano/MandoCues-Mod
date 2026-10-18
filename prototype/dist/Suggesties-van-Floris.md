@@ -27,7 +27,7 @@ Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per
 
 ### 2. Een cue direct aanklikken
 
-Kies een cue direct in de lijst, zonder Go to cue.
+Klik verschillende cues. Het opnamepaneel en de takes wisselen mee.
 
 **Promptonderdeel:**
 
