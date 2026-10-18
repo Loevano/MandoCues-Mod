@@ -361,3 +361,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Suggesties staan bij een nieuwe selectie standaard aangevinkt voor de Claude-prompt.
 - Je kunt iedere suggestie uitvinken. Eerder opgeslagen keuzes blijven behouden, ook als alles is uitgezet.
+
+
+## 36. Zo min mogelijk onnodig lezen
+
+- Rondleidingtekst beperken tot de suggestie en hoe je die probeert.
+- Geen uitleg over normale kwaliteitseisen of eigen bugfixes, zoals niet-verspringende sterren en knoppen. Die gewoon goed laten werken.
+- Technische details blijven in de Claude-prompt, niet in de korte uitleg voor de collega.

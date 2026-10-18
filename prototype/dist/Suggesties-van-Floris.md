@@ -19,7 +19,7 @@ De onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevink
 
 ### 1. Sterren in plaats van Good / NG / Hold
 
-Zou 1–5 sterren handiger zijn? Met het filter kun je bijvoorbeeld alleen takes met 4–5 sterren bekijken.
+Beoordeel takes met 1–5 sterren. Filter bijvoorbeeld op 4–5 sterren.
 
 **Promptonderdeel:**
 
@@ -27,7 +27,7 @@ Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per
 
 ### 2. Een cue direct aanklikken
 
-Klik op de cue in de lijst om erheen te gaan. Go to cue hoeft daarvoor niet de enige ingang te zijn.
+Kies een cue direct in de lijst, zonder Go to cue.
 
 **Promptonderdeel:**
 
@@ -35,7 +35,7 @@ Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te h
 
 ### 3. Takes herkenbaar onder hun cue
 
-Een vaste take-regel onder iedere cue houdt de relatie duidelijk. Het pijltje klapt de takes in zonder dat sterren of knoppen verspringen.
+Takes staan onder hun cue. Met het pijltje klap je ze in of uit.
 
 **Promptonderdeel:**
 
@@ -43,7 +43,7 @@ Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels.
 
 ### 4. Enter plaatst een losse note
 
-Enter maakt van je tekst één losse note bij deze take. Daarna kun je meteen de volgende typen; Shift+Enter maakt een nieuwe regel.
+Typ een opmerking en druk Enter voor een losse note. Shift+Enter maakt een nieuwe regel.
 
 **Promptonderdeel:**
 
@@ -51,7 +51,7 @@ Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bi
 
 ### 5. Tijd en maat als aanpasbaar voorstel
 
-Leg het moment vast zodra je begint te typen. Voeg waar mogelijk een maatnummer toe; tijd en maat blijven na Enter aanpasbaar. Een PDF alleen herkent geen gespeelde maat.
+Automatisch tijdcode en waar mogelijk een maatnummer bij je note. Beide kun je na Enter aanpassen.
 
 **Promptonderdeel:**
 
@@ -59,7 +59,7 @@ Zou het handig zijn om bij het schrijven van een note automatisch de relevante t
 
 ### 6. Eén plek om notes te schrijven
 
-De gekozen take heeft één apart notitiepaneel. Daar zie je alle notes; algemene cue-notes staan apart. Zo hoef je niet tussen take-editors te zoeken.
+Alle notes van de gekozen take op één plek. Algemene cue-notes staan apart.
 
 **Promptonderdeel:**
 
@@ -67,7 +67,7 @@ Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take
 
 ### 7. Spatie is ook nodig voor tekst
 
-Start/stop met spatie kan botsen met notes typen. Voorstel op Mac: ⌘ Enter voor start én stop; gewoon Enter plaatst een note.
+Spatie heb je nodig voor notes. Voorstel: ⌘ Enter om een take te starten of stoppen.
 
 **Promptonderdeel:**
 
@@ -75,7 +75,7 @@ Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat j
 
 ### 8. Stoppen zonder terug te scrollen
 
-Als het grote paneel wegscrollt, blijft een compacte balk bereikbaar. Je kunt stoppen terwijl je verderop in de takes notes maakt.
+Een compacte start/stopbalk blijft bereikbaar als je naar beneden scrolt.
 
 **Promptonderdeel:**
 
@@ -83,7 +83,7 @@ Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten de interne s
 
 ### 9. Overal dezelfde kloknotatie
 
-Bij de grote klok en bij takes dezelfde 24-uursnotatie, bijvoorbeeld 19:54:59, in plaats van een mix met AM/PM.
+De grote klok en take-tijden allebei in 24-uursnotatie, bijvoorbeeld 19:54:59.
 
 **Promptonderdeel:**
 
@@ -91,7 +91,7 @@ Onder de takes staat de tijd in 24-uursnotatie, terwijl de grote klok AM/PM gebr
 
 ### 10. Een favoriete take en alternatieven
 
-Best markeert één favoriete take per cue. Alt 1, Alt 2 enzovoort maken reservetakes herkenbaar, los van de sterren.
+Eén Best per cue; genummerde Alt-labels voor reservetakes.
 
 **Promptonderdeel:**
 
@@ -99,7 +99,7 @@ Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetak
 
 ### 11. Veelgebruikte notes sneller invullen
 
-Een suggestie zoals Intonation of More expressive vult je concept. Je kunt de tekst nog aanpassen voordat je Enter drukt.
+Kies bijvoorbeeld Intonation of More expressive en pas de tekst zo nodig aan.
 
 **Promptonderdeel:**
 
@@ -107,7 +107,7 @@ Aanvulling: bied veelvoorkomende notities als aanpasbare suggesties aan, bijvoor
 
 ### 12. Duidelijke labels en knoppen
 
-Maak duidelijk welke tijden je ziet en welke knoppen bij de take, cue of hele sessie horen.
+Aparte bediening voor Take, Cue en Session, met duidelijke namen voor de tijden.
 
 **Promptonderdeel:**
 
@@ -115,7 +115,7 @@ Verduidelijk de benamingen voor Max music, muziekduur, complexiteit, geplande we
 
 ### 13. Snel naar een andere cue
 
-Met [ en ] naar de vorige/volgende cue. Bijvoorbeeld ⌥ 1–9 om direct een cue te kiezen; tijdens typen blijven die toetsen tekst.
+Met [ en ] naar de vorige/volgende cue. Met ⌥ 1–9 direct een cue kiezen.
 
 **Promptonderdeel:**
 
@@ -123,7 +123,7 @@ Gebruik [ en ] voor vorige/volgende cue voor en een modifier om direct naar bijv
 
 ### 14. Het sessieplan blijft een tijdlijn
 
-Behoud de tijdlijn: de lengte van een blok volgt de geplande cuetijd. Volledige cuecodes blijven leesbaar; de rij kan horizontaal scrollen.
+Langere blokken betekenen meer geplande opnametijd.
 
 **Promptonderdeel:**
 
@@ -131,7 +131,7 @@ Behoud het sessieplan als één horizontale tijdlijn, met bloklengtes evenredig 
 
 ### 15. Voor- of achterlopen in één oogopslag
 
-Een korte status zoals +02:00 behind laat zien hoe de planning ervoor staat. Overige timers kunnen achter Session details blijven.
+Eén status voor voor-/achterlopen, bijvoorbeeld +02:00 behind. Extra tijden staan onder Session details.
 
 **Promptonderdeel:**
 
@@ -139,7 +139,7 @@ Toon één beknopte voor-/achterstand met expliciet teken en ahead/behind, onder
 
 ### 16. Opname en kniplijst in één werkruimte
 
-Wissel tussen Recording en Cut list. Cues, takes, sterren en notes blijven dezelfde gegevens; een lopende take blijft lopen.
+Wissel tussen de opnameweergave en de partituur om je kniplijst te maken.
 
 **Promptonderdeel:**
 
@@ -147,7 +147,7 @@ Maak één werkruimte met Recording en Cut list als twee weergaven van dezelfde 
 
 ### 17. De partituur bij deze cue
 
-Kies een cue en zie de bijbehorende scorepagina’s rechts. De bestaande maatvakken worden gebruikt; dit is geen algemene PDF-herkenning.
+Kies een cue en zie de bijbehorende partituur rechts.
 
 **Promptonderdeel:**
 
@@ -155,7 +155,7 @@ Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de pa
 
 ### 18. Een eigen scorelaag per take
 
-Wisselen van take toont zijn eigen notes en kniplijst. Een nieuwe take begint leeg, zonder de notes of selecties van de vorige over te nemen.
+Kies een take om zijn notes en kniplijst te zien. Een nieuwe take begint met een lege scorelaag.
 
 **Promptonderdeel:**
 
@@ -163,7 +163,7 @@ Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-
 
 ### 19. Bruikbare maten markeren
 
-⌘+linksklik of slepen voegt maten toe; ⌘+rechtsklik verwijdert ze. Link instruments staat standaard aan en kan uit voor aparte instrumenten.
+⌘+linksklik of slepen voegt maten toe. ⌘+rechtsklik verwijdert ze.
 
 **Promptonderdeel:**
 
@@ -171,7 +171,7 @@ Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of sl
 
 ### 20. Takes vergelijken op dezelfde score
 
-⌘+klik op takes om ze samen te bekijken. Andere selecties kunnen als lichte referentie zichtbaar blijven; de laatst gekozen take is bewerkbaar.
+⌘+klik op meerdere takes om hun selecties en notes samen op de score te zien.
 
 **Promptonderdeel:**
 
@@ -179,7 +179,7 @@ Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor v
 
 ### 21. Alle takes naast dezelfde maten
 
-De muzieknootknop wisselt tussen PDF en All takes. Het raster maakt zichtbaar welke maten per take bruikbaar zijn; klik een maat om naar de score te gaan.
+Bekijk de maatselecties van alle takes in één raster. Klik een maat om naar de score te gaan.
 
 **Promptonderdeel:**
 
@@ -187,7 +187,7 @@ Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde h
 
 ### 22. Instrumenten en referenties aan of uit
 
-Link instruments bepaalt of selecties alle instrumenten volgen. See other takes toont of verbergt de achtergrondreferenties; expliciete vergelijkingen blijven zichtbaar.
+Ketting: alle instrumenten samen selecteren. Oog: selecties van andere takes als referentie tonen.
 
 **Promptonderdeel:**
 
@@ -195,7 +195,7 @@ Behoud Link instruments en See other takes als compacte, benoemde instellingen b
 
 ### 23. Notes als tekst op de score
 
-Dubbelklik bij de maat en het instrument om een note te schrijven. Enter plaatst alleen de tekst; voor alle instrumenten staat die boven de bovenste balk.
+Dubbelklik voor een note bij een maat en instrument. Notes voor alle instrumenten staan bovenaan.
 
 **Promptonderdeel:**
 
@@ -203,7 +203,7 @@ Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maa
 
 ### 24. Terugvinden, aanpassen en verplaatsen
 
-Klik links op de note om naar zijn plek te gaan. De iconen bewerken of verwijderen; sleep de tekst op de score om de plek te corrigeren.
+Klik op een note om naar zijn plek te gaan. Sleep de tekst op de score om hem te verplaatsen.
 
 **Promptonderdeel:**
 
@@ -211,7 +211,7 @@ Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst
 
 ### 25. Scorebewerkingen ongedaan maken
 
-⌘ Z herstelt de laatste selectie- of note-actie; ⌘ Shift Z voert die opnieuw uit. Tijdens typen blijft normale tekst-undo werken.
+⌘ Z maakt de laatste bewerking ongedaan. ⌘ Shift Z voert hem opnieuw uit.
 
 **Promptonderdeel:**
 

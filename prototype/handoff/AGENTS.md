@@ -5,6 +5,7 @@
 - Alle daadwerkelijke GUI-tekst is Engels, inclusief hints, toegankelijkheidslabels en meldingen. Vragen, prompts en toelichting buiten de demo mogen Nederlands blijven. Vertaal geen oorspronkelijke cue-/projectnamen of zelf getypte notes.
 - Bewerk bronbestanden onder `prototype/src/`; `prototype/dist/` wordt gegenereerd. Bouw na wijzigingen met `python3 -X utf8 prototype/build.py` vanuit deze map.
 - `build.py`, `score_fixture.py`, `production_score.py` en `score_overview.py` gebruiken alleen de Python-standaardbibliotheek. Alle benodigde score-assets zitten in `prototype/src/score-assets/`. Externe projecten en originele scoreboeken zijn geen buildvereiste.
+- Houd de rondleiding kort: alleen wat een suggestie toevoegt en hoe je die probeert. Normale kwaliteitseisen en eigen bugfixes, zoals niet-verspringende knoppen, horen niet in de uitleg voor de collega. Technische details blijven in de implementatieprompt.
 - Behoud vaste posities voor sterren, Best en Alt. Een gekozen take mag geen verspringende knoppen of onverwacht groter wordende rijen veroorzaken.
 - Enter plaatst een note; Shift+Enter geeft een nieuwe regel. Spatie is gewone tekst. Op Mac start Command+Enter een nieuwe take als er geen loopt en stopt de lopende take als die er wel is, ook tijdens typen. Negeer key-repeat en IME-compositie; gewoon Enter plaatst een note. Stop hoort bij de opnamebediening, niet naast Add/Delete in de note-editor.
 - Geselecteerde take en lopende take zijn onafhankelijk. Een nieuwe take heeft eigen lege notes en kniplijstselectie.

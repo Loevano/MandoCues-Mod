@@ -30,7 +30,7 @@ function reviewDialog(id,title,body){
  return dialog;
 }
 function showProposalWelcome(){
- reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Probeer één opnameweergave en de kniplijst. In de rondleiding zie je per suggestie wat er verandert en kies je wat je aan je eigen Claude wilt meegeven.</p><p class="review-muted">Neem alleen mee wat jij handig vindt. Jouw programma en keuzes gaan voor.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
+ reviewDialog('proposal-welcome','Een voorstel van Floris',`<p>Bekijk de suggesties in de werkruimte. Vink uit wat je niet aan Claude wilt meegeven.</p><p class="review-muted">Neem alleen mee wat bij jouw programma past.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
 }
 function closeProposalTour(){
  proposalTourIndex=-1;tourTarget=null;
@@ -88,7 +88,7 @@ function tourChoiceRow(step){return `<label class="tour-summary-choice"><input t
 function openProposalPrompt(){
  closeProposalTour();
  const selected=proposalTourSteps.filter(step=>proposalTourSelection.has(step.id)),other=proposalTourSteps.filter(step=>!proposalTourSelection.has(step.id));
- reviewDialog('proposal-prompt','Jouw selectie voor Claude',`<p>Alleen de aangevinkte suggesties gaan mee. De bestaande teksten worden samengevoegd; er wordt niets opnieuw gegenereerd.</p><div class="tour-selected-list">${selected.length?selected.map(tourChoiceRow).join(''):'<p class="review-muted">Kies hieronder suggesties of start de rondleiding.</p>'}</div>${other.length?`<details class="tour-other-choices"><summary>Andere suggesties (${other.length})</summary>${other.map(tourChoiceRow).join('')}</details>`:''}<details class="tour-prompt-preview"><summary>Bekijk de prompt</summary><pre tabindex="0">${esc(selectedTourPrompt()||'Vink eerst een suggestie aan.')}</pre></details><footer><button type="button" data-tour-action="download" ${selected.length?'':'disabled'}>Download</button><button type="button" class="review-primary" data-tour-action="copy" ${selected.length?'':'disabled'}>Kopieer prompt</button></footer>`);
+ reviewDialog('proposal-prompt','Jouw selectie voor Claude',`<p>Alleen aangevinkte suggesties komen in de prompt.</p><div class="tour-selected-list">${selected.length?selected.map(tourChoiceRow).join(''):'<p class="review-muted">Kies hieronder suggesties of start de rondleiding.</p>'}</div>${other.length?`<details class="tour-other-choices"><summary>Andere suggesties (${other.length})</summary>${other.map(tourChoiceRow).join('')}</details>`:''}<details class="tour-prompt-preview"><summary>Bekijk de prompt</summary><pre tabindex="0">${esc(selectedTourPrompt()||'Vink eerst een suggestie aan.')}</pre></details><footer><button type="button" data-tour-action="download" ${selected.length?'':'disabled'}>Download</button><button type="button" class="review-primary" data-tour-action="copy" ${selected.length?'':'disabled'}>Kopieer prompt</button></footer>`);
 }
 function refreshPromptPreview(){
  const dialog=document.querySelector('#proposal-prompt');if(!dialog)return;
@@ -97,7 +97,7 @@ function refreshPromptPreview(){
 }
 function openProposalQuestions(){
  closeProposalTour();
- reviewDialog('proposal-questions','Nog een paar vragen',`<p class="review-muted">Deze vragen staan los van de implementatiekeuzes.</p><ul class="proposal-questions-list">${openQuestions().map(q=>`<li>${esc(q.title)}${q.text?' '+esc(q.text):''}</li>`).join('')}</ul><footer><button type="button" data-tour-action="close-dialog">Terug naar de werkruimte</button></footer>`);
+ reviewDialog('proposal-questions','Nog een paar vragen',`<ul class="proposal-questions-list">${openQuestions().map(q=>`<li>${esc(q.title)}${q.text?' '+esc(q.text):''}</li>`).join('')}</ul><footer><button type="button" data-tour-action="close-dialog">Terug naar de werkruimte</button></footer>`);
 }
 document.addEventListener('click',async event=>{
  const button=event.target.closest('[data-proposal-action],[data-tour-action]');if(!button)return;
