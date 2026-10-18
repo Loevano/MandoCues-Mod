@@ -24,6 +24,15 @@ with sync_playwright() as p:
     expect(page.locator('[data-proposal-elapsed]')).to_contain_text('42:')
     expect(page.locator('.calm-extra-times')).to_contain_text('5:20:00')
     page.locator('[data-calm-session] > summary').click()
+    # Cue selection remains visible in the list, separately from take selection.
+    for cue_id in [1,0]:
+        page.locator(f'.calm-cue-list [data-select-cue="{cue_id}"]').click()
+        expect(page.locator('.calm-cue-list .cue-group.current')).to_have_count(1)
+        heading=page.locator('.calm-cue-list .cue-group.current>.calm-cue-heading')
+        other=page.locator('.calm-cue-list .cue-group:not(.current)>.calm-cue-heading').first
+        assert heading.evaluate('(el)=>getComputedStyle(el).backgroundColor')!=other.evaluate('(el)=>getComputedStyle(el).backgroundColor')
+        assert heading.evaluate('(el)=>getComputedStyle(el).boxShadow')!='none'
+        expect(heading.locator('[data-select-cue]')).to_have_attribute('data-select-cue',str(cue_id))
     # A cue is the parent: its label is larger, with takes visibly to its right.
     for width in [390,1512]:
         page.set_viewport_size({'width':width,'height':1100})

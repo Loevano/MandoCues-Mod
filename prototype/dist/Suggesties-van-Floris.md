@@ -31,7 +31,7 @@ Klik verschillende cues. Het opnamepaneel en de takes wisselen mee.
 
 **Promptonderdeel:**
 
-Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te hoeven gebruiken. Houd cuekeuze los van het pijltje om takes in te klappen. Bewaar concepten en blokkeer cuewisseling zolang een take loopt met een duidelijke melding. Stop of verplaats een take niet impliciet.
+Laat een klik op cuenummer of titel direct die cue kiezen, zonder Go to cue te hoeven gebruiken. Houd cuekeuze los van het pijltje om takes in te klappen. Bewaar concepten en blokkeer cuewisseling zolang een take loopt met een duidelijke melding. Stop of verplaats een take niet impliciet. Markeer alleen de gekozen cue duidelijk in de lijst: kleur de volledige cuekop en toon links een lichte accentlijn. Laat de markering meewisselen met de cuekeuze, ook tijdens de rondleiding. Houd de afzonderlijke take-selectie herkenbaar.
 
 ### 3. Takes herkenbaar onder hun cue
 

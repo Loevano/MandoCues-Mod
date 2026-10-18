@@ -29,6 +29,11 @@ with sync_playwright() as p:
             expect(page.locator('#main-panel .main-cue')).to_contain_text('1M18')
             expect(page.locator('.calm-notes > header')).to_contain_text('1M18')
             expect(page.locator('.calm-cue-list [data-select-cue="1"]')).to_have_attribute('aria-current','true')
+            heading=page.locator('.calm-cue-list .cue-group.current>.calm-cue-heading')
+            other=page.locator('.calm-cue-list .cue-group:not(.current)>.calm-cue-heading').first
+            assert heading.evaluate('(el)=>getComputedStyle(el).backgroundColor')!=other.evaluate('(el)=>getComputedStyle(el).backgroundColor')
+            assert heading.evaluate('(el)=>getComputedStyle(el).boxShadow')!='none'
+            page.screenshot(path=str(ROOT/'checks/selected-cue-tour.png'))
             expect(page.locator('[data-tour-choice="cue-aanklikken"]')).not_to_be_checked()
             page.locator('.calm-cue-list [data-select-cue="0"]').click()
             expect(page.locator('#main-panel .main-cue')).to_contain_text('1M02')

@@ -393,3 +393,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Take-regels rechts van de cue inspringen, zodat ze duidelijk bij die cue horen.
 - De huidige takegrootte behouden; cuenummers minstens even prominent maken.
 - De bestaande inklapbare lijst behouden, met een subtiele verticale lijn voor de onderliggende takes.
+
+
+## 41. Geselecteerde cue duidelijker markeren
+
+- De gekozen cue moet ook in de lijst direct herkenbaar zijn, naast de bestaande markering in het opnamepaneel en de timeline.
+- Geef de volledige cuekop een gekleurde achtergrond en een lichte accentlijn links; laat die meewisselen bij cuekeuze.
+- Behoud het onderscheid tussen de gekozen cue en de geselecteerde take, ook in de rondleiding.
