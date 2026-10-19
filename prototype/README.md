@@ -1,6 +1,6 @@
 # MandoCues · één voorstel
 
-Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. A/B vergelijkt alleen de indeling van het hoofdpaneel; beide gebruiken dezelfde takes, notes en opnamebediening.
+Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. A toont de invulvelden bovenaan; B plaatst ze in Planning naast de titel. B is voorlopig gekozen; beide gebruiken dezelfde takes, notes en opnamebediening.
 
 ## Bouwen
 
@@ -13,7 +13,7 @@ python3 -X utf8 check_handoff.py
 
 Op Windows: vervang python3 door py -3. Alle benodigde scorebeelden en mappings zitten in `src/score-assets/`; de oorspronkelijke boeken zijn geen buildvereiste.
 
-De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 25 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
+De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 24 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
 
 ## Browsercontroles
 
@@ -27,6 +27,8 @@ python -X utf8 check_proposal_tour.py
 python -X utf8 check_recording_shortcut.py
 python -X utf8 check_main_panel.py
 python -X utf8 check_panel_options.py
+python -X utf8 check_planning_sessions.py
+python -X utf8 check_fresh_timing.py
 python -X utf8 check_auto_plan.py
 python -X utf8 check_take_labels.py
 python -X utf8 check_take_delete.py

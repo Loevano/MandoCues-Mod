@@ -4,7 +4,7 @@ Bron: de door Floris op 17 oktober aangeleverde gerenderde inspectie-HTML. Dit i
 
 | Onderdeel | Bestaand scherm | Huidig voorstel |
 | --- | --- | --- |
-| Sessiesettings | Session length, Prep per cue, Max music | Behouden; compact bij de sessiebediening |
+| Sessiesettings | Session length, Prep per cue, Max music | Behouden; in Planning, of in variant A bovenaan |
 | Cuegegevens | Muziekduur, Complexity, Planned, Actual, aftekenen | Behouden; aftekenen blijft onafhankelijk van selectie/opname |
 | Sessietijdlijn | Blokken op geplande cuetijd | Behouden; volledige cuecodes en direct kiezen |
 | Takes / overdubs | Afzonderlijke nummers, labels, verwijderen | Behouden; labels en verwijderen weer actief in beide weergaven |
@@ -13,7 +13,7 @@ Bron: de door Floris op 17 oktober aangeleverde gerenderde inspectie-HTML. Dit i
 | Notes | Take-notes en cue-notes | Beide aanwezig; eigen take-notes en partituurlaag |
 | Beoordeling | Good / Hold / NG / Best | Bewust voorstel: sterren, Best en Alt |
 | Start/stoptoets | Zichtbare uitleg noemt Space | Bewust voorstel: Command+Enter, zodat spatie tekst blijft |
-| Klokken | Kloktijd, werktijd, resterend, geplande/verwachte eindtijd | Kloktijd groot; afwijking eronder. Expected end bewust verborgen op verzoek van Floris; berekening intern behouden |
+| Klokken | Kloktijd, werktijd, resterend, geplande/verwachte eindtijd | Kloktijd in AM/PM plus gekleurd planningsvlak in beeld; secundaire tijden onder Planning, inclusief geprojecteerde eindtijd |
 | Note-tijd | Geen betrouwbare DAW-koppeling uit HTML te bewijzen | Werkelijke kloktijd met datum, vanaf eerste letter; geen relatieve note-tijdcode. Nog geen DAW-sync |
 | Add cues / Chat / PDF | Zichtbaar aanwezig | Lokale demonstraties aanwezig; geen nagebouwde serverintegratie |
 
@@ -26,4 +26,4 @@ Bron: de door Floris op 17 oktober aangeleverde gerenderde inspectie-HTML. Dit i
 
 ## Wat nog een keuze is
 
-Floris vergelijkt twee indelingen van hetzelfde hoofdpaneel: A met cue/take links en klok midden; B met klok boven cue/take. Beide hebben compacte sessiegegevens rechts en delen dezelfde state. De definitieve indeling is nog niet gekozen.
+Floris vergelijkt zichtbare invulvelden bovenaan (A) met invulvelden en extra tijden in Planning (B), bij dezelfde oorspronkelijke hoofdindeling. Voorlopig is B gekozen. De eerdere klok-midden/-boven-varianten zijn ingetrokken. Nieuwe werktijden beginnen op nul; de oude 42-/8-minutenvoorbeeld-offsets zijn verwijderd. De expliciete tweede dag is een lokale voorbeeldsessie met gescheiden data, geen bewezen koppeling met echte opnamedagen.
