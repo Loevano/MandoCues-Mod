@@ -57,7 +57,7 @@ doc='# MandoCues · voorstel van Floris\n\nEén werkruimte met Recording en Comp
 doc+=questions_doc+'\n## De rondleiding\n\nDe onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevinkt. Er wordt geen nieuwe prompt gegenereerd.\n\n'
 for index,step in enumerate(steps,1):
     prompt=tour_prompt(step)
-    detail=step.get('details')
+    detail=step.get('details') or step.get('inlineHelp')
     extra=f"**{detail['title']}**\n\n{detail['text']}\n\n" if detail else ''
     doc+=f"### {index}. {step['title']}\n\n{step['text']}\n\n{extra}**Promptonderdeel:**\n\n{prompt}\n\n"
 doc+='## Gedeelde promptinleiding\n\n'+tour['promptIntro']+'\n## Gedeelde afsluiting\n\n'+tour['promptClosing'].strip()+'\n'

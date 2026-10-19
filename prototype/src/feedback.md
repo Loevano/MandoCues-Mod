@@ -841,3 +841,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 98. Korte bevestiging van sessiestart
 
 - Toon Session started! via de bestaande tijdelijke melding na Start session, zowel met klikken als ⌘ Enter, in beide weergaven. Bij heropenen Session reopened!; niet opnieuw melden bij elke takestart. Geen extra rondleidingsstap.
+
+
+## 99. Sneltoetsen bij suggestie 3 direct zichtbaar
+
+- Toon de sneltoetsen bij Cues en takes direct kiezen permanent als gewone tekst, zonder uitklapknop. De overige stappen en optionele uitleg blijven hetzelfde.

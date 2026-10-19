@@ -102,7 +102,7 @@ De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done 
 
 - Start session heeft een blauwe knop, onderscheiden van Record in rood. De eerste rondleidingsstap laat alleen de ⌘ Enter-hint drie keer kort knipperen; niet bij verminderde beweging, na sessiestart of buiten die stap.
 
-- De losse tijdlijnsuggestie is verwijderd; de tijdlijn blijft werken. Bij direct cue kiezen staan ook de basis-sneltoetsen voor cues/takes. Uitklapbare details bij cuekeuze bevatten alle sneltoetsen, inclusief tweecijferige takekeuze met ⌥ + ⌘ vasthouden. Er is geen losse sneltoetsstap.
+- De losse tijdlijnsuggestie is verwijderd; de tijdlijn blijft werken. Bij direct cue kiezen staan ook de basis-sneltoetsen voor cues/takes. Bij cuekeuze staan alle sneltoetsen direct zichtbaar, inclusief tweecijferige takekeuze met ⌥ + ⌘ vasthouden; dit is niet inklapbaar. Er is geen losse sneltoetsstap.
 
 - De rondleiding is gebundeld in tien stappen: starten, planning, cues/takes, take-notes/Quick notes, maat/kloktijd, sterren/Best/Alt, Comp tool/zoom, maatselectie, score-notes/bewerken en vergelijken/overzicht. Pro Tools staat kort onder optionele uitleg bij kloktijd. De appfuncties blijven behouden. Iedere groep bevat de oorspronkelijke promptonderdelen met vaste IDs; eerder uitgezette onderdelen blijven uitgesloten. Een gedeeltelijke selectie verschijnt als gemengd vinkje; opnieuw aanvinken kiest de hele groep. Tellers en overzicht tellen tien groepen, niet de onderliggende onderdelen.
 - De maat-/kloktijdhighlight richt zich eerst op de conceptbediening, ook bij een lege nieuwe take. Een ontbrekend doel mag nooit terugvallen op de Recording/Comp tool-schakelaar.

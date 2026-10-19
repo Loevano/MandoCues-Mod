@@ -38,10 +38,11 @@ with sync_playwright() as p:
                 page.locator(f'.calm-cue-list [data-select-cue="{cue}"]').click()
                 expect(page.locator('#main-panel .main-cue')).to_contain_text('1M18' if cue else '1M02')
                 expect(page.locator('.calm-notes > header')).to_contain_text('1M18' if cue else '1M02')
-            page.locator('.tour-extra summary').click()
-            expect(page.locator('.tour-extra')).to_contain_text('⌥[ en ⌥]')
-            expect(page.locator('.tour-extra')).to_contain_text('⌥1 t/m ⌥9')
-            expect(page.locator('.tour-extra')).to_contain_text('Houd ⌥ + ⌘ vast')
+            expect(page.locator('.tour-shortcuts')).to_be_visible()
+            expect(page.locator('.tour-shortcuts summary')).to_have_count(0)
+            expect(page.locator('.tour-shortcuts')).to_contain_text('⌥[ en ⌥]')
+            expect(page.locator('.tour-shortcuts')).to_contain_text('⌥1 t/m ⌥9')
+            expect(page.locator('.tour-shortcuts')).to_contain_text('Houd ⌥ + ⌘ vast')
         if step['id']=='noteplek':
             for take in [1,2]:
                 page.locator(f'.calm-cue-list [data-select-take="c0-t{take}"]').click()
@@ -143,7 +144,7 @@ with sync_playwright() as p:
         open_step(step['id']);page.wait_for_timeout(70)
         expect(page.locator('.proposal-tour-highlight')).to_be_visible()
         assert page.evaluate('tourTarget.matches(proposalTourSteps[proposalTourIndex].target)')
-        if page.locator('.tour-extra').count():
+        if page.locator('details.tour-extra').count():
             page.locator('.tour-extra summary').click();page.wait_for_timeout(70)
         r=page.locator('.proposal-tour-card').bounding_box()
         assert r['x']>=0 and r['y']>=0 and r['x']+r['width']<=390 and r['y']+r['height']<=844,(step,r)

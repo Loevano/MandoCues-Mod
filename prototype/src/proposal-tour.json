@@ -42,10 +42,6 @@
       "text": "Voorstel: cues direct kiezen, met hun takes eronder. Klik een cue of take om te proberen.",
       "target": ".calm-cue-list",
       "view": "recording",
-      "details": {
-        "title": "Sneltoetsen",
-        "text": "[ en ] wisselen cues. ⌥[ en ⌥] wisselen takes; ⌥1 t/m ⌥9 kiest een take. Houd ⌥ + ⌘ vast en typ twee cijfers voor bijvoorbeeld Take 12."
-      },
       "parts": [
         {
           "id": "cue-aanklikken",
@@ -62,7 +58,11 @@
           "title": "Een take met twee cijfers kiezen",
           "discussion": "cue-sneltoetsen"
         }
-      ]
+      ],
+      "inlineHelp": {
+        "title": "Sneltoetsen",
+        "text": "[ en ] wisselen cues. ⌥[ en ⌥] wisselen takes; ⌥1 t/m ⌥9 kiest een take. Houd ⌥ + ⌘ vast en typ twee cijfers voor bijvoorbeeld Take 12."
+      }
     },
     {
       "id": "noteplek",
