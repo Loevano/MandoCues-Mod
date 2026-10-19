@@ -891,4 +891,8 @@ body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hin
 .proposal-tour-card .tour-schedule-examples strong{font:650 18px/1.2 var(--mono);letter-spacing:-.5px}
 .proposal-tour-card .tour-schedule-examples small{font-size:10px;line-height:1.2}
 
-.proposal-tour-card .tour-shortcut{font-weight:750;color:#9dd8ff;white-space:nowrap}
+.unified-proposal kbd{font-weight:750;color:#9dd8ff;opacity:1;white-space:nowrap}
+.unified-proposal .keyboard-shortcut{font:inherit;font-weight:750;color:#9dd8ff;white-space:nowrap;background:none;border:0;padding:0;margin:0}
+.unified-proposal .record kbd,.unified-proposal .dock-stop kbd{color:#e0f2ff;font-weight:750;opacity:1}
+.unified-proposal .record.stop kbd,.unified-proposal .dock-stop kbd{color:#17558d}
+.unified-proposal .proposal-cue-switcher kbd{color:#9dd8ff;font-weight:750}

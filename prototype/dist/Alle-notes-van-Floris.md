@@ -879,3 +879,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 105. Pro Tools-uitleg terug naar één zin
 
 - Korte zichtbare suggestie: later automatisch koppelen via de kloktijd van notes en echte opnametijden. Technische uitwerking blijft in de Claude-prompt en Pro-Tools-takekoppeling.md.
+
+
+## 106. Alle sneltoetsen dezelfde nadruk
+
+- Pas vetgedrukt en blauw overal toe: tutorialtitels en -teksten, uitklapbare uitleg, promptvoorvertoning en bestaande zichtbare toetsenbordhints bij opname, cuekeuze, notes en scorevergelijking.
+- Gebruik één opmaakfunctie voor eigen uitleg; eigen notes, cue-/projectnamen en invoervelden worden niet herschreven. Op lichte stopknoppen is het blauw donkerder voor leesbaarheid.

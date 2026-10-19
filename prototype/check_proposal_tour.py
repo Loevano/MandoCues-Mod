@@ -33,6 +33,18 @@ with sync_playwright() as p:
         assert page.evaluate('proposalView')==step['view']
         expect(page.locator('[data-tour-choice]')).to_be_checked()
         page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
+        shortcut_examples={
+            'opnametoets':['Spatie','⌘ Enter'],
+            'cue-aanklikken':['[',']','⌥[','⌥]','⌥1','⌥9','⌥ + ⌘'],
+            'maat-aanpassen':['Enter'],
+            'score-selecteren':['⌘+slepen','⌘+rechtsklik','⌘⌥+slepen'],
+            'score-vergelijk':['⌘+klik','Shift+klik'],
+        }
+        if step['id'] in shortcut_examples:
+            keys=page.locator('.proposal-tour-card .keyboard-shortcut')
+            rendered=keys.all_text_contents()
+            assert all(key in rendered for key in shortcut_examples[step['id']]),(step,rendered)
+            assert keys.evaluate_all('(els)=>els.every(el=>Number(getComputedStyle(el).fontWeight)>=700&&getComputedStyle(el).color==="rgb(157, 216, 255)")')
         if step['id']=='planning':
             examples=page.locator('.tour-schedule-examples .main-plan-card')
             expect(examples).to_have_count(3)

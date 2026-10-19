@@ -84,3 +84,5 @@ De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done 
 - De maat-/kloktijdhighlight richt zich eerst op de conceptbediening, ook bij een lege nieuwe take. Een ontbrekend doel mag nooit terugvallen op de Recording/Comp tool-schakelaar.
 
 - De zichtbare Pro Tools-uitleg draait om notes via hun kloktijd aan de juiste engineer-opname koppelen, eventueel met AI. Session Info as Text levert clip-/projecttijden; echte opnametijden moeten aanvullend uit gecontroleerde metadata of een engineerlog komen. Dit is een toekomstvoorstel, geen gebouwde import of AI-koppeling.
+
+- Alle zichtbare sneltoetsen in tutorialtitels, uitleg, promptvoorvertoning en bestaande GUI-hints zijn vet en blauw. Gebruik de gedeelde shortcutText-opmaak voor eigen uitleg; laat eigen notes en cue-/projectnamen ongemoeid. Lichte stopknoppen gebruiken donkerblauw voor contrast.

@@ -44,3 +44,5 @@
 
 - De rondleiding is gebundeld in tien stappen: starten, planning, cues/takes, take-notes/Quick notes, maat/kloktijd, sterren/Best/Alt, Comp tool/zoom, maatselectie, score-notes/bewerken en vergelijken/overzicht. Pro Tools staat direct zichtbaar bij kloktijd, zonder uitklappen. De appfuncties blijven behouden. Iedere groep bevat de oorspronkelijke promptonderdelen met vaste IDs; eerder uitgezette onderdelen blijven uitgesloten. Een gedeeltelijke selectie verschijnt als gemengd vinkje; opnieuw aanvinken kiest de hele groep. Tellers en overzicht tellen tien groepen, niet de onderliggende onderdelen.
 - De maat-/kloktijdhighlight richt zich eerst op de conceptbediening, ook bij een lege nieuwe take. Een ontbrekend doel mag nooit terugvallen op de Recording/Comp tool-schakelaar.
+
+- Alle zichtbare sneltoetsen in tutorialtitels, uitleg, promptvoorvertoning en bestaande GUI-hints zijn vet en blauw. Gebruik de gedeelde shortcutText-opmaak voor eigen uitleg; laat eigen notes en cue-/projectnamen ongemoeid. Lichte stopknoppen gebruiken donkerblauw voor contrast.
