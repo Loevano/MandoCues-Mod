@@ -697,3 +697,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Geen apart Session details-vak: instellingen en overige sessietijden compact bij elkaar.
 - Planned gebruikt een zwevende scrolllijst met minuten en directe invoer via Enter, ook in de cuelijst.
 - De Alt-knop is smaller en behoudt een vaste breedte.
+
+
+## 81. Kloktijd bij notes
+
+- Geen relatieve take-, sessie- of projecttijdcodes meer bij notes.
+- Gebruik de echte kloktijd in 24-uursnotatie, met datum als UTC-instant bewaard voor latere synchronisatie.
+- Vastleggen bij de eerste letter. Ook na het wissen van alle tekst blijft die kloktijd staan; alleen het klokje zet hem op nu. Enter maakt na plaatsen een nieuw concept klaar.
+- Klikken en Enter past de tijd aan; het klokje vult de actuele kloktijd in. De maat blijft handmatig.
+- De demo bevat geen koppeling met Pro Tools of andere DAW.

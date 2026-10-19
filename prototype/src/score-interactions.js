@@ -117,7 +117,7 @@ function scoreSidebar(s,{workflow=false}={}){
 function openScoreComment(s,measure,anchor,page,instruments,existing=null){
  const t=takeById(s,s.selected);if(!t){toast('Create a take before adding a note.');return;}
  s.cutlistView='score';s.focusedScoreNote=existing?.id||null;
- s.scoreComment={take:t.id,source:s.doc.id,page,measure:measure||'',text:existing?.text||'',at:existing?.at??position(t),anchor:{...anchor},instruments:[...instruments],placement:existing?.placement||'auto',editId:existing?.id||null};
+ s.scoreComment={take:t.id,source:s.doc.id,page,measure:measure||'',text:existing?.text||'',clockAt:existing?.clockAt??null,at:existing?.at??position(t),anchor:{...anchor},instruments:[...instruments],placement:existing?.placement||'auto',editId:existing?.id||null};
  s.page=page;s.measure=measure||null;s.scoreFocus={page,measure,instruments};renderDemo();
 }
 function scoreCommentDialog(s,page){
@@ -133,7 +133,7 @@ function saveScoreComment(s){
  if(c.measure!==''&&(!Number.isInteger(+c.measure)||+c.measure<1||+c.measure>99999)){toast('Enter a valid bar number.');return;}
  if(!c.instruments.length){toast('Choose an instrument or All.');return;}
  rememberScoreChange(s,t);
- const n={id:c.editId||'note-'+(++s.noteSerial),text:c.text.trim(),useTime:true,at:c.at,originalAt:t.notes.find(n=>n.id===c.editId)?.originalAt??t.notes.find(n=>n.id===c.editId)?.at??c.at,measure:c.measure===''?null:+c.measure,useMeasure:c.measure!=='',page:c.page,source:c.source,anchor:{...c.anchor},placement:c.placement,instruments:[...c.instruments]};
+ const n={id:c.editId||'note-'+(++s.noteSerial),text:c.text.trim(),clockAt:c.clockAt??Date.now(),createdAt:t.notes.find(n=>n.id===c.editId)?.createdAt??Date.now(),useTime:true,at:c.at,originalAt:t.notes.find(n=>n.id===c.editId)?.originalAt??t.notes.find(n=>n.id===c.editId)?.at??c.at,measure:c.measure===''?null:+c.measure,useMeasure:c.measure!=='',page:c.page,source:c.source,anchor:{...c.anchor},placement:c.placement,instruments:[...c.instruments]};
  syncSavedScorePage(n);if(c.editId)t.notes[t.notes.findIndex(n=>n.id===c.editId)]=n;else t.notes.push(n);
  if(t.scoreCommentDrafts)delete t.scoreCommentDrafts[s.doc.id];s.scoreComment=null;s.focusedScoreNote=n.id;renderDemo();
 }
@@ -218,7 +218,7 @@ document.addEventListener('click',scoreNoteEvent);
 document.addEventListener('dblclick',scoreNoteEvent);
 document.addEventListener('input',e=>{
  if(active?.id!=='partituur'||!state().scoreComment)return;const c=state().scoreComment;
- if(e.target.id==='score-comment-text')c.text=e.target.value;
+ if(e.target.id==='score-comment-text'){c.text=e.target.value;if(c.text.trim()&&c.clockAt===null)c.clockAt=Date.now();}
  if(e.target.id==='score-comment-measure'){const before=+c.measure;c.measure=e.target.value;const from=scoreCells(state(),c.page).find(r=>r.measure===before&&r.instrument===c.instruments[0]),loc=scoreLocation(c.source,c.measure);if(loc){const to=scoreCells(state(),loc.page).find(r=>r.measure===+c.measure&&r.instrument===c.instruments[0]);if(from&&to)c.anchor={x:to.x+Math.min(to.width*.8,Math.max(0,c.anchor.x-from.x)),y:to.y+Math.min(to.height*.8,Math.max(0,c.anchor.y-from.y))};c.page=loc.page;}}
 });
 document.addEventListener('keydown',e=>{

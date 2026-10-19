@@ -1,4 +1,4 @@
-"""Direct note metadata editing keeps the original timestamp and correct take scope."""
+"""Direct note metadata editing keeps the creation date and correct take scope."""
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from browser_support import launch_chromium
@@ -8,6 +8,8 @@ with sync_playwright() as p:
     page=browser.new_page(viewport={'width':1512,'height':1100})
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
     page.clock.install()
+    def clock_at(hours,minutes,seconds=0):
+        return page.evaluate('([h,m,s])=>{const d=new Date();d.setHours(h,m,s,0);return d.getTime()}',[hours,minutes,seconds])
     page.goto((ROOT/'dist/index.html').as_uri())
     page.locator('[data-tour-action="welcome-skip"]').click()
     page.keyboard.press('Meta+Enter');page.keyboard.press('Meta+Enter')
@@ -17,13 +19,16 @@ with sync_playwright() as p:
     take=page.evaluate('running(state()).id')
     page.clock.run_for(2200)
     field=page.locator(f'[data-draft="{take}"]');field.fill('Frozen at first key')
-    original=page.evaluate('takeById(state(),state().selected).draft.at')
+    original=page.evaluate('takeById(state(),state().selected).draft.clockAt')
+    field.fill('');page.clock.run_for(2000)
+    assert page.evaluate('takeById(state(),state().selected).draft.clockAt')==original
+    field.fill('Frozen at first key')
     page.clock.run_for(3500)
     field.press('Enter')
     note_id=page.evaluate('takeById(state(),state().selected).notes.at(-1).id')
     def saved():
         return page.evaluate('([take,id])=>takeById(state(),take).notes.find(n=>n.id===id)',[take,note_id])
-    assert saved()['at']==saved()['originalAt']==original
+    assert saved()['clockAt']==original and saved()['createdAt']>=original
     row=page.locator(f'[data-note-id="{note_id}"][role="listitem"]')
     expect(row.locator('.note-adjust')).to_have_count(0)
     expect(row.locator('[data-delete-note]')).to_have_count(1)
@@ -51,16 +56,16 @@ with sync_playwright() as p:
     assert saved()['measure'] is None and saved()['measureScope']=='all'
     expect(row.locator('.measure-picker > summary')).to_contain_text('All')
     choose_bar(18)
-    assert saved()['measure']==18 and saved()['at']==original
+    assert saved()['measure']==18 and saved()['clockAt']==original
     stamp=row.locator('[data-note-time-edit]')
     stamp.click();stamp.fill('00:45');stamp.press('Escape')
-    assert saved()['at']==original
+    assert saved()['clockAt']==original
     stamp.click();stamp.fill('00:45');stamp.press('Enter')
-    assert saved()['at']==45 and saved()['originalAt']==original
+    assert saved()['clockAt']==clock_at(0,45) and saved()['createdAt']>=original
     expect(stamp).to_have_attribute('readonly','')
-    current=page.evaluate('(take)=>position(takeById(state(),take))',take)
+    current=page.evaluate('Date.now()')
     row.locator('[data-reset-note-time]').click()
-    assert saved()['at']==current and saved()['originalAt']==original and current>original
+    assert abs(saved()['clockAt']-current)<1000 and saved()['createdAt']>=original and current>original
     page.keyboard.press('Meta+Enter')
     page.locator('[data-proposal-view="cutlist"]').click()
     row=page.locator(f'.score-note-row[data-note-id="{note_id}"]')
@@ -72,18 +77,18 @@ with sync_playwright() as p:
     assert saved()['page'] is not None
     stamp=row.locator('[data-note-time-edit]')
     stamp.click();stamp.fill('01:02:03');stamp.press('Enter')
-    assert saved()['at']==3723 and saved()['originalAt']==original
-    expect(stamp).to_have_value('1:02:03')
-    current=page.evaluate('(take)=>position(takeById(state(),take))',take)
+    assert saved()['clockAt']==clock_at(1,2,3) and saved()['createdAt']>=original
+    expect(stamp).to_have_value('01:02:03')
+    current=page.evaluate('Date.now()')
     row.locator('[data-reset-note-time]').click()
-    assert saved()['at']==current and saved()['originalAt']==original
-    page.locator('[data-score-undo]').click();assert saved()['at']==3723
-    page.locator('[data-score-redo]').click();assert saved()['at']==current
+    assert abs(saved()['clockAt']-current)<1000 and saved()['createdAt']>=original
+    page.locator('[data-score-undo]').click();assert saved()['clockAt']==clock_at(1,2,3)
+    page.locator('[data-score-redo]').click();assert abs(saved()['clockAt']-current)<1000
     # Editing the score text must not replace the original captured time.
     page.locator('.score-text-annotation').filter(has_text='Frozen at first key').click()
     page.locator('#score-comment-text').fill('The same note, corrected')
     page.locator('#score-comment-text').press('Enter')
-    assert saved()['originalAt']==original and saved()['at']==current
+    assert saved()['createdAt']>=original and abs(saved()['clockAt']-current)<1000
     for width in [390,1512]:
         page.set_viewport_size({'width':width,'height':844})
         picker=page.locator(f'[data-measure-menu="{note_id}"]')
@@ -99,4 +104,4 @@ with sync_playwright() as p:
     assert saved() is None
     assert not errors,errors
     browser.close()
-print('PASS: scrollable full bar list, All take scope, direct typing/Enter, inline time edits, current-take time refresh, history, text editing and mobile popup bounds')
+print('PASS: scrollable full bar list, All take scope, direct typing/Enter, inline time edits, current wall-clock refresh, history, text editing and mobile popup bounds')
