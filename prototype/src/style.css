@@ -873,3 +873,13 @@ body.take-is-recording .proposal-demo-label{visibility:hidden}
 body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hint .7s ease-in-out 3}
 @keyframes tour-start-hint{0%,100%{opacity:1;box-shadow:0 0 0 0 transparent}50%{opacity:.45;box-shadow:0 0 0 4px #cce0ff66}}
 @media(prefers-reduced-motion:reduce){body.tour-start-shortcut #main-panel .session-start kbd{animation:none}}
+
+.tour-extra{color:#cdbcdc;font-size:11px;margin:0 0 14px}
+.tour-extra summary{cursor:pointer;padding:2px 0}
+.proposal-tour-card .tour-extra p{margin:8px 0 0;font-size:11px}
+
+/* Keep the score readable while trying notes and comparing takes. */
+.tour-score .proposal-tour-highlight{box-shadow:none}
+.tour-score-selection .proposal-tour-highlight,.tour-score-notes .proposal-tour-highlight{border-color:transparent}
+.tour-score-selection .score-take-picker,.tour-score-selection .score-canvas,
+.tour-score-notes .cutlist-notes-list,.tour-score-notes .score-canvas{outline:2px solid #d6b7f0;outline-offset:3px}

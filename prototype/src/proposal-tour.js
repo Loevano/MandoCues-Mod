@@ -1,7 +1,8 @@
 // The tour only selects existing, static prompt sections; it never generates text.
 const proposalTourConfig=JSON.parse(document.querySelector('#proposal-tour-source').textContent);
 const proposalTourSteps=proposalTourConfig.steps;
-const proposalTourSelection=new Set(proposalTourSteps.map(step=>step.id));
+const proposalTourParts=proposalTourSteps.flatMap(step=>step.parts);
+const proposalTourSelection=new Set(proposalTourParts.map(part=>part.id));
 // Store explicit opt-outs; an older partial selection must not turn defaults off.
 const proposalTourStorageKey='mandocues-proposal-tour-v2';
 try{
@@ -13,14 +14,22 @@ function stopTourShortcutHint(){
  clearTimeout(tourShortcutTimer);document.body.classList.remove('tour-start-shortcut');
 }
 const tourPromptIntro=proposalTourConfig.promptIntro;
-function tourPromptFor(step){return step.discussion?discussion.find(item=>item.id===step.discussion).text:step.prompt;}
+function tourStepSelected(step){return step.parts.some(part=>proposalTourSelection.has(part.id));}
+function tourPromptFor(step,selectedOnly=false){return step.parts.filter(part=>!selectedOnly||proposalTourSelection.has(part.id)).map(part=>part.discussion?discussion.find(item=>item.id===part.discussion).text:part.prompt).join('\n\n');}
+function syncTourChoices(){
+ for(const checkbox of document.querySelectorAll('[data-tour-choice]')){
+  const step=proposalTourSteps.find(step=>step.id===checkbox.dataset.tourChoice);
+  const count=step.parts.filter(part=>proposalTourSelection.has(part.id)).length;
+  checkbox.checked=count>0;checkbox.indeterminate=count>0&&count<step.parts.length;
+ }
+}
 function selectedTourPrompt(){
- const selected=proposalTourSteps.filter(step=>proposalTourSelection.has(step.id));
- return selected.length?tourPromptIntro+selected.map((step,index)=>`## ${index+1}. ${step.title}\n\n${tourPromptFor(step)}`).join('\n\n---\n\n')+proposalTourConfig.promptClosing:'';
+ const selected=proposalTourSteps.filter(tourStepSelected);
+ return selected.length?tourPromptIntro+selected.map((step,index)=>`## ${index+1}. ${step.title}\n\n${tourPromptFor(step,true)}`).join('\n\n---\n\n')+proposalTourConfig.promptClosing:'';
 }
 function persistTourSelection(){
- try{localStorage.setItem(proposalTourStorageKey,JSON.stringify({excluded:proposalTourSteps.filter(step=>!proposalTourSelection.has(step.id)).map(step=>step.id)}));}catch{}
- document.querySelectorAll('[data-proposal-selection-count]').forEach(el=>el.textContent=proposalTourSelection.size);
+ try{localStorage.setItem(proposalTourStorageKey,JSON.stringify({excluded:proposalTourParts.filter(part=>!proposalTourSelection.has(part.id)).map(part=>part.id)}));}catch{}
+ document.querySelectorAll('[data-proposal-selection-count]').forEach(el=>el.textContent=proposalTourSteps.filter(tourStepSelected).length);
 }
 function reviewDialog(id,title,body){
  document.querySelector('#'+id)?.remove();
@@ -35,7 +44,7 @@ function showProposalWelcome(){
 }
 function closeProposalTour(){
  stopTourShortcutHint();
- proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes','tour-note-metadata');
+ proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes','tour-note-metadata','tour-score','tour-score-selection','tour-score-notes');
  document.querySelector('.proposal-tour-card')?.remove();document.querySelector('.proposal-tour-highlight')?.remove();
  document.querySelector('[data-proposal-action="tour"]')?.focus({preventScroll:true});
 }
@@ -46,10 +55,15 @@ function openTourStep(index){
  document.body.classList.toggle('tour-cue-selection',step.id==='cue-aanklikken');
  document.body.classList.toggle('tour-take-notes',step.id==='noteplek');
  document.body.classList.toggle('tour-note-metadata',step.id==='maat-aanpassen');
+ document.body.classList.toggle('tour-score',step.view==='cutlist');
+ document.body.classList.toggle('tour-score-selection',step.id==='score-selecteren');
+ document.body.classList.toggle('tour-score-notes',step.id==='score-notes');
  showProposalView(step.view);
  if(step.view==='recording'){
   // Demonstrate take-based suggestions on populated examples, without creating takes during a tour.
-  if(['cue-takes','noteplek','maat-aanpassen','protools-sync','sterren','alt-best'].includes(step.id)&&!s.takes[s.cue].length&&!running(s))selectCue(s,0);
+  if(['noteplek','maat-aanpassen','sterren'].includes(step.id)&&!s.takes[s.cue].length&&!running(s)){
+   const example=s.takes.findIndex(takes=>takes.length);if(example>=0)selectCue(s,example);
+  }
   s.open.add(s.cue);
  }
  if(step.prepare==='session')s.calmSessionOpen=true;
@@ -61,8 +75,8 @@ function openTourStep(index){
  }
  document.querySelector('.proposal-tour-card')?.remove();
  const card=document.createElement('section');card.className='proposal-tour-card';card.lang='nl';card.setAttribute('aria-labelledby','proposal-tour-title');card.setAttribute('aria-label','Rondleiding');
- card.innerHTML=`<header><span>Suggestie ${index+1} van ${proposalTourSteps.length}</span><button type="button" data-tour-action="close" aria-label="Rondleiding sluiten">×</button></header><h2 id="proposal-tour-title" tabindex="-1">${esc(step.title)}</h2>${step.text?`<p>${esc(step.text)}</p>`:""}<label class="tour-prompt-choice"><input type="checkbox" data-tour-choice="${step.id}" ${proposalTourSelection.has(step.id)?'checked':''}><span>Voeg toe aan de prompt voor Claude</span></label><footer><button type="button" data-tour-action="previous" ${index===0?'disabled':''}>Terug</button><button type="button" class="review-primary" data-tour-action="next">${index===proposalTourSteps.length-1?'Naar mijn selectie':'Volgende →'}</button></footer>`;
- document.body.append(card);
+ card.innerHTML=`<header><span>Suggestie ${index+1} van ${proposalTourSteps.length}</span><button type="button" data-tour-action="close" aria-label="Rondleiding sluiten">×</button></header><h2 id="proposal-tour-title" tabindex="-1">${esc(step.title)}</h2>${step.text?`<p>${esc(step.text)}</p>`:""}${step.details?`<details class="tour-extra"><summary>${esc(step.details.title)}</summary><p>${esc(step.details.text)}</p></details>`:""}<label class="tour-prompt-choice"><input type="checkbox" data-tour-choice="${step.id}" ${tourStepSelected(step)?'checked':''}><span>Voeg toe aan de prompt voor Claude</span></label><footer><button type="button" data-tour-action="previous" ${index===0?'disabled':''}>Terug</button><button type="button" class="review-primary" data-tour-action="next">${index===proposalTourSteps.length-1?'Naar mijn selectie':'Volgende →'}</button></footer>`;
+ document.body.append(card);syncTourChoices();
  if(!document.querySelector('.proposal-tour-highlight')){const highlight=document.createElement('div');highlight.className='proposal-tour-highlight';highlight.setAttribute('aria-hidden','true');document.body.append(highlight);}
  tourTarget=findTourTarget(step);
  if(step.id==='cue-aanklikken'&&tourTarget){
@@ -98,11 +112,28 @@ function revealTourTarget(target){
   if(r.top<bounds.top+80)scroll.scrollTop-=bounds.top+80-r.top;
  }
 }
-function findTourTarget(step){
- for(const selector of step.target.split(','))for(const el of document.querySelectorAll(selector.trim())){
-  const box=el.getBoundingClientRect();if(box.width>0&&box.height>0&&getComputedStyle(el).visibility==='visible'&&!el.closest('[hidden]'))return el;
+// Use only the part inside the real scroll viewport; score pages can be taller than it.
+function tourTargetRect(el){
+ const box=el.getBoundingClientRect();
+ let left=Math.max(0,box.left),top=Math.max(0,box.top),right=Math.min(innerWidth,box.right),bottom=Math.min(innerHeight,box.bottom);
+ for(let p=el.parentElement;p&&p!==document.body;p=p.parentElement){
+  const style=getComputedStyle(p),r=p.getBoundingClientRect();
+  if(/auto|scroll|hidden|clip/.test(style.overflowX)){left=Math.max(left,r.left);right=Math.min(right,r.right);}
+  if(/auto|scroll|hidden|clip/.test(style.overflowY)){top=Math.max(top,r.top);bottom=Math.min(bottom,r.bottom);}
  }
- return null;
+ return {left,top,right,bottom,width:Math.max(0,right-left),height:Math.max(0,bottom-top)};
+}
+function findTourTarget(step){
+ let fallback=null;
+ for(const selector of step.target.split(',')){
+  const matches=[...document.querySelectorAll(selector.trim())].filter(el=>{
+   const box=el.getBoundingClientRect();return box.width>0&&box.height>0&&getComputedStyle(el).visibility==='visible'&&!el.closest('[hidden]');
+  });
+  fallback??=matches[0];
+  const visible=matches.map(el=>({el,rect:tourTargetRect(el)})).filter(item=>item.rect.width>0&&item.rect.height>0).sort((a,b)=>b.rect.width*b.rect.height-a.rect.width*a.rect.height);
+  if(visible.length)return visible[0].el;
+ }
+ return fallback??null;
 }
 function scheduleTourPosition(){
  if(proposalTourIndex<0||tourPositionFrame)return;
@@ -119,7 +150,8 @@ function positionProposalTour(){
  }
  const step=proposalTourSteps[proposalTourIndex];
  const popup=step.id==='maat-aanpassen'?document.querySelector('.measure-picker[open] .measure-picker-panel'):null;
- const rects=[tourTarget,...(step.relatedTargets||[]).map(selector=>document.querySelector(selector)).filter(Boolean),...(popup?[popup]:[])].map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);
+ const rects=[tourTarget,...(step.relatedTargets||[]).map(selector=>document.querySelector(selector)).filter(Boolean),...(popup?[popup]:[])].map(tourTargetRect).filter(r=>r.width&&r.height);
+ if(!rects.length){highlight.hidden=true;return;}
  const r={left:Math.min(...rects.map(r=>r.left)),top:Math.min(...rects.map(r=>r.top)),right:Math.max(...rects.map(r=>r.right)),bottom:Math.max(...rects.map(r=>r.bottom))},margin=12,padding=5;
  const left=Math.max(4,r.left-padding),top=Math.max(4,r.top-padding),right=Math.min(innerWidth-4,r.right+padding),bottom=Math.min(innerHeight-4,r.bottom+padding);
  highlight.hidden=right<=left||bottom<=top;
@@ -130,11 +162,12 @@ function positionProposalTour(){
  const preferred=proposalTourSteps[proposalTourIndex].id==='cue-aanklikken'&&innerWidth<760?{x:margin,y:innerHeight-height-margin}:fit||{x:innerWidth-width-margin,y:innerHeight-height-margin};
  Object.assign(card.style,{left:Math.max(margin,Math.min(innerWidth-width-margin,preferred.x))+'px',top:Math.max(margin,Math.min(innerHeight-height-margin,preferred.y))+'px'});
 }
-function tourChoiceRow(step){return `<label class="tour-summary-choice"><input type="checkbox" data-tour-choice="${step.id}" ${proposalTourSelection.has(step.id)?'checked':''}><span>${esc(step.title)}</span></label>`;}
+function tourChoiceRow(step){return `<label class="tour-summary-choice"><input type="checkbox" data-tour-choice="${step.id}" ${tourStepSelected(step)?'checked':''}><span>${esc(step.title)}</span></label>`;}
 function openProposalPrompt(){
  closeProposalTour();
- const selected=proposalTourSteps.filter(step=>proposalTourSelection.has(step.id)),other=proposalTourSteps.filter(step=>!proposalTourSelection.has(step.id));
+ const selected=proposalTourSteps.filter(tourStepSelected),other=proposalTourSteps.filter(step=>!tourStepSelected(step));
  reviewDialog('proposal-prompt','Jouw selectie voor Claude',`<p>Alleen aangevinkte suggesties komen in de prompt.</p><div class="tour-selected-list">${selected.length?selected.map(tourChoiceRow).join(''):'<p class="review-muted">Kies hieronder suggesties of start de rondleiding.</p>'}</div>${other.length?`<details class="tour-other-choices"><summary>Andere suggesties (${other.length})</summary>${other.map(tourChoiceRow).join('')}</details>`:''}<details class="tour-prompt-preview"><summary>Bekijk de prompt</summary><pre tabindex="0">${esc(selectedTourPrompt()||'Vink eerst een suggestie aan.')}</pre></details><footer><button type="button" data-tour-action="download" ${selected.length?'':'disabled'}>Download</button><button type="button" class="review-primary" data-tour-action="copy" ${selected.length?'':'disabled'}>Kopieer prompt</button></footer>`);
+ syncTourChoices();
 }
 function refreshPromptPreview(){
  const dialog=document.querySelector('#proposal-prompt');if(!dialog)return;
@@ -163,8 +196,9 @@ document.addEventListener('click',async event=>{
  if(action==='download')saveFile('Claude-geselecteerde-suggesties.md',selectedTourPrompt());
 },true);
 document.addEventListener('change',event=>{
- const id=event.target.dataset.tourChoice;if(!id||!proposalTourSteps.some(step=>step.id===id))return;
- event.target.checked?proposalTourSelection.add(id):proposalTourSelection.delete(id);persistTourSelection();refreshPromptPreview();
+ const id=event.target.dataset.tourChoice,step=proposalTourSteps.find(step=>step.id===id);if(!step)return;
+ for(const part of step.parts)event.target.checked?proposalTourSelection.add(part.id):proposalTourSelection.delete(part.id);
+ syncTourChoices();persistTourSelection();refreshPromptPreview();
 });
 document.addEventListener('keydown',event=>{
  if(event.target.closest('.proposal-review-dialog[open]')&&event.key==='Enter'&&event.metaKey){event.preventDefault();event.stopImmediatePropagation();return;}
@@ -172,4 +206,5 @@ document.addEventListener('keydown',event=>{
  if(event.key==='Escape'&&proposalTourIndex>=0){event.preventDefault();event.stopImmediatePropagation();closeProposalTour();}
 },true);
 document.addEventListener('scroll',scheduleTourPosition,true);window.addEventListener('resize',scheduleTourPosition);
+document.addEventListener('toggle',event=>{if(event.target.matches('.tour-extra'))scheduleTourPosition();},true);
 persistTourSelection();showProposalWelcome();

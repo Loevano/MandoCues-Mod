@@ -19,8 +19,12 @@ tour=json.loads(read('proposal-tour.json'))
 steps=tour['steps']
 assert len({s['id'] for s in steps})==len(steps)
 assert all(s['view'] in ('recording','cutlist') for s in steps)
-for step in steps:
-    assert step.get('prompt') or any(d['id']==step.get('discussion') for d in discussion),step['id']
+parts=[part for step in steps for part in step['parts']]
+assert len({part['id'] for part in parts})==len(parts)
+for part in parts:
+    assert part.get('prompt') or any(d['id']==part.get('discussion') for d in discussion),part['id']
+def tour_prompt(step):
+    return '\n\n'.join(next(d['text'] for d in discussion if d['id']==part['discussion']) if part.get('discussion') else part['prompt'] for part in step['parts'])
 assets=make_fixture();assets['production']=load_production_score()
 feedback=read('feedback.md')
 shell=read('shell.html')
@@ -52,8 +56,10 @@ write('Kleine-suggesties-en-vragen.md','# Suggesties en open vragen\n\n'+small_d
 doc='# MandoCues · voorstel van Floris\n\nEén werkruimte met Recording en Comp tool. Bij openen kies je Rondleiding starten of Zelf bekijken. De rondleiding toont één suggestie tegelijk; een checkbox bepaalt of die tekst meegaat naar Claude. De app werkt los van deze keuze.\n\nAlle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. Het zijn vrijblijvende ideeën; jouw programma en ontwerpkeuzes gaan voor.\n\n'
 doc+=questions_doc+'\n## De rondleiding\n\nDe onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevinkt. Er wordt geen nieuwe prompt gegenereerd.\n\n'
 for index,step in enumerate(steps,1):
-    prompt=next(d['text'] for d in discussion if d['id']==step['discussion']) if step.get('discussion') else step['prompt']
-    doc+=f"### {index}. {step['title']}\n\n{step['text']}\n\n**Promptonderdeel:**\n\n{prompt}\n\n"
+    prompt=tour_prompt(step)
+    detail=step.get('details')
+    extra=f"**{detail['title']}**\n\n{detail['text']}\n\n" if detail else ''
+    doc+=f"### {index}. {step['title']}\n\n{step['text']}\n\n{extra}**Promptonderdeel:**\n\n{prompt}\n\n"
 doc+='## Gedeelde promptinleiding\n\n'+tour['promptIntro']+'\n## Gedeelde afsluiting\n\n'+tour['promptClosing'].strip()+'\n'
 write('Suggesties-van-Floris.md',doc)
 for output,source in [('Alle-notes-van-Floris.md','feedback.md'),('Aanvullende-input.md','extra-input.md'),

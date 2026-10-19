@@ -9,7 +9,18 @@
       "text": "Spatie gebruik je ook in notes. Voorstel: ⌘ Enter voor sessiestart en daarna start/stop van een take.",
       "target": "#main-panel .record",
       "view": "recording",
-      "discussion": "opnametoets"
+      "parts": [
+        {
+          "id": "opnametoets",
+          "title": "⌘ Enter voor start en stop?",
+          "discussion": "opnametoets"
+        },
+        {
+          "id": "bereikbare-bediening",
+          "title": "Bediening tijdens het noteren",
+          "prompt": "Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten beeld scrolt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen. Gebruik in Recording één scrollgebied inclusief kop en sessie-instellingen, zonder een genest scrollvenster of extra paneelkaders. De compacte opnamebalk blijft sticky zodra de grote knop wegscrollt."
+        }
+      ]
     },
     {
       "id": "planning",
@@ -17,33 +28,62 @@
       "text": "Voorstel: +02:00 voor voorsprong, −02:00 voor achterstand. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.",
       "target": "#main-panel .main-plan-card",
       "view": "recording",
-      "prompt": "Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner."
+      "parts": [
+        {
+          "id": "planning",
+          "title": "Voor- en achterstand met + en −?",
+          "prompt": "Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner."
+        }
+      ]
     },
     {
       "id": "cue-aanklikken",
-      "title": "Een cue direct kiezen",
-      "text": "Klik een cue in de lijst of gebruik [ en ]. ⌥[ en ⌥] wisselen takes; ⌥1 t/m ⌥9 kiest direct een take.",
+      "title": "Cues en takes direct kiezen",
+      "text": "Voorstel: cues direct kiezen, met hun takes eronder. Klik een cue of take om te proberen.",
       "target": ".calm-cue-list",
       "view": "recording",
-      "discussion": "cue-aanklikken"
-    },
-    {
-      "id": "cue-takes",
-      "title": "Takes onder hun cue",
-      "text": "Cues als hoofdregel, met takes daaronder. Klap een cue open en kies een take.",
-      "target": ".calm-cue-list .cue-group.current",
-      "view": "recording",
-      "prompt": "Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels. Plaats take-labels rechts van het cuenummer met een subtiele verticale verbindingslijn. Behoud de bestaande takegrootte; maak het cuenummer minstens even prominent en groter dan het take-label. Een apart cuepijltje klapt die regels in of uit. Houd sterren, Best en Alt op vaste posities; selecteren maakt geen grotere editor in de regel. Bewaar concepten en beoordelingen bij inklappen. De geselecteerde take en de werkelijk lopende take blijven herkenbaar en onafhankelijk."
+      "details": {
+        "title": "Sneltoetsen",
+        "text": "[ en ] wisselen cues. ⌥[ en ⌥] wisselen takes; ⌥1 t/m ⌥9 kiest een take. Houd ⌥ + ⌘ vast en typ twee cijfers voor bijvoorbeeld Take 12."
+      },
+      "parts": [
+        {
+          "id": "cue-aanklikken",
+          "title": "Een cue direct kiezen",
+          "discussion": "cue-aanklikken"
+        },
+        {
+          "id": "cue-takes",
+          "title": "Takes onder hun cue",
+          "prompt": "Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels. Plaats take-labels rechts van het cuenummer met een subtiele verticale verbindingslijn. Behoud de bestaande takegrootte; maak het cuenummer minstens even prominent en groter dan het take-label. Een apart cuepijltje klapt die regels in of uit. Houd sterren, Best en Alt op vaste posities; selecteren maakt geen grotere editor in de regel. Bewaar concepten en beoordelingen bij inklappen. De geselecteerde take en de werkelijk lopende take blijven herkenbaar en onafhankelijk."
+        },
+        {
+          "id": "cue-sneltoetsen",
+          "title": "Een take met twee cijfers kiezen",
+          "discussion": "cue-sneltoetsen"
+        }
+      ]
     },
     {
       "id": "noteplek",
       "title": "Notes bij de gekozen take",
-      "text": "Eén paneel voor de notes van de gekozen take. Klik verschillende takes om te zien hoe dat werkt.",
+      "text": "Zou één notitiepaneel per take handig zijn? Kies een take en typ een note, of probeer een Quick note.",
       "target": ".calm-notes",
       "view": "recording",
-      "prompt": "Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt.",
       "relatedTargets": [
         ".calm-cue-list .cue-group.current"
+      ],
+      "parts": [
+        {
+          "id": "noteplek",
+          "title": "Notes bij de gekozen take",
+          "prompt": "Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take. Toon alle notes zonder eigen intern scrollvak. Cue-algemene notes staan apart en zijn inklapbaar. Bewaar concepten per take. Een oudere take bekijken stopt of hernoemt de lopende take niet; toon duidelijk welke take wordt bekeken en welke werkelijk loopt."
+        },
+        {
+          "id": "snelle-notes",
+          "title": "Veelgebruikte opmerkingen",
+          "discussion": "snelle-notes"
+        }
       ]
     },
     {
@@ -52,151 +92,147 @@
       "text": "De eerste letter legt de kloktijd vast. Kies zelf de maat. Klik op het klokje voor de huidige tijd.",
       "target": ".calm-notes .composer-footer, .calm-notes .note-meta, .calm-notes",
       "view": "recording",
-      "discussion": "maat-aanpassen"
-    },
-    {
-      "id": "protools-sync",
-      "title": "Takes koppelen via opnametijd",
-      "text": "Voorstel: vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log. Controleer het tijdverschil met één bekende take en bevestig de koppeling. Ontbreekt de opnametijd, dan koppel je handmatig.",
-      "target": ".calm-cue-list .cue-group.current",
-      "relatedTargets": [
-        ".calm-notes .note-meta"
-      ],
-      "view": "recording",
-      "prompt": "Bied een optionele koppeling achteraf tussen onze take-/notegegevens en de oorspronkelijke Pro Tools-opnames. Voorbeeld: onze Take 3 hoort bij engineer Take 4. Koppel vaste IDs; hernummer geen takes en wijzig geen audio. De demo bewaart bij daadwerkelijk starten/stoppen van de lokale take de UTC-datum/tijd, IANA-tijdzone, UTC-offset bij start, sessie-ID, cuecode en een unieke log-ID; dit zijn handmatige appgebeurtenissen, geen bevestigde DAW-starts. De bestaande voorbeeldtakes hebben geen werkelijk gelogd opnamemoment. PDF > Take sheet biedt de tijden en Download take log (JSON); demo-invoer verdwijnt bij herladen. Behoud bestaande productieopslag en voeg voor productie duurzame opslag van deze gebeurtenissen toe.\n\nConcrete invoerroute: lees de bext-chunk van de oorspronkelijke WAV/BWF-bestanden, met OriginationDate en OriginationTime, bestandsreferentie en duur. Voor een eerste controle kan de engineer de originele Audio Files in BWF MetaEdit openen en het CORE-document als CSV exporteren; die CSV bevat FileName, OriginationDate en OriginationTime. De technische metadata kunnen aanvullend de bestandsduur leveren. Vergelijk deze gegevens met de JSON-export van ons take-log. Normaliseer datum en tijd naar dezelfde tijdzone, controleer een bekende take en bewaar het gemeten tijdverschil apart. Startverschillen door handmatig klikken blijven onzekerheid; vraag bevestiging van de koppeling, bijvoorbeeld onze Take 3 aan engineer Take 4. Groepeer microfoonkanalen tot één opname; kies niet automatisch één bestand als één take. Verifieer eerst originele WAV/BWF-bestanden uit de gebruikte Pro Tools-versie en opnamewijze. BWF OriginationDate/OriginationTime kunnen aanknopingspunten bieden; het bestaan van die velden bewijst niet dat Pro Tools ze in iedere workflow vult met de echte opnamestart. Original Time Stamp/BWF TimeReference is project-/tijdcodepositie, niet vanzelf kloktijd. Finder Date Created, Date Modified en browser File.lastModified zijn geen bewezen starttijd. Gebruik een Pro Tools Session Info as Text-export voor bronbestand-/clip-/playlistrelaties; behandel diens EDL-tijden niet als opnamedatum. QuickPunch, pre-roll, meerdere kanalen, loopopnames en consolidatie vragen een onderscheid tussen bestand, clip en take.\n\nControleer vooraf computerklokken en tijdzones; kalibreer met bekende koppelingen en bewaar de gekozen klokcorrectie apart. Stel kandidaten voor op basis van gecontroleerde klokgegevens, datum, cue, duur en opnamegroep, met expliciete onzekerheid voor handmatige startverschillen. Alleen na bevestiging een engineer-label en bronbestand-/clip-ID aan onze take koppelen; behoud oorspronkelijke nummers, tijden en een herleidbaar wijzigingslog. Meerdere kandidaten, ontbrekende tijden of niet-gelogde takes blijven ongekoppeld tot handmatige controle. Het gaat om takes terugvinden, niet sample-nauwkeurige audiosynchronisatie of automatisch maatvolgen. Zie Pro-Tools-takekoppeling.md voor bronnen, beperkingen en de voorgestelde praktijktest."
-    },
-    {
-      "id": "snelle-notes",
-      "title": "Veelgebruikte opmerkingen",
-      "text": "Aanpasbare tekstknoppen voor opmerkingen die vaker terugkomen, zoals Intonation. Klik er één om te proberen.",
-      "target": ".quick-note-suggestions",
-      "view": "recording",
-      "discussion": "snelle-notes",
-      "prepare": "quick"
-    },
-    {
-      "id": "bereikbare-bediening",
-      "title": "Bediening tijdens het noteren",
-      "text": "Als het grote paneel uit beeld gaat, blijft start/stop bovenaan bereikbaar. Handig tijdens het noteren?",
-      "target": ".sticky-slot .transport",
-      "view": "recording",
-      "prompt": "Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten beeld scrolt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen. Gebruik in Recording één scrollgebied inclusief kop en sessie-instellingen, zonder een genest scrollvenster of extra paneelkaders. De compacte opnamebalk blijft sticky zodra de grote knop wegscrollt.",
-      "prepare": "sticky"
-    },
-    {
-      "id": "sterren",
-      "title": "Sterren in plaats van Good / NG / Hold?",
-      "text": "Zou 1–5 sterren per take handig zijn? Klik de sterren en probeer bijvoorbeeld het filter 4–5 sterren.",
-      "target": ".calm-cue-list .cue-group.current .star-rating, .calm-take-row .star-rating",
-      "view": "recording",
-      "discussion": "sterren",
-      "relatedTargets": [
-        ".review-filter"
+      "details": {
+        "title": "Takes terugvinden in Pro Tools",
+        "text": "Voorstel: vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log. Controleer het tijdverschil met één bekende take en bevestig de koppeling. Ontbreekt de opnametijd, dan koppel je handmatig."
+      },
+      "parts": [
+        {
+          "id": "maat-aanpassen",
+          "title": "Kloktijd en maat bij een note",
+          "discussion": "maat-aanpassen"
+        },
+        {
+          "id": "protools-sync",
+          "title": "Takes koppelen via opnametijd",
+          "prompt": "Bied een optionele koppeling achteraf tussen onze take-/notegegevens en de oorspronkelijke Pro Tools-opnames. Voorbeeld: onze Take 3 hoort bij engineer Take 4. Koppel vaste IDs; hernummer geen takes en wijzig geen audio. De demo bewaart bij daadwerkelijk starten/stoppen van de lokale take de UTC-datum/tijd, IANA-tijdzone, UTC-offset bij start, sessie-ID, cuecode en een unieke log-ID; dit zijn handmatige appgebeurtenissen, geen bevestigde DAW-starts. De bestaande voorbeeldtakes hebben geen werkelijk gelogd opnamemoment. PDF > Take sheet biedt de tijden en Download take log (JSON); demo-invoer verdwijnt bij herladen. Behoud bestaande productieopslag en voeg voor productie duurzame opslag van deze gebeurtenissen toe.\n\nConcrete invoerroute: lees de bext-chunk van de oorspronkelijke WAV/BWF-bestanden, met OriginationDate en OriginationTime, bestandsreferentie en duur. Voor een eerste controle kan de engineer de originele Audio Files in BWF MetaEdit openen en het CORE-document als CSV exporteren; die CSV bevat FileName, OriginationDate en OriginationTime. De technische metadata kunnen aanvullend de bestandsduur leveren. Vergelijk deze gegevens met de JSON-export van ons take-log. Normaliseer datum en tijd naar dezelfde tijdzone, controleer een bekende take en bewaar het gemeten tijdverschil apart. Startverschillen door handmatig klikken blijven onzekerheid; vraag bevestiging van de koppeling, bijvoorbeeld onze Take 3 aan engineer Take 4. Groepeer microfoonkanalen tot één opname; kies niet automatisch één bestand als één take. Verifieer eerst originele WAV/BWF-bestanden uit de gebruikte Pro Tools-versie en opnamewijze. BWF OriginationDate/OriginationTime kunnen aanknopingspunten bieden; het bestaan van die velden bewijst niet dat Pro Tools ze in iedere workflow vult met de echte opnamestart. Original Time Stamp/BWF TimeReference is project-/tijdcodepositie, niet vanzelf kloktijd. Finder Date Created, Date Modified en browser File.lastModified zijn geen bewezen starttijd. Gebruik een Pro Tools Session Info as Text-export voor bronbestand-/clip-/playlistrelaties; behandel diens EDL-tijden niet als opnamedatum. QuickPunch, pre-roll, meerdere kanalen, loopopnames en consolidatie vragen een onderscheid tussen bestand, clip en take.\n\nControleer vooraf computerklokken en tijdzones; kalibreer met bekende koppelingen en bewaar de gekozen klokcorrectie apart. Stel kandidaten voor op basis van gecontroleerde klokgegevens, datum, cue, duur en opnamegroep, met expliciete onzekerheid voor handmatige startverschillen. Alleen na bevestiging een engineer-label en bronbestand-/clip-ID aan onze take koppelen; behoud oorspronkelijke nummers, tijden en een herleidbaar wijzigingslog. Meerdere kandidaten, ontbrekende tijden of niet-gelogde takes blijven ongekoppeld tot handmatige controle. Het gaat om takes terugvinden, niet sample-nauwkeurige audiosynchronisatie of automatisch maatvolgen. Zie Pro-Tools-takekoppeling.md voor bronnen, beperkingen en de voorgestelde praktijktest."
+        }
       ]
     },
     {
-      "id": "alt-best",
-      "title": "Alt voor reservetakes?",
-      "text": "Naast Best: Alt voor reservetakes. Bij de cue zie je hoeveel alternatieven er zijn, los van de sterren.",
-      "target": ".calm-take-row .take-tools",
+      "id": "sterren",
+      "title": "Sterren, Best en Alt",
+      "text": "Zou 1–5 sterren met een filter handig zijn? Best kiest je favoriet; Alt markeert reservetakes.",
+      "target": ".calm-cue-list .cue-group.current .take-tools, .review-filter",
       "view": "recording",
-      "discussion": "alt-best"
-    },
-    {
-      "id": "cue-sneltoetsen",
-      "title": "Een take met twee cijfers kiezen",
-      "text": "Houd ⌥ + ⌘ vast en typ twee cijfers: 0 en 2 voor Take 2, of 1 en 2 voor Take 12. Loslaten sluit de invoer.",
-      "target": ".calm-cue-list",
-      "view": "recording",
-      "discussion": "cue-sneltoetsen"
+      "relatedTargets": [
+        ".review-filter"
+      ],
+      "parts": [
+        {
+          "id": "sterren",
+          "title": "Sterren in plaats van Good / NG / Hold?",
+          "discussion": "sterren"
+        },
+        {
+          "id": "alt-best",
+          "title": "Alt voor reservetakes?",
+          "discussion": "alt-best"
+        }
+      ]
     },
     {
       "id": "view-toggle",
       "title": "Werken vanuit de partituur?",
-      "text": "Een tweede weergave voor notes en een kniplijst op de score. Klik Comp tool om te proberen.",
-      "target": ".proposal-view-toggle",
-      "view": "recording",
-      "prompt": "Maak één werkruimte met Recording en Comp tool als twee weergaven van dezelfde cue-, take-, rating-, note- en opname-state. Neem de gekozen opname-indeling met bediening bovenaan en compacte balk bij scrollen als basis; hergebruik de bestaande kniplijst. Wisselen mag een lopende take, concepten, scoreselecties of leespositie niet verliezen of stilzwijgend kopiëren. Maak geen onafhankelijke demo-state per weergave."
-    },
-    {
-      "id": "score-per-cue",
-      "title": "De partituur bij de cue",
-      "text": "Voorstel: de bijbehorende partituur naast de takes. Kies een cue om de score te bekijken.",
-      "target": "#score-cue",
-      "view": "cutlist",
-      "prompt": "Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de partituur groot rechts met takes en notes links. Gebruik de bestaande gevalideerde maat-/instrumentmapping waar aanwezig en label benaderingen. Een eigen PDF krijgt niet vanzelf mapping. Wijzig het bron-PDF niet en behoud aparte takegegevens voor cues die dezelfde scorepagina’s delen."
-    },
-    {
-      "id": "score-zoom",
-      "title": "Ruimte voor de partituur",
-      "text": "Een grote partituur met zoom en doorlopend scrollen. Via Page layout kun je ook twee pagina’s naast elkaar bekijken.",
+      "text": "Voorstel: Comp tool voor notes en een kniplijst op de partituur. Zoom met het trackpad of de knoppen; Page layout toont één of twee pagina’s.",
       "target": ".score-zoom-controls",
       "view": "cutlist",
-      "prepare": "score",
-      "prompt": "Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Houd de scoreweergave permanent groot. Combineer Recording/Comp tool, cue/take, opnamestatus, take-tijd en start/stop in één compacte bovenbalk; laat de reviewbediening bereikbaar. Voeg Zoom in, Zoom out, een percentage en Fit width toe aan de compacte scoreknoppenrij. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF. Ondersteun ook trackpad-knijpzoom binnen het scorevlak (Chromium ctrl-wheel en Safari gesture-events), met het punt onder de vingers als anker. Gewoon scrollen blijft scrollen; de rest van de pagina zoomt niet mee. Bewaar zoom als één globale instelling van de werkruimte voor alle cues, takes en scorebronnen. Wisselen van cue, take, document of weergave herstelt geen afzonderlijke zoomstand en reset niet naar 100%. Alleen bewust zoomen of Fit width verandert de zoom. Voeg een compact Preview-achtig Page layout-menu toe met een keuze tussen Single page en Two pages en een afzonderlijke Continuous scroll-optie. Toon bij uitgeschakelde Continuous scroll alleen de huidige pagina of het huidige paginapaar met vorige/volgende paginaknoppen. Bewaar indeling globaal naast zoom, zonder aan takes gekoppelde weergavemodi. Ondersteun 10–300% zoom; Fit width past één pagina of een volledig paginapaar in de beschikbare breedte. Behoud annotaties en selecties per werkelijke pagina en houd het zoomanker onder de vingers, ook in de rechterkolom.",
       "relatedTargets": [
         ".score-display-menu"
+      ],
+      "prepare": "score",
+      "parts": [
+        {
+          "id": "view-toggle",
+          "title": "Werken vanuit de partituur?",
+          "prompt": "Maak één werkruimte met Recording en Comp tool als twee weergaven van dezelfde cue-, take-, rating-, note- en opname-state. Neem de gekozen opname-indeling met bediening bovenaan en compacte balk bij scrollen als basis; hergebruik de bestaande kniplijst. Wisselen mag een lopende take, concepten, scoreselecties of leespositie niet verliezen of stilzwijgend kopiëren. Maak geen onafhankelijke demo-state per weergave."
+        },
+        {
+          "id": "score-per-cue",
+          "title": "De partituur bij de cue",
+          "prompt": "Koppel de actieve cue aan zijn bestaande scorebron en PDF-pagina’s. Toon de partituur groot rechts met takes en notes links. Gebruik de bestaande gevalideerde maat-/instrumentmapping waar aanwezig en label benaderingen. Een eigen PDF krijgt niet vanzelf mapping. Wijzig het bron-PDF niet en behoud aparte takegegevens voor cues die dezelfde scorepagina’s delen."
+        },
+        {
+          "id": "score-zoom",
+          "title": "Ruimte voor de partituur",
+          "prompt": "Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Houd de scoreweergave permanent groot. Combineer Recording/Comp tool, cue/take, opnamestatus, take-tijd en start/stop in één compacte bovenbalk; laat de reviewbediening bereikbaar. Voeg Zoom in, Zoom out, een percentage en Fit width toe aan de compacte scoreknoppenrij. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF. Ondersteun ook trackpad-knijpzoom binnen het scorevlak (Chromium ctrl-wheel en Safari gesture-events), met het punt onder de vingers als anker. Gewoon scrollen blijft scrollen; de rest van de pagina zoomt niet mee. Bewaar zoom als één globale instelling van de werkruimte voor alle cues, takes en scorebronnen. Wisselen van cue, take, document of weergave herstelt geen afzonderlijke zoomstand en reset niet naar 100%. Alleen bewust zoomen of Fit width verandert de zoom. Voeg een compact Preview-achtig Page layout-menu toe met een keuze tussen Single page en Two pages en een afzonderlijke Continuous scroll-optie. Toon bij uitgeschakelde Continuous scroll alleen de huidige pagina of het huidige paginapaar met vorige/volgende paginaknoppen. Bewaar indeling globaal naast zoom, zonder aan takes gekoppelde weergavemodi. Ondersteun 10–300% zoom; Fit width past één pagina of een volledig paginapaar in de beschikbare breedte. Behoud annotaties en selecties per werkelijke pagina en houd het zoomanker onder de vingers, ook in de rechterkolom."
+        }
       ]
-    },
-    {
-      "id": "score-lagen",
-      "title": "Een eigen laag per take",
-      "text": "Elke take heeft eigen notes en geselecteerde maten. Kies links een take om die te bekijken.",
-      "target": ".score-take-list",
-      "view": "cutlist",
-      "prompt": "Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-ID én scorebronversie. Een nieuwe take heeft een lege eigen laag. Terugklikken herstelt de juiste gegevens zonder de score onverwacht te verschuiven. Deel deze gegevens met de opnameweergave; de geselecteerde take mag verschillen van de lopende take."
     },
     {
       "id": "score-selecteren",
       "title": "Maten kiezen voor de kniplijst",
-      "text": "Kies een take en markeer maten met ⌘+slepen. Verwijderen kan met ⌘+rechtsklik of ⌘⌥+slepen.",
+      "text": "Kies links een take en markeer maten met ⌘+slepen. Verwijderen kan met ⌘+rechtsklik of ⌘⌥+slepen. Elke take bewaart zijn eigen selectie.",
       "target": ".score-paper",
       "view": "cutlist",
-      "prompt": "Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit. Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score-notes en maatselecties, per take en scorebron. Command+Z maakt ongedaan, Command+Shift+Z voert opnieuw uit. Onderschep geen normale tekst-undo binnen invoervelden. Andere takes en de oorspronkelijke PDF veranderen niet.",
-      "prepare": "score"
+      "prepare": "score",
+      "parts": [
+        {
+          "id": "score-lagen",
+          "title": "Een eigen laag per take",
+          "prompt": "Bewaar kniplijstselecties, score-notes, concepten en leespositie per vaste take-ID én scorebronversie. Een nieuwe take heeft een lege eigen laag. Terugklikken herstelt de juiste gegevens zonder de score onverwacht te verschuiven. Deel deze gegevens met de opnameweergave; de geselecteerde take mag verschillen van de lopende take."
+        },
+        {
+          "id": "score-selecteren",
+          "title": "Maten kiezen voor de kniplijst",
+          "prompt": "Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit. Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score-notes en maatselecties, per take en scorebron. Command+Z maakt ongedaan, Command+Shift+Z voert opnieuw uit. Onderschep geen normale tekst-undo binnen invoervelden. Andere takes en de oorspronkelijke PDF veranderen niet."
+        },
+        {
+          "id": "score-instellingen",
+          "title": "Instrumenten en andere takes",
+          "prompt": "Behoud Link instruments en See other takes als compacte, benoemde instellingen boven de partituur. Beide beginnen aan. Link instruments bepaalt alleen nieuwe selecties en herschrijft geen eerdere gedeeltelijke selecties. See other takes verbergt alleen achtergrondreferenties; expliciet gekozen vergelijkingstakes en hun notes blijven zichtbaar. Bewaar instellingen bij wisselen van weergave."
+        }
+      ],
+      "relatedTargets": [
+        ".score-take-picker"
+      ]
     },
     {
       "id": "score-notes",
-      "title": "Een note op de score",
-      "text": "Dubbelklik bij een maat om een note te schrijven. De plek bepaalt de maat en het instrument.",
+      "title": "Notes op de partituur",
+      "text": "Dubbelklik bij een maat om te schrijven. Sleep de note naar een andere plek; klik links op een note om die terug te vinden.",
       "target": ".score-paper",
       "view": "cutlist",
-      "prompt": "Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine. Gebruik de horizontale maatvakken ook voor dubbelklikken vlak boven de balken, zodat bijvoorbeeld boven maat 5 direct maat 5 gekozen wordt. Leid de instrumentcontext af uit de verticale positie: bij een balk voor dat instrument, boven de hele groep voor All instruments.",
-      "prepare": "score"
-    },
-    {
-      "id": "score-notes-bewerken",
-      "title": "Notes terugvinden op de score",
-      "text": "Klik links op een note om de plek te zien. Sleep de tekst naar een andere maat om hem daaraan te koppelen.",
-      "target": ".cutlist-notes-list",
-      "view": "cutlist",
-      "prompt": "Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en kloktijd zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de kloktijd. Een klein klokje vult de werkelijke huidige kloktijd in, ook tijdens typen of bij een oudere take. Gebruik geen relatieve take-/sessietijd. Bewaar de werkelijke datum en UTC-instant om later te kunnen synchroniseren. Enter plaatst de note en maakt een nieuw concept met een nieuw tijdanker klaar. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen. Laat bij het slepen de doelmaat subtiel oplichten op basis van de bestaande scoremapping. Werk bij loslaten maatnummer, pagina/boekpagina en instrumentcontext bij zonder kloktijd, take of tekst te veranderen. Bewaar de gekozen vrije tekstpositie. Boven de volledige instrumentgroep wordt de context All instruments. Annuleren wijzigt niets; Command+Z herstelt positie én metadata. Een klik op bestaande scoretekst opent de editor met de note geselecteerd, zonder direct een tekstcursor te plaatsen. Delete/Backspace verwijdert de geselecteerde note; Command+Z herstelt hem. Zodra de gebruiker een tekstveld bewerkt, werkt Delete/Backspace alleen op tekst. Voeg bij het bewerken van een bestaande note Delete naast Cancel toe; geen Delete voor een nog niet geplaatste note. Negeer toetsen met modifiers, key-repeat en IME. Maak alle verwijderacties ongedaan met dezelfde take-/brongebonden history."
+      "prepare": "score",
+      "parts": [
+        {
+          "id": "score-notes",
+          "title": "Een note op de score",
+          "prompt": "Dubbelklik op de bestaande scoremapping opent een note-editor bij de gekozen maat en instrument. Enter plaatst kale tekst; Shift+Enter maakt een regel en Escape annuleert. Standaard boven de betreffende notenbalk; All instruments boven de bovenste balk bij die maat binnen deze take. Bewaar maat, instrument, pagina, take en bron als metadata. Geen achtergrondkaart of badges op de PDF. Bied handmatige plaatsingscorrectie; beloof geen volledige notatie-engine. Gebruik de horizontale maatvakken ook voor dubbelklikken vlak boven de balken, zodat bijvoorbeeld boven maat 5 direct maat 5 gekozen wordt. Leid de instrumentcontext af uit de verticale positie: bij een balk voor dat instrument, boven de hele groep voor All instruments."
+        },
+        {
+          "id": "score-notes-bewerken",
+          "title": "Notes terugvinden op de score",
+          "prompt": "Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en kloktijd zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de kloktijd. Een klein klokje vult de werkelijke huidige kloktijd in, ook tijdens typen of bij een oudere take. Gebruik geen relatieve take-/sessietijd. Bewaar de werkelijke datum en UTC-instant om later te kunnen synchroniseren. Enter plaatst de note en maakt een nieuw concept met een nieuw tijdanker klaar. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen. Laat bij het slepen de doelmaat subtiel oplichten op basis van de bestaande scoremapping. Werk bij loslaten maatnummer, pagina/boekpagina en instrumentcontext bij zonder kloktijd, take of tekst te veranderen. Bewaar de gekozen vrije tekstpositie. Boven de volledige instrumentgroep wordt de context All instruments. Annuleren wijzigt niets; Command+Z herstelt positie én metadata. Een klik op bestaande scoretekst opent de editor met de note geselecteerd, zonder direct een tekstcursor te plaatsen. Delete/Backspace verwijdert de geselecteerde note; Command+Z herstelt hem. Zodra de gebruiker een tekstveld bewerkt, werkt Delete/Backspace alleen op tekst. Voeg bij het bewerken van een bestaande note Delete naast Cancel toe; geen Delete voor een nog niet geplaatste note. Negeer toetsen met modifiers, key-repeat en IME. Maak alle verwijderacties ongedaan met dezelfde take-/brongebonden history."
+        }
+      ],
+      "relatedTargets": [
+        ".cutlist-notes-list"
+      ]
     },
     {
       "id": "score-vergelijk",
       "title": "Meerdere takes vergelijken",
-      "text": "⌘+klik kiest losse takes; Shift+klik kiest een reeks. Bekijk hun notes en geselecteerde maten samen op de score.",
+      "text": "⌘+klik kiest losse takes; Shift+klik kiest een reeks. Bekijk hun notes en maatselecties samen.",
       "target": ".score-take-picker",
       "view": "cutlist",
-      "prompt": "Gewone klik kiest één take. Command+klik schakelt losse takes in of uit, met minimaal één geselecteerd. Shift+klik kiest de aaneengesloten reeks tussen het laatste gewone/Command-klikanker en de aangeklikte take; Command+Shift+klik voegt die reeks toe. Gebruik de gebruikelijke Mac-selectie: Shift houdt het anker vast, een gewone of Command-klik zet het anker opnieuw. Dit werkt in PDF en All takes en verandert geen takes of notities. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Verhoog kleurcontrast; laat overlap zien met meerkleurige arcering en aparte kleurstrepen per take. Verberg een achtergrondselectie niet zodra de gekozen take dezelfde maat bevat. Selecties blijven onafhankelijk per take; toevoegen, verwijderen en undo in één take wijzigen de andere niet. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take."
-    },
-    {
-      "id": "score-instellingen",
-      "title": "Instrumenten en andere takes",
-      "text": "Link instruments koppelt de instrumenten bij maatselectie. See other takes toont of verbergt achtergrondselecties van andere takes.",
-      "target": ".score-settings",
-      "view": "cutlist",
-      "prompt": "Behoud Link instruments en See other takes als compacte, benoemde instellingen boven de partituur. Beide beginnen aan. Link instruments bepaalt alleen nieuwe selecties en herschrijft geen eerdere gedeeltelijke selecties. See other takes verbergt alleen achtergrondreferenties; expliciet gekozen vergelijkingstakes en hun notes blijven zichtbaar. Bewaar instellingen bij wisselen van weergave.",
-      "prepare": "score"
-    },
-    {
-      "id": "score-overzicht",
-      "title": "Alle takes per maat",
-      "text": "Een overzicht van de geselecteerde maten per take. Klik een maat om die op de partituur te bekijken.",
-      "target": ".all-takes-view",
-      "view": "cutlist",
-      "prompt": "Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken.",
-      "prepare": "all"
+      "prepare": "score",
+      "details": {
+        "title": "Alle takes per maat",
+        "text": "Klik op ♪ boven de partituur voor het overzicht per maat. Klik daar een maat om terug te gaan naar de partituur."
+      },
+      "parts": [
+        {
+          "id": "score-vergelijk",
+          "title": "Meerdere takes vergelijken",
+          "prompt": "Gewone klik kiest één take. Command+klik schakelt losse takes in of uit, met minimaal één geselecteerd. Shift+klik kiest de aaneengesloten reeks tussen het laatste gewone/Command-klikanker en de aangeklikte take; Command+Shift+klik voegt die reeks toe. Gebruik de gebruikelijke Mac-selectie: Shift houdt het anker vast, een gewone of Command-klik zet het anker opnieuw. Dit werkt in PDF en All takes en verandert geen takes of notities. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Verhoog kleurcontrast; laat overlap zien met meerkleurige arcering en aparte kleurstrepen per take. Verberg een achtergrondselectie niet zodra de gekozen take dezelfde maat bevat. Selecties blijven onafhankelijk per take; toevoegen, verwijderen en undo in één take wijzigen de andere niet. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take."
+        },
+        {
+          "id": "score-overzicht",
+          "title": "Alle takes per maat",
+          "prompt": "Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde horizontale maat-as met een rij per take, vaste takekleuren, Best/Alt en note-indicatoren. Deel de bestaande selectie-state. Klik op een maat opent die take op de juiste scoreplek; een notestip toont de notes daar. Bij ontkoppelde instrumenten kunnen instrumentrijen uitklappen. Bewaar horizontale en verticale leespositie bij bewerken."
+        }
+      ]
     }
   ]
 }

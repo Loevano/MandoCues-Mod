@@ -11,7 +11,7 @@ with sync_playwright() as p:
     page.locator('[data-tour-action="welcome-skip"]').click()
     for width in [1512,390]:
         page.set_viewport_size({'width':width,'height':900})
-        for id in ['opnametoets','planning','cue-takes','sterren','noteplek','snelle-notes','bereikbare-bediening','score-per-cue','score-zoom','score-overzicht']:
+        for id in page.evaluate('proposalTourSteps.map(step=>step.id)'):
             page.evaluate('''()=>{
                 const c=document.querySelector('#cue-scroll');if(c)c.scrollTop=c.scrollHeight;
                 unifiedState.recordingScroll=100000;

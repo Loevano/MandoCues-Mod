@@ -826,3 +826,13 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - De maat-/kloktijdstap wijst naar de conceptbediening, ook als de gekozen nieuwe take nog geen notes heeft.
 - Geen algemene terugval naar Recording/Comp tool bij een ontbrekend doel. Bij bewust wisselen naar een andere weergave verbergt de niet-toepasselijke highlight zich; de volgende stap opent zijn eigen weergave.
+
+
+## 97. Tien stappen in plaats van tweeëntwintig
+
+- Bundel cuekeuze, cue/take-hiërarchie en sneltoetsen; note-paneel met Quick notes; maat/kloktijd met optionele Pro Tools-uitleg; sterren met Best/Alt.
+- Eén introductie voor Comp tool/score/zoom; maatselectie met eigen take-laag; score-notes met terugvinden/bewerken; vergelijken met optioneel overzicht per maat. Bediening tijdens scrollen blijft in de opnameprompt, zonder losse stap.
+- Alleen hoofdtekst direct tonen; uitgebreidere sneltoetsen, takekoppeling en overzicht zijn optionele details, geen extra schermpjes. De appfunctionaliteit en technische promptonderdelen blijven behouden.
+- Tien aangevinkte groepen; bestaande individuele uitvinkkeuzes blijven bewaard in hun oorspronkelijke IDs en prompttekst. Samengevoegde groepen kunnen daarom bij bestaande browsers een gemengd vinkje hebben. Een groep zelf aan-/uitvinken kiest alle onderdelen daarvan.
+- Alle doelen opnieuw controleren, ook bij een nieuwe take zonder notes, handmatig wisselen van weergave en mobiele schermen.
+- Bij scorestappen blijven takekeuze en noteslijst bereikbaar en gemarkeerd. De score wordt niet verduisterd bij vergelijken; highlights volgen de zichtbare pagina en blijven binnen het echte scrollvlak.

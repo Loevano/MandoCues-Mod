@@ -147,7 +147,7 @@ with sync_playwright() as p:
     page.keyboard.press('Alt+2');page.keyboard.press(']');assert selected()=='c0-t1'
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Prefix Escape cancels only the entry, keeping the active tutorial step.
-    page.evaluate('openTourStep(proposalTourSteps.findIndex(s=>s.id==="cue-sneltoetsen"))')
+    page.evaluate('openTourStep(proposalTourSteps.findIndex(s=>s.id==="cue-aanklikken"))')
     prefix();page.keyboard.press('Escape');release()
     expect(page.locator('.proposal-tour-card')).to_be_visible()
     assert not errors,errors
