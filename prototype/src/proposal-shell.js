@@ -28,10 +28,14 @@ function renderSessionChat(){
  const s=unifiedState;document.querySelector('.session-chat')?.remove();if(!s.chatOpen)return;
  const panel=document.createElement('aside');panel.className='session-chat';panel.lang='en';panel.setAttribute('aria-label','Session chat');panel.innerHTML=`<header><b>${appIcon('chat')} Session chat</b><button data-app-action="chat" aria-label="Close session chat">×</button></header><div class="session-chat-messages">${(s.chatMessages||[]).map(m=>`<p><small>${esc(m.cue)} · ${esc(m.take)} · ${esc(m.time)}</small>${esc(m.text)}</p>`).join('')}</div><form data-session-chat-form><label>Message everyone<textarea aria-label="Session chat message" placeholder="Message everyone…"></textarea></label><button>Send</button></form>`;document.body.append(panel);
 }
+function sessionTakeLog(s=unifiedState){
+ return {format:'mandocues-take-log-v1',demo:true,exportedAt:new Date().toISOString(),sessionId:s.sessionId,sessionLabel:proposalSessionMeta(s).label,takes:s.takes.flatMap((takes,j)=>takes.map(t=>({takeId:t.id,cueCode:(s.sessionCues||cues)[j][0],number:t.num,kind:t.kind,label:t.label||'',log:t.takeLog?{...t.takeLog}:null,durationSeconds:t.rolling?position(t):t.duration,notes:t.notes.map(n=>({id:n.id,text:n.text,bar:n.measureScope==='all'?null:n.measure??null,barScope:n.measureScope||'bar',clockAt:Number.isFinite(n.clockAt)?new Date(n.clockAt).toISOString():null}))})))};
+}
+function takeLoggedTime(t){return t.takeLog?`Logged start ${esc(t.takeLog.loggedStartAt)}${t.takeLog.loggedEndAt?' · Logged stop '+esc(t.takeLog.loggedEndAt):' · In progress'}`:'Recording time not logged (example take)';}
 function openSessionExport(kind){
  document.querySelectorAll('.session-pdf-menu').forEach(el=>el.open=false);
- const body=kind==='takes'?cues.map((c,j)=>`<h3>${c[0]} ${esc(c[1])}</h3>${unifiedState.takes[j].map(t=>`<section><b>${entryLabel(t)}</b>${t.label?` · ${esc(t.label)}`:""} · ${t.rating||'—'}/5${t.best?' · Best':''}<ul>${t.notes.map(n=>`<li>${esc(n.text)} · ${n.measureScope==='all'?'All':n.measure?'Bar '+n.measure:'—'} · ${noteTimeValue(n)}</li>`).join('')}</ul></section>`).join('')}`).join(''):`<table><thead><tr><th>Cue</th><th>Title</th><th>Music length</th><th>Planned (min)</th></tr></thead><tbody>${cues.map((c,j)=>`<tr><td>${c[0]}</td><td>${esc(c[1])}</td><td>${c[2]}</td><td>${cuePlannedMinutes(j)}</td></tr>`).join('')}</tbody></table>`;
- appDialog(kind==='takes'?'Take sheet':'Recording order',`<div class="session-export-preview">${body}</div>`,'<button data-app-action="print-export">Print / Save as PDF</button>');
+ const body=kind==='takes'?cues.map((c,j)=>`<h3>${c[0]} ${esc(c[1])}</h3>${unifiedState.takes[j].map(t=>`<section><b>${entryLabel(t)}</b>${t.label?` · ${esc(t.label)}`:""} · ${t.rating||'—'}/5${t.best?' · Best':''}<p><small>${takeLoggedTime(t)}</small></p><ul>${t.notes.map(n=>`<li>${esc(n.text)} · ${n.measureScope==='all'?'All':n.measure?'Bar '+n.measure:'—'} · ${noteTimeValue(n)}</li>`).join('')}</ul></section>`).join('')}`).join(''):`<table><thead><tr><th>Cue</th><th>Title</th><th>Music length</th><th>Planned (min)</th></tr></thead><tbody>${cues.map((c,j)=>`<tr><td>${c[0]}</td><td>${esc(c[1])}</td><td>${c[2]}</td><td>${cuePlannedMinutes(j)}</td></tr>`).join('')}</tbody></table>`;
+ appDialog(kind==='takes'?'Take sheet':'Recording order',`<div class="session-export-preview">${body}</div>`,`${kind==='takes'?'<button data-app-action="download-take-log">Download take log (JSON)</button>':''}<button data-app-action="print-export">Print / Save as PDF</button>`);
 }
 document.addEventListener('click',event=>{
  const close=event.target.closest('[data-app-dialog-close]');if(close){close.closest('dialog').close();return;}
@@ -40,6 +44,7 @@ document.addEventListener('click',event=>{
  if(action==='add-cues')openAddSessionCues();
  if(action==='chat'){unifiedState.chatOpen=!unifiedState.chatOpen;document.querySelector('[data-app-action="chat"][aria-pressed]')?.setAttribute('aria-pressed',unifiedState.chatOpen);renderSessionChat();}
  if(action==='print-export')window.print();
+ if(action==='download-take-log')saveFile('MandoCues-take-log.json',JSON.stringify(sessionTakeLog(),null,2),'application/json;charset=utf-8');
  if(action==='confirm-cues'){
   const selected=[...document.querySelectorAll('[data-add-session-cue]:checked')].map(el=>el.dataset.addSessionCue);
   for(const code of selected){const cue=proposalAvailableCues.find(c=>c[0]===code);if(!cue||cues.some(c=>c[0]===code))continue;cues.push([...cue]);unifiedState.takes.push([]);unifiedState.cueNotes.push([]);unifiedState.cueDrafts.push('');}

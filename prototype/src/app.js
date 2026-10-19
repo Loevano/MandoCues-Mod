@@ -198,7 +198,21 @@ function performRecordingAction(s){
  }
  toggleRecord(s);
 }
-function toggleRecord(s,kind='take'){const t=running(s);if(active.id==='partituur'&&!t)rememberScoreView(s);if(t){t.duration=position(t);t.cursor=t.duration;t.rolling=false;}else{const n=nextEntryNumber(s,s.cue,kind),next=newTake(s.cue,n,true,kind);next.base=0;next.cursor=0;next.duration=0;next.started=Date.now();next.rating=0;next.best=false;s.takes[s.cue].push(next);s.selected=next.id;s.open.add(s.cue);if(active.id==='partituur'){s.scoreCompared??={};s.scoreCompared[s.cue]=[next.id];restoreScoreView(s);}}renderDemo();}
+function toggleRecord(s,kind='take'){
+ const t=running(s);if(active.id==='partituur'&&!t)rememberScoreView(s);
+ if(t){
+  t.duration=position(t);t.cursor=t.duration;t.rolling=false;
+  if(t.takeLog)t.takeLog.loggedEndAt=new Date().toISOString();
+ }else{
+  const n=nextEntryNumber(s,s.cue,kind),next=newTake(s.cue,n,true,kind);
+  next.base=0;next.cursor=0;next.duration=0;next.started=Date.now();next.rating=0;next.best=false;
+  // These are our manual transport events, not an acknowledgement from a DAW.
+  next.takeLog={id:crypto.randomUUID?.()||Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join(''),sessionId:s.sessionId??null,cueCode:cues[s.cue][0],loggedStartAt:new Date(next.started).toISOString(),loggedEndAt:null,timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone,utcOffsetMinutes:-new Date(next.started).getTimezoneOffset(),source:'manual-demo-transport'};
+  s.takes[s.cue].push(next);s.selected=next.id;s.open.add(s.cue);
+  if(active.id==='partituur'){s.scoreCompared??={};s.scoreCompared[s.cue]=[next.id];restoreScoreView(s);}
+ }
+ renderDemo();
+}
 function addNote(id,place){const s=state(),t=takeById(s,id);if(!t||!t.draft.text.trim())return;const d=t.draft;if(d.measure!==''&&(!Number.isInteger(Number(d.measure))||+d.measure<1||+d.measure>99999)){toast('Enter a valid bar number or leave it empty.');return;}t.notes.push({id:'note-'+(++s.noteSerial),text:d.text.trim(),clockAt:d.clockAt??Date.now(),createdAt:Date.now(),useTime:true,useMeasure:d.measure!=='',at:d.at??position(t),originalAt:d.originalAt??d.at??position(t),measureScope:d.measureScope||'bar',measure:d.measure===''?null:Number(d.measure),page:d.page??(active.id==='partituur'||s.unified?s.page:null),measureAuto:!!d.measureAuto,source:d.source??(active.id==='partituur'||s.unified?s.doc.id:null)});syncSavedScorePage(t.notes.at(-1));t.draft={...draft(),measure:d.measure,measureScope:d.measureScope,page:d.page,source:d.source};renderDemo();$(`[data-draft="${id}"]${place?`[data-editor-place="${place}"]`:""}`)?.focus({preventScroll:true});}
 function addCueNote(c,place){const s=state(),text=s.cueDrafts[c].trim();if(!text)return;s.cueNotes[c].push({id:'cue-note-'+(++s.noteSerial),text});s.cueDrafts[c]='';renderDemo();$(`[data-cue-draft="${c}"]${place?`[data-editor-place="${place}"]`:""}`)?.focus({preventScroll:true});}
 function selectMeasure(n){const s=state(),t=takeById(s,s.selected),loc=scoreLocation(s.doc.id,n);if(!loc){toast('This bar has no mapped score location yet.');return;}s.measure=n;s.page=loc.page;s.scoreFocus=null;if(t){t.draft.measureAuto=false;t.draft.measure=n;t.draft.page=s.page;t.draft.source=s.doc.id;}renderDemo();revealScoreMeasure();}
