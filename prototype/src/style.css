@@ -553,11 +553,13 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .unified-proposal .proposal-schedule.is-late{color:#ff6a7f}
 .unified-proposal .proposal-schedule.is-ahead{color:#73c7a3}
 .unified-proposal .proposal-schedule.is-on-time{color:#bbb1c6}
-.unified-proposal .transport-clocks{align-items:center;gap:14px}
+.unified-proposal .transport-clocks{display:grid;grid-template-columns:11ch 11ch;align-items:center;gap:14px;flex-shrink:0;font:20px/1.2 var(--mono)}
+.unified-proposal .transport-clocks>label{min-width:0;min-height:36px;margin:0;justify-content:center}
+.unified-proposal .transport-clocks>.proposal-schedule{display:block;min-width:0;text-align:right}
 .unified-proposal .transport-clocks [data-wall-clock]{font-size:20px;line-height:1.2}
 .unified-proposal .transport-clocks .proposal-schedule{font-size:16px}
 @media(max-width:1250px){.proposal-session-clocks{justify-self:start;align-items:flex-start}.proposal-session-clocks label{align-items:flex-start}}
-@media(max-width:759px){.proposal-session-clocks{gap:4px}.proposal-session-clocks [data-wall-clock]{font-size:34px}.unified-proposal .transport-clocks [data-wall-clock]{font-size:17px}.unified-proposal .transport-clocks .proposal-schedule{font-size:14px}}
+@media(max-width:759px){.proposal-session-clocks{gap:4px}.proposal-session-clocks [data-wall-clock]{font-size:34px}.unified-proposal .transport-clocks{font-size:17px}.unified-proposal .transport-clocks [data-wall-clock]{font-size:17px}.unified-proposal .transport-clocks .proposal-schedule{font-size:14px}}
 
 /* Keep the original per-cue planning and completion fields beside each cue. */
 .cue-column-headings,.calm-cue-heading{display:grid;grid-template-columns:18px minmax(115px,1fr) 42px 79px 56px 58px 24px;gap:6px;align-items:center}

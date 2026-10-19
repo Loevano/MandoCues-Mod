@@ -112,3 +112,5 @@ De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done 
 - Alle zichtbare sneltoetsen in tutorialtitels, uitleg, promptvoorvertoning en bestaande GUI-hints zijn vet en blauw. Gebruik de gedeelde shortcutText-opmaak voor eigen uitleg; laat eigen notes en cue-/projectnamen ongemoeid. Lichte stopknoppen gebruiken donkerblauw voor contrast.
 
 - Tussen suggestie 6 en 7 staat een ongenummerde aanwijzing bij de Recording/Comp tool-toggle: Comp tool is nog niet helemaal uitgewerkt. Klikken op Comp tool of Verder vervolgt bij de scorestap. Dit is geen extra promptkeuze; tien suggesties en hun bestaande keuzes blijven behouden.
+
+- De compacte opnamebalk reserveert vaste kolommen voor klok en planningsstatus; On schedule, plus-/mintijden en langere achterstand verplaatsen de klok, take-duur en knoppen niet. Gecontroleerd in beide views op zes schermbreedtes.
