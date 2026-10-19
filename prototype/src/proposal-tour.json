@@ -120,7 +120,7 @@
       ],
       "inlineHelp": {
         "title": "Notes koppelen aan Pro Tools-opnames",
-        "text": "Idee voor later: notes automatisch aan Pro Tools-opnames koppelen via de kloktijd van je notes en de echte opnametijden."
+        "text": "Idee voor later: notes automatisch aan Pro Tools-opnames koppelen via de kloktijd van je notes en de echte opnametijden. Pro Tools levert de cliplijst via File → Export → Session Info as Text. De echte opnametijden moeten apart meekomen."
       }
     },
     {

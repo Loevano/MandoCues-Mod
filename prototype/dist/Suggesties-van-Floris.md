@@ -66,7 +66,7 @@ De eerste letter legt de kloktijd vast. Kies zelf de maat; het klokje vult de hu
 
 **Notes koppelen aan Pro Tools-opnames**
 
-Idee voor later: notes automatisch aan Pro Tools-opnames koppelen via de kloktijd van je notes en de echte opnametijden.
+Idee voor later: notes automatisch aan Pro Tools-opnames koppelen via de kloktijd van je notes en de echte opnametijden. Pro Tools levert de cliplijst via File → Export → Session Info as Text. De echte opnametijden moeten apart meekomen.
 
 **Promptonderdeel:**
 

@@ -885,3 +885,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Pas vetgedrukt en blauw overal toe: tutorialtitels en -teksten, uitklapbare uitleg, promptvoorvertoning en bestaande zichtbare toetsenbordhints bij opname, cuekeuze, notes en scorevergelijking.
 - Gebruik één opmaakfunctie voor eigen uitleg; eigen notes, cue-/projectnamen en invoervelden worden niet herschreven. Op lichte stopknoppen is het blauw donkerder voor leesbaarheid.
+
+
+## 107. Exportpad bij Pro Tools-suggestie
+
+- Voeg File → Export → Session Info as Text toe als route voor de cliplijst. Houd kort zichtbaar dat de echte opnametijden aanvullend nodig zijn.
