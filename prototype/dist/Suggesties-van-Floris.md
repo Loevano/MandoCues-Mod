@@ -40,7 +40,7 @@ Voorstel: cues direct kiezen, met hun takes eronder. Klik een cue of take om te 
 
 **Sneltoetsen**
 
-[ en ] wisselen cues. ⌥[ en ⌥] wisselen takes; ⌥1 t/m ⌥9 kiest een take. Houd ⌥ + ⌘ vast en typ twee cijfers voor bijvoorbeeld Take 12.
+**[** en **]** wisselen cues. **⌥[** en **⌥]** wisselen takes; **⌥1** t/m **⌥9** kiest een take. Houd **⌥ + ⌘** vast en typ twee cijfers voor bijvoorbeeld Take 12.
 
 **Promptonderdeel:**
 

@@ -869,3 +869,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Toon in de rondleiding drie compacte voorbeelden: +02:00 groen, −02:00 oranje en −07:00 rood. Gebruik dezelfde kleuren en grenswaarden als het echte planningsvlak.
 - Voorbeelden zijn alleen uitleg in de tutorial en veranderen geen sessiegegevens, timers of echte voor-/achterstand. Geen extra stap.
+
+
+## 104. Sneltoetsen beter laten opvallen
+
+- Maak elke toetscombinatie in het sneltoetsenblok vetgedrukt en lichtblauw. De toelichting blijft gewone tekst; de sneltoetsen blijven direct zichtbaar.
