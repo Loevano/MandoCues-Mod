@@ -664,3 +664,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - De score-/kniplijstweergave heet voortaan Comp tool.
 - Bestaande links blijven werken; wijzig alleen de naam in de GUI en actuele uitleg.
+
+
+## 77. Paginaweergave zoals Preview
+
+- Twee scorepagina’s naast elkaar kunnen tonen.
+- Een compact menu met Continuous scroll, Single page en Two pages.
+- Verder uitzoomen, tot 10%; knijpzoom en Fit width blijven werken.
+- Pagina-indeling en zoom blijven globaal bij wisselen van cue of take.

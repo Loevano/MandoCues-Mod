@@ -35,6 +35,7 @@ python -X utf8 check_score_note_drag.py
 python -X utf8 check_score_settings.py
 python -X utf8 check_score_take_scroll.py
 python -X utf8 check_score_zoom.py
+python -X utf8 check_score_page_layout.py
 ```
 
 `browser_support.py` gebruikt Playwright Chromium of een gevonden Chrome-installatie. Je kunt ook PLAYWRIGHT_CHROMIUM_EXECUTABLE instellen. Uitvoer en screenshots komen in `checks/`.

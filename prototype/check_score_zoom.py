@@ -78,8 +78,12 @@ with sync_playwright() as p:
     assert canvas.evaluate('(el)=>el.scrollLeft')==0
     for _ in range(2):page.locator('[data-score-zoom="out"]').click()
     expect(page.locator('[data-score-zoom-value]')).to_have_text('50%')
+    page.locator('[data-score-zoom="out"]').click()
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('25%')
+    page.locator('[data-score-zoom="out"]').click()
+    expect(page.locator('[data-score-zoom-value]')).to_have_text('10%')
     expect(page.locator('[data-score-zoom="out"]')).to_be_disabled()
-    assert abs(paper.bounding_box()['width']/base-.5)<.01
+    assert abs(paper.bounding_box()['width']/base-.1)<.01
     assert layers()==saved
     page.locator('[data-score-zoom="fit"]').click()
     page.locator('[data-score-zoom="in"]').click()
@@ -132,4 +136,4 @@ with sync_playwright() as p:
     page.screenshot(path=str(ROOT/'checks/score-zoom.png'))
     assert not errors,errors
     browser.close()
-print('PASS: continuous pages, viewport space, 50–300% zoom, reading anchor, global cue/take zoom, scaled selection/note drag, permanently expanded workspace, compact transport and responsive widths')
+print('PASS: continuous pages, viewport space, 10–300% zoom, reading anchor, global cue/take zoom, scaled selection/note drag, permanently expanded workspace, compact transport and responsive widths')

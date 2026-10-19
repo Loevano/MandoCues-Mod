@@ -44,7 +44,7 @@ with sync_playwright() as p:
     for _ in range(5):wheel(-80)
     assert page.evaluate('state().zoom')==3
     for _ in range(5):wheel(80)
-    assert page.evaluate('state().zoom')==.5
+    assert page.evaluate('state().zoom')==.1
     page.locator('[data-score-zoom="fit"]').click()
     expect(page.locator('[data-score-zoom-value]')).to_have_text('100%')
     assert not errors,errors
