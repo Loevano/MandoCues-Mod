@@ -118,7 +118,7 @@
     {
       "id": "alt-best",
       "title": "Een favoriete take en reserves",
-      "text": "Best voor je favoriete take; Alt 1, Alt 2 enzovoort voor reservetakes. Los van de sterren.",
+      "text": "Best voor je favoriete take; Alt voor reservetakes. Bij de cue zie je het totale aantal alternatieven. Los van de sterren.",
       "target": ".calm-take-row .take-tools",
       "view": "recording",
       "discussion": "alt-best"

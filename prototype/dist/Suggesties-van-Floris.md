@@ -123,11 +123,11 @@ Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per
 
 ### 14. Een favoriete take en reserves
 
-Best voor je favoriete take; Alt 1, Alt 2 enzovoort voor reservetakes. Los van de sterren.
+Best voor je favoriete take; Alt voor reservetakes. Bij de cue zie je het totale aantal alternatieven. Los van de sterren.
 
 **Promptonderdeel:**
 
-Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetakes. Maak Beste een toggle met maximaal één Beste per cue; een nieuwe Beste heft de vorige binnen die cue op. Sterren blijven apart. Bewaar alles bij de vaste take-ID. Nummer Alt-takes per cue in take-volgorde als Alt 1, Alt 2 enzovoort, onafhankelijk van het sterrenfilter. Toon het totale aantal alts bij de cue; zonder alts staat er een streepje. Niet-geselecteerde Alt-knoppen tonen Alt –. Houd de knopbreedte gelijk zodat sterren niet verschuiven. Bij verwijderen wordt de nummering opnieuw aaneengesloten. Beste verandert alleen de highlight: geen vinkje of wisselende Beste-tekst in de cuekop. Reserveer een vaste breedte voor Beste en Alt in alle toestanden; sterren, cuegegevens en omliggende tekst blijven op dezelfde plaats bij aan- en uitzetten.
+Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetakes. Maak Beste een toggle met maximaal één Beste per cue; een nieuwe Beste heft de vorige binnen die cue op. Sterren blijven apart. Bewaar alles bij de vaste take-ID. Alle take-knoppen tonen steeds Alt, zonder volgnummer. Markeer de keuze alleen met de bestaande highlight en aria-pressed. Toon alleen het totale aantal alternatieven per cue, onafhankelijk van het sterrenfilter, ook als het nul is. Houd de knopbreedte gelijk zodat sterren niet verschuiven. Beste verandert alleen de highlight: geen vinkje of wisselende Beste-tekst in de cuekop. Reserveer een vaste breedte voor Beste en Alt in alle toestanden; sterren, cuegegevens en omliggende tekst blijven op dezelfde plaats bij aan- en uitzetten.
 
 ### 15. Snel tussen cues en takes
 

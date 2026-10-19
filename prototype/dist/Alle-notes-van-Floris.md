@@ -652,3 +652,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Dit werkt tijdens typen en bij een geplaatste note. Opnieuw klikken gebruikt opnieuw het actuele moment.
 - Enter plaatst de note en zet een nieuwe klaar met een nieuw tijdanker. Maat en tekst blijven behouden bij het bijwerken van de tijdcode.
 - Bij een andere geselecteerde take hoort het klokje bij die take, niet bij een andere lopende opname.
+
+
+## 75. Alt zonder volgnummers
+
+- De knop heet altijd Alt; geen Alt 1, Alt 2 enzovoort.
+- Toon alleen het totale aantal Alt-takes per cue, ook nul. Highlight en knopposities blijven behouden.

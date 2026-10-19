@@ -591,3 +591,5 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
  .cue-complexity>span,.cue-planned>span,.cue-actual-field>span:first-child{display:block;font-size:9px;color:#afa2bb;margin-bottom:4px;white-space:nowrap}
  .cue-actual-field>.cue-actual{display:block;min-height:28px;line-height:28px}
 }
+
+.cue-alt-total{font:10px var(--mono);color:#b8afc2;white-space:nowrap;margin-left:auto;margin-right:8px}.all-takes-view h3 .cue-alt-total{margin-left:16px}
