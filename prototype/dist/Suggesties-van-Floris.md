@@ -26,15 +26,7 @@ Starten en stoppen met de spatiebalk kan botsen met het typen van notes, omdat j
 
 Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten beeld scrolt, neemt een compacte vaste balk de cue, lopende take en start/stop over. Houd deze bediening buiten de note-editor, gescheiden van Add/Delete. Voorkom dubbel zichtbare of knipperende stopknoppen en behoud concept, tijdanker en scrollpositie bij stoppen. Gebruik in Recording één scrollgebied inclusief kop en sessie-instellingen, zonder een genest scrollvenster of extra paneelkaders. De compacte opnamebalk blijft sticky zodra de grote knop wegscrollt.
 
-### 2. Voor- en achterstand met + en −?
-
-Voorstel: + voor voorsprong, − voor achterstand. Op schema is groen. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.
-
-**Promptonderdeel:**
-
-Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner.
-
-### 3. Cues en takes direct kiezen
+### 2. Cues en takes direct kiezen
 
 Voorstel: cues direct kiezen, met hun takes eronder. Klik een cue of take om te proberen.
 
@@ -50,7 +42,7 @@ Maak de relatie cue → takes zichtbaar met ingesprongen, even hoge take-regels.
 
 Gebruik in Recording en Comp tool dezelfde toetsen: [ voor vorige cue, ] voor volgende cue, Alt+[ voor vorige take, Alt+] voor volgende take en Alt+1 t/m 9 voor het echte take-nummer binnen de gekozen cue. Verwijder de eerdere Alt+cijfer-koppeling aan cuevolgorde; een cijfer is geen cuecode. Voor twee cijfers: houd Option (Alt)+Command ingedrukt en typ bijvoorbeeld 1 en 2 voor Take 12 of 0 en 2 voor Take 2. Toon alleen tijdens vasthouden een klein venster met Take __ en Type two digits; na één cijfer Take 1_. Na het tweede cijfer kies je de bestaande take en sluit het venster. Loslaten van één van beide modifiers annuleert onvolledige invoer en sluit het venster direct. Geen loslaat-en-daarna-typen-modus of zichtbare Escape-instructie. Klikken, vensterfocus verliezen, tekstfocus, IME of een andere actie annuleert ook. Een volgende keuze vereist opnieuw indrukken; herhaalde of extra cijfers onder dezelfde vastgehouden combinatie starten geen nieuwe keuze. Gebruik preventDefault voor de afgevangen combinaties. Gebruik fysieke toetscodes voor Option-cijfers en brackets, omdat Option het tekstteken verandert. Key-repeat en IME voeren geen extra acties uit. Normale tekstinvoer, open modale vensters en actieve sleepacties krijgen voorrang. Directe nummers kiezen gewone takes op werkelijk take-nummer, onafhankelijk van filters en ontbrekende nummers; maak ontbrekende takes niet aan en onderscheid overdubs met hetzelfde nummer. Vorige/volgende take volgt de bestaande lijst, inclusief overdubs, en blijft bij de eerste/laatste staan. Cue-navigatie met brackets en knoppen stopt eveneens bij de eerste en laatste cue, zonder naar de andere kant te springen; ook bij ingedrukt houden. Behoud leespositie, notes, concepten en selectie per take. Wisselen kiest de bewerkingslaag en start of stopt niets; een lopende take verandert niet. Cuewisseling tijdens een take blijft geblokkeerd. Behoud configureerbare toetsen en test de browsers en toetsenbordindelingen die de gebruiker inzet. Brackets ingedrukt houden mag navigatie herhalen: eerst één stap, daarna gedoseerd herhalen en na kort vasthouden sneller. Alleen brackets mogen herhalen; cijfers, tweecijferinvoer en opnamecommando’s blijven beschermd tegen key-repeat.
 
-### 4. Notes bij de gekozen take
+### 3. Notes bij de gekozen take
 
 Zou één notitiepaneel per take handig zijn? Kies een take en typ een note, of probeer een Quick note.
 
@@ -60,7 +52,7 @@ Toon naast vaste cue-/take-regels één apart notitiepaneel voor de gekozen take
 
 Aanvulling: bied veelvoorkomende notities als aanpasbare suggesties aan, bijvoorbeeld Intonatie, Meer expressief, Minder expressief, Strak en Alt take. Een klik vult het concept bij de juiste take; daarna kun je aanpassen en Enter drukken. Bewaar bestaand concept en leg het bedoelde moment bij de eerste invoer vast.
 
-### 5. Kloktijd en maat bij een note
+### 4. Kloktijd en maat bij een note
 
 De eerste letter legt de kloktijd vast. Kies zelf de maat; het klokje vult de huidige tijd in. Enter slaat je note op en zet een nieuwe klaar.
 
@@ -80,7 +72,7 @@ Controleer vooraf computerklokken en tijdzones; kalibreer met bekende koppelinge
 
 Verwerk ook het voorstel om notes op hun kloktijd aan de engineer-opnames te koppelen. Pro Tools File > Export > Session Info as Text levert een tekstbestand (.txt; bij voorkeur UTF-8) met bestands-/cliplijsten en track-EDLs (playlists). Laat Include File List, Include Clip List en Include Track EDLs opnemen. Start/end/duration en Include User Timestamps beschrijven project-/clipposities; dit is geen standaard opnamelog met werkelijke kloktijden. Gebruik deze export voor clipnamen en bronrelaties, aangevuld met gecontroleerde werkelijke opnamestart en -einde/duur uit metadata of een engineerlog. AI kan de bestanden helpen uitlezen en koppelingen voorstellen, maar mag ontbrekende kloktijden niet invullen of projecttijdcode als kloktijd aannemen. Vergelijk een note.clockAt met het opname-interval op dezelfde datum na expliciete tijdzone-/klokcorrectie, niet alleen met de starttijd of een overeenkomstig uur. Bijvoorbeeld: een note om 3:00:20 PM past bij een gecontroleerde opname van 3:00:00 tot 3:01:30 PM. Houd cue, sessiedag, gekoppelde take-ID, meerdere microfoonkanalen, overdubs en notes die pas na een take zijn geschreven mee als context. Een tijdmatch is een controleerbaar koppelvoorstel; meerdere kandidaten of ontbrekende gegevens blijven zichtbaar onzeker. Bouw geen nieuwe AI-, DAW- of importverbinding in deze demo; de rondleiding beschrijft het toekomstige idee.
 
-### 6. Sterren, Best en Alt
+### 5. Sterren, Best en Alt
 
 Zou 1–5 sterren met een filter handig zijn? Best kiest je favoriet; Alt markeert reservetakes.
 
@@ -89,6 +81,14 @@ Zou 1–5 sterren met een filter handig zijn? Best kiest je favoriet; Alt markee
 Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per take. Bewaar de numerieke beoordeling bij de juiste take. Een nieuwe take mag nog onbeoordeeld zijn. Behoud een eventuele Beste-markering als afzonderlijke keuze. Aanvulling: filter bijvoorbeeld op 4–5 sterren. Filter alleen de weergave; verwijder of hernummer geen takes.
 
 Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetakes. Maak Beste een toggle met maximaal één Beste per cue; een nieuwe Beste heft de vorige binnen die cue op. Sterren blijven apart. Bewaar alles bij de vaste take-ID. Alle take-knoppen tonen steeds Alt, zonder volgnummer. Markeer de keuze alleen met de bestaande highlight en aria-pressed. Toon alleen het totale aantal alternatieven per cue, onafhankelijk van het sterrenfilter, ook als het nul is. Houd de knopbreedte gelijk zodat sterren niet verschuiven. Beste verandert alleen de highlight: geen vinkje of wisselende Beste-tekst in de cuekop. Reserveer een vaste breedte voor Beste en Alt in alle toestanden; sterren, cuegegevens en omliggende tekst blijven op dezelfde plaats bij aan- en uitzetten.
+
+### 6. Voor- en achterstand met + en −?
+
+Voorstel: + voor voorsprong, − voor achterstand. Op schema is groen. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.
+
+**Promptonderdeel:**
+
+Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner.
 
 ### Naar Comp tool
 

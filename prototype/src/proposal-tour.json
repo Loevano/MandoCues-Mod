@@ -23,34 +23,6 @@
       ]
     },
     {
-      "id": "planning",
-      "title": "Voor- en achterstand met + en −?",
-      "text": "Voorstel: + voor voorsprong, − voor achterstand. Op schema is groen. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.",
-      "target": "#main-panel .main-plan-card",
-      "view": "recording",
-      "parts": [
-        {
-          "id": "planning",
-          "title": "Voor- en achterstand met + en −?",
-          "prompt": "Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner."
-        }
-      ],
-      "scheduleExamples": [
-        {
-          "delta": -120,
-          "label": "Voorsprong"
-        },
-        {
-          "delta": 120,
-          "label": "Achterstand"
-        },
-        {
-          "delta": 420,
-          "label": "Achterstand"
-        }
-      ]
-    },
-    {
       "id": "cue-aanklikken",
       "title": "Cues en takes direct kiezen",
       "text": "Voorstel: cues direct kiezen, met hun takes eronder. Klik een cue of take om te proberen.",
@@ -142,6 +114,34 @@
           "id": "alt-best",
           "title": "Alt voor reservetakes?",
           "discussion": "alt-best"
+        }
+      ]
+    },
+    {
+      "id": "planning",
+      "title": "Voor- en achterstand met + en −?",
+      "text": "Voorstel: + voor voorsprong, − voor achterstand. Op schema is groen. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.",
+      "target": "#main-panel .main-plan-card",
+      "view": "recording",
+      "parts": [
+        {
+          "id": "planning",
+          "title": "Voor- en achterstand met + en −?",
+          "prompt": "Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner."
+        }
+      ],
+      "scheduleExamples": [
+        {
+          "delta": -120,
+          "label": "Voorsprong"
+        },
+        {
+          "delta": 120,
+          "label": "Achterstand"
+        },
+        {
+          "delta": 420,
+          "label": "Achterstand"
         }
       ]
     },

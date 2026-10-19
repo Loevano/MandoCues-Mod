@@ -3,7 +3,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from browser_support import launch_chromium
 ROOT=Path(__file__).resolve().parent
-ORDER=['opnametoets','planning','cue-aanklikken','noteplek','maat-aanpassen','sterren','comp-tool-overgang','view-toggle','score-selecteren','score-notes','score-vergelijk']
+ORDER=['opnametoets','cue-aanklikken','noteplek','maat-aanpassen','sterren','planning','comp-tool-overgang','view-toggle','score-selecteren','score-notes','score-vergelijk']
 with sync_playwright() as p:
     browser=launch_chromium(p)
     context=browser.new_context(viewport={'width':1512,'height':1100})
