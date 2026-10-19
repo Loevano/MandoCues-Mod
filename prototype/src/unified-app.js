@@ -1,5 +1,27 @@
 // One workspace, one take model. The old layouts remain recoverable in Git.
-const unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:0,remaining:360,sessionEnded:false,sessionPausedAt:null});
+let unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:0,remaining:360,sessionEnded:false,sessionPausedAt:null});
+const initialSessionCues=cues.map(c=>[...c]);
+const proposalSessionCatalog=[{id:'strings-20261020',label:'String quartet · 20 October',detail:'20 October 2026 · 10:00 · Studio Hana'},{id:'strings-demo-day2',label:'String quartet · 21 October (demo)',detail:'21 October 2026 · 10:00 · Studio Hana · Example session'}];
+unifiedState.sessionId=proposalSessionCatalog[0].id;unifiedState.sessionCues=cues.map(c=>[...c]);
+const proposalSessionStates=new Map([[unifiedState.sessionId,unifiedState]]);
+function proposalSessionMeta(s){return proposalSessionCatalog.find(day=>day.id===s.sessionId)||proposalSessionCatalog[0];}
+function createSessionExample(id){
+ const previous=cues.map(c=>[...c]);cues.splice(0,cues.length,...initialSessionCues.map(c=>[...c]));
+ try{const next=Object.assign(fresh('partituur'),{unified:true,sessionId:id,sessionCues:cues.map(c=>[...c]),sessionStarted:false,booked:360,elapsed:0,remaining:360,sessionEnded:false,sessionPausedAt:null});next.takes=cues.map(()=>[]);next.selected=null;next.cueNotes=cues.map(()=>[]);return next;}finally{cues.splice(0,cues.length,...previous);}
+}
+function switchProposalSession(id){
+ if(id===unifiedState.sessionId||!proposalSessionCatalog.some(day=>day.id===id))return;
+ if(running(unifiedState)){toast('Stop the active take before changing recording day.');document.querySelectorAll('[data-session-select]').forEach(el=>el.value=unifiedState.sessionId);return;}
+ rememberScoreView(unifiedState);unifiedState.sessionCues=cues.map(c=>[...c]);
+ unifiedState.recordingScroll=document.querySelector('#cue-scroll')?.scrollTop||unifiedState.recordingScroll||0;
+ const view={zoom:unifiedState.zoom,scorePageColumns:unifiedState.scorePageColumns,scoreContinuous:unifiedState.scoreContinuous};
+ if(!proposalSessionStates.has(id))proposalSessionStates.set(id,createSessionExample(id));
+ unifiedState=proposalSessionStates.get(id);Object.assign(unifiedState,view);cues.splice(0,cues.length,...unifiedState.sessionCues.map(c=>[...c]));
+ for(const key of Object.keys(states))states[key]=unifiedState;cuePlanningState=unifiedState;cancelTakeNumberEntry();renderDemo();renderSessionChat();
+ const scroll=document.querySelector('#cue-scroll');if(scroll)scroll.scrollTop=unifiedState.recordingScroll||0;
+}
+document.addEventListener('change',event=>{if(event.target.matches('[data-session-select]'))switchProposalSession(event.target.value);});
+function sessionPlanSummary(s){const minutes=cues.reduce((sum,_,j)=>sum+cuePlannedMinutes(j),0),duration=n=>Math.floor(n/60)+'h '+String(Math.round(n%60)).padStart(2,'0')+'m';return duration(minutes)+' planned · '+duration(s.booked)+' session';}
 for(const id of Object.keys(states))states[id]=unifiedState;
 cuePlanningState=unifiedState;
 let proposalView='recording';
@@ -21,7 +43,7 @@ function proposalSchedule(){
  return `<span class="proposal-schedule ${proposalPlanClass(timing.delta)}" data-proposal-plan aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span>`;
 }
 function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
-function proposalClockTime(ms){return new Date(ms).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});}
+function proposalClockTime(ms){return new Date(ms).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true});}
 function proposalEndTime(timing,expected=true){return proposalClockTime(timing.clock.plannedEndAt+(expected?timing.delta:0)*1000);}
 function proposalSessionBreak(s){
  if(!s.sessionStarted||running(s))return;
@@ -59,7 +81,7 @@ function syncAutomaticPlanDisplay(s){
  document.querySelectorAll('.cue-timeline [data-session-cue]').forEach(button=>{
   const j=+button.dataset.sessionCue,minutes=cuePlannedMinutes(j);button.style.flexBasis=minutes*8+'px';button.title=cues[j][0]+' · '+cues[j][1]+' · '+minutes+' min';button.setAttribute('aria-label',cues[j][0]+' '+cues[j][1]+', '+minutes+' minutes planned');
  });
- const end=document.querySelector('.cue-timeline>header>small');if(end)end.textContent='10:00 — '+planningClock(600+cues.reduce((sum,_,j)=>sum+cuePlannedMinutes(j),0));
+ const end=document.querySelector('.cue-timeline>header>small');if(end)end.textContent=sessionPlanSummary(s);
 }
 function choosePlanned(j,value){
  if(value==='auto'||!String(value).trim()){cueSettings(unifiedState,+j).planned=null;closePlannedPickers();renderDemo();return;}
@@ -83,17 +105,19 @@ document.addEventListener('keydown',event=>{
 });
 addEventListener('resize',()=>document.querySelectorAll('.planned-picker[open]').forEach(positionPlannedPicker));
 document.addEventListener('scroll',()=>document.querySelectorAll('.planned-picker[open]').forEach(positionPlannedPicker),true);
-let mainPanelLayout='A';
-function mainPanelOptions(){return `<div class="main-panel-options" lang="nl" role="group" aria-label="Indeling vergelijken"><span>Indeling proberen</span><button data-main-layout="A" aria-pressed="${mainPanelLayout==='A'}">A · Klok midden</button><button data-main-layout="B" aria-pressed="${mainPanelLayout==='B'}">B · Klok boven</button></div>`;}
+let mainPanelLayout='B';
+function mainPanelOptions(){return `<div class="main-panel-options" lang="nl" role="group" aria-label="Indeling vergelijken"><button data-main-layout="A" aria-pressed="${mainPanelLayout==='A'}" title="Invulvelden bovenaan zichtbaar">A · Velden zichtbaar</button><button data-main-layout="B" aria-pressed="${mainPanelLayout==='B'}" title="Invulvelden en extra tijden onder Planning">B · Planningmenu</button></div>`;}
+function mainPlanCard(timing){return `<div class="main-plan-card ${proposalPlanClass(timing.delta)}" data-plan-card><strong data-plan-status>${timing.delta===0?'On schedule':scoreWorkflowPlanText(timing.delta)}</strong><span data-proposal-plan class="proposal-schedule ${proposalPlanClass(timing.delta)}" aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span></div>`;}
 calmPanel=function(s){
- const timing=scoreWorkflowTiming(s),t=running(s),selected=takeById(s,s.selected),c=cues[s.cue];
- const ready=!s.sessionStarted,paused=!!s.sessionPausedAt;
+ const timing=scoreWorkflowTiming(s),t=running(s),c=cues[s.cue],ready=!s.sessionStarted,paused=!!s.sessionPausedAt;
  const stateLabel=t?'● Recording':paused?'On break · Not recording':s.sessionEnded?'Session ended · Not recording':ready?'Ready to start · Not recording':'Standby · Not recording';
- return `<section id="main-panel" class="calm-main-panel proposal-main-panel layout-${mainPanelLayout} ${t?'is-recording':'is-idle'}" aria-label="Recording controls">
- <div class="calm-cue"><span class="rec-status ${t?'rolling':'standby'}">${stateLabel}</span><div class="main-cue"><b>${c[0]}</b><strong title="${esc(c[1])}">${esc(c[1])}</strong></div><small>Music length ${c[2]}</small><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t||s.cue===0?'disabled':''} title="Previous cue · [">← Previous cue <kbd>[</kbd></button><button data-action="next-cue" ${t||s.cue===cues.length-1?'disabled':''} title="Next cue · ]">Next cue → <kbd>]</kbd></button></div></div>
- <div class="proposal-session-clocks"><label>Time<b data-wall-clock>${new Date().toLocaleTimeString('en-GB')}</b></label><div class="proposal-clock-plan">${proposalSchedule()}</div><div class="proposal-main-planning"><label>Cue work <b data-proposal-cue-clock>${time(timing.cueElapsed)}</b><span> / ${plannedPicker(s,s.cue,'main')} planned</span></label></div></div>
- <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls"><div class="main-take-heading"><strong>${t?entryLabel(t):selected?entryLabel(selected):'No take selected'}</strong><span>${t&&selected&&t.id!==selected.id?'Viewing '+entryLabel(selected):t?'Recording':selected?'Selected take':''}</span></div><div class="main-take-actions">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button><label class="proposal-take-clock">Take duration<b ${t?`data-live="${t.id}"`:''}>${time(t?position(t):selected?.duration||0)}</b></label></div></div>
- <aside class="main-session-rail" aria-label="Session settings and controls">${proposalSessionHeader(s)}<div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button></div><div class="main-session-times"><span>Worked <b data-proposal-elapsed>${proposalDuration(timing.elapsed)}</b></span><span>Remaining <b>${proposalDuration(timing.clock.remaining)}</b></span><span>Planned end <b data-proposal-planned-end>${proposalEndTime(timing,false)}</b></span></div></aside>
+ return `<section id="main-panel" class="calm-main-panel proposal-main-panel original-panel layout-${mainPanelLayout} ${t?'is-recording':'is-idle'} ${proposalPlanClass(timing.delta)}" aria-label="Recording controls">
+ <div class="original-cue-side"><div class="main-take-heading"><span class="rec-status ${t?'rolling':'standby'}">${stateLabel}</span>${t?`<strong>${entryLabel(t)}</strong><b class="recording-take-duration" data-live="${t.id}">${time(position(t))}</b>`:''}</div>
+ <div class="main-cue"><b>${c[0]}</b><strong title="${esc(c[1])}">${esc(c[1])}</strong></div>
+ <div class="original-cue-facts"><span><b>${c[2]}</b> of music</span><span>${cueSettings(s,s.cue).complexity.toLowerCase()}</span><span class="cue-planned-inline">Planned ${plannedPicker(s,s.cue,'main')}</span><span title="Cumulative work on this cue, including time between takes">Worked on cue <b data-proposal-cue-clock>${proposalDuration(timing.cueElapsed)}</b></span><span>${entryCountText(s,s.cue)}</span></div>
+ <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>${appIcon('music')} Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button>${!t?'<label class="proposal-take-clock">Take duration<b>00:00</b></label>':''}</div>
+ <div class="original-secondary-actions"><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t||s.cue===0?'disabled':''} title="Previous cue · [">← Previous cue <kbd>[</kbd></button><button data-action="next-cue" ${t||s.cue===cues.length-1?'disabled':''} title="Next cue · ]">Next cue → <kbd>]</kbd></button></div><div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button></div></div></div>
+ <div class="proposal-session-clocks original-clock-side"><label class="original-wall-clock">Time<b data-wall-clock>${formatWallClock()}</b></label>${mainPlanCard(timing)}</div>
  </section>`;
 };
 composer=function(s,t,score=false,place='list'){
@@ -105,7 +129,7 @@ function cueActualSeconds(s,j){const timing=scoreWorkflowTiming(s);return j===s.
 function cueActualClass(s,j,seconds){if(seconds===null)return '';const over=seconds-cuePlannedMinutes(j)*60;return over>0?proposalPlanClass(over):cueSettings(s,j).complete?'is-complete':'';}
 function cueActual(s,j){const seconds=cueActualSeconds(s,j);return `<span class="cue-actual ${cueActualClass(s,j,seconds)}" data-cue-actual="${j}" aria-label="Actual work time for ${cues[j][0]}">${seconds===null?'—':proposalDuration(seconds)}</span>`;}
 function proposalRatingFilter(s){return `<div class="review-filter"><label>Show takes <select data-rating-filter>${[[0,'All ratings'],[3,'3–5 stars'],[4,'4–5 stars'],[5,'Only 5 stars']].map(([n,label])=>`<option value="${n}" ${s.minRating===n?'selected':''}>${label}</option>`).join('')}</select></label></div>`;}
-controls=function(){const s=state();return `<div class="calm-scroll control-scroll"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${mainPanelOptions()}${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
+controls=function(){const s=state();return `<div class="calm-scroll control-scroll"><div class="sticky-slot" aria-hidden="true">${transport(s)}</div>${calmPanel(s)}${cueTimeline(s)}<div class="calm-content"><div class="proposal-cues">${proposalRatingFilter(s)}${calmCueList(s)}</div>${calmNotes(s)}</div></div>`;};
 selectCue=function(s,index){selectScoreCue(s,index);};
 toggleRecord=function(s,kind='take'){
  s.sessionStarted=true;
@@ -132,15 +156,26 @@ renderDemo=function(){
  const toggle=document.querySelector('[data-proposal-view="'+proposalView+'"]');
  document.querySelectorAll('[data-proposal-view]').forEach(button=>button.setAttribute('aria-pressed',button===toggle));
  document.querySelector('.proposal-workspace-title').textContent=proposalView==='recording'?'Recording':'Comp tool';
- const sessionSlot=document.querySelector('.proposal-session-header-slot');sessionSlot.hidden=true;sessionSlot.innerHTML='';
+ const sessionSlot=document.querySelector('.proposal-session-header-slot');sessionSlot.hidden=proposalView!=='recording';sessionSlot.innerHTML=proposalView==='recording'?proposalSessionHeader(unifiedState):'';
+ document.querySelectorAll('[data-main-layout]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.mainLayout===mainPanelLayout));
+ document.querySelector('.proposal-planning-slot').innerHTML=proposalPlanning(unifiedState);
+ syncGlobalRecording();
+ positionPlanningMenu();
  const bar=document.querySelector('.proposal-live-bar');
  if(bar){bar.hidden=proposalView!=='cutlist';bar.innerHTML=proposalView==='cutlist'?transport(unifiedState):'';}
  syncRecordingDock();
  if(typeof scheduleTourPosition==='function')scheduleTourPosition();
 };
+function syncGlobalRecording(){
+ const t=running(unifiedState),badge=document.querySelector('.proposal-global-recording');document.body.classList.toggle('take-is-recording',!!t);
+ document.body.style.setProperty('--review-height',document.querySelector('.site-header').getBoundingClientRect().bottom+'px');
+ if(badge){badge.hidden=!t;badge.innerHTML=t?`<span>● RECORDING</span><b>${entryLabel(t)}</b><b data-live="${t.id}">${time(position(t))}</b>`:'';}
+}
+addEventListener('resize',syncGlobalRecording);
 function showProposalView(view,{navigate=true}={}){
  cancelTakeNumberEntry();
  view=view==='cutlist'?'cutlist':'recording';
+ if(view!==proposalView)unifiedState.planningOpen=false;
  if(active?.id==='partituur')rememberScoreView(unifiedState);
  if(proposalView==='recording')unifiedState.recordingScroll=document.querySelector('#cue-scroll')?.scrollTop||0;
  proposalView=view;active=ideas.find(i=>i.id===(view==='cutlist'?'partituur':'bediening'));variant='A';
@@ -160,9 +195,9 @@ fullscreenPrototype=async function(){
 document.addEventListener('keydown',event=>{if(event.key==='Escape')document.body.classList.remove('proposal-expanded');});
 function mountProposal(){
  document.body.classList.add('unified-proposal');document.title='MandoCues · voorstel van Floris';
- document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a><div class="proposal-review-actions"><button type="button" data-proposal-action="fullscreen" aria-label="Schermvullend" title="Schermvullend">⛶</button><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
+ document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a>${`<div class="proposal-global-recording" hidden></div>`}<div class="proposal-review-actions">${mainPanelOptions()}<button type="button" data-proposal-action="fullscreen" aria-label="Schermvullend" title="Schermvullend">⛶</button><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
  document.querySelector('.site-header').insertAdjacentHTML('afterend',appSidebar());
- document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div class="proposal-project-heading"><h1 class="proposal-workspace-title">Recording</h1><small>After Party · String quartet · 20 October</small></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Comp tool</button></nav><div class="proposal-live-bar" lang="en" hidden></div><small class="proposal-demo-label">Demo · no audio is recorded</small><div class="proposal-cutlist-review" lang="nl"></div></header><div class="proposal-session-header-slot"></div><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
+ document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div class="proposal-project-heading"><div class="proposal-heading-line"><h1>${appIcon('record')}<span class="proposal-workspace-title">Recording</span></h1><div class="proposal-planning-slot"></div></div><p class="proposal-project-title">After Party</p></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Comp tool</button></nav><div class="proposal-live-bar" lang="en" hidden></div><small class="proposal-demo-label">Demo · no audio is recorded</small><div class="proposal-cutlist-review" lang="nl"></div></header><div class="proposal-session-header-slot"></div><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
 }
 route=function(){
  if(!document.querySelector('.proposal-shell'))mountProposal();
@@ -189,8 +224,12 @@ setInterval(()=>{
  const timing=scoreWorkflowTiming(unifiedState);
  document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.className='proposal-schedule '+proposalPlanClass(timing.delta);el.setAttribute('aria-label',proposalPlanLabel(timing.delta));el.title=proposalPlanLabel(timing.delta);});
  document.querySelectorAll('[data-proposal-elapsed]').forEach(el=>el.textContent=proposalDuration(timing.elapsed));
- document.querySelectorAll('[data-proposal-cue-clock]').forEach(el=>el.textContent=time(timing.cueElapsed));
+ document.querySelectorAll('[data-proposal-remaining]').forEach(el=>el.textContent=proposalDuration(timing.remaining));
+ document.querySelectorAll('[data-plan-card]').forEach(el=>{el.className='main-plan-card '+proposalPlanClass(timing.delta);el.querySelector('[data-plan-status]').textContent=timing.delta===0?'On schedule':scoreWorkflowPlanText(timing.delta);});
+ const panel=document.querySelector('#main-panel');if(panel){panel.classList.remove('is-late','is-behind','is-ahead','is-on-time');panel.classList.add(proposalPlanClass(timing.delta));}
+ document.querySelectorAll('[data-proposal-cue-clock]').forEach(el=>el.textContent=proposalDuration(timing.cueElapsed));
  document.querySelectorAll('[data-cue-actual]').forEach(el=>{const j=+el.dataset.cueActual,seconds=cueActualSeconds(unifiedState,j);el.textContent=seconds===null?'—':proposalDuration(seconds);el.className='cue-actual '+cueActualClass(unifiedState,j,seconds);});
  document.querySelectorAll('[data-proposal-planned-end]').forEach(el=>el.textContent=proposalEndTime(timing,false));
+ document.querySelectorAll('[data-proposal-projected-end]').forEach(el=>el.textContent=proposalEndTime(timing,true));
 },200);
 route();

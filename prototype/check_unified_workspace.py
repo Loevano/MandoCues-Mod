@@ -19,9 +19,11 @@ with sync_playwright() as p:
     page.locator('[data-proposal-action="fullscreen"]').click()
     assert page.evaluate('!document.fullscreenElement&&!document.body.classList.contains("proposal-expanded")')
     assert page.evaluate('active.id')=='bediening'
-    expect(page.locator('#main-panel [data-proposal-plan]')).to_have_class('proposal-schedule is-behind')
-    expect(page.locator('[data-proposal-elapsed]')).to_contain_text('42:')
-    expect(page.locator('.main-session-times')).to_contain_text('5:20:00')
+    expect(page.locator('#main-panel [data-proposal-plan]')).to_have_class('proposal-schedule is-on-time')
+    page.locator('.session-planning-menu>summary').click()
+    expect(page.locator('[data-proposal-elapsed]')).to_contain_text('00:')
+    expect(page.locator('.planning-metrics')).to_contain_text('6:00:00')
+    page.locator('.session-planning-menu>summary').click()
     # Cue selection remains visible in the list, separately from take selection.
     for cue_id in [1,0]:
         page.locator(f'.calm-cue-list [data-select-cue="{cue_id}"]').click()

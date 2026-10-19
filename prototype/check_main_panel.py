@@ -28,7 +28,7 @@ with sync_playwright() as p:
         page.evaluate('(delta)=>{const c=state().scoreWorkflowClock;c.sessionBase=c.booked-c.remaining+delta;renderDemo()}',delta)
         expect(plan).to_have_text(text)
         expect(plan).to_have_class('proposal-schedule '+css)
-        assert plan.evaluate('(el)=>getComputedStyle(el).color')==color
+        assert page.locator('[data-plan-card]').get_attribute('class')=='main-plan-card '+css
         page.evaluate("showProposalView('cutlist')")
         expect(page.locator('.proposal-live-bar [data-proposal-plan]')).to_have_text(text)
         expect(page.locator('[data-proposal-expected-end]')).to_have_count(0)
@@ -96,9 +96,10 @@ with sync_playwright() as p:
     page.keyboard.press('Meta+Enter')
     assert page.evaluate('state().sessionStarted&&!running(state())')
     expect(field).to_have_value('Keep my draft through break and end')
-    expect(page.locator('.main-session-times')).to_contain_text('Worked')
-    expect(page.locator('.main-session-times')).to_contain_text('Remaining')
-    expect(page.locator('.main-session-times')).to_contain_text('Planned end')
+    page.locator('.session-planning-menu>summary').click()
+    expect(page.locator('.planning-metrics')).to_contain_text('Session work')
+    expect(page.locator('.planning-metrics')).to_contain_text('Time left')
+    expect(page.locator('.planning-metrics')).to_contain_text('Planned end')
     for width in [390,900,1512]:
         page.set_viewport_size({'width':width,'height':1100})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width

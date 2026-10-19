@@ -2,7 +2,7 @@
 function scoreWorkflowTiming(s){
  const actualNow=Date.now(),now=s.sessionPausedAt??actualNow;
  const clock=s.scoreWorkflowClock??={started:now,sessionBase:s.unified?0:42*60,remaining:s.unified?s.booked*60:140*60,booked:s.unified?s.booked*60:180*60,offset:0,cueStarted:now,cueIndex:s.cue,cueBase:s.unified?0:s.cue===0?8*60:0,cueOffset:0,cueSpent:{}};
- if(s.unified&&s.sessionStarted===false){clock.started=now;clock.cueStarted=now;if(!s.sessionEnded)clock.plannedEndAt=actualNow+clock.booked*1000;}
+ if(s.unified&&s.sessionStarted===false){clock.started=now;clock.cueStarted=now;if(!s.sessionEnded&&!clock.fixedEndAt)clock.plannedEndAt=actualNow+clock.booked*1000;}
  const elapsed=clock.sessionBase+Math.floor((now-clock.started)/1000)+clock.offset;
  const cueElapsed=clock.cueBase+Math.floor((now-clock.cueStarted)/1000)+clock.offset-clock.cueOffset;
  const budget=cuePlannedMinutes(s.cue)*60,breakTime=(clock.breakSeconds||0)+(s.sessionPausedAt?Math.floor((actualNow-s.sessionPausedAt)/1000):0);
@@ -17,7 +17,7 @@ function scoreWorkflowSwitchCue(s,index){
  clock.cueSpent[s.cue]=cueElapsed;clock.cueBase=clock.cueSpent[index]||0;
  clock.cueStarted=s.sessionPausedAt??Date.now();clock.cueIndex=index;clock.cueOffset=clock.offset;
 }
-function scoreWorkflowPlanText(delta){return (delta>0?'−':delta<0?'+':'')+time(Math.abs(delta));}
+function scoreWorkflowPlanText(delta){const seconds=Math.floor(Math.abs(delta));return (delta>0?'−':delta<0?'+':'')+(seconds>=3600?Math.floor(seconds/3600)+':'+time(seconds%3600):time(seconds));}
 function scoreWorkflowReminder(timing){return timing.cueElapsed>timing.budget?'Cue '+time(timing.cueElapsed-timing.budget)+' over budget':'';}
 function scoreWorkflowDock(s){
  const timing=scoreWorkflowTiming(s),t=running(s),selected=takeById(s,s.selected);

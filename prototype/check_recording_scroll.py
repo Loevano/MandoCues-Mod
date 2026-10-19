@@ -16,8 +16,9 @@ with sync_playwright() as p:
         expect(scroll).to_contain_text('Session length')
         assert scroll.evaluate('(el)=>el.scrollHeight>el.clientHeight')
         assert page.locator('.calm-scroll').evaluate('(el)=>getComputedStyle(el).overflowY')=='visible'
-        for selector in ['.browser-frame','.calm-scroll','#main-panel','.calm-notes']:
+        for selector in ['.browser-frame','.calm-scroll','.calm-notes']:
             assert page.locator(selector).evaluate('(el)=>parseFloat(getComputedStyle(el).borderTopWidth)')==0,selector
+        assert page.locator('#main-panel').evaluate('(el)=>parseFloat(getComputedStyle(el).borderTopWidth)')>0
         initial=header.bounding_box()['y']
         # Scrolling over the recording area moves session context with the rest of the page.
         box=page.locator('#main-panel').bounding_box()

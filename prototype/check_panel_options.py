@@ -1,43 +1,49 @@
-"""Compare real panel layouts without losing recording, note or planning state."""
+"""Original-style grouping, clear recording feedback and compact alternative share state."""
 from pathlib import Path
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import sync_playwright,expect
 from browser_support import launch_chromium
 ROOT=Path(__file__).resolve().parent
 with sync_playwright() as p:
  browser=launch_chromium(p);page=browser.new_page(viewport={'width':1728,'height':1117});errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto((ROOT/'dist/index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
- page.evaluate("unifiedState.takes[0][1].draft.text='Keep this draft';renderDemo()")
+ expect(page.locator('.proposal-project-title')).to_have_text('After Party')
+ assert page.locator('.proposal-project-heading h1 svg').count()==1
+ header=page.locator('.proposal-session-header').bounding_box();panel=page.locator('#main-panel').bounding_box()
+ assert header['y']+header['height']<panel['y']
+ expect(page.locator('#main-panel .proposal-session-header,.proposal-main-planning,.main-session-rail')).to_have_count(0)
+ expect(page.locator('[data-proposal-cue-clock]')).to_have_text('00:00')
+ expect(page.locator('[data-plan-status]')).to_have_text('On schedule')
  for layout in ['A','B']:
   page.locator(f'[data-main-layout="{layout}"]').click()
-  expect(page.locator('#main-panel')).to_have_class(__import__('re').compile('layout-'+layout))
-  assert page.evaluate("unifiedState.takes[0][1].draft.text")== 'Keep this draft'
-  clock=page.locator('#main-panel [data-wall-clock]');assert float(clock.evaluate('el=>getComputedStyle(el).fontSize').replace('px',''))>=65
-  assert page.locator('#main-panel .main-take-heading').inner_text().startswith('Take 2')
-  assert page.locator('.proposal-session-header').count()==1
-  assert page.locator('#main-panel details.calm-session').count()==0
-  page.locator('#main-panel').screenshot(path=str(ROOT/f'checks/panel-option-{layout}.png'))
- # Floating planned picker: no layout shift, typed and clicked minutes share the timeline.
- summary=page.locator('#main-panel .planned-picker>summary');before=clock.bounding_box();summary.click()
- picker=page.locator('#main-panel .planned-picker-panel');expect(picker).to_be_visible()
- assert clock.bounding_box()==before
- picker.locator('input').fill('32');picker.locator('input').press('Enter')
- expect(page.locator('#main-panel .planned-picker>summary')).to_contain_text('32')
- expect(page.locator('[data-session-cue="0"]')).to_have_attribute('title',__import__('re').compile('32 min'))
- page.locator('.cue-group.current .planned-picker>summary').click()
- page.locator('.cue-group.current [data-pick-planned="15"]').click()
- expect(page.locator('#main-panel .planned-picker>summary')).to_contain_text('15')
+  name=page.locator('#main-panel .main-cue>b');clock=page.locator('#main-panel [data-wall-clock]')
+  assert name.evaluate('el=>parseFloat(getComputedStyle(el).fontSize)')>=60
+  assert clock.evaluate('el=>parseFloat(getComputedStyle(el).fontSize)')>=45
+  assert name.bounding_box()['x']<clock.bounding_box()['x']
+  page.screenshot(path=str(ROOT/f'checks/original-panel-{layout}-idle.png'))
+ # Views stay centered in the header.
+ nav=page.locator('.proposal-view-toggle').bounding_box();bar=page.locator('.proposal-view-bar').bounding_box()
+ assert abs((nav['x']+nav['width']/2)-(bar['x']+bar['width']/2))<2
+ page.locator('.session-planning-menu>summary').click()
+ page.locator('[data-session-setting="length"]').fill('300');page.locator('[data-session-setting="length"]').press('Tab')
+ expect(page.locator('[data-session-hours]')).to_have_text('5h 00m')
+ page.locator('[data-session-setting="length"]').fill('360');page.locator('[data-session-setting="length"]').press('Tab')
+ page.locator('.session-planning-menu>summary').click()
  page.keyboard.press('Meta+Enter');page.keyboard.press('Meta+Enter')
- expect(page.locator('#main-panel .rec-status')).to_have_text('● Recording')
- expect(page.locator('#main-panel .main-take-heading>strong')).to_have_text('Take 3')
+ expect(page.locator('.session-planning-panel')).not_to_be_visible()
+ expect(page.locator('body')).to_have_class(__import__('re').compile('take-is-recording'))
+ expect(page.locator('.proposal-global-recording')).to_contain_text('Take 3')
  for layout in ['A','B']:
   page.locator(f'[data-main-layout="{layout}"]').click()
-  expect(page.locator('#main-panel .rec-status')).to_have_text('● Recording')
-  assert page.evaluate('running(unifiedState).id')=='c0-t3'
-  page.locator('#main-panel').screenshot(path=str(ROOT/f'checks/panel-option-{layout}.png'))
-  page.set_viewport_size({'width':390,'height':844})
-  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),layout
-  page.screenshot(path=str(ROOT/f'checks/panel-option-{layout}-mobile.png'))
+  assert page.evaluate('running(state()).id')=='c0-t3'
+  expect(page.locator('#main-panel .main-take-heading')).to_contain_text('Take 3')
+  page.screenshot(path=str(ROOT/f'checks/original-panel-{layout}-recording.png'))
+  for width in [900,390]:
+   page.set_viewport_size({'width':width,'height':844})
+   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(layout,width)
+   page.screenshot(path=str(ROOT/f'checks/original-panel-{layout}-{width}.png'))
   page.set_viewport_size({'width':1728,'height':1117})
+ page.keyboard.press('Meta+Enter')
+ assert page.evaluate('!document.body.classList.contains("take-is-recording")')
  assert not errors,errors
- browser.close();print('PASS: two panel options, large clock/cue/take, shared live state, compact settings, floating planned picker and mobile bounds')
+ browser.close();print('PASS: original cue/clock proportions, single session context, centered view switch, minutes/hours, global recording feedback, shared alternatives and responsive width')

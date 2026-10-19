@@ -6,7 +6,6 @@
 - Een cue direct aanklikken in de lijst, naast Go to cue.
 - Kloktijd bij de note; het maatnummer kies je zelf.
 - Spatie blijft voor tekst. ⌘ Enter voor Start session en daarna start/stop van takes.
-- Overal dezelfde kloknotatie, bijvoorbeeld 19:54:59 in plaats van een mix met AM/PM.
 - Best voor de favoriete take en genummerde Alt-labels voor reservetakes, los van de sterren.
 - Veelgebruikte notes als snelle, aanpasbare suggesties, zoals Intonation of More expressive.
 - Duidelijker benoemen wat de tijden betekenen en welke knoppen bij Take, Cue of Session horen.

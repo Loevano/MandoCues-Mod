@@ -743,3 +743,15 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Een nieuwe sessie begint met nul sessie- en cuewerktijd, niet met de oude voorbeeldstanden 42:00 en 08:00.
 - Music length is muziekduur; Planned de gereserveerde werktijd; Actual/Worked on cue de cumulatieve werktijd inclusief tijd tussen takes; Take duration de afzonderlijke take.
 - Een lokale forecast gebruikt ongebruikte geplande cuetijd, afgeronde cues en pauzetijd. Dit is geen geverifieerde kopie van de productieplanner.
+
+
+## 87. Oorspronkelijke verhoudingen, minder klokken in beeld
+
+- Eén hoofdvak met grote cue links, klok in AM/PM rechts en groen/oranje/rood planningsvlak.
+- Recording met icoon en After Party eenmaal; viewkeuze midden. Opnamedag eronder, zonder zichtbaar Session-prefix.
+- Neem de rode rand, gloed en globale Recording-melding over tijdens een lopende take.
+- Planning bij de titel bevat de geplande eindtijd, invulvelden en secundaire klokken. A toont de velden bovenaan, B plaatst ze in het menu; voorlopig B.
+- Finish by is de geplande eindtijd, Projected end is berekend. +15/+30/+60 verlengt voorlopig het geplande einde; keuze achteraf laten beoordelen.
+- De rondleiding vraagt kort welke oorspronkelijke klokken tijdens een sessie nodig zijn, vanuit Floris. Geen lange uitleg.
+- De eerste dag heeft voorbeeldtakes; de tweede dag is expliciet een aparte demosessie. Notes, takes, planning en chat blijven per dag gescheiden. Tijdens een take is dagwisseling geblokkeerd; een gestarte sessie blijft tijdens bekijken van een andere dag doortellen.
+- Nieuwe vragen pas na afloop, met de voorlopig gekozen optie erbij.

@@ -16,11 +16,14 @@ with sync_playwright() as p:
  page.locator('#main-panel .planned-picker>summary').click()
  field=page.locator('#main-panel [data-planned-input]');field.fill('41.5');field.press('Enter')
  assert page.evaluate('cuePlannedMinutes(0)')==41.5
+ page.locator('.session-planning-menu>summary').click()
  page.locator('[data-session-setting="length"]').fill('420');page.locator('[data-session-setting="length"]').press('Tab')
  assert page.evaluate('cuePlannedMinutes(0)')==41.5
  # Clear the manual entry to restore Auto; budget and preparation remain reactive.
+ page.locator('.session-planning-menu>summary').click()
  page.locator('#main-panel .planned-picker>summary').click();field.fill('');field.press('Enter')
  estimate=page.evaluate('cuePlannedMinutes(0)');assert estimate!=41.5
+ page.locator('.session-planning-menu>summary').click()
  page.locator('[data-session-setting="length"]').fill('600');page.locator('[data-session-setting="length"]').press('Tab')
  assert page.evaluate('cuePlannedMinutes(0)')>estimate
  assert page.evaluate('state().selected')==original
