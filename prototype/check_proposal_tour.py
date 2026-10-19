@@ -38,11 +38,11 @@ with sync_playwright() as p:
                 page.locator(f'.calm-cue-list [data-select-cue="{cue}"]').click()
                 expect(page.locator('#main-panel .main-cue')).to_contain_text('1M18' if cue else '1M02')
                 expect(page.locator('.calm-notes > header')).to_contain_text('1M18' if cue else '1M02')
-            expect(page.locator('.tour-shortcuts')).to_be_visible()
-            expect(page.locator('.tour-shortcuts summary')).to_have_count(0)
-            expect(page.locator('.tour-shortcuts')).to_contain_text('⌥[ en ⌥]')
-            expect(page.locator('.tour-shortcuts')).to_contain_text('⌥1 t/m ⌥9')
-            expect(page.locator('.tour-shortcuts')).to_contain_text('Houd ⌥ + ⌘ vast')
+            expect(page.locator('.tour-inline-help')).to_be_visible()
+            expect(page.locator('.tour-inline-help summary')).to_have_count(0)
+            expect(page.locator('.tour-inline-help')).to_contain_text('⌥[ en ⌥]')
+            expect(page.locator('.tour-inline-help')).to_contain_text('⌥1 t/m ⌥9')
+            expect(page.locator('.tour-inline-help')).to_contain_text('Houd ⌥ + ⌘ vast')
         if step['id']=='noteplek':
             for take in [1,2]:
                 page.locator(f'.calm-cue-list [data-select-take="c0-t{take}"]').click()
@@ -52,10 +52,10 @@ with sync_playwright() as p:
                 assert page.locator(selector).evaluate('(el)=>getComputedStyle(el).outlineStyle')=='solid'
         if step['id']=='maat-aanpassen':
             assert page.evaluate('tourTarget.matches(".calm-notes .composer-footer")')
-            page.locator('.tour-extra summary').click()
-            expect(page.locator('.tour-extra')).to_contain_text('vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log')
+            expect(page.locator('.tour-inline-help')).to_be_visible()
+            expect(page.locator('.tour-inline-help summary')).to_have_count(0)
+            expect(page.locator('.tour-inline-help')).to_contain_text('vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log')
             assert 'OriginationDate' in page.evaluate('tourPromptFor(proposalTourSteps[proposalTourIndex])')
-            page.locator('.tour-extra summary').click()
             picker=page.locator('.calm-notes .measure-picker').first
             picker.locator('summary').click()
             expect(picker.locator('[data-picker-measure]')).to_be_focused()

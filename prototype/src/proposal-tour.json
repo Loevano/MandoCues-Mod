@@ -92,10 +92,6 @@
       "text": "De eerste letter legt de kloktijd vast. Kies zelf de maat; het klokje vult de huidige tijd in. Enter slaat je note op en zet een nieuwe klaar.",
       "target": ".calm-notes .composer-footer, .calm-notes .note-meta, .calm-notes",
       "view": "recording",
-      "details": {
-        "title": "Takes terugvinden in Pro Tools",
-        "text": "Voorstel: vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log. Controleer het tijdverschil met één bekende take en bevestig de koppeling. Ontbreekt de opnametijd, dan koppel je handmatig."
-      },
       "parts": [
         {
           "id": "maat-aanpassen",
@@ -107,7 +103,11 @@
           "title": "Takes koppelen via opnametijd",
           "prompt": "Bied een optionele koppeling achteraf tussen onze take-/notegegevens en de oorspronkelijke Pro Tools-opnames. Voorbeeld: onze Take 3 hoort bij engineer Take 4. Koppel vaste IDs; hernummer geen takes en wijzig geen audio. De demo bewaart bij daadwerkelijk starten/stoppen van de lokale take de UTC-datum/tijd, IANA-tijdzone, UTC-offset bij start, sessie-ID, cuecode en een unieke log-ID; dit zijn handmatige appgebeurtenissen, geen bevestigde DAW-starts. De bestaande voorbeeldtakes hebben geen werkelijk gelogd opnamemoment. PDF > Take sheet biedt de tijden en Download take log (JSON); demo-invoer verdwijnt bij herladen. Behoud bestaande productieopslag en voeg voor productie duurzame opslag van deze gebeurtenissen toe.\n\nConcrete invoerroute: lees de bext-chunk van de oorspronkelijke WAV/BWF-bestanden, met OriginationDate en OriginationTime, bestandsreferentie en duur. Voor een eerste controle kan de engineer de originele Audio Files in BWF MetaEdit openen en het CORE-document als CSV exporteren; die CSV bevat FileName, OriginationDate en OriginationTime. De technische metadata kunnen aanvullend de bestandsduur leveren. Vergelijk deze gegevens met de JSON-export van ons take-log. Normaliseer datum en tijd naar dezelfde tijdzone, controleer een bekende take en bewaar het gemeten tijdverschil apart. Startverschillen door handmatig klikken blijven onzekerheid; vraag bevestiging van de koppeling, bijvoorbeeld onze Take 3 aan engineer Take 4. Groepeer microfoonkanalen tot één opname; kies niet automatisch één bestand als één take. Verifieer eerst originele WAV/BWF-bestanden uit de gebruikte Pro Tools-versie en opnamewijze. BWF OriginationDate/OriginationTime kunnen aanknopingspunten bieden; het bestaan van die velden bewijst niet dat Pro Tools ze in iedere workflow vult met de echte opnamestart. Original Time Stamp/BWF TimeReference is project-/tijdcodepositie, niet vanzelf kloktijd. Finder Date Created, Date Modified en browser File.lastModified zijn geen bewezen starttijd. Gebruik een Pro Tools Session Info as Text-export voor bronbestand-/clip-/playlistrelaties; behandel diens EDL-tijden niet als opnamedatum. QuickPunch, pre-roll, meerdere kanalen, loopopnames en consolidatie vragen een onderscheid tussen bestand, clip en take.\n\nControleer vooraf computerklokken en tijdzones; kalibreer met bekende koppelingen en bewaar de gekozen klokcorrectie apart. Stel kandidaten voor op basis van gecontroleerde klokgegevens, datum, cue, duur en opnamegroep, met expliciete onzekerheid voor handmatige startverschillen. Alleen na bevestiging een engineer-label en bronbestand-/clip-ID aan onze take koppelen; behoud oorspronkelijke nummers, tijden en een herleidbaar wijzigingslog. Meerdere kandidaten, ontbrekende tijden of niet-gelogde takes blijven ongekoppeld tot handmatige controle. Het gaat om takes terugvinden, niet sample-nauwkeurige audiosynchronisatie of automatisch maatvolgen. Zie Pro-Tools-takekoppeling.md voor bronnen, beperkingen en de voorgestelde praktijktest."
         }
-      ]
+      ],
+      "inlineHelp": {
+        "title": "Takes terugvinden in Pro Tools",
+        "text": "Voorstel: vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log. Controleer het tijdverschil met één bekende take en bevestig de koppeling. Ontbreekt de opnametijd, dan koppel je handmatig."
+      }
     },
     {
       "id": "sterren",

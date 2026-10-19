@@ -851,3 +851,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 100. Enter uitleggen bij suggestie 5
 
 - Vermeld bij kloktijd en maat: Enter slaat de note op en zet een nieuwe note klaar.
+
+
+## 101. Pro Tools-uitleg altijd zichtbaar
+
+- Toon Takes terugvinden in Pro Tools met de volledige bestaande toelichting direct bij suggestie 5, zonder uitklapknop.
