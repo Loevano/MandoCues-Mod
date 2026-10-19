@@ -8,7 +8,6 @@
 - Spatie blijft voor tekst. ⌘ Enter voor Start session en daarna start/stop van takes.
 - Best voor de favoriete take en genummerde Alt-labels voor reservetakes, los van de sterren.
 - Veelgebruikte notes als snelle, aanpasbare suggesties, zoals Intonation of More expressive.
-- Duidelijker benoemen wat de tijden betekenen en welke knoppen bij Take, Cue of Session horen.
 - Brackets kiezen cues. Alt met brackets kiest takes; Alt+1 t/m 9 kiest direct het take-nummer.
 
 ## Vragen

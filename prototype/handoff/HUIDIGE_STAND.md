@@ -2,7 +2,7 @@
 
 De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 
-De Recording-weergave volgt de oorspronkelijke verhoudingen: één hoofdvak met grote cue links, klok in AM/PM rechts en een gekleurd planningsvlak. Planning bij de titel bevat de eindtijd, instellingen en secundaire tijden. A toont de invulvelden bovenaan; B houdt ze in Planning. Voorlopig is B gekozen. De eerdere klok-midden/-boven-varianten zijn ingetrokken.
+Eén vaste Recording-indeling: grote cue links, AM/PM-klok rechts. Elapsed (working), Remaining, Planned end en Projected end staan compact onder de klok. Session length, Prep per cue en Max music staan zichtbaar bij de sessiekeuze. Planning bij de titel bevat Finish by en verlengen. De A/B-indelingsschakelaar is verwijderd.
 
 Nieuwe sessie-/cuewerktijd begint op nul. Music length is de muziekduur; Planned is gereserveerde werktijd; Worked on cue/Actual telt het werk op die cue, ook tussen takes en zonder pauze; Take duration is één take. De eerste drie voorbeeldcues hebben takes en notes.
 
@@ -18,13 +18,13 @@ Nieuwe sessie-/cuewerktijd begint op nul. Music length is de muziekduur; Planned
 - Recording en Comp tool delen cue, take, opname, beoordelingen, notes en concepten. Een lopende take blijft lopen bij wisselen.
 - Bij openen: Rondleiding starten of Zelf bekijken. Voorstelnaam en reviewknoppen staan in een aparte compacte balk boven beide weergaven.
 - De rondleiding scrolt automatisch naar elk onderdeel. Quick notes staan direct zichtbaar bij de editor.
-- De rondleiding volgt de workflow: hoofdpaneel → sessiestart en planning → cue en take kiezen → notes → beoordeling → sneltoetsen → partituur en kniplijst → vergelijken en instellingen. Open vragen staan apart.
+- De rondleiding begint met Command+Enter voor sessie-/takestart, daarna het +/−-voorstel, cue/take kiezen, notes, beoordeling en Comp tool. Alleen concrete toevoegingen zijn selecteerbare voorstellen; algemene indeling, bestaande timers en normale undo krijgen geen losse suggestiestap. Open vragen staan apart.
 - De uitleg is gericht aan de collega: vrijblijvende ideeën en korte aanwijzingen om te proberen, zonder eigen bugfixes of ontwerphistorie uit te leggen.
-- De rondleiding bevat 25 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
+- De rondleiding bevat 23 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
 - GUI Engels; uitleg en vragen Nederlands. Kloktijden gebruiken AM/PM, ook bij notes; duurvelden blijven minuten/seconden. Command+Enter start eerst de sessie en daarna een take, of stopt de lopende take. Dit werkt ook met focus op de rondleiding. Enter plaatst een note en spatie is tekst.
 - Herkenbare appcontext: zijbalk, sessiekeuze, Session length (min), Prep per cue, Max music (min), Add cues, Chat standaard dicht en de PDF-overzichten. De inspectie-HTML is geen volledige appbron; planningscijfers zijn voorbeelddata.
-- Hoofdpaneel: grote cue links, klok in AM/PM rechts. Recording/take-duur is duidelijk zichtbaar; een lopende take heeft ook de rode rand, gloed en globale melding uit het oorspronkelijke scherm. Geen signalen door alleen een oudere take te bekijken. On schedule staat groen; − achterstand is onder vijf minuten oranje en vanaf vijf minuten rood; + voorsprong is groen. Overige tijden staan in Planning, inclusief berekende Projected end. Cuewerktijd staat compact bij Planned. De afzonderlijke cuewerktijdbalk en Session details zijn weg.
+- Hoofdpaneel: grote cue links, klok in AM/PM rechts. Recording/take-duur is duidelijk zichtbaar; een lopende take heeft ook de rode rand, gloed en globale melding uit het oorspronkelijke scherm. Geen signalen door alleen een oudere take te bekijken. On schedule staat groen; − achterstand is onder vijf minuten oranje en vanaf vijf minuten rood; + voorsprong is groen. De vier oorspronkelijke sessietijden staan onder de grote klok, inclusief berekende Projected end. Cuewerktijd staat compact bij Planned. De afzonderlijke cuewerktijdbalk en Session details zijn weg.
 - Note-metadata vóór en na Enter gelijk: zwevende scrollbare Bar-lijst met All voor de hele take, typen plus Enter; echte kloktijd hh:mm:ss AM/PM aanklikken en Enter. Het klokje vult de huidige kloktijd in. De eerste letter legt de tijd vast; alle tekst wissen laat deze staan. Alleen het klokje zet de tijd op nu. De datum blijft bewaard als UTC-instant. Geen relatieve tijdcodes bij notes en geen DAW-sync gebouwd.
 - Score-notes: dubbelklik neemt de maat op die plek over, ook vlak boven de balk. Slepen toont de doelmaat en past de maat-/instrumentcontext aan. Klik een bestaande score-note en verwijder met ⌫ of Delete naast Cancel; ⌘Z herstelt hem. Tekstvelden houden gewone tekstbewerking.
 - Maatnummers bij notes zijn handmatig: invullen of bewust in de partituur kiezen. Geen Follow bar of afleiding uit de take-timer.
@@ -48,7 +48,7 @@ De demo is geen recorder en heeft geen echte DAW-/filmtijd of live score followi
 ## Broncode en controles
 
 - `prototype/src/unified-app.js`: de gedeelde werkruimte; hergebruikt bestaande opname- en scorecomponenten.
-- `prototype/src/proposal-tour.json`: stappen, korte uitleg en vaste promptonderdelen. A/B vergelijkt uitsluitend de hoofdpaneelindeling, met dezelfde gegevens.
+- `prototype/src/proposal-tour.json`: stappen, korte uitleg en vaste promptonderdelen. Er is één vaste hoofdpaneelindeling, zonder A/B-keuze.
 - `prototype/src/proposal-tour.js`: welkomstkeuze, highlights, opt-in selectie en prompt-export.
 - `prototype/src/app.js`, `controls-calm.js`, `score-interactions.js`, `production-score.js` en `score-compare.js`: bestaande onderdelen en handlers. Oude presentatiefuncties zijn geen actieve losse prototypes meer.
 - `prototype/build.py`: één offline HTML-app plus actuele uitleg. Oude genummerde HTML-links verwijzen door naar de gedeelde werkruimte; oude variantprompts worden niet meer uitgegeven.
@@ -71,12 +71,11 @@ Take-labels en take verwijderen zijn behouden in Recording, Comp tool en All tak
 
 Recording met opname-icoon en After Party eenmaal; gecentreerde viewkeuze. De dagkeuze toont één bekende dag en een expliciete tweede demosessie. Takes, notes, cues, instellingen en chat zijn per dag gescheiden. Dagwisseling tijdens een take is geblokkeerd; een gestarte sessie telt tijdens bekijken van een andere dag voorlopig door. Dit is nog geen serveropslag.
 
-Finish by blijft vaststaan. +15/+30/+60 verlengt het geplande einde; dit is voorlopig gekozen boven alleen een uitloopvoorspelling. Session length (min) toont de uren ernaast. Het doel van de oorspronkelijke extra klokken wordt kort als vraag in de rondleiding genoemd.
+Finish by blijft vaststaan. +15/+30/+60 verlengt het geplande einde; dit is voorlopig gekozen boven alleen een uitloopvoorspelling. Session length (min) toont de uren ernaast. Het doel van de oorspronkelijke extra klokken blijft onder Vragen staan; het is geen losse tutorialsuggestie.
 
 Nog te beoordelen door Floris:
-1. Alle invulvelden in Planning of zichtbaar bovenaan? Voorlopig B: in Planning.
-2. Uitloopknoppen verlengen het geplande einde of melden alleen verwachte extra werktijd? Voorlopig verlengen.
-3. Sessie laten doortellen bij bekijken van een andere dag of automatisch pauzeren? Voorlopig doortellen; tijdens een take is wisselen geblokkeerd.
+1. Uitloopknoppen verlengen het geplande einde of melden alleen verwachte extra werktijd? Voorlopig verlengen.
+2. Sessie laten doortellen bij bekijken van een andere dag of automatisch pauzeren? Voorlopig doortellen; tijdens een take is wisselen geblokkeerd.
 
 ## Takekoppeling met Pro Tools (voorstel)
 
@@ -93,3 +92,10 @@ Nieuwe takes/overdubs bewaren aparte UTC-start-/stopinstants en tijdzone/sessie/
 - Algemene cue-notes blijven ingeklapt; geen nieuwe optionele tutorialstappen voor deze bestaande functies.
 
 De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done en Planning zijn alsnog geslaagd. AM/PM, Go to cue, hoofdbediening en de rondleiding waren al in de browser gecontroleerd.
+
+## Laatste review: vaste indeling en gerichte rondleiding
+
+- Geen indelingskeuze bovenaan. De drie sessievelden blijven zichtbaar naast Add cues / Chat / PDF; Planning bevat alleen eindtijd en verlengen.
+- De vier oorspronkelijke tijden staan compact onder de grote klok, zonder afzonderlijke vakken. Alleen On schedule bij nul; anders één getal met + of −. Onder vijf minuten achterstand oranje, vanaf vijf rood. Het afgeronde-cuetotaal blijft zichtbaar.
+- Take-duur staat alleen zichtbaar tijdens opnemen, op één vaste plek naast Recording en het take-nummer. Geen stilstaande duur naast Overdub. De opnameknop en omliggende bediening behouden hun positie bij sessie-/takestart en stop.
+- Rondleiding: 23 voorstellen, begint met ⌘ Enter. De algemene indelingsstap is weg; planning gaat specifiek over +/− en de kleurgrenzen. Undo blijft werken, zonder eigen optionele stap.

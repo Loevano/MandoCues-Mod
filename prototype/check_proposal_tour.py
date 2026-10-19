@@ -14,13 +14,13 @@ with sync_playwright() as p:
     page.goto((ROOT/'dist/index.html').as_uri())
     expect(page.locator('#proposal-welcome')).to_be_visible()
     page.locator('[data-tour-action="welcome-start"]').click()
-    expect(page.locator('.proposal-tour-card')).to_contain_text('Een mogelijke indeling voor Recording')
+    expect(page.locator('.proposal-tour-card')).to_contain_text('⌘ Enter voor start en stop?')
     assert page.evaluate('proposalTourSelection.size===proposalTourSteps.length')
-    expect(page.locator('[data-tour-choice="duidelijke-labels"]')).to_be_checked()
+    expect(page.locator('[data-tour-choice="opnametoets"]')).to_be_checked()
     def take_data():
         return page.evaluate('allTakes(state()).map(t=>({id:t.id,notes:t.notes,rating:t.rating,best:t.best,alt:!!t.alt,text:t.draft.text,selections:Object.fromEntries(Object.entries(t.scoreSelections||{}).map(([k,v])=>[k,[...v].sort()]))}))')
     original=take_data()
-    assert page.evaluate('proposalTourSteps.slice(0,2).map(s=>s.id)')==['duidelijke-labels','opnametoets']
+    assert page.evaluate('proposalTourSteps.slice(0,2).map(s=>s.id)')==['opnametoets','planning']
     steps=page.evaluate('proposalTourSteps.map(s=>({id:s.id,title:s.title,view:s.view}))')
     order=[s['id'] for s in steps]
     for first,second in [('cue-takes','noteplek'),('noteplek','maat-aanpassen'),('maat-aanpassen','protools-sync'),('protools-sync','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
@@ -127,7 +127,7 @@ with sync_playwright() as p:
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Small viewports retain an in-bounds card, highlight and functioning next action.
     page.set_viewport_size({'width':390,'height':844})
-    for step_id in ['duidelijke-labels','opnametoets','cue-aanklikken','noteplek','maat-aanpassen','protools-sync','bereikbare-bediening','score-per-cue','score-zoom','score-selecteren','score-overzicht','score-undo']:
+    for step_id in ['opnametoets','planning','cue-aanklikken','noteplek','maat-aanpassen','protools-sync','bereikbare-bediening','score-per-cue','score-zoom','score-selecteren','score-overzicht']:
         index=next(i for i,step in enumerate(steps) if step['id']==step_id)
         page.evaluate('(index)=>openTourStep(index)',index)
         page.wait_for_timeout(60)
@@ -147,7 +147,7 @@ with sync_playwright() as p:
     # A deliberate empty selection remains empty after reload.
     page.evaluate('localStorage.setItem("mandocues-proposal-tour-v2",JSON.stringify({excluded:proposalTourSteps.map(step=>step.id)}))')
     page.reload();page.locator('[data-tour-action="welcome-start"]').click()
-    expect(page.locator('[data-tour-choice="duidelijke-labels"]')).not_to_be_checked()
+    expect(page.locator('[data-tour-choice="opnametoets"]')).not_to_be_checked()
     assert page.evaluate('proposalTourSelection.size')==0
     assert not errors,errors
     assert not network,network

@@ -1,6 +1,6 @@
 # MandoCues · één voorstel
 
-Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. A toont de invulvelden bovenaan; B plaatst ze in Planning naast de titel. B is voorlopig gekozen; beide gebruiken dezelfde takes, notes en opnamebediening.
+Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. Eén vaste indeling toont de sessievelden bovenaan en vier oorspronkelijke tijden onder de grote klok. Planning bevat Finish by en verlengen; er is geen A/B-schakelaar.
 
 ## Bouwen
 
@@ -13,7 +13,7 @@ python3 -X utf8 check_handoff.py
 
 Op Windows: vervang python3 door py -3. Alle benodigde scorebeelden en mappings zitten in `src/score-assets/`; de oorspronkelijke boeken zijn geen buildvereiste.
 
-De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 25 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
+De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 23 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
 
 ## Browsercontroles
 

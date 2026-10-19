@@ -11,7 +11,7 @@ with sync_playwright() as p:
     page.locator('[data-tour-action="welcome-skip"]').click()
     for width in [1512,390]:
         page.set_viewport_size({'width':width,'height':900})
-        for id in ['duidelijke-labels','opnametoets','session-plan','cue-takes','sterren','notes-enter','snelle-notes','bereikbare-bediening','score-per-cue','score-zoom','score-overzicht']:
+        for id in ['opnametoets','planning','session-plan','cue-takes','sterren','noteplek','snelle-notes','bereikbare-bediening','score-per-cue','score-zoom','score-overzicht']:
             page.evaluate('''()=>{
                 const c=document.querySelector('#cue-scroll');if(c)c.scrollTop=c.scrollHeight;
                 unifiedState.recordingScroll=100000;

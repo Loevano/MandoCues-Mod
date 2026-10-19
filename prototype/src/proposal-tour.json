@@ -4,14 +4,6 @@
   "promptClosing": "\n\nStem gedeelde onderdelen op elkaar af. Voeg geen andere suggesties toe. Controleer de betrokken bestaande flows en vat kort samen wat is aangepast, getest en wat een echte bronkoppeling vereist.",
   "steps": [
     {
-      "id": "duidelijke-labels",
-      "title": "Een mogelijke indeling voor Recording",
-      "text": "",
-      "target": "#main-panel",
-      "view": "recording",
-      "discussion": "duidelijke-labels"
-    },
-    {
       "id": "opnametoets",
       "title": "⌘ Enter voor start en stop?",
       "text": "Spatie gebruik je ook in notes. Voorstel: ⌘ Enter voor sessiestart en daarna start/stop van een take.",
@@ -21,19 +13,16 @@
     },
     {
       "id": "planning",
-      "title": "Voor of achter op schema",
-      "text": "Ik toon vooral de klok en voor/achter. De overige tijden staan onder Planning. Welke hebben jullie tijdens de sessie nodig?",
-      "target": "#main-panel .proposal-session-clocks",
+      "title": "Voor- en achterstand met + en −?",
+      "text": "Voorstel: +02:00 voor voorsprong, −02:00 voor achterstand. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.",
+      "target": "#main-panel .main-plan-card",
       "view": "recording",
-      "prompt": "Behoud de oorspronkelijke Recording-verhoudingen: grote cue links, klok rechts en een duidelijk gekleurd planningsvlak. Houd AM/PM voor de grote klok. Toon On schedule bij nul, − voor achterstand en + voor voorsprong. Achterstand onder vijf minuten oranje, vanaf vijf minuten rood; voorsprong en op schema groen. Zet sessie-instellingen en secundaire tijden onder Planning bij de paginatitel: geplande eindtijd, sessieduur in minuten plus urenweergave, voorbereiding en maximale muziekduur, gewerkt, resterend en geprojecteerde eindtijd. Bied bewust verlengen van de geplande eindtijd met +15/+30/+60 minuten; behoud bestaande productieplanning en opslag. Geprojecteerde eindtijd is een berekening, geen tweede invoerveld. De oorspronkelijke taak van alle klokken blijft een vraag aan de maker, geen aanleiding om functies uit de echte app te verwijderen. De lokale forecast is een demonstratie, geen gevalideerde kopie van productiebeleid. Floris vergelijkt zichtbare invulvelden (A) met invulvelden in Planning (B); B is voorlopig gekozen. Toon in het hoofdvak compacte cuewerktijd bij Planned, zonder apart balkvak.",
-      "relatedTargets": [
-        ".session-planning-menu"
-      ]
+      "prompt": "Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner."
     },
     {
       "id": "session-plan",
-      "title": "Leesbare cues in de tijdlijn",
-      "text": "De bestaande tijdlijn, met leesbare cuecodes. Klik een blok om die cue te kiezen.",
+      "title": "Volledige cuecodes in de tijdlijn?",
+      "text": "De bestaande tijdlijn met volledige cuecodes. Klik een blok om direct die cue te kiezen.",
       "target": ".cue-timeline",
       "view": "recording",
       "prompt": "Behoud het sessieplan als één horizontale tijdlijn, met bloklengtes evenredig aan de geplande cuetijd. Houd volledige cuecodes leesbaar en laat horizontaal scrollen waar nodig. Een klik kiest de cue met dezelfde bestaande veiligheidsregels; wissel niet stilzwijgend tijdens een lopende take."
@@ -68,7 +57,7 @@
     {
       "id": "maat-aanpassen",
       "title": "Kloktijd en maat bij een note",
-      "text": "Kloktijd bij de note; de maat kies je zelf. Klik de tijd of maat om die aan te passen.",
+      "text": "De eerste letter legt de kloktijd vast. Kies zelf de maat. Klik op het klokje voor de huidige tijd.",
       "target": ".calm-notes .note-meta",
       "view": "recording",
       "discussion": "maat-aanpassen"
@@ -115,8 +104,8 @@
     },
     {
       "id": "alt-best",
-      "title": "Een favoriete take en reserves",
-      "text": "Best voor je favoriete take; Alt voor reservetakes. Bij de cue zie je het totale aantal alternatieven. Los van de sterren.",
+      "title": "Alt voor reservetakes?",
+      "text": "Naast Best: Alt voor reservetakes. Bij de cue zie je hoeveel alternatieven er zijn, los van de sterren.",
       "target": ".calm-take-row .take-tools",
       "view": "recording",
       "discussion": "alt-best"
@@ -171,7 +160,7 @@
       "text": "Kies een take en markeer maten met ⌘+slepen. Verwijderen kan met ⌘+rechtsklik of ⌘⌥+slepen.",
       "target": ".score-paper",
       "view": "cutlist",
-      "prompt": "Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit.",
+      "prompt": "Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit. Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score-notes en maatselecties, per take en scorebron. Command+Z maakt ongedaan, Command+Shift+Z voert opnieuw uit. Onderschep geen normale tekst-undo binnen invoervelden. Andere takes en de oorspronkelijke PDF veranderen niet.",
       "prepare": "score"
     },
     {
@@ -190,14 +179,6 @@
       "target": ".cutlist-notes-list",
       "view": "cutlist",
       "prompt": "Behoud de compacte score-noteslijst met Bar, Note en Time. Klikken op note-tekst navigeert naar de juiste scoreplek; het maatnummer blijft direct aanpasbaar. Behoud alleen de aparte Delete-actie. Maat en kloktijd zijn direct bij hun waarde bewerkbaar: een scrollbare matenlijst met All voor de hele take en nummers, typen plus Enter voor een maat, klikken en Enter voor de kloktijd. Een klein klokje vult de werkelijke huidige kloktijd in, ook tijdens typen of bij een oudere take. Gebruik geen relatieve take-/sessietijd. Bewaar de werkelijke datum en UTC-instant om later te kunnen synchroniseren. Enter plaatst de note en maakt een nieuw concept met een nieuw tijdanker klaar. Klik op tekst in de score om te bewerken en sleep die om de positie te corrigeren. Houd take en bron correct, behoud concepten en maak bewerkingen ongedaan zonder andere takes te wijzigen. Laat bij het slepen de doelmaat subtiel oplichten op basis van de bestaande scoremapping. Werk bij loslaten maatnummer, pagina/boekpagina en instrumentcontext bij zonder kloktijd, take of tekst te veranderen. Bewaar de gekozen vrije tekstpositie. Boven de volledige instrumentgroep wordt de context All instruments. Annuleren wijzigt niets; Command+Z herstelt positie én metadata. Een klik op bestaande scoretekst opent de editor met de note geselecteerd, zonder direct een tekstcursor te plaatsen. Delete/Backspace verwijdert de geselecteerde note; Command+Z herstelt hem. Zodra de gebruiker een tekstveld bewerkt, werkt Delete/Backspace alleen op tekst. Voeg bij het bewerken van een bestaande note Delete naast Cancel toe; geen Delete voor een nog niet geplaatste note. Negeer toetsen met modifiers, key-repeat en IME. Maak alle verwijderacties ongedaan met dezelfde take-/brongebonden history."
-    },
-    {
-      "id": "score-undo",
-      "title": "Een keuze terugnemen",
-      "text": "Selecties en score-notes zijn ongedaan te maken met ⌘ Z. ⌘ Shift Z voert de bewerking opnieuw uit.",
-      "target": ".cutlist-undo",
-      "view": "cutlist",
-      "prompt": "Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score-notes en maatselecties, per take en scorebron. Command+Z maakt ongedaan, Command+Shift+Z voert opnieuw uit. Onderschep geen normale tekst-undo binnen invoervelden. Andere takes en de oorspronkelijke PDF veranderen niet."
     },
     {
       "id": "score-vergelijk",

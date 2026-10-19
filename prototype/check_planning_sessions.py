@@ -10,8 +10,8 @@ with sync_playwright() as p:
  page.clock.install(time=datetime(2026,10,19,8,0,tzinfo=timezone.utc))
  page.goto((ROOT/'dist/index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
  expect(page.locator('#main-panel [data-wall-clock]')).to_have_text('10:00:00 AM')
- expect(page.locator('#main-panel .planning-metrics,#main-panel [data-proposal-elapsed]')).to_have_count(0)
- expect(page.locator('[data-session-setting="length"]')).not_to_be_visible()
+ expect(page.locator('#main-panel [data-proposal-elapsed]')).to_have_count(1)
+ expect(page.locator('[data-session-setting="length"]')).to_be_visible()
  panel=page.locator('#main-panel');before=panel.bounding_box();page.locator('.session-planning-menu>summary').click()
  assert panel.bounding_box()==before
  end=page.locator('[data-planning-finish]');expect(end).to_have_value('04:00 PM');end.fill('05:30 PM');end.press('Tab')

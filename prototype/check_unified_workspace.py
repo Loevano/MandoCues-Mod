@@ -22,7 +22,7 @@ with sync_playwright() as p:
     expect(page.locator('#main-panel [data-proposal-plan]')).to_have_class('proposal-schedule is-on-time')
     page.locator('.session-planning-menu>summary').click()
     expect(page.locator('[data-proposal-elapsed]')).to_contain_text('00:')
-    expect(page.locator('.planning-metrics')).to_contain_text('6:00:00')
+    expect(page.locator('.main-session-times')).to_contain_text('6:00:00')
     page.locator('.session-planning-menu>summary').click()
     # Cue selection remains visible in the list, separately from take selection.
     for cue_id in [1,0]:

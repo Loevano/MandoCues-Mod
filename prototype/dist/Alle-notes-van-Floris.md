@@ -789,3 +789,13 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Aantal afgeronde cues compact terug in het planningsvlak.
 
 - Finish by toont ook expliciet AM/PM, onafhankelijk van de browser-/systeemnotatie. Invoer met AM/PM of 24 uur wordt genormaliseerd; datum-/planningsbeleid blijft behouden.
+
+
+## 92. Eén vaste indeling, oorspronkelijke timers en rustige bediening
+
+- A/B-indelingskeuze verwijderen. Session length, Prep per cue en Max music gewoon zichtbaar bij de sessiekeuze, met Planning voor eindtijd/verlengen.
+- Elapsed (working), Remaining, Planned end en Projected end compact onder de grote klok terugzetten.
+- Bij nul alleen On schedule; anders één +/−-tijd. Achterstand onder vijf minuten oranje, vanaf vijf rood.
+- Geen stilstaande Take duration 00:00 naast Overdub. De live duur blijft op één vaste plek bij Recording en het take-nummer; starten/stoppen verplaatst geen omliggende knoppen.
+- Rondleiding opnieuw nalopen: begint met ⌘ Enter, daarna het concrete +/−-voorstel. Algemene indelingsstap en losse undo-stap weghalen; undo blijft onderdeel van de scorewerking. In totaal 23 concrete voorstellen.
+- De mobiele rondleiding scrolt bij take-notes naar de notes zelf; takekeuze blijft ook gemarkeerd en bereikbaar.

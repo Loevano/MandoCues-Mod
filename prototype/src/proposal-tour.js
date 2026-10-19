@@ -66,7 +66,7 @@ function openTourStep(index){
   syncSticky();
  }else if(step.id==='noteplek'){
   const scroll=document.querySelector('#cue-scroll');
-  const anchor=innerWidth<760?document.querySelector('.calm-cue-list .cue-group.current'):tourTarget;
+  const anchor=tourTarget;
   scroll.scrollTop+=anchor.getBoundingClientRect().top-scroll.getBoundingClientRect().top-90;
   syncSticky();
  }else revealTourTarget(tourTarget);

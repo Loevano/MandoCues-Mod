@@ -24,7 +24,7 @@ with sync_playwright() as p:
     assert plan.bounding_box()['y']>=clock['y']+clock['height']
     # Existing math remains positive for delay; only the presentation reverses its sign.
     base=page.evaluate('state().scoreWorkflowClock.sessionBase')
-    for delta,text,css,color in [(0,'00:00','is-on-time','rgb(187, 177, 198)'),(1,'−00:01','is-behind','rgb(237, 172, 84)'),(299,'−04:59','is-behind','rgb(237, 172, 84)'),(300,'−05:00','is-late','rgb(255, 106, 127)'),(-120,'+02:00','is-ahead','rgb(115, 199, 163)')]:
+    for delta,text,css,color in [(0,'On schedule','is-on-time','rgb(187, 177, 198)'),(1,'−00:01','is-behind','rgb(237, 172, 84)'),(299,'−04:59','is-behind','rgb(237, 172, 84)'),(300,'−05:00','is-late','rgb(255, 106, 127)'),(-120,'+02:00','is-ahead','rgb(115, 199, 163)')]:
         page.evaluate('(delta)=>{const c=state().scoreWorkflowClock;c.sessionBase=c.booked-c.remaining+delta;renderDemo()}',delta)
         expect(plan).to_have_text(text)
         expect(plan).to_have_class('proposal-schedule '+css)
@@ -97,9 +97,9 @@ with sync_playwright() as p:
     assert page.evaluate('state().sessionStarted&&!running(state())')
     expect(field).to_have_value('Keep my draft through break and end')
     page.locator('.session-planning-menu>summary').click()
-    expect(page.locator('.planning-metrics')).to_contain_text('Session work')
-    expect(page.locator('.planning-metrics')).to_contain_text('Time left')
-    expect(page.locator('.planning-metrics')).to_contain_text('Planned end')
+    expect(page.locator('.main-session-times')).to_contain_text('Elapsed (working)')
+    expect(page.locator('.main-session-times')).to_contain_text('Remaining')
+    expect(page.locator('.main-session-times')).to_contain_text('Planned end')
     for width in [390,900,1512]:
         page.set_viewport_size({'width':width,'height':1100})
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width

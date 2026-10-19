@@ -37,10 +37,11 @@ function initializeProposalTiming(s){
 }
 const PROPOSAL_DELAY_RED_AFTER=5*60;
 function proposalPlanClass(delta){return delta>0?(delta>=PROPOSAL_DELAY_RED_AFTER?'is-late':'is-behind'):delta<0?'is-ahead':'is-on-time';}
+function proposalScheduleText(delta){return delta===0?'On schedule':scoreWorkflowPlanText(delta);}
 function proposalPlanLabel(delta){return delta===0?'On schedule':time(Math.abs(delta))+(delta>0?' behind schedule':' ahead of schedule');}
 function proposalSchedule(){
  const timing=initializeProposalTiming(unifiedState);
- return `<span class="proposal-schedule ${proposalPlanClass(timing.delta)}" data-proposal-plan aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span>`;
+ return `<span class="proposal-schedule ${proposalPlanClass(timing.delta)}" data-proposal-plan aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${proposalScheduleText(timing.delta)}</span>`;
 }
 function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
 function proposalClockTime(ms){return formatLocalClock(ms,false);}
@@ -121,8 +122,6 @@ document.addEventListener('keydown',event=>{
 });
 addEventListener('resize',()=>document.querySelectorAll('.planned-picker[open]').forEach(positionPlannedPicker));
 document.addEventListener('scroll',()=>document.querySelectorAll('.planned-picker[open]').forEach(positionPlannedPicker),true);
-let mainPanelLayout='B';
-function mainPanelOptions(){return `<div class="main-panel-options" lang="nl" role="group" aria-label="Indeling vergelijken"><button data-main-layout="A" aria-pressed="${mainPanelLayout==='A'}" title="Invulvelden bovenaan zichtbaar">A · Velden zichtbaar</button><button data-main-layout="B" aria-pressed="${mainPanelLayout==='B'}" title="Invulvelden en extra tijden onder Planning">B · Planningmenu</button></div>`;}
 function cueJumpMenu(s){
  return `<details class="cue-jump-menu" ${running(s)?'inert aria-disabled="true"':''}><summary aria-label="Go to cue">Go to cue <span aria-hidden="true">⌄</span></summary><div class="cue-jump-panel"><input type="search" data-cue-jump-search placeholder="Find cue…" aria-label="Find a cue" autocomplete="off"><div class="cue-jump-options" role="group" aria-label="Choose a cue">${cues.map((c,j)=>`<button type="button" data-go-to-cue="${j}" aria-current="${j===s.cue}" ${running(s)?'disabled':''}><b>${c[0]}</b><span>${esc(c[1])}</span>${cueSettings(s,j).complete?'<small aria-label="Completed">✓</small>':''}</button>`).join('')}</div><p class="cue-jump-empty" hidden>No matching cues.</p></div></details>`;
 }
@@ -157,17 +156,18 @@ document.addEventListener('keydown',event=>{
  }
 });
 addEventListener('resize',positionCueJump);document.addEventListener('scroll',positionCueJump,true);
-function mainPlanCard(timing){return `<div class="main-plan-card ${proposalPlanClass(timing.delta)}" data-plan-card><strong data-plan-status>${timing.delta===0?'On schedule':scoreWorkflowPlanText(timing.delta)}</strong><span data-proposal-plan class="proposal-schedule ${proposalPlanClass(timing.delta)}" aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span><small class="completed-cue-count">${completedCueText(unifiedState)}</small></div>`;}
+function mainSessionTimes(timing){return `<div class="main-session-times" aria-label="Session timing"><label>Elapsed (working)<b data-proposal-elapsed>${proposalDuration(timing.elapsed)}</b></label><label>Remaining<b data-proposal-remaining>${proposalDuration(timing.remaining)}</b></label><label>Planned end<b data-proposal-planned-end>${proposalEndTime(timing,false)}</b></label><label>Projected end<b data-proposal-projected-end>${proposalEndTime(timing,true)}</b></label></div>`;}
+function mainPlanCard(timing){return `<div class="main-plan-card ${proposalPlanClass(timing.delta)}" data-plan-card><strong data-plan-status data-proposal-plan class="proposal-schedule ${proposalPlanClass(timing.delta)}" aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${proposalScheduleText(timing.delta)}</strong><small class="completed-cue-count">${completedCueText(unifiedState)}</small></div>`;}
 calmPanel=function(s){
  const timing=scoreWorkflowTiming(s),t=running(s),c=cues[s.cue],ready=!s.sessionStarted,paused=!!s.sessionPausedAt;
- const stateLabel=t?'● Recording':paused?'On break · Not recording':s.sessionEnded?'Session ended · Not recording':ready?'Ready to start · Not recording':'Standby · Not recording';
- return `<section id="main-panel" class="calm-main-panel proposal-main-panel original-panel layout-${mainPanelLayout} ${t?'is-recording':'is-idle'} ${proposalPlanClass(timing.delta)}" aria-label="Recording controls">
- <div class="original-cue-side"><div class="main-take-heading"><span class="rec-status ${t?'rolling':'standby'}">${stateLabel}</span>${t?`<strong>${entryLabel(t)}</strong><b class="recording-take-duration" data-live="${t.id}">${time(position(t))}</b>`:''}</div>
+ const stateLabel=t?'● Recording':paused?'On break':s.sessionEnded?'Session ended':ready?'Ready to start':'Standby';
+ return `<section id="main-panel" class="calm-main-panel proposal-main-panel original-panel ${t?'is-recording':'is-idle'} ${proposalPlanClass(timing.delta)}" aria-label="Recording controls">
+ <div class="original-cue-side"><div class="main-take-heading"><span class="rec-status ${t?'rolling':'standby'}" aria-label="${t?'Recording':'Not recording'}">${stateLabel}</span><span class="main-live-take ${t?'':'is-idle'}" ${t?'':'aria-hidden="true"'}><strong>${t?entryLabel(t):'Take 1'}</strong><b class="recording-take-duration" ${t?`data-live="${t.id}"`:''}>${t?time(position(t)):'00:00'}</b></span></div>
  <div class="main-cue"><b>${c[0]}</b><strong title="${esc(c[1])}">${esc(c[1])}</strong></div>
  <div class="original-cue-facts"><span><b>${c[2]}</b> of music</span><span>${cueSettings(s,s.cue).complexity.toLowerCase()}</span><span class="cue-planned-inline">Planned ${plannedPicker(s,s.cue,'main')}</span><span title="Cumulative work on this cue, including time between takes">Worked on cue <b data-proposal-cue-clock>${proposalDuration(timing.cueElapsed)}</b></span><span>${entryCountText(s,s.cue)}</span></div>
- <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>${appIcon('music')} Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button>${!t?'<label class="proposal-take-clock">Take duration<b>00:00</b></label>':''}</div>
+ <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>${appIcon('music')} Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button></div>
  <div class="original-secondary-actions"><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t||s.cue===0?'disabled':''} title="Previous cue · [">← Previous cue <kbd>[</kbd></button><button data-action="next-cue" ${t||s.cue===cues.length-1?'disabled':''} title="Next cue · ]">Next cue → <kbd>]</kbd></button>${cueJumpMenu(s)}</div><div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button><button data-session-action="reset" class="proposal-reset-session" title="Reset takes and timers" aria-label="Reset takes and timers" ${t?'disabled':''}>${appIcon('reset')}</button></div></div></div>
- <div class="proposal-session-clocks original-clock-side"><label class="original-wall-clock">Time<b data-wall-clock>${formatWallClock()}</b></label>${mainPlanCard(timing)}</div>
+ <div class="proposal-session-clocks original-clock-side"><label class="original-wall-clock">Time<b data-wall-clock>${formatWallClock()}</b></label>${mainSessionTimes(timing)}${mainPlanCard(timing)}</div>
  </section>`;
 };
 composer=function(s,t,score=false,place='list'){
@@ -207,7 +207,7 @@ renderDemo=function(){
  document.querySelectorAll('[data-proposal-view]').forEach(button=>button.setAttribute('aria-pressed',button===toggle));
  document.querySelector('.proposal-workspace-title').textContent=proposalView==='recording'?'Recording':'Comp tool';
  const sessionSlot=document.querySelector('.proposal-session-header-slot');sessionSlot.hidden=proposalView!=='recording';sessionSlot.innerHTML=proposalView==='recording'?proposalSessionHeader(unifiedState):'';
- document.querySelectorAll('[data-main-layout]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.mainLayout===mainPanelLayout));
+
  document.querySelector('.proposal-planning-slot').innerHTML=proposalPlanning(unifiedState);
  syncGlobalRecording();
  positionPlanningMenu();
@@ -245,7 +245,7 @@ fullscreenPrototype=async function(){
 document.addEventListener('keydown',event=>{if(event.key==='Escape')document.body.classList.remove('proposal-expanded');});
 function mountProposal(){
  document.body.classList.add('unified-proposal');document.title='MandoCues · voorstel van Floris';
- document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a>${`<div class="proposal-global-recording" hidden></div>`}<div class="proposal-review-actions">${mainPanelOptions()}<button type="button" data-proposal-action="fullscreen" aria-label="Schermvullend" title="Schermvullend">⛶</button><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
+ document.querySelector('.site-header').innerHTML=`<a class="wordmark" href="#recording"><span class="brand-icon">m<span>·</span></span>MandoCues<span class="divider">/</span><span class="header-label">voorstel van Floris</span></a>${`<div class="proposal-global-recording" hidden></div>`}<div class="proposal-review-actions"><button type="button" data-proposal-action="fullscreen" aria-label="Schermvullend" title="Schermvullend">⛶</button><button type="button" data-proposal-action="tour">Rondleiding</button><button type="button" data-proposal-action="questions">Vragen</button><button type="button" data-proposal-action="prompt">Claude-prompt <span data-proposal-selection-count>0</span></button></div>`;
  document.querySelector('.site-header').insertAdjacentHTML('afterend',appSidebar());
  document.querySelector('#app').innerHTML=`<main class="proposal-shell"><header class="proposal-view-bar" lang="en"><div class="proposal-project-heading"><div class="proposal-heading-line"><h1>${appIcon('record')}<span class="proposal-workspace-title">Recording</span></h1><div class="proposal-planning-slot"></div></div><p class="proposal-project-title">After Party</p></div><nav class="proposal-view-toggle" aria-label="Workspace view"><button type="button" data-proposal-view="recording" aria-pressed="true">Recording</button><button type="button" data-proposal-view="cutlist" aria-pressed="false">Comp tool</button></nav><div class="proposal-live-bar" lang="en" hidden></div><small class="proposal-demo-label">Demo · no audio is recorded</small><div class="proposal-cutlist-review" lang="nl"></div></header><div class="proposal-session-header-slot"></div><div class="browser-frame"><div class="demo" id="demo" lang="en"></div></div></main>`;
 }
@@ -264,7 +264,6 @@ document.addEventListener('change',event=>{
 document.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target.matches('[data-cue-planned]')&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.isComposing){event.preventDefault();event.target.blur();}});
 document.addEventListener('click',event=>{
  const reset=event.target.closest('[data-confirm-session-reset]');if(reset){if(reset.dataset.confirmSessionReset===unifiedState.sessionId)resetProposalSession(unifiedState);return;}
- const layout=event.target.closest('[data-main-layout]');if(layout){mainPanelLayout=layout.dataset.mainLayout==='B'?'B':'A';renderDemo();return;}
  const action=event.target.closest('[data-session-action]');
  if(action){if(!action.disabled){if(action.dataset.sessionAction==='break')proposalSessionBreak(unifiedState);else if(action.dataset.sessionAction==='reset')confirmSessionReset(unifiedState);else proposalEndSession(unifiedState);}return;}
  const button=event.target.closest('[data-proposal-view]');if(!button)return;
@@ -273,10 +272,10 @@ document.addEventListener('click',event=>{
 setInterval(()=>{
  if(!document.body.classList.contains('unified-proposal'))return;
  const timing=scoreWorkflowTiming(unifiedState);
- document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=scoreWorkflowPlanText(timing.delta);el.className='proposal-schedule '+proposalPlanClass(timing.delta);el.setAttribute('aria-label',proposalPlanLabel(timing.delta));el.title=proposalPlanLabel(timing.delta);});
+ document.querySelectorAll('[data-proposal-plan]').forEach(el=>{el.textContent=proposalScheduleText(timing.delta);el.className='proposal-schedule '+proposalPlanClass(timing.delta);el.setAttribute('aria-label',proposalPlanLabel(timing.delta));el.title=proposalPlanLabel(timing.delta);});
  document.querySelectorAll('[data-proposal-elapsed]').forEach(el=>el.textContent=proposalDuration(timing.elapsed));
  document.querySelectorAll('[data-proposal-remaining]').forEach(el=>el.textContent=proposalDuration(timing.remaining));
- document.querySelectorAll('[data-plan-card]').forEach(el=>{el.className='main-plan-card '+proposalPlanClass(timing.delta);el.querySelector('[data-plan-status]').textContent=timing.delta===0?'On schedule':scoreWorkflowPlanText(timing.delta);});
+ document.querySelectorAll('[data-plan-card]').forEach(el=>{el.className='main-plan-card '+proposalPlanClass(timing.delta);el.querySelector('[data-plan-status]').textContent=timing.delta===0?'On schedule':proposalScheduleText(timing.delta);});
  const panel=document.querySelector('#main-panel');if(panel){panel.classList.remove('is-late','is-behind','is-ahead','is-on-time');panel.classList.add(proposalPlanClass(timing.delta));}
  document.querySelectorAll('[data-proposal-cue-clock]').forEach(el=>el.textContent=proposalDuration(timing.cueElapsed));
  document.querySelectorAll('[data-cue-actual]').forEach(el=>{const j=+el.dataset.cueActual,seconds=cueActualSeconds(unifiedState,j);el.textContent=seconds===null?'—':proposalDuration(seconds);el.className='cue-actual '+cueActualClass(unifiedState,j,seconds);});

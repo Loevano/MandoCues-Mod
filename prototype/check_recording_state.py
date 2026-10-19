@@ -8,7 +8,7 @@ with sync_playwright() as p:
  errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto((ROOT/'dist/index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
  expect(page.locator('#main-panel')).to_have_class(__import__('re').compile('is-idle'))
- expect(page.locator('#main-panel .rec-status')).to_contain_text('Not recording')
+ expect(page.locator('#main-panel .rec-status')).to_have_attribute('aria-label','Not recording')
  idle=page.locator('#main-panel .record').evaluate('(el)=>getComputedStyle(el).backgroundColor')
  page.keyboard.press('Meta+Enter');page.keyboard.press('Meta+Enter')
  expect(page.locator('#main-panel')).to_have_class(__import__('re').compile('is-recording'))

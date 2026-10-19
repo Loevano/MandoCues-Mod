@@ -829,6 +829,40 @@ body.take-is-recording .proposal-demo-label{visibility:hidden}
 .session-music-usage.is-over{color:#ff8b99}
 #main-panel.original-panel .original-secondary-actions .proposal-reset-session{flex:0 0 auto;padding:9px}
 .app-dialog footer{flex-wrap:wrap}
+
+/* One fixed layout: setup is visible, timing stays below the clock. */
+.session-setup{justify-content:space-between;gap:14px 24px}
+.session-setup .session-app-actions{margin-left:auto;flex-wrap:wrap}
+.session-timing-fields{gap:16px}
+.session-timing-fields input{width:72px}
+.session-planning-panel .planning-finish input{font:14px var(--mono);color:#eee4f5;background:#211b29;border:1px solid #54465f;padding:7px;border-radius:7px;width:140px;max-width:55%}
+#main-panel.original-panel .proposal-session-clocks{min-height:0;align-self:stretch;gap:20px}
+#main-panel.original-panel .main-session-times{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px}
+#main-panel.original-panel .main-session-times b{font-size:23px;font-variant-numeric:tabular-nums;white-space:nowrap}
+#main-panel.original-panel .main-plan-card .proposal-schedule{font:650 27px/1.2 var(--sans);letter-spacing:-.5px;display:block}
+#main-panel.original-panel .main-take-heading{flex-wrap:nowrap;min-height:35px;gap:10px}
+#main-panel.original-panel .main-take-heading>.rec-status{flex:0 1 130px;min-width:0;white-space:nowrap;font-size:10px;letter-spacing:1px}
+.main-live-take{display:inline-flex;flex:0 0 auto;min-width:175px;align-items:baseline;justify-content:start;gap:10px;white-space:nowrap;color:#ff8196}
+.main-live-take.is-idle{visibility:hidden}
+.main-live-take>strong{font:650 20px var(--sans)}
+#main-panel.original-panel .main-live-take .recording-take-duration{font-size:23px;min-width:7ch;text-align:right;font-variant-numeric:tabular-nums}
+#main-panel.original-panel .original-cue-facts{min-height:56px;align-content:start}
+#main-panel.original-panel .calm-transport{display:grid;grid-template-columns:minmax(0,285px) max-content;align-items:center;gap:10px}
+#main-panel.original-panel .calm-transport .record{width:100%;min-width:0;height:60px;margin:0;display:flex;align-items:center;justify-content:center;gap:8px}
+@media(max-width:1100px){
+ #main-panel.original-panel .calm-transport{grid-template-columns:minmax(0,1fr)}
+ #main-panel.original-panel .calm-transport>button:not(.record){justify-self:start}
+}
+@media(max-width:759px){
+ .session-setup .session-app-actions{margin-left:0;width:100%}
+ .session-timing-fields{gap:10px 16px}
+ .session-timing-fields>label>span{gap:5px}
+ .session-timing-fields input{width:65px}
+ #main-panel.original-panel .original-cue-facts{min-height:84px}
+ #main-panel.original-panel .main-session-times b{font-size:21px}
+ #main-panel.original-panel .proposal-session-clocks{gap:18px}
+ .main-live-take{min-width:165px;gap:6px}
+}
 @media(max-width:759px){#main-panel.original-panel .proposal-cue-switcher{flex-wrap:wrap}.demo .cue-jump-menu{flex:1}.demo .cue-jump-menu>summary{height:100%}}
 
 @media(min-width:760px) and (max-width:1180px){.proposal-global-recording{display:none}}
