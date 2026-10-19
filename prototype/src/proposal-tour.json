@@ -20,17 +20,9 @@
       "prompt": "Gebruik voor de bestaande planningsafwijking + voor voorsprong en − voor achterstand. Toon bij nul alleen On schedule, zonder extra 00:00 ernaast. Onder vijf minuten achterstand oranje, vanaf vijf minuten rood; op schema en voorsprong groen. Behoud de oorspronkelijke hoofdverhoudingen, klok met AM/PM, Elapsed (working), Remaining, Planned end en Projected end onder de grote klok en de bestaande berekeningen. Zet Session length, Prep per cue en Max music compact zichtbaar bij de sessiekeuze. Planning bevat eindtijd en bewust verlengen met +15/+30/+60. Geen A/B-indelingsschakelaar. De interpretatie en productieplanning blijven leidend; de lokale demo is geen gevalideerde kopie van de planner."
     },
     {
-      "id": "session-plan",
-      "title": "Volledige cuecodes in de tijdlijn?",
-      "text": "De bestaande tijdlijn met volledige cuecodes. Klik een blok om direct die cue te kiezen.",
-      "target": ".cue-timeline",
-      "view": "recording",
-      "prompt": "Behoud het sessieplan als één horizontale tijdlijn, met bloklengtes evenredig aan de geplande cuetijd. Houd volledige cuecodes leesbaar en laat horizontaal scrollen waar nodig. Een klik kiest de cue met dezelfde bestaande veiligheidsregels; wissel niet stilzwijgend tijdens een lopende take."
-    },
-    {
       "id": "cue-aanklikken",
       "title": "Een cue direct kiezen",
-      "text": "Zou direct kiezen in de lijst handig zijn? Klik verschillende cues of gebruik [ en ] en bekijk hoe het paneel en de takes meewisselen.",
+      "text": "Klik een cue in de lijst of gebruik [ en ]. ⌥[ en ⌥] wisselen takes; ⌥1 t/m ⌥9 kiest direct een take.",
       "target": ".calm-cue-list",
       "view": "recording",
       "discussion": "cue-aanklikken"
@@ -112,8 +104,8 @@
     },
     {
       "id": "cue-sneltoetsen",
-      "title": "Snel tussen cues en takes",
-      "text": "Met [ en ] wissel je cues. Met Alt erbij wissel je takes; Alt+1 t/m 9 kiest direct een take.",
+      "title": "Een take met twee cijfers kiezen",
+      "text": "Houd ⌥ + ⌘ vast en typ twee cijfers: 0 en 2 voor Take 2, of 1 en 2 voor Take 12. Loslaten sluit de invoer.",
       "target": ".calm-cue-list",
       "view": "recording",
       "discussion": "cue-sneltoetsen"

@@ -812,3 +812,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - Start session blauw, onderscheiden van de bestaande rode Record-knop. Live opname blijft duidelijk zichtbaar.
 - Bij de eerste rondleidingsstap knippert de ⌘ Enter-hint drie keer; stopt vanzelf en bij verlaten. Respecteer verminderde beweging. Geen extra uitleg over dit detail in de rondleiding.
+
+
+## 95. Sneltoetsen vasthouden en rondleiding inkorten
+
+- Bevestigd: ⌥ Option (Alt) + ⌘ Command vasthouden, twee cijfers typen. Loslaten van één modifier sluit de invoer en annuleert één onvolledig cijfer. Geen zichtbare Escape-instructie of invoer na loslaten.
+- Bestaande take kiezen, niet aanmaken; bescherm tekstinvoer, IME, modaliteiten en slepen. Geen extra keuze door herhaalde cijfers onder dezelfde vastgehouden combinatie.
+- Bij direct een cue kiezen ook [ en ], ⌥[ en ⌥], ⌥1–9 uitleggen. De latere stap gaat alleen over twee cijfers en geeft ook 02 als probeerbaar voorbeeld.
+- Volledige cuecodes in de tijdlijn niet meer als losse suggestie opvoeren; bestaande tijdlijn behouden. Nu 22 stappen, standaard aangevinkt met behoud van expliciete uitvinkkeuzes.

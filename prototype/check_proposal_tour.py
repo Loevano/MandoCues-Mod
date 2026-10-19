@@ -25,6 +25,10 @@ with sync_playwright() as p:
     order=[s['id'] for s in steps]
     for first,second in [('cue-takes','noteplek'),('noteplek','maat-aanpassen'),('maat-aanpassen','protools-sync'),('protools-sync','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
         assert order.index(first)<order.index(second),(first,second)
+    assert 'session-plan' not in order
+    cue_text=page.evaluate("proposalTourSteps.find(s=>s.id==='cue-aanklikken').text")
+    assert all(key in cue_text for key in ['[ en ]','⌥[ en ⌥]','⌥1 t/m ⌥9'])
+    assert 'Houd ⌥ + ⌘ vast' in page.evaluate("proposalTourSteps.find(s=>s.id==='cue-sneltoetsen').text")
     selected={'sterren','opnametoets','score-notes'}
     for index,step in enumerate(steps):
         expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])

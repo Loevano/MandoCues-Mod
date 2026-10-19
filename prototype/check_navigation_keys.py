@@ -22,18 +22,25 @@ with sync_playwright() as p:
     }''')
     def selected():return page.evaluate('state().selected')
     def focus():page.locator('.score-canvas' if page.evaluate('proposalView')=='cutlist' else '#cue-scroll').focus()
-    def prefix():
-        focus()
-        page.keyboard.down('Alt');page.keyboard.down('Meta')
-        expect(page.locator('.take-number-entry')).to_contain_text('Release ⌥⌘')
+    def release():
         page.keyboard.up('Meta');page.keyboard.up('Alt')
-        expect(page.locator('.take-number-entry')).to_contain_text('Take __')
+    def prefix(reverse=False):
+        focus()
+        page.keyboard.down('Meta' if reverse else 'Alt')
+        page.keyboard.down('Alt' if reverse else 'Meta')
+        expect(page.locator('.take-number-entry')).to_contain_text('Take __ · Type two digits')
+        expect(page.locator('.take-number-entry')).not_to_contain_text('Esc')
+        expect(page.locator('.take-number-entry')).not_to_contain_text('Release')
     def number(n):
         prefix()
-        page.keyboard.press(str(n)[0])
-        expect(page.locator('.take-number-entry')).to_contain_text('Take '+str(n)[0]+'_')
-        page.keyboard.press(str(n)[1])
+        digits=str(n).zfill(2)
+        page.keyboard.press(digits[0])
+        expect(page.locator('.take-number-entry')).to_contain_text('Take '+digits[0]+'_')
+        page.keyboard.press(digits[1])
         expect(page.locator('.take-number-entry')).to_have_count(0)
+        before=selected();page.keyboard.press('1');page.keyboard.press('2')
+        assert selected()==before # One choice per held chord.
+        release()
     for view in ['recording','cutlist']:
         page.locator(f'[data-proposal-view="{view}"]').click();focus()
         page.keyboard.press('Alt+1');assert selected()=='c0-t1'
@@ -71,20 +78,41 @@ with sync_playwright() as p:
         page.keyboard.press('[');assert page.evaluate('state().cue===cues.length-2')
         page.keyboard.press(']');assert page.evaluate('state().cue===cues.length-1')
         page.evaluate('selectCue(state(),0)');focus()
-        # Escape, timeout, blur and clicking cancel incomplete two-digit entries.
+        # Releasing either modifier cancels partial input, in either press order.
+        before=selected()
+        for reverse in [False,True]:
+            for released in ['Alt','Meta']:
+                prefix(reverse);page.keyboard.press('1')
+                page.keyboard.up(released)
+                expect(page.locator('.take-number-entry')).to_have_count(0)
+                release();page.keyboard.press('2');assert selected()==before
+        # Hold as long as needed; there is no timeout while modifiers stay down.
+        prefix();page.clock.run_for(6100)
+        expect(page.locator('.take-number-entry')).to_be_visible()
+        page.keyboard.press('0');page.keyboard.press('2');assert selected()=='c0-t2';release()
+        # Physical Mac Option key codes work for held two-digit entry, too.
+        prefix()
+        for code in ['Digit1','Digit2']:
+            page.evaluate('(code)=>document.activeElement.dispatchEvent(new KeyboardEvent("keydown",{key:"œ",code,altKey:true,metaKey:true,bubbles:true,cancelable:true}))',code)
+        assert selected()=='c0-t12';release()
+        # Repeated digits / IME never turn one physical press into two digits.
+        prefix();page.keyboard.down('1');page.keyboard.down('1')
+        expect(page.locator('.take-number-entry')).to_contain_text('Take 1_')
+        page.keyboard.up('1');release()
+        prefix();page.evaluate('document.activeElement.dispatchEvent(new KeyboardEvent("keydown",{key:"1",code:"Digit1",altKey:true,metaKey:true,isComposing:true,bubbles:true,cancelable:true}))')
+        expect(page.locator('.take-number-entry')).to_have_count(0);release()
+        # Escape remains a harmless fallback; no instruction is needed in the UI.
         prefix();page.keyboard.press('1');page.keyboard.press('Escape')
-        expect(page.locator('.take-number-entry')).to_have_count(0)
-        before=selected();prefix();page.clock.run_for(5100)
-        expect(page.locator('.take-number-entry')).to_have_count(0);assert selected()==before
+        expect(page.locator('.take-number-entry')).to_have_count(0);release()
         prefix();page.evaluate('window.dispatchEvent(new Event("blur"))')
-        expect(page.locator('.take-number-entry')).to_have_count(0)
+        expect(page.locator('.take-number-entry')).to_have_count(0);release()
         prefix();page.locator('[data-proposal-view="'+view+'"]').click()
+        expect(page.locator('.take-number-entry')).to_have_count(0);release()
+        # Digits typed after releasing the chord never choose a take.
+        before=selected();prefix();release()
         expect(page.locator('.take-number-entry')).to_have_count(0)
-        # Command must be released before the digits; held-chord digits do not jump.
-        focus();page.keyboard.down('Alt');page.keyboard.down('Meta')
-        page.keyboard.press('1');assert selected()==before
-        page.keyboard.up('Meta');page.keyboard.up('Alt')
-        page.keyboard.press('1');page.keyboard.press('2');assert selected()=='c0-t12'
+        page.keyboard.press('1');page.keyboard.press('2');assert selected()==before
+        number(12);assert selected()=='c0-t12'
         assert page.evaluate('takeById(state(),"c0-t12").draft.text')=='Take twelve draft'
     # Score position and each take's notes/selections survive rapid key switching.
     canvas=page.locator('.score-canvas');canvas.evaluate('(el)=>el.scrollTop=350')
@@ -120,8 +148,8 @@ with sync_playwright() as p:
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Prefix Escape cancels only the entry, keeping the active tutorial step.
     page.evaluate('openTourStep(proposalTourSteps.findIndex(s=>s.id==="cue-sneltoetsen"))')
-    prefix();page.keyboard.press('Escape')
+    prefix();page.keyboard.press('Escape');release()
     expect(page.locator('.proposal-tour-card')).to_be_visible()
     assert not errors,errors
     browser.close()
-print('PASS: shared cue/take keys, non-wrapping cue boundaries, actual take numbers, two-digit prefix, cancellation, Mac key codes, text/modal/drag protection, drafts, score position and live take isolation')
+print('PASS: shared cue/take keys, non-wrapping cue boundaries, actual take numbers, held two-digit entry, release cancellation, Mac key codes, text/modal/drag protection, drafts, score position and live take isolation')

@@ -98,7 +98,7 @@ function quickNoteSuggestions(t,place) {
   return `<section class="quick-note-suggestions" aria-label="Quick notes"><span>Quick notes</span><div>${['Intonation','More expressive','Less expressive','Tight','Alt take'].map(text=>`<button type="button" data-quick-note="${text}" data-take="${t.id}" data-editor-place="${place}">${text}</button>`).join('')}</div></section>`;
 }
 // Navigation has the same meaning in Recording and Comp tool.
-let takeNumberEntry=null,takeNumberTimer=null,bracketKeyHold=null;
+let takeNumberEntry=null,bracketKeyHold=null;
 function navigationKeysAvailable(event){
  return active&&['bediening','partituur'].includes(active.id)
   &&!document.querySelector('dialog[open]')
@@ -106,18 +106,17 @@ function navigationKeysAvailable(event){
   &&!scoreGesture&&!scoreNoteDrag;
 }
 function cancelTakeNumberEntry(){
- takeNumberEntry=null;clearTimeout(takeNumberTimer);
+ takeNumberEntry=null;
  document.querySelector('.take-number-entry')?.remove();
 }
-function showTakeNumberEntry(release=false){
+function showTakeNumberEntry(){
  let panel=document.querySelector('.take-number-entry');
  if(!panel){panel=document.createElement('div');panel.className='take-number-entry';panel.lang='en';panel.setAttribute('role','status');panel.setAttribute('aria-live','polite');document.body.append(panel);}
- panel.textContent='Take '+takeNumberEntry.digits.padEnd(2,'_')+' · '+(release?'Release ⌥⌘, then type two digits':'Type two digits')+' · Esc to cancel';
- clearTimeout(takeNumberTimer);takeNumberTimer=setTimeout(cancelTakeNumberEntry,5000);
+ panel.textContent='Take '+takeNumberEntry.digits.padEnd(2,'_')+' · Type two digits';
 }
 function takeShortcutTitle(t){
  if(t.kind==='overdub')return 'View '+entryLabel(t)+' · ⌥[ previous take · ⌥] next take';
- return t.num<=9?'Go to '+entryLabel(t)+' · ⌥'+t.num:t.num<=99?'Go to '+entryLabel(t)+' · ⌥⌘, release, then type '+String(t.num).padStart(2,'0'):'View '+entryLabel(t);
+ return t.num<=9?'Go to '+entryLabel(t)+' · ⌥'+t.num:t.num<=99?'Go to '+entryLabel(t)+' · Hold ⌥⌘ and type '+String(t.num).padStart(2,'0'):'View '+entryLabel(t);
 }
 function selectNavigationTake(s,t){
  if(!t){toast('That take does not exist in this cue.');return;}
@@ -139,24 +138,27 @@ function handleTakeNumberEntry(e){
  if(!navigationKeysAvailable(e)){if(takeNumberEntry)cancelTakeNumberEntry();return;}
  const modifier=['Alt','Meta'].includes(e.key);
  if(!takeNumberEntry&&modifier&&e.altKey&&e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.repeat&&!e.isComposing){
-  e.preventDefault();e.stopImmediatePropagation();takeNumberEntry={digits:'',cue:state().cue};showTakeNumberEntry(true);return;
+  e.preventDefault();e.stopImmediatePropagation();takeNumberEntry={digits:'',cue:state().cue,completed:false};showTakeNumberEntry();return;
  }
  if(!takeNumberEntry)return;
  if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();cancelTakeNumberEntry();return;}
- if(modifier||e.isComposing)return;
+ if(!e.altKey||!e.metaKey||e.ctrlKey||e.shiftKey||e.isComposing){cancelTakeNumberEntry();return;}
+ if(modifier)return;
  const digit=/^(Digit|Numpad)[0-9]$/.test(e.code)?e.code.slice(-1):null;
  if(digit!==null&&!e.ctrlKey&&!e.shiftKey){
   e.preventDefault();e.stopImmediatePropagation();
-  if(e.repeat)return;
-  if(e.altKey||e.metaKey){showTakeNumberEntry(true);return;}
+  if(e.repeat||takeNumberEntry.completed)return;
   takeNumberEntry.digits+=digit;showTakeNumberEntry();
-  if(takeNumberEntry.digits.length===2){const number=Number(takeNumberEntry.digits);cancelTakeNumberEntry();chooseTakeNumber(number);}
+  if(takeNumberEntry.digits.length===2){
+   const number=Number(takeNumberEntry.digits);takeNumberEntry.completed=true;
+   document.querySelector('.take-number-entry')?.remove();chooseTakeNumber(number);
+  }
   return;
  }
  cancelTakeNumberEntry();
 }
 document.addEventListener('keydown',handleTakeNumberEntry,true);
-document.addEventListener('keyup',e=>{if(['BracketLeft','BracketRight'].includes(e.code))bracketKeyHold=null;if(takeNumberEntry&&!e.altKey&&!e.metaKey)showTakeNumberEntry();},true);
+document.addEventListener('keyup',e=>{if(['BracketLeft','BracketRight'].includes(e.code))bracketKeyHold=null;if(takeNumberEntry&&(!e.altKey||!e.metaKey))cancelTakeNumberEntry();},true);
 document.addEventListener('pointerdown',cancelTakeNumberEntry,true);
 document.addEventListener('focusin',e=>{if(takeNumberEntry&&!navigationKeysAvailable(e))cancelTakeNumberEntry();});
 window.addEventListener('blur',()=>{bracketKeyHold=null;cancelTakeNumberEntry();});

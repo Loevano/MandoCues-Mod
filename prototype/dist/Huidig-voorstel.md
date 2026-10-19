@@ -20,7 +20,7 @@ Nieuwe sessie-/cuewerktijd begint op nul. Music length is de muziekduur; Planned
 - De rondleiding scrolt automatisch naar elk onderdeel. Quick notes staan direct zichtbaar bij de editor.
 - De rondleiding begint met Command+Enter voor sessie-/takestart, daarna het +/−-voorstel, cue/take kiezen, notes, beoordeling en Comp tool. Alleen concrete toevoegingen zijn selecteerbare voorstellen; algemene indeling, bestaande timers en normale undo krijgen geen losse suggestiestap. Open vragen staan apart.
 - De uitleg is gericht aan de collega: vrijblijvende ideeën en korte aanwijzingen om te proberen, zonder eigen bugfixes of ontwerphistorie uit te leggen.
-- De rondleiding bevat 23 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
+- De rondleiding bevat 22 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
 - GUI Engels; uitleg en vragen Nederlands. Kloktijden gebruiken AM/PM, ook bij notes; duurvelden blijven minuten/seconden. Command+Enter start eerst de sessie en daarna een take, of stopt de lopende take. Dit werkt ook met focus op de rondleiding. Enter plaatst een note en spatie is tekst.
 - Herkenbare appcontext: zijbalk, sessiekeuze, Session length (min), Prep per cue, Max music (min), Add cues, Chat standaard dicht en de PDF-overzichten. De inspectie-HTML is geen volledige appbron; planningscijfers zijn voorbeelddata.
@@ -31,7 +31,7 @@ Nieuwe sessie-/cuewerktijd begint op nul. Music length is de muziekduur; Planned
 
 ## Sneltoetsen
 
-In beide weergaven: [ vorige cue, ] volgende cue; Alt+[ vorige take, Alt+] volgende take. Alt+1 t/m 9 kiest het echte take-nummer. Voor Take 12: Alt+Command indrukken, loslaten, 1 en 2 typen. Escape of vijf seconden zonder invoer annuleert. Brackets ingedrukt houden herhaalt navigatie en versnelt na kort vasthouden. Bij de eerste en laatste cue stopt navigatie; brackets en cuepijlen springen niet naar de andere kant. De eerdere keuze op cuevolgorde vervalt; de open vraag hierover is beantwoord. Takekeuze verandert de bewerkingslaag, nooit de lopende opname.
+In beide weergaven: [ vorige cue, ] volgende cue; Alt+[ vorige take, Alt+] volgende take. Alt+1 t/m 9 kiest het echte take-nummer. Voor Take 12: houd Option (Alt)+Command vast en typ 1 en 2. Het venster staat alleen open tijdens vasthouden en sluit na de tweede digit of loslaten van één modifier. Onvolledige invoer vervalt; geen takekeuze na loslaten. Voor Take 2 kan ook 0 en 2. Extra cijfers onder dezelfde vastgehouden combinatie voeren geen nieuwe keuze uit. Brackets ingedrukt houden herhaalt navigatie en versnelt na kort vasthouden. Bij de eerste en laatste cue stopt navigatie; brackets en cuepijlen springen niet naar de andere kant. De eerdere keuze op cuevolgorde vervalt; de open vraag hierover is beantwoord. Takekeuze verandert de bewerkingslaag, nooit de lopende opname.
 
 ## Herstelpunt
 
@@ -74,6 +74,8 @@ De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done 
 - Geen indelingskeuze bovenaan. De drie sessievelden blijven zichtbaar naast Add cues / Chat / PDF; Planning bevat alleen eindtijd en verlengen.
 - De vier oorspronkelijke tijden staan compact onder de grote klok, zonder afzonderlijke vakken. Alleen On schedule bij nul; anders één getal met + of −. Onder vijf minuten achterstand oranje, vanaf vijf rood. Het afgeronde-cuetotaal blijft zichtbaar.
 - Take-duur staat alleen zichtbaar tijdens opnemen, op één vaste plek naast Recording en het take-nummer. Geen stilstaande duur naast Overdub. De opnameknop en omliggende bediening behouden hun positie bij sessie-/takestart en stop.
-- Rondleiding: 23 voorstellen, begint met ⌘ Enter. De algemene indelingsstap is weg; planning gaat specifiek over +/− en de kleurgrenzen. Undo blijft werken, zonder eigen optionele stap.
+- Rondleiding: 22 voorstellen, begint met ⌘ Enter. De algemene indelingsstap is weg; planning gaat specifiek over +/− en de kleurgrenzen. Undo blijft werken, zonder eigen optionele stap.
 
 - Start session heeft een blauwe knop, onderscheiden van Record in rood. De eerste rondleidingsstap laat alleen de ⌘ Enter-hint drie keer kort knipperen; niet bij verminderde beweging, na sessiestart of buiten die stap.
+
+- De losse tijdlijnsuggestie is verwijderd; de tijdlijn blijft werken. Bij direct cue kiezen staan ook de basis-sneltoetsen voor cues/takes. De latere sneltoetsstap behandelt alleen tweecijferige takekeuze met ⌥ + ⌘ vasthouden.
