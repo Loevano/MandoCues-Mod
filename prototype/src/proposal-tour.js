@@ -8,7 +8,10 @@ try{
  const saved=JSON.parse(localStorage.getItem(proposalTourStorageKey)||'null');
  if(saved&&Array.isArray(saved.excluded))for(const id of saved.excluded)proposalTourSelection.delete(id);
 }catch{}
-let proposalTourIndex=-1,tourPositionFrame=0,tourTarget=null;
+let proposalTourIndex=-1,tourPositionFrame=0,tourTarget=null,tourShortcutTimer=null;
+function stopTourShortcutHint(){
+ clearTimeout(tourShortcutTimer);document.body.classList.remove('tour-start-shortcut');
+}
 const tourPromptIntro=proposalTourConfig.promptIntro;
 function tourPromptFor(step){return step.discussion?discussion.find(item=>item.id===step.discussion).text:step.prompt;}
 function selectedTourPrompt(){
@@ -31,12 +34,14 @@ function showProposalWelcome(){
  reviewDialog('proposal-welcome','Een paar ideeën van Floris',`<p>Probeer wat je aanspreekt. Vink uit wat je niet wilt meegeven aan Claude.</p><p class="review-muted">Jouw programma en workflow blijven het uitgangspunt.</p><footer><button type="button" data-tour-action="welcome-skip">Zelf bekijken</button><button type="button" class="review-primary" data-tour-action="welcome-start">Rondleiding starten</button></footer>`);
 }
 function closeProposalTour(){
+ stopTourShortcutHint();
  proposalTourIndex=-1;tourTarget=null;document.body.classList.remove('tour-cue-selection','tour-take-notes','tour-note-metadata');
  document.querySelector('.proposal-tour-card')?.remove();document.querySelector('.proposal-tour-highlight')?.remove();
  document.querySelector('[data-proposal-action="tour"]')?.focus({preventScroll:true});
 }
 function openTourStep(index){
  if(index<0||index>=proposalTourSteps.length)return;
+ stopTourShortcutHint();
  proposalTourIndex=index;const step=proposalTourSteps[index],s=unifiedState;
  document.body.classList.toggle('tour-cue-selection',step.id==='cue-aanklikken');
  document.body.classList.toggle('tour-take-notes',step.id==='noteplek');
@@ -71,6 +76,10 @@ function openTourStep(index){
   syncSticky();
  }else revealTourTarget(tourTarget);
  syncSticky();
+ if(step.id==='opnametoets'&&!s.sessionStarted){
+  document.body.classList.add('tour-start-shortcut');
+  tourShortcutTimer=setTimeout(stopTourShortcutHint,2100);
+ }
  document.querySelector('#proposal-tour-title').focus({preventScroll:true});
  positionProposalTour();scheduleTourPosition();
 }

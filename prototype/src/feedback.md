@@ -806,3 +806,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Vage formulering over bruikbare opnamegegevens vervangen door de route: opnametijden uit originele WAV-metadata vergelijken met ons take-log, tijdverschil controleren met een bekende take, koppeling bevestigen. Ontbrekende opnametijden blijven handmatig.
 - Technische uitwerking: BWF MetaEdit Open Directory → CORE → CSV met FileName, OriginationDate en OriginationTime; vergelijk met de JSON-take-log. Geen projecttimestamp verwarren met kloktijd en geen WAV-bestanden wijzigen.
 - Officiële bronnen en stappen toegevoegd aan Pro-Tools-takekoppeling.md; de demo heeft nog geen WAV-/CSV-import of automatische matching.
+
+
+## 94. Sessiestart herkenbaar maken
+
+- Start session blauw, onderscheiden van de bestaande rode Record-knop. Live opname blijft duidelijk zichtbaar.
+- Bij de eerste rondleidingsstap knippert de ⌘ Enter-hint drie keer; stopt vanzelf en bij verlaten. Respecteer verminderde beweging. Geen extra uitleg over dit detail in de rondleiding.

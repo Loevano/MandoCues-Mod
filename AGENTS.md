@@ -37,3 +37,5 @@
 - Bevestigd: behoud originele Complexity-labels Easy/Medium/Hard en de 0,7/1/1,5-gewichten. Toon gebruikte muziekduur compact naast Max music en afgeronde-cuetotaal in het planningsvlak. Cue-notes blijven ingeklapt. Reset takes/tijden is per opnamedag, met bevestiging en geblokkeerd tijdens een take. Behoud cue-notes, planning, chat en scoreweergave; wis takegegevens/werktijden/aftekenen. Deze expliciete reset begint nummering opnieuw bij 1; individuele takeverwijdering niet.
 
 - Take-duur is alleen zichtbaar tijdens een lopende take, op één vaste plek naast opnamestatus/take-nummer. Geen stilstaande Take duration 00:00 naast Overdub. Reserveer de statusruimte en houd knopbreedte/hoogte vast zodat starten/stoppen niets verplaatst. Toon bij nul alleen On schedule, geen tweede 00:00. De rondleiding heeft 23 concrete voorstellen; geen algemene indelingsstap of losse undo-suggestie.
+
+- Start session heeft een blauwe knop, onderscheiden van Record in rood. De eerste rondleidingsstap laat alleen de ⌘ Enter-hint drie keer kort knipperen; niet bij verminderde beweging, na sessiestart of buiten die stap.

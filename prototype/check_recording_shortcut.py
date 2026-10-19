@@ -9,6 +9,7 @@ with sync_playwright() as p:
     page=browser.new_page(viewport={'width':1512,'height':1100})
     errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
+    page.clock.install()
     page.goto((ROOT/'dist/index.html').as_uri())
     count=page.evaluate('allTakes(state()).length')
     page.keyboard.press('Meta+Enter')
@@ -17,11 +18,24 @@ with sync_playwright() as p:
     page.evaluate("openTourStep(proposalTourSteps.findIndex(step=>step.id==='opnametoets'))")
     expect(page.locator('#proposal-tour-title')).to_be_focused()
     expect(page.locator('#main-panel .record')).to_contain_text('Start session')
+    assert page.locator('#main-panel .record').evaluate('(el)=>getComputedStyle(el).backgroundColor')=='rgb(36, 99, 207)'
+    hint=page.locator('#main-panel .record kbd')
+    assert hint.evaluate('(el)=>getComputedStyle(el).animationName')=='tour-start-hint'
+    page.clock.run_for(2200)
+    assert hint.evaluate('(el)=>getComputedStyle(el).animationName')=='none'
+    page.evaluate("openTourStep(0);closeProposalTour()")
+    assert not page.evaluate("document.body.classList.contains('tour-start-shortcut')")
+    page.emulate_media(reduced_motion='reduce')
+    page.evaluate('openTourStep(0)')
+    assert hint.evaluate('(el)=>getComputedStyle(el).animationName')=='none'
+    page.emulate_media(reduced_motion='no-preference')
     # No click in the workspace before the first session/take shortcut.
     page.keyboard.press('Meta+Enter')
     assert page.evaluate('state().sessionStarted&&!running(state())')
     assert page.evaluate('allTakes(state()).length')==count
     expect(page.locator('#main-panel .record')).to_contain_text('Record 1M02')
+    assert page.locator('#main-panel .record').evaluate('(el)=>getComputedStyle(el).backgroundColor')=='rgb(224, 0, 34)'
+    assert page.locator('#main-panel .record kbd').evaluate('(el)=>getComputedStyle(el).animationName')=='none'
     page.keyboard.press('Meta+Enter')
     live=page.evaluate('running(state()).id')
     assert page.evaluate('allTakes(state()).length')==count+1

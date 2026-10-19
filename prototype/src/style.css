@@ -866,3 +866,10 @@ body.take-is-recording .proposal-demo-label{visibility:hidden}
 @media(max-width:759px){#main-panel.original-panel .proposal-cue-switcher{flex-wrap:wrap}.demo .cue-jump-menu{flex:1}.demo .cue-jump-menu>summary{height:100%}}
 
 @media(min-width:760px) and (max-width:1180px){.proposal-global-recording{display:none}}
+
+/* Session setup is distinct from arming a take. */
+.demo .record.session-start, #main-panel.original-panel .record.session-start{background:#2463cf;border-color:#4b86e8;color:white}
+.demo .record.session-start:hover:not(:disabled), #main-panel.original-panel .record.session-start:hover:not(:disabled){background:#2c70df}
+body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hint .7s ease-in-out 3}
+@keyframes tour-start-hint{0%,100%{opacity:1;box-shadow:0 0 0 0 transparent}50%{opacity:.45;box-shadow:0 0 0 4px #cce0ff66}}
+@media(prefers-reduced-motion:reduce){body.tour-start-shortcut #main-panel .session-start kbd{animation:none}}

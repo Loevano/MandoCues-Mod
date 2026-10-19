@@ -75,3 +75,5 @@ De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done 
 - De vier oorspronkelijke tijden staan compact onder de grote klok, zonder afzonderlijke vakken. Alleen On schedule bij nul; anders één getal met + of −. Onder vijf minuten achterstand oranje, vanaf vijf rood. Het afgeronde-cuetotaal blijft zichtbaar.
 - Take-duur staat alleen zichtbaar tijdens opnemen, op één vaste plek naast Recording en het take-nummer. Geen stilstaande duur naast Overdub. De opnameknop en omliggende bediening behouden hun positie bij sessie-/takestart en stop.
 - Rondleiding: 23 voorstellen, begint met ⌘ Enter. De algemene indelingsstap is weg; planning gaat specifiek over +/− en de kleurgrenzen. Undo blijft werken, zonder eigen optionele stap.
+
+- Start session heeft een blauwe knop, onderscheiden van Record in rood. De eerste rondleidingsstap laat alleen de ⌘ Enter-hint drie keer kort knipperen; niet bij verminderde beweging, na sessiestart of buiten die stap.
