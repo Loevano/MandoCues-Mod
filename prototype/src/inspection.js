@@ -31,3 +31,7 @@ function sourceSessionSummary(s=null) {
 function sourceCuePlan(s) {
   return `<section class="source-cue-plan" aria-label="Session plan with complete cue codes"><div><b>Session plan</b><small>Demo · click to choose a cue</small></div><nav aria-label="Cue order">${cues.map((c,j)=>`<button data-session-cue="${j}" aria-label="Choose ${c[0]} ${esc(c[1])}" aria-current="${s.cue===j?'true':'false'}" title="${esc(c[1])}">${c[0]}</button>`).join('')}</nav></section>`;
 }
+
+function takeLabelInput(t){return `<input class="take-label-input" data-take-label="${t.id}" value="${esc(t.label||'')}" maxlength="80" placeholder="Take label" aria-label="Label for ${entryLabel(t)}">`;}
+document.addEventListener('input',event=>{if(!event.target.dataset.takeLabel||!active)return;const t=takeById(state(),event.target.dataset.takeLabel);if(t)t.label=event.target.value.slice(0,80);});
+document.addEventListener('change',event=>{if(event.target.dataset.takeLabel&&active)renderDemo();});

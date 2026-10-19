@@ -11,7 +11,7 @@ try{const saved=JSON.parse(localStorage.getItem('mandocues-implementatie-v1')||'
 try{Object.assign(decisions,JSON.parse(localStorage.getItem('mandocues-suggesties-v2')||'{}'));}catch{}
 function draft(){return {id:'draft',text:'',at:null,originalAt:null,clockAt:null,measure:'',measureScope:'bar',page:null,source:null};}
 function metadataNote(t,id){return id==='draft'?t?.draft:t?.notes.find(n=>n.id===id);}
-function newTake(c,n,rolling=false,kind='take'){return {id:`c${c}-${kind==='overdub'?'od':'t'}${n}`,kind,cue:c,num:n,rolling,started:null,duration:n===1?64:91,cursor:n===1?31:42,base:rolling?42:0,rating:n===1?4:3,best:n===1,notes:[],draft:draft()};}
+function newTake(c,n,rolling=false,kind='take'){return {id:`c${c}-${kind==='overdub'?'od':'t'}${n}`,kind,cue:c,num:n,label:'',rolling,started:null,duration:n===1?64:91,cursor:n===1?31:42,base:rolling?42:0,rating:n===1?4:3,best:n===1,notes:[],draft:draft()};}
 function fresh(id){
  const ts=cues.map((c,j)=>j===0?[newTake(j,1),newTake(j,2,id==='notities')]:j===1?[newTake(j,1)]:[]);
  if(id==='cue-take'){

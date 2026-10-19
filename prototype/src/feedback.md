@@ -721,3 +721,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Een handmatige minutenkeuze blijft een override; leegmaken of Auto kiezen schakelt terug naar een automatische schatting.
 - Auto reageert op sessieduur, voorbereiding, muziekduur en Complexity. Een handmatige override blijft staan.
 - De lokale schatting volgt de zichtbare uitleg (voorbereiding + gewogen aandeel), geen geverifieerde kopie van de productieplanner. Behoud bij echte implementatie de bestaande logica en opslag.
+
+
+## 84. Bestaande take-labels behouden
+
+- Een eigen label per take/overdub, bewerkbaar in Recording en Comp tool (ook All takes).
+- Labels delen dezelfde take-ID, blijven bij wisselen behouden en staan op het take sheet.
+- Sterren, Best en Alt blijven op vaste posities.

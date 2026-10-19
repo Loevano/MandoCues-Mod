@@ -16,7 +16,7 @@ function renderSessionChat(){
 }
 function openSessionExport(kind){
  document.querySelectorAll('.session-pdf-menu').forEach(el=>el.open=false);
- const body=kind==='takes'?cues.map((c,j)=>`<h3>${c[0]} ${esc(c[1])}</h3>${unifiedState.takes[j].map(t=>`<section><b>${entryLabel(t)}</b> · ${t.rating||'—'}/5${t.best?' · Best':''}<ul>${t.notes.map(n=>`<li>${esc(n.text)} · ${n.measureScope==='all'?'All':n.measure?'Bar '+n.measure:'—'} · ${noteTimeValue(n)}</li>`).join('')}</ul></section>`).join('')}`).join(''):`<table><thead><tr><th>Cue</th><th>Title</th><th>Music length</th><th>Planned (min)</th></tr></thead><tbody>${cues.map((c,j)=>`<tr><td>${c[0]}</td><td>${esc(c[1])}</td><td>${c[2]}</td><td>${cuePlannedMinutes(j)}</td></tr>`).join('')}</tbody></table>`;
+ const body=kind==='takes'?cues.map((c,j)=>`<h3>${c[0]} ${esc(c[1])}</h3>${unifiedState.takes[j].map(t=>`<section><b>${entryLabel(t)}</b>${t.label?` · ${esc(t.label)}`:""} · ${t.rating||'—'}/5${t.best?' · Best':''}<ul>${t.notes.map(n=>`<li>${esc(n.text)} · ${n.measureScope==='all'?'All':n.measure?'Bar '+n.measure:'—'} · ${noteTimeValue(n)}</li>`).join('')}</ul></section>`).join('')}`).join(''):`<table><thead><tr><th>Cue</th><th>Title</th><th>Music length</th><th>Planned (min)</th></tr></thead><tbody>${cues.map((c,j)=>`<tr><td>${c[0]}</td><td>${esc(c[1])}</td><td>${c[2]}</td><td>${cuePlannedMinutes(j)}</td></tr>`).join('')}</tbody></table>`;
  appDialog(kind==='takes'?'Take sheet':'Recording order',`<div class="session-export-preview">${body}</div>`,'<button data-app-action="print-export">Print / Save as PDF</button>');
 }
 document.addEventListener('click',event=>{
