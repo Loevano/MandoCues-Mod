@@ -20,17 +20,39 @@ with sync_playwright() as p:
     stamp=composer.locator('[data-note-time-edit="draft"]');stamp.click();stamp.fill('00:45')
     page.clock.run_for(1100);expect(stamp).to_have_value('00:45');stamp.press('Enter')
     assert page.evaluate('takeById(state(),state().selected).draft.at')==45
+    page.clock.run_for(2200)
+    current=page.evaluate('position(takeById(state(),state().selected))')
     composer.locator('[data-reset-note-time="draft"]').click()
-    assert page.evaluate('takeById(state(),state().selected).draft.at')==original
+    assert page.evaluate('takeById(state(),state().selected).draft.at')==current and current>original
+    expect(field).to_have_value('Cello intonation')
+    assert page.evaluate('takeById(state(),state().selected).draft.measure')==18
+    page.clock.run_for(2200)
+    current=page.evaluate('position(takeById(state(),state().selected))')
+    composer.locator('[data-reset-note-time="draft"]').click()
+    assert page.evaluate('takeById(state(),state().selected).draft.at')==current
     stamp.click();stamp.fill('00:46');stamp.press('Enter');field.press('Enter')
     note=page.evaluate('takeById(state(),state().selected).notes.at(-1)')
     assert note['measure']==18 and note['at']==46 and note['originalAt']==original,note
     # Same menu on the next draft; All survives placing and doesn't submit early.
-    field.fill('Whole take');picker.locator('summary').click();picker.locator('[data-pick-measure="all"]').click()
+    assert page.evaluate('takeById(state(),state().selected).draft.at') is None
+    page.clock.run_for(2200)
+    field.fill('Whole take')
+    second_start=page.evaluate('position(takeById(state(),state().selected))')
+    assert page.evaluate('takeById(state(),state().selected).draft.at')==second_start and second_start>original
+    picker.locator('summary').click();picker.locator('[data-pick-measure="all"]').click()
     stamp.click();stamp.fill('00:12');stamp.press('Escape')
     assert page.evaluate('takeById(state(),state().selected).draft.at')!=12
     field.press('Enter');note=page.evaluate('takeById(state(),state().selected).notes.at(-1)')
     assert note['measure'] is None and note['measureScope']=='all'
+    # Clock buttons belong to their own take, even while another take records.
+    page.locator('[data-select-take="c0-t1"]').click()
+    page.evaluate('takeById(state(),"c0-t1").cursor=17')
+    old_row=page.locator('.calm-notes [data-note-id="seed-1"]')
+    old_row.locator('[data-reset-note-time]').click()
+    expect(old_row.locator('[data-note-time-edit]')).to_have_value('00:17')
+    assert page.evaluate('takeById(state(),"c0-t1").notes[0].at')==17
+    assert page.evaluate('running(state()).id')==take
+    assert page.evaluate('takeById(state(),"c0-t2").notes[0].at')==38
     assert not errors,errors
     browser.close()
-print('PASS: shared draft/saved metadata controls, floating bar picker, time edit/reset/Escape, immutable first-typing time, All and no early note submission')
+print('PASS: shared draft/saved metadata controls, floating bar picker, time edit/current-time refresh/Escape, immutable first-typing time, All and no early note submission')

@@ -34,7 +34,7 @@ with sync_playwright() as p:
                     stamp_box=stamp.locator('..').bounding_box();delete=row.locator('[data-delete-note]').bounding_box()
                     assert stamp_box['x']+stamp_box['width']<=delete['x']+.5,(stamp_box,delete)
             row.locator('[data-reset-note-time]').click()
-            expect(stamp).to_have_value('00:38');fits(stamp)
+            expect(stamp).to_have_value('00:42');fits(stamp)
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(width,view)
     page.evaluate("showProposalView('recording')")
     page.keyboard.press('Meta+Enter');page.keyboard.press('Meta+Enter')

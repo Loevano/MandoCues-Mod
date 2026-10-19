@@ -89,7 +89,7 @@ function sizeNoteTime(el){el.style.width=Math.max(6,el.value.length+1)+'ch';el.s
 function setNoteTimeValue(el,value){el.value=value;sizeNoteTime(el);}
 function noteTime(s,t,n,place){
  const value=n.useTime===false?'—':noteTimeValue({...n,at:n.at??position(t)});
- return `<span class="note-time-control"><input type="text" class="note-time-value" data-note-time-edit="${n.id}" ${n.id==='draft'?`data-draft-clock="${t.id}"`:''} data-take="${t.id}" data-editor-place="${place}" value="${value}" readonly inputmode="text" aria-label="Timecode for note: ${esc(n.text)}" title="Click to edit timecode · Enter to save" style="width:${Math.max(6,value.length+1)}ch"><button type="button" class="note-time-reset" data-reset-note-time="${n.id}" data-take="${t.id}" data-editor-place="${place}" aria-label="Reset original timecode for note: ${esc(n.text)}" title="Reset original timecode"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg></button></span>`;
+ return `<span class="note-time-control"><input type="text" class="note-time-value" data-note-time-edit="${n.id}" ${n.id==='draft'?`data-draft-clock="${t.id}"`:''} data-take="${t.id}" data-editor-place="${place}" value="${value}" readonly inputmode="text" aria-label="Timecode for note: ${esc(n.text)}" title="Click to edit timecode · Enter to save" style="width:${Math.max(6,value.length+1)}ch"><button type="button" class="note-time-reset" data-reset-note-time="${n.id}" data-take="${t.id}" data-editor-place="${place}" aria-label="Use current take timecode for note: ${esc(n.text)}" title="Use current take timecode"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg></button></span>`;
 }
 function commitNoteTime(el){
  const s=state(),t=takeById(s,el.dataset.take),n=metadataNote(t,el.dataset.noteTimeEdit);if(!n)return false;
@@ -100,10 +100,11 @@ function commitNoteTime(el){
  if(n.id!=='draft')rememberScoreChange(s,t);n.originalAt??=n.at??position(t);n.at=at;n.useTime=true;renderDemo();
  document.querySelector(`[data-note-time-edit="${n.id}"][data-editor-place="${el.dataset.editorPlace}"]`)?.focus({preventScroll:true});return true;
 }
-function resetNoteTime(el){
+function refreshNoteTime(el){
  const s=state(),t=takeById(s,el.dataset.take),n=metadataNote(t,el.dataset.resetNoteTime);if(!n)return;
- if(n.at===(n.originalAt??n.at)&&n.useTime!==false)return;
- if(n.id!=='draft')rememberScoreChange(s,t);n.at=n.originalAt??n.at;n.useTime=true;renderDemo();
+ const at=position(t);
+ if(n.at===at&&n.useTime!==false)return;
+ if(n.id!=='draft')rememberScoreChange(s,t);n.originalAt??=n.at??at;n.at=at;n.useTime=true;renderDemo();
  document.querySelector(`[data-reset-note-time="${n.id}"][data-editor-place="${el.dataset.editorPlace}"]`)?.focus({preventScroll:true});
 }
 function noteList(s,t,score=false,place='list'){
@@ -218,7 +219,7 @@ document.addEventListener('click',async e=>{
  if(b.dataset.alt){s.alts[b.dataset.alt]=!s.alts[b.dataset.alt];renderDemo();return;}
  if(b.dataset.takeAlt){const t=takeById(s,b.dataset.takeAlt);t.alt=!t.alt;renderDemo();return;}
  if(b.dataset.quickNote){const t=takeById(s,b.dataset.take);if(t.draft.at===null)t.draft.at=position(t);t.draft.text+=(t.draft.text?' · ':'')+b.dataset.quickNote;renderDemo();document.querySelector(`[data-draft="${t.id}"][data-editor-place="${b.dataset.editorPlace}"]`)?.focus({preventScroll:true});return;}
- if(b.dataset.resetNoteTime){resetNoteTime(b);return;}
+ if(b.dataset.resetNoteTime){refreshNoteTime(b);return;}
  if(b.dataset.pickMeasure){setNoteMeasure(b.dataset.take,b.dataset.noteId,b.dataset.pickMeasure,b.dataset.editorPlace);return;}
   if(b.dataset.deleteNote){const t=takeById(s,b.dataset.take);if(t){rememberScoreChange(s,t);t.notes=t.notes.filter(n=>n.id!==b.dataset.deleteNote);if(s.focusedScoreNote===b.dataset.deleteNote)s.focusedScoreNote=null;if(s.scoreComment?.take===t.id&&s.scoreComment.editId===b.dataset.deleteNote){s.scoreComment=null;if(t.scoreCommentDrafts)delete t.scoreCommentDrafts[s.doc.id];}s.measurePicker=null;renderDemo();toast('Note deleted.');}return;}
  if(b.dataset.noteOption){updateSavedNote(b);return;}

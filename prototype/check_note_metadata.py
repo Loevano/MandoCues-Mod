@@ -58,8 +58,9 @@ with sync_playwright() as p:
     stamp.click();stamp.fill('00:45');stamp.press('Enter')
     assert saved()['at']==45 and saved()['originalAt']==original
     expect(stamp).to_have_attribute('readonly','')
+    current=page.evaluate('(take)=>position(takeById(state(),take))',take)
     row.locator('[data-reset-note-time]').click()
-    assert saved()['at']==saved()['originalAt']==original
+    assert saved()['at']==current and saved()['originalAt']==original and current>original
     page.keyboard.press('Meta+Enter')
     page.locator('[data-proposal-view="cutlist"]').click()
     row=page.locator(f'.score-note-row[data-note-id="{note_id}"]')
@@ -73,15 +74,16 @@ with sync_playwright() as p:
     stamp.click();stamp.fill('01:02:03');stamp.press('Enter')
     assert saved()['at']==3723 and saved()['originalAt']==original
     expect(stamp).to_have_value('1:02:03')
+    current=page.evaluate('(take)=>position(takeById(state(),take))',take)
     row.locator('[data-reset-note-time]').click()
-    assert saved()['at']==original
+    assert saved()['at']==current and saved()['originalAt']==original
     page.locator('[data-score-undo]').click();assert saved()['at']==3723
-    page.locator('[data-score-redo]').click();assert saved()['at']==original
+    page.locator('[data-score-redo]').click();assert saved()['at']==current
     # Editing the score text must not replace the original captured time.
     page.locator('.score-text-annotation').filter(has_text='Frozen at first key').click()
     page.locator('#score-comment-text').fill('The same note, corrected')
     page.locator('#score-comment-text').press('Enter')
-    assert saved()['originalAt']==original and saved()['at']==original
+    assert saved()['originalAt']==original and saved()['at']==current
     for width in [390,1512]:
         page.set_viewport_size({'width':width,'height':844})
         picker=page.locator(f'[data-measure-menu="{note_id}"]')
@@ -97,4 +99,4 @@ with sync_playwright() as p:
     assert saved() is None
     assert not errors,errors
     browser.close()
-print('PASS: scrollable full bar list, All take scope, direct typing/Enter, inline time edits, original-time reset, history, text editing and mobile popup bounds')
+print('PASS: scrollable full bar list, All take scope, direct typing/Enter, inline time edits, current-take time refresh, history, text editing and mobile popup bounds')

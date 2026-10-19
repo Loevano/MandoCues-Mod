@@ -644,3 +644,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Het laatste cijfer van het tijdcodeveld bij notes werd afgeknipt.
 - Houd alle cijfers zichtbaar in concepten en geplaatste notes, ook bij langere tijdcodes en tijdens bewerken.
 - Het klokje en maatnummer mogen de tekst niet overlappen. Dit is een weergavefix, geen extra uitleg voor de rondleiding.
+
+
+## 74. Klokje neemt de huidige tijdcode over
+
+- Klikken op het klokje werkt de tijdcode bij naar de huidige positie van die take. Niet terug naar het moment waarop je begon te typen.
+- Dit werkt tijdens typen en bij een geplaatste note. Opnieuw klikken gebruikt opnieuw het actuele moment.
+- Enter plaatst de note en zet een nieuwe klaar met een nieuw tijdanker. Maat en tekst blijven behouden bij het bijwerken van de tijdcode.
+- Bij een andere geselecteerde take hoort het klokje bij die take, niet bij een andere lopende opname.
