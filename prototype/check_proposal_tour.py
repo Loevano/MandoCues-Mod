@@ -57,7 +57,7 @@ with sync_playwright() as p:
                 assert page.locator(selector).evaluate('(el)=>getComputedStyle(el).outlineStyle')=='solid'
             page.screenshot(path=str(ROOT/'checks/tour-take-notes.png'))
         if step['id']=='protools-sync':
-            expect(page.locator('.proposal-tour-card')).to_contain_text('Take 3 bij ons, Take 4 bij de engineer?')
+            expect(page.locator('.proposal-tour-card')).to_contain_text('vergelijk de opgeslagen opnametijden uit de originele WAV’s met ons take-log')
             assert 'OriginationDate' in page.evaluate('tourPromptFor(proposalTourSteps[proposalTourIndex])')
             page.screenshot(path=str(ROOT/'checks/tour-protools-sync.png'))
         if step['id']=='tijdformaat':

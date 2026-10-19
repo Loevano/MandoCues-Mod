@@ -799,3 +799,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Geen stilstaande Take duration 00:00 naast Overdub. De live duur blijft op één vaste plek bij Recording en het take-nummer; starten/stoppen verplaatst geen omliggende knoppen.
 - Rondleiding opnieuw nalopen: begint met ⌘ Enter, daarna het concrete +/−-voorstel. Algemene indelingsstap en losse undo-stap weghalen; undo blijft onderdeel van de scorewerking. In totaal 23 concrete voorstellen.
 - De mobiele rondleiding scrolt bij take-notes naar de notes zelf; takekeuze blijft ook gemarkeerd en bereikbaar.
+
+
+## 93. Takekoppeling concreet uitleggen
+
+- Vage formulering over bruikbare opnamegegevens vervangen door de route: opnametijden uit originele WAV-metadata vergelijken met ons take-log, tijdverschil controleren met een bekende take, koppeling bevestigen. Ontbrekende opnametijden blijven handmatig.
+- Technische uitwerking: BWF MetaEdit Open Directory → CORE → CSV met FileName, OriginationDate en OriginationTime; vergelijk met de JSON-take-log. Geen projecttimestamp verwarren met kloktijd en geen WAV-bestanden wijzigen.
+- Officiële bronnen en stappen toegevoegd aan Pro-Tools-takekoppeling.md; de demo heeft nog geen WAV-/CSV-import of automatische matching.
