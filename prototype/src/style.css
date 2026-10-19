@@ -809,5 +809,26 @@ body.take-is-recording .proposal-demo-label{visibility:hidden}
 @media(max-width:759px){.unified-proposal>.site-header .proposal-review-actions{display:flex;flex-wrap:wrap;gap:4px;max-width:100%;min-width:0}.unified-proposal>.site-header .main-panel-options{max-width:100%}}
 
 #main-panel.original-panel .rec-status{text-transform:uppercase}
+.cue-jump-menu{position:relative;flex:0 0 auto}
+.demo .cue-jump-menu>summary{display:flex;align-items:center;justify-content:center;gap:8px;list-style:none;border:1px solid #34303d;border-radius:10px;padding:9px 11px;font:11px var(--sans);white-space:nowrap;cursor:pointer;background:#18151e;color:#ddd5e6}
+.cue-jump-menu>summary::-webkit-details-marker{display:none}
+.cue-jump-menu[aria-disabled=true]{opacity:.4}
+.cue-jump-menu>summary:focus-visible{outline:2px solid #cab2e0;outline-offset:2px}
+.cue-jump-panel{position:fixed;z-index:80;width:320px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);padding:8px;border:1px solid #746080;border-radius:10px;background:#211a2a;box-shadow:0 8px 28px #0007}
+.demo .cue-jump-panel input{width:100%;font-size:12px;padding:8px;margin-bottom:6px}
+.cue-jump-options{max-height:min(260px,45dvh);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+#main-panel.original-panel .cue-jump-options button{display:flex;width:100%;gap:10px;text-align:left;justify-content:start;white-space:normal;background:transparent;border-color:transparent}
+#main-panel.original-panel .cue-jump-options button b{flex:0 0 5ch;font-family:var(--mono);color:#c9b3eb}
+#main-panel.original-panel .cue-jump-options button span{flex:1}
+#main-panel.original-panel .cue-jump-options button[aria-current=true]{background:#534063;border-color:#a98abf}
+.cue-jump-empty{margin:9px;font-size:12px;color:#c4b5d2}
+.cue-jump-options [hidden]{display:none!important}
+.main-plan-card{flex-wrap:wrap;gap:5px 14px}
+.main-plan-card .completed-cue-count{flex:0 0 100%;font:11px var(--sans);color:inherit;opacity:.85}
+.session-music-usage{white-space:nowrap;font:10px var(--mono);color:#a99db6}
+.session-music-usage.is-over{color:#ff8b99}
+#main-panel.original-panel .original-secondary-actions .proposal-reset-session{flex:0 0 auto;padding:9px}
+.app-dialog footer{flex-wrap:wrap}
+@media(max-width:759px){#main-panel.original-panel .proposal-cue-switcher{flex-wrap:wrap}.demo .cue-jump-menu{flex:1}.demo .cue-jump-menu>summary{height:100%}}
 
 @media(min-width:760px) and (max-width:1180px){.proposal-global-recording{display:none}}

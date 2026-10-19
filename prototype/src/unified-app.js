@@ -64,6 +64,22 @@ function proposalEndSession(s){
  clock.started=Date.now();clock.cueStarted=Date.now();
  s.sessionStarted=false;s.sessionEnded=true;renderDemo();
 }
+function confirmSessionReset(s){
+ if(running(s))return;
+ appDialog('Reset takes and timers?',`<p>Clear all takes, take notes, bar selections, cue completion and work timers for <strong>${esc(proposalSessionMeta(s).label)}</strong>?</p><p>Cue notes and planning settings stay. Take numbering starts again at 1.</p>`,'<button data-app-action="download-take-log">Download take log</button><button class="take-delete-confirm" data-confirm-session-reset="'+esc(s.sessionId)+'">Reset takes and timers</button>');
+}
+function resetProposalSession(s){
+ if(s!==unifiedState||running(s))return false;
+ const now=Date.now(),fixedEndAt=s.scoreWorkflowClock?.fixedEndAt??null;
+ s.takes=cues.map(()=>[]);s.selected=null;s.takeSerials={};s.minRating=0;
+ s.sessionStarted=false;s.sessionEnded=false;s.sessionPausedAt=null;s.elapsed=0;s.remaining=s.booked;
+ for(const setting of Object.values(s.cueSettings||{}))setting.complete=false;
+ s.scoreWorkflowClock={started:now,sessionBase:0,remaining:s.booked*60,booked:s.booked*60,offset:0,cueStarted:now,cueIndex:s.cue,cueBase:0,cueOffset:0,cueSpent:{},breakSeconds:0,fixedEndAt,plannedEndAt:fixedEndAt??now+s.booked*60000};
+ s.unifiedTiming=true;s.open=new Set([s.cue]);s.scoreCompared={};s.scoreRangeAnchor={};s.scoreSelectedTakes={};
+ s.scoreComment=null;s.focusedScoreNote=null;s.cutlistNotePreview=null;s.scoreFocus=null;delete s.pendingScoreScroll;
+ document.querySelector('.app-dialog')?.close();cancelTakeNumberEntry();renderDemo();toast('Takes and timers reset for this recording day.');return true;
+}
+function completedCueText(s){return cues.filter((_,j)=>s.cueSettings?.[j]?.complete).length+' of '+cues.length+' cues done';}
 function plannedPicker(s,j,place='list'){
  const value=cuePlannedMinutes(j),automatic=s.cueSettings?.[j]?.planned===null,values=Array.from({length:120},(_,i)=>i+1);if(value>120||!Number.isInteger(value))values.push(value);values.sort((a,b)=>a-b);
  return `<details class="planned-picker" data-planned-menu="${j}"><summary title="${automatic?'Automatic estimate':'Manual override'} · clear to use Auto" aria-label="Planned work in minutes for ${cues[j][0]}"><b>${value}</b>${place==='main'?' min':''}<span aria-hidden="true">⌄</span></summary><div class="planned-picker-panel"><input data-planned-input="${j}" type="text" inputmode="decimal" value="${automatic?'':value}" placeholder="Auto" aria-label="Planned minutes for ${cues[j][0]}"><div class="planned-choices" role="group" aria-label="Choose planned minutes"><button type="button" data-pick-planned="auto" data-planned-cue="${j}" aria-pressed="${automatic}">Auto · ${cueAutoMinutes(s,j)} min</button>${values.map(n=>`<button type="button" data-pick-planned="${n}" data-planned-cue="${j}" aria-pressed="${!automatic&&n===value}">${n} min</button>`).join('')}</div></div></details>`;
@@ -107,7 +123,41 @@ addEventListener('resize',()=>document.querySelectorAll('.planned-picker[open]')
 document.addEventListener('scroll',()=>document.querySelectorAll('.planned-picker[open]').forEach(positionPlannedPicker),true);
 let mainPanelLayout='B';
 function mainPanelOptions(){return `<div class="main-panel-options" lang="nl" role="group" aria-label="Indeling vergelijken"><button data-main-layout="A" aria-pressed="${mainPanelLayout==='A'}" title="Invulvelden bovenaan zichtbaar">A · Velden zichtbaar</button><button data-main-layout="B" aria-pressed="${mainPanelLayout==='B'}" title="Invulvelden en extra tijden onder Planning">B · Planningmenu</button></div>`;}
-function mainPlanCard(timing){return `<div class="main-plan-card ${proposalPlanClass(timing.delta)}" data-plan-card><strong data-plan-status>${timing.delta===0?'On schedule':scoreWorkflowPlanText(timing.delta)}</strong><span data-proposal-plan class="proposal-schedule ${proposalPlanClass(timing.delta)}" aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span></div>`;}
+function cueJumpMenu(s){
+ return `<details class="cue-jump-menu" ${running(s)?'inert aria-disabled="true"':''}><summary aria-label="Go to cue">Go to cue <span aria-hidden="true">⌄</span></summary><div class="cue-jump-panel"><input type="search" data-cue-jump-search placeholder="Find cue…" aria-label="Find a cue" autocomplete="off"><div class="cue-jump-options" role="group" aria-label="Choose a cue">${cues.map((c,j)=>`<button type="button" data-go-to-cue="${j}" aria-current="${j===s.cue}" ${running(s)?'disabled':''}><b>${c[0]}</b><span>${esc(c[1])}</span>${cueSettings(s,j).complete?'<small aria-label="Completed">✓</small>':''}</button>`).join('')}</div><p class="cue-jump-empty" hidden>No matching cues.</p></div></details>`;
+}
+function closeCueJump(focus=false){const menu=document.querySelector('.cue-jump-menu[open]');if(!menu)return;menu.open=false;if(focus)menu.querySelector('summary').focus({preventScroll:true});}
+function positionCueJump(){
+ const menu=document.querySelector('.cue-jump-menu[open]');if(!menu)return;
+ const panel=menu.querySelector('.cue-jump-panel'),r=menu.querySelector('summary').getBoundingClientRect();
+ Object.assign(panel.style,{left:Math.max(8,Math.min(innerWidth-panel.offsetWidth-8,r.left))+'px',top:(r.bottom+panel.offsetHeight+6<innerHeight?r.bottom+6:Math.max(8,r.top-panel.offsetHeight-6))+'px'});
+}
+document.addEventListener('toggle',event=>{
+ if(!event.target.matches('.cue-jump-menu')||!event.target.open)return;
+ closeMeasurePickers();closePlannedPickers();const planning=document.querySelector('.session-planning-menu[open]');if(planning)planning.open=false;
+ const menu=event.target,input=menu.querySelector('input');input.value='';menu.querySelectorAll('[data-go-to-cue]').forEach(button=>button.hidden=false);menu.querySelector('.cue-jump-empty').hidden=true;
+ positionCueJump();menu.querySelector('[aria-current="true"]')?.scrollIntoView({block:'nearest'});input.focus({preventScroll:true});
+},true);
+document.addEventListener('input',event=>{
+ if(!event.target.matches('[data-cue-jump-search]'))return;
+ const menu=event.target.closest('details'),query=event.target.value.trim().toLowerCase();let count=0;
+ menu.querySelectorAll('[data-go-to-cue]').forEach(button=>{button.hidden=!button.textContent.toLowerCase().includes(query);if(!button.hidden)count++;});menu.querySelector('.cue-jump-empty').hidden=!!count;positionCueJump();
+});
+document.addEventListener('click',event=>{
+ const choice=event.target.closest('[data-go-to-cue]');if(choice){const j=+choice.dataset.goToCue;closeCueJump();selectCue(unifiedState,j);document.querySelector('.cue-jump-menu>summary')?.focus({preventScroll:true});return;}
+ if(!event.target.closest('.cue-jump-menu'))closeCueJump();
+});
+document.addEventListener('keydown',event=>{
+ const menu=document.querySelector('.cue-jump-menu[open]');if(!menu||!event.target.closest('.cue-jump-menu')||event.isComposing)return;
+ if(event.key==='Escape'){event.preventDefault();closeCueJump(true);return;}
+ const choices=[...menu.querySelectorAll('[data-go-to-cue]')].filter(button=>!button.hidden);
+ if(event.key==='Enter'&&event.target.matches('[data-cue-jump-search]')){event.preventDefault();(choices.find(button=>button.getAttribute('aria-current')==='true')||choices[0])?.click();}
+ if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+  event.preventDefault();const index=choices.indexOf(event.target),next=event.key==='ArrowDown'?Math.min(choices.length-1,index+1):Math.max(0,index-1);choices[next]?.focus({preventScroll:true});choices[next]?.scrollIntoView({block:'nearest'});
+ }
+});
+addEventListener('resize',positionCueJump);document.addEventListener('scroll',positionCueJump,true);
+function mainPlanCard(timing){return `<div class="main-plan-card ${proposalPlanClass(timing.delta)}" data-plan-card><strong data-plan-status>${timing.delta===0?'On schedule':scoreWorkflowPlanText(timing.delta)}</strong><span data-proposal-plan class="proposal-schedule ${proposalPlanClass(timing.delta)}" aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span><small class="completed-cue-count">${completedCueText(unifiedState)}</small></div>`;}
 calmPanel=function(s){
  const timing=scoreWorkflowTiming(s),t=running(s),c=cues[s.cue],ready=!s.sessionStarted,paused=!!s.sessionPausedAt;
  const stateLabel=t?'● Recording':paused?'On break · Not recording':s.sessionEnded?'Session ended · Not recording':ready?'Ready to start · Not recording':'Standby · Not recording';
@@ -116,7 +166,7 @@ calmPanel=function(s){
  <div class="main-cue"><b>${c[0]}</b><strong title="${esc(c[1])}">${esc(c[1])}</strong></div>
  <div class="original-cue-facts"><span><b>${c[2]}</b> of music</span><span>${cueSettings(s,s.cue).complexity.toLowerCase()}</span><span class="cue-planned-inline">Planned ${plannedPicker(s,s.cue,'main')}</span><span title="Cumulative work on this cue, including time between takes">Worked on cue <b data-proposal-cue-clock>${proposalDuration(timing.cueElapsed)}</b></span><span>${entryCountText(s,s.cue)}</span></div>
  <div class="proposal-action-group calm-transport" role="group" aria-label="Take controls">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>${appIcon('music')} Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button>${!t?'<label class="proposal-take-clock">Take duration<b>00:00</b></label>':''}</div>
- <div class="original-secondary-actions"><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t||s.cue===0?'disabled':''} title="Previous cue · [">← Previous cue <kbd>[</kbd></button><button data-action="next-cue" ${t||s.cue===cues.length-1?'disabled':''} title="Next cue · ]">Next cue → <kbd>]</kbd></button></div><div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button></div></div></div>
+ <div class="original-secondary-actions"><div class="proposal-cue-switcher calm-cue-actions" role="group" aria-label="Cue controls"><button data-action="prev-cue" ${t||s.cue===0?'disabled':''} title="Previous cue · [">← Previous cue <kbd>[</kbd></button><button data-action="next-cue" ${t||s.cue===cues.length-1?'disabled':''} title="Next cue · ]">Next cue → <kbd>]</kbd></button>${cueJumpMenu(s)}</div><div class="proposal-action-group proposal-session-actions" role="group" aria-label="Session controls"><button data-session-action="break" ${ready||t?'disabled':''}>${appIcon('cup')}${paused?'Resume':'Break'}</button><button data-session-action="end" class="proposal-end-session" ${ready||t?'disabled':''}>End session</button><button data-session-action="reset" class="proposal-reset-session" title="Reset takes and timers" aria-label="Reset takes and timers" ${t?'disabled':''}>${appIcon('reset')}</button></div></div></div>
  <div class="proposal-session-clocks original-clock-side"><label class="original-wall-clock">Time<b data-wall-clock>${formatWallClock()}</b></label>${mainPlanCard(timing)}</div>
  </section>`;
 };
@@ -205,7 +255,7 @@ route=function(){
 };
 document.addEventListener('change',event=>{
  const el=event.target;
- if(el.dataset.cueComplexity!==undefined){if(['Low','Medium','High'].includes(el.value))cueSettings(unifiedState,+el.dataset.cueComplexity).complexity=el.value;else return;}
+ if(el.dataset.cueComplexity!==undefined){if(['Easy','Medium','Hard'].includes(el.value))cueSettings(unifiedState,+el.dataset.cueComplexity).complexity=el.value;else return;}
  else if(el.dataset.cuePlanned!==undefined){const value=Number(el.value);if(!el.value.trim()||!Number.isFinite(value)||value<1||value>1440){el.value=cuePlannedMinutes(+el.dataset.cuePlanned);return;}cueSettings(unifiedState,+el.dataset.cuePlanned).planned=value;}
  else if(el.dataset.cueComplete!==undefined)cueSettings(unifiedState,+el.dataset.cueComplete).complete=el.checked;
  else return;
@@ -213,9 +263,10 @@ document.addEventListener('change',event=>{
 });
 document.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target.matches('[data-cue-planned]')&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.isComposing){event.preventDefault();event.target.blur();}});
 document.addEventListener('click',event=>{
+ const reset=event.target.closest('[data-confirm-session-reset]');if(reset){if(reset.dataset.confirmSessionReset===unifiedState.sessionId)resetProposalSession(unifiedState);return;}
  const layout=event.target.closest('[data-main-layout]');if(layout){mainPanelLayout=layout.dataset.mainLayout==='B'?'B':'A';renderDemo();return;}
  const action=event.target.closest('[data-session-action]');
- if(action){if(!action.disabled){if(action.dataset.sessionAction==='break')proposalSessionBreak(unifiedState);else proposalEndSession(unifiedState);}return;}
+ if(action){if(!action.disabled){if(action.dataset.sessionAction==='break')proposalSessionBreak(unifiedState);else if(action.dataset.sessionAction==='reset')confirmSessionReset(unifiedState);else proposalEndSession(unifiedState);}return;}
  const button=event.target.closest('[data-proposal-view]');if(!button)return;
  showProposalView(button.dataset.proposalView);
 });

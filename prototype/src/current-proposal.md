@@ -59,3 +59,13 @@ Nog te beoordelen door Floris:
 De rondleiding heeft een korte stap na note-kloktijd: onze Take 3 kan bij de engineer Take 4 heten. Een latere koppeling gebruikt gecontroleerde opnamekloktijden en handmatige bevestiging; geen hernummering. Pro Tools Original Time Stamp is projectpositie, geen gegarandeerde kloktijd. Zie `prototype/src/protools-sync.md` (gegenereerd als `Pro-Tools-takekoppeling.md`) voor de officiële bronnen en de test met originele WAVs.
 
 Nieuwe takes/overdubs bewaren aparte UTC-start-/stopinstants en tijdzone/sessie/cue/log-ID. Dit zijn onze lokale transportmomenten, geen DAW-bevestigingen. PDF → Take sheet → Download take log (JSON) exporteert ze met note-kloktijden. Voorbeeldtakes hebben geen opnamelog; niets verzinnen. Invoer verdwijnt nog bij herladen. Er is geen import, matching of DAW-verbinding gebouwd. Productie vraagt duurzame logs en een gecontroleerde engineerbron.
+
+- Go to cue staat naast Next cue als bestaande bediening. De zwevende lijst is doorzoekbaar op cuecode/titel en verschuift de bediening niet. Kiezen gebruikt dezelfde cue-state en blokkeert tijdens een lopende take; bestaande notes/concepten blijven behouden.
+
+## Bevestigd na vergelijking met het origineel
+
+- Gebruikte muziekduur naast Max music (som van de huidige cuelijst; nu 53:14), met markering boven de limiet. Easy/Medium/Hard zijn de oorspronkelijke Complexity-namen. Het aantal afgeronde cues staat compact in het planningsvlak.
+- Reset naast End session vraagt bevestiging voor de huidige opnamedag en is tijdens een take geblokkeerd. Wis takes, take-notes, selecties, cue-afvinkingen en werktijden; behoud algemene cue-notes, planning, chat, scorebron/leespositie en globale zoom. Nummering begint na deze expliciete reset opnieuw bij 1; losse takes verwijderen blijft nummers niet hergebruiken.
+- Algemene cue-notes blijven ingeklapt; geen nieuwe optionele tutorialstappen voor deze bestaande functies.
+
+De eerder openstaande browsercontroles voor reset, muziekduur, Complexity, Done en Planning zijn alsnog geslaagd. AM/PM, Go to cue, hoofdbediening en de rondleiding waren al in de browser gecontroleerd.

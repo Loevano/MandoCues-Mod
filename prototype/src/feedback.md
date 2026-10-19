@@ -771,3 +771,21 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Kloktijden met AM/PM zoals in het origineel, ook bij notes en in het take sheet. Geen voorstel meer voor overal 24-uursweergave.
 - Bewaar UTC-instants en datum ongewijzigd; dit gaat over weergave en invoer. Duurvelden blijven minuten/seconden.
 - Note-tijden accepteren AM/PM, inclusief 12 AM (middernacht) en 12 PM (middag). De bestaande 24-uursinvoer blijft als invoergemak geaccepteerd en wordt met AM/PM getoond.
+
+
+## 90. Go to cue en vergelijking met het origineel
+
+- Go to cue naast Next cue behouden. Doorzoekbare, scrollbare zwevende lijst; geen verschuivende bediening.
+- Bestaande bediening behouden naast direct aanklikken en brackets. Cuewisseling tijdens een lopende take blijft geblokkeerd.
+- Naast het screenshot controleren wat ontbreekt of onnodig anders is. Vragen gesteld over ingeplande muziek bij Max music, reset en de plek van algemene cue-notes. Overige verschillen staan in Bestaand-scherm-context.md.
+
+
+## 91. Bevestigde bestaande functies terugzetten
+
+- Gebruikte muziekduur compact naast Max music, berekend uit de cuelijst; bij overschrijding zichtbaar markeren.
+- Reset takes/tijden per opnamedag met bevestiging. Blokkeer tijdens opname. Wis takes inclusief take-notes/selecties, afvinken en werktijden; behoud cue-notes, planningsinstellingen, chat, scorebron en globale zoom. Een reset begint take-nummering opnieuw bij 1; dit is apart van een losse take verwijderen.
+- Algemene cue-notes blijven ingeklapt.
+- Gebruik opnieuw Easy / Medium / Hard, met dezelfde schattingsgewichten.
+- Aantal afgeronde cues compact terug in het planningsvlak.
+
+- Finish by toont ook expliciet AM/PM, onafhankelijk van de browser-/systeemnotatie. Invoer met AM/PM of 24 uur wordt genormaliseerd; datum-/planningsbeleid blijft behouden.

@@ -26,6 +26,8 @@ python -X utf8 check_unified_workspace.py
 python -X utf8 check_proposal_tour.py
 python -X utf8 check_recording_shortcut.py
 python -X utf8 check_main_panel.py
+python -X utf8 check_go_to_cue.py
+python -X utf8 check_original_controls.py
 python -X utf8 check_panel_options.py
 python -X utf8 check_planning_sessions.py
 python -X utf8 check_fresh_timing.py

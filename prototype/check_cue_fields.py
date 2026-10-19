@@ -15,7 +15,7 @@ with sync_playwright() as p:
     selected=page.evaluate('state().selected')
     original=page.evaluate('allTakes(state()).map(t=>({id:t.id,notes:t.notes,draft:t.draft,rating:t.rating,best:t.best,alt:t.alt}))')
     # Editing another cue never jumps the cue/take or changes notes.
-    page.locator('[data-cue-complexity="1"]').select_option('High')
+    page.locator('[data-cue-complexity="1"]').select_option('Hard')
     page.locator('.calm-cue-list [data-planned-menu="1"]>summary').click()
     field=page.locator('.calm-cue-list [data-planned-input="1"]');field.fill('30');field.press('Enter')
     assert page.evaluate('cuePlannedMinutes(1)')==30
@@ -42,7 +42,7 @@ with sync_playwright() as p:
     expect(page.locator('[data-cue-actual="0"]')).to_have_text('00:09')
     expect(page.locator('[data-cue-actual="1"]')).to_have_text('00:02')
     expect(page.locator('[data-cue-complete="1"]')).to_be_checked()
-    expect(page.locator('[data-cue-complexity="1"]')).to_have_value('High')
+    expect(page.locator('[data-cue-complexity="1"]')).to_have_value('Hard')
     expect(page.locator('.calm-cue-list [data-planned-menu="1"]>summary')).to_contain_text('30')
     page.evaluate("showProposalView('cutlist')");page.clock.run_for(2200)
     page.evaluate("showProposalView('recording')")

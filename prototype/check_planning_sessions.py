@@ -14,14 +14,14 @@ with sync_playwright() as p:
  expect(page.locator('[data-session-setting="length"]')).not_to_be_visible()
  panel=page.locator('#main-panel');before=panel.bounding_box();page.locator('.session-planning-menu>summary').click()
  assert panel.bounding_box()==before
- end=page.locator('[data-planning-finish]');expect(end).to_have_value('16:00');end.fill('17:30');end.press('Tab')
+ end=page.locator('[data-planning-finish]');expect(end).to_have_value('04:00 PM');end.fill('05:30 PM');end.press('Tab')
  assert page.evaluate('state().booked')==450
  target=page.evaluate('state().scoreWorkflowClock.plannedEndAt');page.clock.run_for(120000)
- expect(end).to_have_value('17:30');assert page.evaluate('state().scoreWorkflowClock.plannedEndAt')==target
+ expect(end).to_have_value('05:30 PM');assert page.evaluate('state().scoreWorkflowClock.plannedEndAt')==target
  page.keyboard.press('Meta+Enter');assert page.evaluate('state().scoreWorkflowClock.plannedEndAt')==target
  assert abs(page.evaluate('scoreWorkflowTiming(state()).remaining')-448*60)<2
  page.locator('[data-session-setting="length"]').fill('480');page.locator('[data-session-setting="length"]').press('Tab')
- expect(end).to_have_value('18:02');page.locator('[data-extend-session="60"]').click();expect(end).to_have_value('19:02')
+ expect(end).to_have_value('06:02 PM');page.locator('[data-extend-session="60"]').click();expect(end).to_have_value('07:02 PM')
  expect(page.locator('[data-session-hours]')).to_have_text('9h 00m')
  page.locator('.session-planning-menu>summary').click()
  first=page.evaluate('state().sessionId')

@@ -12,7 +12,7 @@ with sync_playwright() as p:
  page.locator('#main-panel .planned-picker>summary').click();page.locator('#main-panel [data-pick-planned="auto"]').click()
  first=page.evaluate('cuePlannedMinutes(0)');assert first>0
  assert page.evaluate('state().cueSettings[0].planned') is None
- page.locator('[data-cue-complexity="0"]').select_option('High');assert page.evaluate('cuePlannedMinutes(0)')>first
+ page.locator('[data-cue-complexity="0"]').select_option('Hard');assert page.evaluate('cuePlannedMinutes(0)')>first
  page.locator('#main-panel .planned-picker>summary').click()
  field=page.locator('#main-panel [data-planned-input]');field.fill('41.5');field.press('Enter')
  assert page.evaluate('cuePlannedMinutes(0)')==41.5
