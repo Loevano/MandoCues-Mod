@@ -836,3 +836,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Tien aangevinkte groepen; bestaande individuele uitvinkkeuzes blijven bewaard in hun oorspronkelijke IDs en prompttekst. Samengevoegde groepen kunnen daarom bij bestaande browsers een gemengd vinkje hebben. Een groep zelf aan-/uitvinken kiest alle onderdelen daarvan.
 - Alle doelen opnieuw controleren, ook bij een nieuwe take zonder notes, handmatig wisselen van weergave en mobiele schermen.
 - Bij scorestappen blijven takekeuze en noteslijst bereikbaar en gemarkeerd. De score wordt niet verduisterd bij vergelijken; highlights volgen de zichtbare pagina en blijven binnen het echte scrollvlak.
+
+
+## 98. Korte bevestiging van sessiestart
+
+- Toon Session started! via de bestaande tijdelijke melding na Start session, zowel met klikken als ⌘ Enter, in beide weergaven. Bij heropenen Session reopened!; niet opnieuw melden bij elke takestart. Geen extra rondleidingsstap.

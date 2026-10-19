@@ -200,7 +200,7 @@ function performRecordingAction(s){
   const reopening=s.sessionEnded;s.sessionStarted=true;s.sessionEnded=false;
   if(!reopening&&s.scoreWorkflowClock){const clock=s.scoreWorkflowClock;if(clock.fixedEndAt){clock.plannedEndAt=clock.fixedEndAt;clock.booked=Math.max(0,Math.floor((clock.fixedEndAt-Date.now())/1000));}else clock.plannedEndAt=Date.now()+s.booked*60000;}
   if(s.scoreWorkflowClock){s.scoreWorkflowClock.started=Date.now();s.scoreWorkflowClock.cueStarted=Date.now();}
-  renderDemo();return;
+  renderDemo();toast(reopening?'Session reopened!':'Session started!');return;
  }
  toggleRecord(s);
 }
