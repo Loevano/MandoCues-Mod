@@ -1,6 +1,6 @@
 # MandoCues · één voorstel
 
-Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Cut list met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. Er zijn geen losse A/B-prototypes meer in de actieve UI.
+Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. Er zijn geen losse A/B-prototypes meer in de actieve UI.
 
 ## Bouwen
 

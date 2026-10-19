@@ -25,7 +25,7 @@
       "text": "Een grotere klok met de voor-/achterstand eronder. − is achter, + is voor. Zou dit genoeg overzicht geven?",
       "target": "#main-panel .proposal-session-clocks",
       "view": "recording",
-      "prompt": "Toon de kloktijd groter, met de sessieafwijking eronder; laat Expected end voorlopig uit de hoofd- en compacte bediening. Gebruik − voor achterstand, + voor voorsprong en 00:00 op schema, zonder zichtbare ahead/behind-tekst. Achterstand onder vijf minuten is oranje; vanaf vijf minuten rood. Voorsprong is groen en nul neutraal. Geef dezelfde betekenis in toegankelijke labels en tooltips en gebruik deze presentatie ook in Recording, de compacte scrollbalk en Cut list. Cue-tijd tegenover geplande werktijd en de take-tijd blijven beschikbaar; overige sessietijden blijven onder Session details. Behoud de bestaande planningsberekeningen en bron; de demo bevat voorbeelddata en bewijst geen productiebeleid."
+      "prompt": "Toon de kloktijd groter, met de sessieafwijking eronder; laat Expected end voorlopig uit de hoofd- en compacte bediening. Gebruik − voor achterstand, + voor voorsprong en 00:00 op schema, zonder zichtbare ahead/behind-tekst. Achterstand onder vijf minuten is oranje; vanaf vijf minuten rood. Voorsprong is groen en nul neutraal. Geef dezelfde betekenis in toegankelijke labels en tooltips en gebruik deze presentatie ook in Recording, de compacte scrollbalk en Comp tool. Cue-tijd tegenover geplande werktijd en de take-tijd blijven beschikbaar; overige sessietijden blijven onder Session details. Behoud de bestaande planningsberekeningen en bron; de demo bevat voorbeelddata en bewijst geen productiebeleid."
     },
     {
       "id": "tijdformaat",
@@ -134,10 +134,10 @@
     {
       "id": "view-toggle",
       "title": "Werken vanuit de partituur?",
-      "text": "Een tweede weergave voor notes en een kniplijst op de score. Klik Cut list om te proberen.",
+      "text": "Een tweede weergave voor notes en een kniplijst op de score. Klik Comp tool om te proberen.",
       "target": ".proposal-view-toggle",
       "view": "recording",
-      "prompt": "Maak één werkruimte met Recording en Cut list als twee weergaven van dezelfde cue-, take-, rating-, note- en opname-state. Neem de gekozen opname-indeling met bediening bovenaan en compacte balk bij scrollen als basis; hergebruik de bestaande kniplijst. Wisselen mag een lopende take, concepten, scoreselecties of leespositie niet verliezen of stilzwijgend kopiëren. Maak geen onafhankelijke demo-state per weergave."
+      "prompt": "Maak één werkruimte met Recording en Comp tool als twee weergaven van dezelfde cue-, take-, rating-, note- en opname-state. Neem de gekozen opname-indeling met bediening bovenaan en compacte balk bij scrollen als basis; hergebruik de bestaande kniplijst. Wisselen mag een lopende take, concepten, scoreselecties of leespositie niet verliezen of stilzwijgend kopiëren. Maak geen onafhankelijke demo-state per weergave."
     },
     {
       "id": "score-per-cue",
@@ -154,7 +154,7 @@
       "target": ".score-zoom-controls",
       "view": "cutlist",
       "prepare": "score",
-      "prompt": "Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Houd de scoreweergave permanent groot. Combineer Recording/Cut list, cue/take, opnamestatus, take-tijd en start/stop in één compacte bovenbalk; laat de reviewbediening bereikbaar. Voeg Zoom in, Zoom out, een percentage en Fit width toe aan de compacte scoreknoppenrij. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF. Ondersteun ook trackpad-knijpzoom binnen het scorevlak (Chromium ctrl-wheel en Safari gesture-events), met het punt onder de vingers als anker. Gewoon scrollen blijft scrollen; de rest van de pagina zoomt niet mee. Bewaar zoom als één globale instelling van de werkruimte voor alle cues, takes en scorebronnen. Wisselen van cue, take, document of weergave herstelt geen afzonderlijke zoomstand en reset niet naar 100%. Alleen bewust zoomen of Fit width verandert de zoom."
+      "prompt": "Gebruik de beschikbare breedte en hoogte voor een grote, doorlopende partituur. Behoud de bestaande onafhankelijke scroll van de score en de take-/noteskolom: alle pagina’s van de cue staan onder elkaar. Houd de scoreweergave permanent groot. Combineer Recording/Comp tool, cue/take, opnamestatus, take-tijd en start/stop in één compacte bovenbalk; laat de reviewbediening bereikbaar. Voeg Zoom in, Zoom out, een percentage en Fit width toe aan de compacte scoreknoppenrij. Behoud takes, notes, kniplijstselecties, vergelijkingen en leespositie bij zoomen, vergroten en takekeuze. Zoom schaalt score én hun annotatielagen samen; klik-/sleepcoördinaten blijven correct. Beperk horizontaal scrollen tot het scorevlak. Verplaats lange gebruiksuitleg uit de werkruimte naar de rondleiding; behoud de bestaande bediening en de oorspronkelijke PDF. Ondersteun ook trackpad-knijpzoom binnen het scorevlak (Chromium ctrl-wheel en Safari gesture-events), met het punt onder de vingers als anker. Gewoon scrollen blijft scrollen; de rest van de pagina zoomt niet mee. Bewaar zoom als één globale instelling van de werkruimte voor alle cues, takes en scorebronnen. Wisselen van cue, take, document of weergave herstelt geen afzonderlijke zoomstand en reset niet naar 100%. Alleen bewust zoomen of Fit width verandert de zoom."
     },
     {
       "id": "score-lagen",

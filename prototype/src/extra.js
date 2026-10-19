@@ -97,7 +97,7 @@ function syncExtraClocks(){if(active?.id==='take-afspraak'&&state().live){const 
 function quickNoteSuggestions(t,place) {
   return `<section class="quick-note-suggestions" aria-label="Quick notes"><span>Quick notes</span><div>${['Intonation','More expressive','Less expressive','Tight','Alt take'].map(text=>`<button type="button" data-quick-note="${text}" data-take="${t.id}" data-editor-place="${place}">${text}</button>`).join('')}</div></section>`;
 }
-// Navigation has the same meaning in Recording and Cut list.
+// Navigation has the same meaning in Recording and Comp tool.
 let takeNumberEntry=null,takeNumberTimer=null,bracketKeyHold=null;
 function navigationKeysAvailable(event){
  return active&&['bediening','partituur'].includes(active.id)

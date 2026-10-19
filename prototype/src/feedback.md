@@ -658,3 +658,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 
 - De knop heet altijd Alt; geen Alt 1, Alt 2 enzovoort.
 - Toon alleen het totale aantal Alt-takes per cue, ook nul. Highlight en knopposities blijven behouden.
+
+
+## 76. Naam Comp tool
+
+- De score-/kniplijstweergave heet voortaan Comp tool.
+- Bestaande links blijven werken; wijzig alleen de naam in de GUI en actuele uitleg.
