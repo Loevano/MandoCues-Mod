@@ -49,7 +49,7 @@ questions=[d for d in discussion if not d.get('small')]
 questions_doc='## Vragen\n\n'+'\n'.join('- '+d['title']+(' '+d['text'] if d['text'] else '') for d in questions)+'\n'
 small_doc='## Kleine suggesties\n\n'+'\n'.join('- '+d['bullet'] for d in small)+'\n\n'
 write('Kleine-suggesties-en-vragen.md','# Suggesties en open vragen\n\n'+small_doc+questions_doc)
-doc='# MandoCues · voorstel van Floris\n\nEén werkruimte met Recording en Cut list. Bij openen kies je Rondleiding starten of Zelf bekijken. De rondleiding toont één suggestie tegelijk; een checkbox bepaalt of die tekst meegaat naar Claude. De app werkt los van deze keuze.\n\nAlle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. Het zijn vrijblijvende ideeën; jouw programma en ontwerpkeuzes gaan voor.\n\n'
+doc='# MandoCues · voorstel van Floris\n\nEén werkruimte met Recording en Comp tool. Bij openen kies je Rondleiding starten of Zelf bekijken. De rondleiding toont één suggestie tegelijk; een checkbox bepaalt of die tekst meegaat naar Claude. De app werkt los van deze keuze.\n\nAlle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. Het zijn vrijblijvende ideeën; jouw programma en ontwerpkeuzes gaan voor.\n\n'
 doc+=questions_doc+'\n## De rondleiding\n\nDe onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevinkt. Er wordt geen nieuwe prompt gegenereerd.\n\n'
 for index,step in enumerate(steps,1):
     prompt=next(d['text'] for d in discussion if d['id']==step['discussion']) if step.get('discussion') else step['prompt']

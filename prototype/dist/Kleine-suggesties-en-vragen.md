@@ -4,7 +4,6 @@
 
 - Zou 1–5 sterren handiger zijn dan Good / NG / Hold, eventueel met een filter?
 - Een cue direct aanklikken in de lijst, naast Go to cue.
-- Met Enter een losse note plaatsen, zodat opmerkingen apart terug te lezen zijn.
 - Kloktijd bij de note; het maatnummer kies je zelf.
 - Spatie blijft voor tekst. ⌘ Enter voor Start session en daarna start/stop van takes.
 - Overal dezelfde kloknotatie, bijvoorbeeld 19:54:59 in plaats van een mix met AM/PM.

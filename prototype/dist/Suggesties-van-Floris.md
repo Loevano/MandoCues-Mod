@@ -1,6 +1,6 @@
 # MandoCues · voorstel van Floris
 
-Eén werkruimte met Recording en Cut list. Bij openen kies je Rondleiding starten of Zelf bekijken. De rondleiding toont één suggestie tegelijk; een checkbox bepaalt of die tekst meegaat naar Claude. De app werkt los van deze keuze.
+Eén werkruimte met Recording en Comp tool. Bij openen kies je Rondleiding starten of Zelf bekijken. De rondleiding toont één suggestie tegelijk; een checkbox bepaalt of die tekst meegaat naar Claude. De app werkt los van deze keuze.
 
 Alle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. Het zijn vrijblijvende ideeën; jouw programma en ontwerpkeuzes gaan voor.
 
@@ -218,7 +218,7 @@ Behoud de bestaande PDF/All takes-schakelaar. Toon in All takes één gedeelde h
 
 ## Gedeelde promptinleiding
 
-Geselecteerde suggesties van Floris voor mijn bestaande MandoCues-app. Implementeer alleen de onderstaande selectie. Bekijk eerst wat al bestaat en behoud mijn bestaande stijl, componenten, state en opslag. Mijn code, workflow en ontwerpkeuzes blijven leidend; dit is geen opdracht om mijn hele programma te vervangen. Behoud bij cues de bestaande muziekduur, Complexity, Planned (min), Actual als cumulatieve werktijd en het handmatige afvinken van afgeronde cues. Deze bestaande functies zijn geen optionele nieuwe suggesties; cuekeuze, takekeuze en afgerond blijven onafhankelijk.
+Geselecteerde suggesties van Floris voor mijn bestaande MandoCues-app. Implementeer alleen de onderstaande selectie. Bekijk eerst wat al bestaat en behoud mijn bestaande stijl, componenten, state en opslag. Mijn code, workflow en ontwerpkeuzes blijven leidend; dit is geen opdracht om mijn hele programma te vervangen. Behoud bij cues de bestaande muziekduur, Complexity, Planned (min), Actual als cumulatieve werktijd en het handmatige afvinken van afgeronde cues. Behoud daarnaast bestaande take-labels, take verwijderen, automatische planning met handmatige override en terug naar Auto, sessiereset en bestaande herordening; ook waar de lokale demo iets niet nabouwt. Deze bestaande functies zijn geen optionele nieuwe suggesties; cuekeuze, takekeuze en afgerond blijven onafhankelijk.
 
 Alle daadwerkelijke GUI-tekst is Engels, inclusief hints, tooltips, toegankelijkheidslabels en meldingen. Vragen en toelichting mogen Nederlands blijven. Vertaal geen oorspronkelijke cue-/projectnamen of eigen notes. De demo gebruikt voorbeelddata, neemt geen audio op en bewijst geen DAW-, film- of automatische scorekoppeling. Notes gebruiken echte kloktijd; DAW-synchronisatie is nog niet gebouwd. Het nut van take-timers blijft een open vraag.
 

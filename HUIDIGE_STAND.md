@@ -1,10 +1,12 @@
-# Eén voorstel · 18 oktober 2026
+# Eén voorstel · 19 oktober 2026
 
 De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.
 
 Op verzoek van 19 oktober zijn twee hoofdpaneelindelingen te proberen: A met cue/take links en klok midden, B met klok boven cue/take. Sessiesettings staan rechts; op kleine schermen eronder. Dit is nog geen definitieve ontwerpkeuze. Planned heeft een zwevende minutenkeuze. De eerste drie voorbeeldcues bevatten takes en notes.
 
 - Eén opnameweergave, gebaseerd op de gekozen 2A: bediening bovenaan en compacte balk bij scrollen. Eén doorlopend scrollgebied, inclusief kop en sessie-instellingen, zonder geneste kaders.
+- Bestaande take-labels en take verwijderen zijn actief in beide weergaven; labels staan ook op het take sheet. Lopende takes zijn beschermd en verwijderde nummers worden niet hergebruikt.
+- Planned bewaart de 26 inspectiewaarden als voorbeeld-overrides. Auto of leegmaken herstelt een schatting op basis van sessieduur, voorbereiding, muziekduur en Complexity; behoud in productie de echte planner.
 - Eén kniplijst met de bestaande wijzigingen: permanent grote doorlopende score met knop-/trackpadzoom en één compacte bovenbalk, takes en notes, All takes, instrument-/zichtbaarheidsinstellingen, note-navigatie en slepen.
 - Page layout biedt Single page, Two pages en een aparte Continuous scroll-optie; bij uitgeschakelde scroll zijn paginaknoppen beschikbaar. Zoom gaat van 10–300%.
 - De PDF-zoom is één globale werkruimte-instelling: wisselen van cue, take, scorebron of weergave behoudt het percentage en de schaal. Alleen handmatig zoomen of Fit width verandert die.
@@ -62,3 +64,5 @@ Alles bouwt met Python 3.10+ zonder extra pakketten. `python3 -X utf8 prototype/
 Shift+klik in Comp tool kiest een reeks takes vanaf het laatste klikanker; Command+klik kiest losse takes. Command+Shift+klik voegt een reeks toe. De aangeklikte take wordt de bewerkbare laag.
 
 Auto-planning: Planned bevat de originele 26 inspectiewaarden als voorbeeld-overrides. Auto kiezen of leegmaken schakelt terug naar een schatting die reageert op Complexity, sessieduur en voorbereiding. De lokale formule volgt de zichtbare tooltip en is niet de geverifieerde productieplanner.
+
+Take-labels en take verwijderen zijn behouden in Recording, Comp tool en All takes. Labels staan ook op het take sheet. Verwijderen vraagt bevestiging, beschermt een lopende take en hergebruikt geen verwijderd nummer. De bronvergelijking in `prototype/src/rendered-context.md` vermeldt wat is behouden, bewust gewijzigd en niet nagebouwd.

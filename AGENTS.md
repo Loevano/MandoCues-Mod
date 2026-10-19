@@ -25,3 +25,5 @@
 - Geen nieuw prototype 06: montage/export en de vraag over take-timers zijn toelichting of vragen, geen aparte demo.
 - Controleer na wijzigingen gericht de betrokken flows. `python3 -X utf8 prototype/check_handoff.py` verifieert de pakketinhoud en een schone rebuild. Browsercontroles staan beschreven in `prototype/README.md`.
 - Publiceren, uploads en het aanmaken van een gedeelde repository horen niet bij het overnemen van dit pakket.
+
+- Behoud take-labels en de expliciete verwijderknop in Recording en Comp tool/All takes; dezelfde state en export. Verwijderen vraagt bevestiging voor notes en selecties, beschermt lopende takes en verandert andere takes of cuewerktijd niet. Hernummer geen takes en hergebruik verwijderde take-/overdubnummers niet. De inspectie toont ook sessiereset en tab-herordening; niet nagebouwd betekent niet verwijderen uit de echte app. Zie prototype/src/rendered-context.md.

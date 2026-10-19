@@ -1,42 +1,29 @@
-# Context uit het bestaande Recording-scherm
+# Vergelijking met het bestaande Recording-scherm · 19 oktober 2026
 
-Floris heeft op 17 oktober 2026 gerenderde HTML uit de inspector aangeleverd als referentie voor de lokale prototypes. SoundVibeHQ zelf is hiervoor niet aangepast of bediend.
+Bron: de door Floris op 17 oktober aangeleverde gerenderde inspectie-HTML. Dit is geen volledige JavaScript-/TypeScript-appbron. SoundVibeHQ en de oorspronkelijke PDF-boeken zijn niet aangepast.
 
-Dit is een momentopname van de zichtbare interface, geen volledige JavaScript-/TypeScript-bron. Eventhandlers, opslag, servergedrag en integraties zijn hiermee niet bewezen.
+| Onderdeel | Bestaand scherm | Huidig voorstel |
+| --- | --- | --- |
+| Sessiesettings | Session length, Prep per cue, Max music | Behouden; compact bij de sessiebediening |
+| Cuegegevens | Muziekduur, Complexity, Planned, Actual, aftekenen | Behouden; aftekenen blijft onafhankelijk van selectie/opname |
+| Sessietijdlijn | Blokken op geplande cuetijd | Behouden; volledige cuecodes en direct kiezen |
+| Takes / overdubs | Afzonderlijke nummers, labels, verwijderen | Behouden; labels en verwijderen weer actief in beide weergaven |
+| Planning | Automatisch met handmatige override; leegmaken herstelt auto | Auto en override actief; alle 26 zichtbare waarden zijn als voorbeeld-overrides overgenomen |
+| Bediening | Start/stop, Next cue, Overdub, Break, End/Reopen | Behouden; Previous cue erbij, gegroepeerd in het hoofdpaneel |
+| Notes | Take-notes en cue-notes | Beide aanwezig; eigen take-notes en partituurlaag |
+| Beoordeling | Good / Hold / NG / Best | Bewust voorstel: sterren, Best en Alt |
+| Start/stoptoets | Zichtbare uitleg noemt Space | Bewust voorstel: Command+Enter, zodat spatie tekst blijft |
+| Klokken | Kloktijd, werktijd, resterend, geplande/verwachte eindtijd | Kloktijd groot; afwijking eronder. Expected end bewust verborgen op verzoek van Floris; berekening intern behouden |
+| Note-tijd | Geen betrouwbare DAW-koppeling uit HTML te bewijzen | Werkelijke kloktijd met datum, vanaf eerste letter; geen relatieve note-tijdcode. Nog geen DAW-sync |
+| Add cues / Chat / PDF | Zichtbaar aanwezig | Lokale demonstraties aanwezig; geen nagebouwde serverintegratie |
 
-## Wat zichtbaar al bestaat
+## Grenzen van de vergelijking
 
-- Zijmenu en project-/sessiekeuze.
-- Sessieduur, voorbereiding per cue en maximale muziekduur.
-- Groot opnamepaneel met cue, muziekduur, complexiteit, geplande werktijd, tijd op de cue en sessieklokken.
-- Gewone takes én overdubs, met afzonderlijke nummers. Het getoonde totaalaantal registraties kan dus groter zijn dan het aantal gewone takes.
-- Start/stop, Overdub, Next cue, Break, Go to cue en End session.
-- Sessietijdlijn met 26 cues en een tabel met cuecode, titel, muziekduur, complexiteit, geplande tijd, werkelijke tijd en takes.
-- In-/uitklappen van takes, labels per registratie, Good/Hold/NG/Best en een notitieveld.
-- Cuenotities voor deze sessie.
-- Handmatige override van geplande werktijd.
-- Aftekenen en ongedaan maken van aftekenen.
-- Add cues, Chat en PDF-acties.
-- De zichtbare sneltoetsuitleg noemt Space voor start/stop, N voor volgende cue en P voor pauze. Een toegankelijkheidstekst noemt Space ook voor slepen. Controleer de werkelijke sneltoetsafhandeling voordat je die aanpast.
+- De inspectie-HTML toont ook een reset van alle takes en timings en een titel “Drag to reorder tabs”. Deze interacties zijn niet nagebouwd in de demo. Dat is geen voorstel om ze uit de echte app te verwijderen.
+- Echte opslag, samenwerking, opname-/engineerkoppeling en serverexports zijn niet te controleren met deze momentopname en zitten niet in de lokale demo.
+- Het oorspronkelijke scherm noemt planning als voorbereiding plus een gewogen aandeel van de sessie op basis van muziekduur × complexiteit (easy 0,7; medium 1; hard 1,5). De lokale Auto-schatting volgt die toelichting, afgerond op halve minuten. De exacte productieformule, afronding en behandeling van pauzes/overrides zijn niet bewezen. Behoud de echte planner bij implementatie.
+- De oorspronkelijke velden en handelingen zijn bestaande functionaliteit, geen optionele suggesties. Behoud ook niet-nagebouwde bestaande functies in de echte app.
 
-## Planning volgens de zichtbare toelichting
+## Wat nog een keuze is
 
-De UI noemt voorbereiding plus een aandeel in de sessie naar verhouding van muziekduur × complexiteit, met gewichten easy 0,7×, medium 1× en hard 1,5×. Planned kan handmatig worden ingevuld; leegmaken gaat volgens de toelichting terug naar automatisch.
-
-De precieze interne berekening is niet onderzocht. Prototype 05 gebruikt bewust een simpele, handmatig instelbare voorbeeldberekening om de presentatie van voor/achter te laten proberen. Gebruik die demoformule niet als vervanging van bestaande planningslogica.
-
-## Gevolgen voor de voorstellen
-
-- Prototype 01 verbetert de zichtbare groepering; uitklappen wordt niet als ontbrekende nieuwe functie voorgesteld.
-- Prototype 02 houdt de sessiecontext, het cueplan en cuegegevens herkenbaar. De Overdub-actie is ook in de lokale proef te proberen.
-- Een overdub krijgt een eigen ID en teller; na Take 2 en Overdub 1 volgt nog steeds Take 3. Notes, sterren en labels blijven bij de juiste registratie.
-- Bestaande Break/End session, Chat/PDF, labels, aftekenen en handmatige planning moeten in de echte app behouden blijven, ook waar een geïsoleerd prototype ze niet volledig nabouwt.
-- De nieuwe bediening is een voorstel voor presentatie en invoer, geen voorgeschreven herbouw van de bestaande app.
-- Inspectie-HTML bewijst geen automatische partituurherkenning, recorderverbinding, betrouwbare filmtijdcode of DAW-koppeling.
-
-De overdracht bevat deze samenvatting van de relevante schermstructuur. De aangeleverde pagina wordt niet uitgevoerd of integraal in de prototypes opgenomen. Voorbeeldregistraties blijven demonstratiedata.
-
-
-## Gedeelde lokale opnameweergave
-
-De gewone voorstellen 01, 02, 03 en 05 hergebruiken nu hetzelfde opnamepaneel, dezelfde sessiecontext, het cueplan en de cue-/takecomponenten. Notes, sterren en takekeuze gebruiken hetzelfde take-model binnen een voorbeeld. Alleen de kniplijst met partituur heeft een eigen werkweergave. Dit is hergebruik binnen de lokale prototypecode; de aangeleverde inspectie-HTML is geen volledige appbron.
+Floris vergelijkt twee indelingen van hetzelfde hoofdpaneel: A met cue/take links en klok midden; B met klok boven cue/take. Beide hebben compacte sessiegegevens rechts en delen dezelfde state. De definitieve indeling is nog niet gekozen.

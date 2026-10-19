@@ -1,6 +1,6 @@
 # Overdracht voor de collega
 
-Open **index.html**. Eén werkruimte met Recording en Cut list; de welkomstmelding laat je kiezen tussen de rondleiding en zelf bekijken. Alles werkt offline.
+Open **index.html**. Eén werkruimte met Recording en Comp tool; de welkomstmelding laat je kiezen tussen de rondleiding en zelf bekijken. Alles werkt offline.
 
 De rondleiding toont steeds één suggestie. Suggesties staan standaard aangevinkt. Vink uit wat je niet aan Claude wilt meegeven en ga verder. Via Claude-prompt kun je je selectie bekijken, aanpassen, kopiëren of downloaden. De bestaande teksten worden samengevoegd; niet opnieuw gegenereerd. Vragen staan apart en blijven vragen.
 

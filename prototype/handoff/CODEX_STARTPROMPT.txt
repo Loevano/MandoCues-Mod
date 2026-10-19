@@ -1,4 +1,4 @@
-Dit is Floris’ MandoCues-voorstel: één werkruimte met Recording, Cut list en een rondleiding.
+Dit is Floris’ MandoCues-voorstel: één werkruimte met Recording, Comp tool en een rondleiding.
 
 Lees AGENTS.md, HUIDIGE_STAND.md en prototype/README.md.
 Controleer met python3 -X utf8 prototype/check_handoff.py dat broncode en build overeenkomen.
@@ -15,6 +15,6 @@ De vastgelegde keuzes:
 
 Werk in prototype/src/ en bouw opnieuw met prototype/build.py.
 Alle echte GUI-tekst is Engels; rondleiding en toelichting blijven Nederlands.
-Leg onduidelijke ontwerpkeuzes aan mij voor; verzin geen nieuwe A/B-demos.
+Leg onduidelijke ontwerpkeuzes aan mij voor. A/B vergelijkt op mijn verzoek alleen het hoofdpaneel, binnen dezelfde state; de definitieve keuze staat nog open.
 Mijn code en ontwerpkeuzes blijven leidend. Niets publiceren of op SoundVibeHQ wijzigen zonder mijn opdracht.
 Controleer nu alleen of de overdracht werkt en wacht daarna op mijn concrete wijzigingsvraag.

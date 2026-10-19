@@ -26,6 +26,11 @@ python -X utf8 check_unified_workspace.py
 python -X utf8 check_proposal_tour.py
 python -X utf8 check_recording_shortcut.py
 python -X utf8 check_main_panel.py
+python -X utf8 check_panel_options.py
+python -X utf8 check_auto_plan.py
+python -X utf8 check_take_labels.py
+python -X utf8 check_take_delete.py
+python -X utf8 check_take_range.py
 python -X utf8 check_cue_fields.py
 python -X utf8 check_recording_scroll.py
 python -X utf8 check_note_metadata.py

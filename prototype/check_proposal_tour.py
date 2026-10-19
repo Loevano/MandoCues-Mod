@@ -68,7 +68,7 @@ with sync_playwright() as p:
             assert panel['x']+panel['width']<=card['x'] or card['x']+card['width']<=panel['x'] or panel['y']+panel['height']<=card['y'] or card['y']+card['height']<=panel['y'],(panel,card)
             page.keyboard.press('Escape')
             expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])
-            stamp=page.locator('.calm-notes [data-note-time-edit]').first
+            stamp=page.locator('.calm-notes .note-list [data-note-time-edit]').first
             original_stamp=stamp.input_value()
             stamp.click();stamp.fill('99:59');stamp.press('Escape')
             expect(stamp).to_have_value(original_stamp)
@@ -94,7 +94,7 @@ with sync_playwright() as p:
     target=ROOT/'checks/tour-prompt.md';download.value.save_as(str(target));assert target.read_text()==prompt
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     page.locator('[data-proposal-action="questions"]').click()
-    expect(page.locator('#proposal-questions li')).to_have_count(6)
+    expect(page.locator('#proposal-questions li')).to_have_count(page.evaluate('openQuestions().length'))
     expect(page.locator('#proposal-questions')).not_to_contain_text('⌥1–9 kiest nu de cuevolgorde, niet de cuecode.')
     expect(page.locator('#proposal-questions input[type=checkbox]')).to_have_count(0)
     page.locator('#proposal-questions [data-tour-action="close-dialog"]').first.click()

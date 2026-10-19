@@ -1,8 +1,8 @@
 # MandoCues · voorstel van Floris
 
-**Open [index.html](index.html)** voor één werkruimte met **Recording** en **Cut list**. Bij openen kies je **Rondleiding starten** of **Zelf bekijken**. De rondleiding toont per suggestie een korte uitleg en een checkbox voor je Claude-prompt. Alleen aangevinkte tekstonderdelen gaan mee.
+**Open [index.html](index.html)** voor één werkruimte met **Recording** en **Comp tool**. Bij openen kies je **Rondleiding starten** of **Zelf bekijken**. De rondleiding toont per suggestie een korte uitleg en een checkbox voor je Claude-prompt. Alleen aangevinkte tekstonderdelen gaan mee.
 
-Recording gebruikt bediening bovenaan en een compacte balk bij scrollen. Cut list behoudt de bestaande scorebediening en All takes. Beide delen cues, takes, notes en beoordelingen. De GUI is Engels; rondleiding en vragen zijn Nederlands. Alles blijft vrijblijvend.
+Recording gebruikt bediening bovenaan en een compacte balk bij scrollen. Comp tool behoudt de bestaande scorebediening en All takes. Beide delen cues, takes, notes en beoordelingen. De GUI is Engels; rondleiding en vragen zijn Nederlands. Alles blijft vrijblijvend.
 
 Voor Codex: [CODEX_STARTPROMPT.txt](CODEX_STARTPROMPT.txt), [AGENTS.md](AGENTS.md) en [HUIDIGE_STAND.md](HUIDIGE_STAND.md).
 

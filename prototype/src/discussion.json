@@ -36,15 +36,6 @@
     "order": 2
   },
   {
-    "id": "notes-enter",
-    "label": "Kleine aanpassing",
-    "title": "Enter plaatst een losse note",
-    "bullet": "Met Enter een losse note plaatsen, zodat opmerkingen apart terug te lezen zijn.",
-    "text": "Maak van een niet-lege ingevoerde opmerking met Enter een losse bulletnotitie bij de juiste cue en take. Houd de lege invoer klaar voor de volgende note; Shift+Enter maakt een nieuwe regel. Verstuur niet tijdens IME-compositie. Bewaar concepten per take. Cue-algemene opmerkingen blijven apart. Zorg dat notes ook bij de hoofd bediening zichtbaar moeten zijn, zodat je niet naar beneden hoeft te scrollen om te schrijven.",
-    "small": true,
-    "order": 3
-  },
-  {
     "id": "maat-aanpassen",
     "label": "Kleine aanpassing",
     "title": "Kloktijd en handmatig maatnummer bij een note",
