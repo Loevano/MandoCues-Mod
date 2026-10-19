@@ -1,12 +1,15 @@
 // Optional score-first layout; reuses the existing take layers and score tools.
 function scoreWorkflowTiming(s){
  const actualNow=Date.now(),now=s.sessionPausedAt??actualNow;
- const clock=s.scoreWorkflowClock??={started:now,sessionBase:42*60,remaining:140*60,booked:180*60,offset:0,cueStarted:now,cueIndex:s.cue,cueBase:s.cue===0?8*60:0,cueOffset:0,cueSpent:{}};
- if(s.unified&&s.sessionStarted===false){clock.started=now;clock.cueStarted=now;}
+ const clock=s.scoreWorkflowClock??={started:now,sessionBase:s.unified?0:42*60,remaining:s.unified?s.booked*60:140*60,booked:s.unified?s.booked*60:180*60,offset:0,cueStarted:now,cueIndex:s.cue,cueBase:s.unified?0:s.cue===0?8*60:0,cueOffset:0,cueSpent:{}};
+ if(s.unified&&s.sessionStarted===false){clock.started=now;clock.cueStarted=now;if(!s.sessionEnded)clock.plannedEndAt=actualNow+clock.booked*1000;}
  const elapsed=clock.sessionBase+Math.floor((now-clock.started)/1000)+clock.offset;
  const cueElapsed=clock.cueBase+Math.floor((now-clock.cueStarted)/1000)+clock.offset-clock.cueOffset;
- const budget=cuePlannedMinutes(s.cue)*60,breakTime=(clock.breakSeconds||0)+(s.sessionPausedAt?Math.floor((actualNow-s.sessionPausedAt)/1000):0),delta=elapsed+clock.remaining-clock.booked+breakTime;
- return {clock,elapsed,cueElapsed,budget,delta};
+ const budget=cuePlannedMinutes(s.cue)*60,breakTime=(clock.breakSeconds||0)+(s.sessionPausedAt?Math.floor((actualNow-s.sessionPausedAt)/1000):0);
+ // Local forecast only: completed cues need no more work; other cues retain their unused budget.
+ if(s.unified)clock.remaining=cues.reduce((sum,_,j)=>sum+(s.cueSettings?.[j]?.complete?0:Math.max(0,cuePlannedMinutes(j)*60-(j===s.cue?cueElapsed:clock.cueSpent[j]||0))),0);
+ const delta=elapsed+clock.remaining-clock.booked+breakTime;
+ return {clock,elapsed,cueElapsed,budget,delta,remaining:Math.max(0,clock.booked-elapsed-breakTime)};
 }
 function scoreWorkflowSwitchCue(s,index){
  if(!s.scoreWorkflowClock)return;

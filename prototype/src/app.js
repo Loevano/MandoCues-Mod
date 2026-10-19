@@ -190,7 +190,8 @@ function selectCue(s,j){if(active.id==='partituur'){selectScoreCue(s,j);return;}
 function performRecordingAction(s){
  if(s.unified&&s.sessionPausedAt){proposalSessionBreak(s);return;}
  if(s.unified&&!s.sessionStarted){
-  s.sessionStarted=true;s.sessionEnded=false;
+  const reopening=s.sessionEnded;s.sessionStarted=true;s.sessionEnded=false;
+  if(!reopening&&s.scoreWorkflowClock)s.scoreWorkflowClock.plannedEndAt=Date.now()+s.booked*60000;
   if(s.scoreWorkflowClock){s.scoreWorkflowClock.started=Date.now();s.scoreWorkflowClock.cueStarted=Date.now();}
   renderDemo();return;
  }

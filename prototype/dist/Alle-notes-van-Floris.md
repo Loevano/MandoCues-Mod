@@ -735,3 +735,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Verwijderknop bij de take in Recording, Comp tool en All takes. Bevestigen verwijdert ook de eigen notes en maatselecties.
 - Een lopende take is beschermd. Overige takes, cuewerktijd en planning blijven behouden.
 - Overgebleven takes worden niet hernummerd; nieuwe takes hergebruiken geen verwijderd nummer.
+
+
+## 86. Terug naar de oorspronkelijke opbouw; tijden verduidelijken
+
+- De keuze voor de nieuwe A is ingetrokken. Neem de oorspronkelijke verhoudingen, grote cue en herkenbare opnamestatus als basis.
+- Een nieuwe sessie begint met nul sessie- en cuewerktijd, niet met de oude voorbeeldstanden 42:00 en 08:00.
+- Music length is muziekduur; Planned de gereserveerde werktijd; Actual/Worked on cue de cumulatieve werktijd inclusief tijd tussen takes; Take duration de afzonderlijke take.
+- Een lokale forecast gebruikt ongebruikte geplande cuetijd, afgeronde cues en pauzetijd. Dit is geen geverifieerde kopie van de productieplanner.

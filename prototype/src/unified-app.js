@@ -1,5 +1,5 @@
 // One workspace, one take model. The old layouts remain recoverable in Git.
-const unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:42,remaining:320,sessionEnded:false,sessionPausedAt:null});
+const unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:0,remaining:360,sessionEnded:false,sessionPausedAt:null});
 for(const id of Object.keys(states))states[id]=unifiedState;
 cuePlanningState=unifiedState;
 let proposalView='recording';
@@ -10,7 +10,7 @@ const previousComposer=composer;
 function initializeProposalTiming(s){
  const timing=scoreWorkflowTiming(s);
  // Example planning only; the production app keeps its own scheduling policy.
- if(s.unified&&!s.unifiedTiming){Object.assign(timing.clock,{booked:s.booked*60,remaining:s.remaining*60,plannedEndAt:Date.now()+(s.booked*60-timing.elapsed)*1000});s.unifiedTiming=true;}
+ if(s.unified&&!s.unifiedTiming){Object.assign(timing.clock,{booked:s.booked*60,plannedEndAt:Date.now()+(s.booked*60-timing.elapsed)*1000});s.unifiedTiming=true;}
  return scoreWorkflowTiming(s);
 }
 const PROPOSAL_DELAY_RED_AFTER=5*60;
