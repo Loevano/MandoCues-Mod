@@ -51,6 +51,16 @@ function positionPlannedPicker(menu){
  if(!menu?.open)return;const panel=menu.querySelector('.planned-picker-panel'),r=menu.querySelector('summary').getBoundingClientRect();
  Object.assign(panel.style,{left:Math.max(8,Math.min(innerWidth-panel.offsetWidth-8,r.left))+'px',top:(r.bottom+panel.offsetHeight+6<innerHeight?r.bottom+6:Math.max(8,r.top-panel.offsetHeight-6))+'px'});
 }
+function syncAutomaticPlanDisplay(s){
+ document.querySelectorAll('[data-planned-menu]').forEach(menu=>{
+  const j=+menu.dataset.plannedMenu;menu.querySelector('summary b').textContent=cuePlannedMinutes(j);
+  const auto=menu.querySelector('[data-pick-planned="auto"]');if(auto)auto.textContent='Auto · '+cueAutoMinutes(s,j)+' min';
+ });
+ document.querySelectorAll('.cue-timeline [data-session-cue]').forEach(button=>{
+  const j=+button.dataset.sessionCue,minutes=cuePlannedMinutes(j);button.style.flexBasis=minutes*8+'px';button.title=cues[j][0]+' · '+cues[j][1]+' · '+minutes+' min';button.setAttribute('aria-label',cues[j][0]+' '+cues[j][1]+', '+minutes+' minutes planned');
+ });
+ const end=document.querySelector('.cue-timeline>header>small');if(end)end.textContent='10:00 — '+planningClock(600+cues.reduce((sum,_,j)=>sum+cuePlannedMinutes(j),0));
+}
 function choosePlanned(j,value){
  if(value==='auto'||!String(value).trim()){cueSettings(unifiedState,+j).planned=null;closePlannedPickers();renderDemo();return;}
  if(!String(value).trim()||!Number.isFinite(+value)||+value<1||+value>1440){toast('Choose planned minutes from 1 to 1440.');return;}

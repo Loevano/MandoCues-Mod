@@ -16,7 +16,7 @@ with sync_playwright() as p:
   assert page.locator('#main-panel .main-take-heading').inner_text().startswith('Take 2')
   assert page.locator('.proposal-session-header').count()==1
   assert page.locator('#main-panel details.calm-session').count()==0
-  page.screenshot(path=str(ROOT/f'checks/panel-option-{layout}.png'))
+  page.locator('#main-panel').screenshot(path=str(ROOT/f'checks/panel-option-{layout}.png'))
  # Floating planned picker: no layout shift, typed and clicked minutes share the timeline.
  summary=page.locator('#main-panel .planned-picker>summary');before=clock.bounding_box();summary.click()
  picker=page.locator('#main-panel .planned-picker-panel');expect(picker).to_be_visible()
@@ -34,6 +34,7 @@ with sync_playwright() as p:
   page.locator(f'[data-main-layout="{layout}"]').click()
   expect(page.locator('#main-panel .rec-status')).to_have_text('● Recording')
   assert page.evaluate('running(unifiedState).id')=='c0-t3'
+  page.locator('#main-panel').screenshot(path=str(ROOT/f'checks/panel-option-{layout}.png'))
   page.set_viewport_size({'width':390,'height':844})
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),layout
   page.screenshot(path=str(ROOT/f'checks/panel-option-{layout}-mobile.png'))

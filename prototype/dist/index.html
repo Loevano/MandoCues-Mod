@@ -621,9 +621,9 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .main-panel-options{display:flex;align-items:center;gap:6px;margin:0 0 12px;color:#b8acbf;font-size:11px}
 .demo .main-panel-options button{padding:5px 9px;font-size:11px;min-height:28px}
 .main-panel-options [aria-pressed="true"]{background:#453650;border-color:#a88abd;color:#f2e9fa}
-.recording-workspace .proposal-main-panel{display:grid;grid-template-columns:minmax(240px,1fr) minmax(275px,1.1fr) 280px;grid-template-areas:"cue clock session" "take clock session";gap:20px 24px;align-items:start;padding:8px 0 24px!important}
+.recording-workspace .proposal-main-panel{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(300px,1.5fr) minmax(260px,.85fr);grid-template-areas:"cue clock session" "take clock session";gap:20px 24px;align-items:start;padding:8px 0 24px!important}
 .proposal-main-panel>.calm-cue{grid-area:cue;min-width:0}
-.proposal-main-panel .main-cue{display:flex;flex-direction:column;gap:4px;margin:14px 0 8px;min-height:100px}
+.proposal-main-panel .main-cue{display:flex;flex-direction:column;gap:4px;margin:14px 0 8px;min-height:132px}
 .proposal-main-panel .main-cue b{font:700 clamp(30px,3.2vw,46px)/1.1 var(--mono);letter-spacing:-1px}
 .proposal-main-panel .main-cue strong{font-size:clamp(25px,2.3vw,34px);line-height:1.15;overflow-wrap:anywhere}
 .proposal-main-panel .calm-cue>small{font-size:11px;color:#aaa0b3}
@@ -648,7 +648,7 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .demo .proposal-main-panel .main-take-actions>button:not(.record){font-size:11px;padding:8px}
 .demo .proposal-main-panel .proposal-take-clock{margin:0;font-size:10px;gap:3px;align-items:start}
 .proposal-main-panel .proposal-take-clock b{font:600 21px var(--mono)}
-.main-session-rail{grid-area:session;min-width:0;font-size:11px}
+.main-session-rail{grid-area:session;min-width:0;font-size:11px;width:min(100%,280px);justify-self:end}
 .main-session-rail .proposal-session-header{margin:0;padding:0;border:0}
 .main-session-rail .session-choice{display:block;margin:0 0 12px}
 .main-session-rail .session-choice>label{min-width:0;display:block}
@@ -669,7 +669,7 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .recording-workspace .proposal-main-panel.layout-B{grid-template-columns:minmax(240px,1fr) minmax(240px,1fr) 280px;grid-template-areas:"clock clock session" "cue take session";gap:20px 24px}
 .layout-B .proposal-session-clocks{padding:4px 0 0}
 .layout-B .calm-cue{text-align:center}
-.layout-B .main-cue{flex-direction:row;justify-content:center;align-items:baseline;min-height:0;margin:10px 0;gap:14px}
+.layout-B .main-cue{flex-direction:row;justify-content:center;align-items:baseline;min-height:132px;margin:10px 0;gap:14px}
 .layout-B .proposal-cue-switcher{justify-content:center}
 .layout-B .main-take-heading,.layout-B .main-take-actions{justify-content:center}
 .layout-B .proposal-main-planning{margin-top:2px}
@@ -688,7 +688,7 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .all-takes-tools{grid-template-columns:48px 36px}
 @media(max-width:1190px){
  .recording-workspace .proposal-main-panel{grid-template-columns:minmax(220px,1fr) minmax(230px,1fr);grid-template-areas:"cue clock" "take clock" "session session"}
- .main-session-rail{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 20px}
+ .main-session-rail{width:auto;justify-self:stretch;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 20px}
  .main-session-rail .session-choice{margin-bottom:8px}
  .main-session-rail .session-setup{display:flex;flex-wrap:wrap;gap:14px}
  .main-session-rail .session-app-actions{margin:0}
@@ -700,7 +700,7 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 @media(max-width:759px){
  .recording-workspace .proposal-main-panel,.recording-workspace .proposal-main-panel.layout-B{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"clock" "cue" "take" "session";gap:20px;padding-bottom:20px!important}
  .proposal-main-panel .proposal-session-clocks [data-wall-clock]{font-size:56px}
- .proposal-main-panel .main-cue{min-height:0;flex-direction:row;gap:9px;flex-wrap:wrap;align-items:baseline}
+ .proposal-main-panel .main-cue{min-height:105px;flex-direction:row;gap:9px;flex-wrap:wrap;align-items:baseline}
  .proposal-main-panel .main-cue b{font-size:32px}.proposal-main-panel .main-cue strong{font-size:26px}
  .main-session-rail{display:block}.main-session-rail .session-setup{gap:12px}.main-session-rail .proposal-session-actions{margin-top:12px}
  .main-panel-options{flex-wrap:wrap;font-size:10px}.main-panel-options>span{width:100%}
@@ -963,8 +963,8 @@ function sourceCuePlan(s) {
 }
 
 function takeLabelInput(t){return `<input class="take-label-input" data-take-label="${t.id}" value="${esc(t.label||'')}" maxlength="80" placeholder="Take label" aria-label="Label for ${entryLabel(t)}">`;}
-document.addEventListener('input',event=>{if(!event.target.dataset.takeLabel||!active)return;const t=takeById(state(),event.target.dataset.takeLabel);if(t)t.label=event.target.value.slice(0,80);});
-document.addEventListener('change',event=>{if(event.target.dataset.takeLabel&&active)renderDemo();});
+document.addEventListener('input',event=>{if(!event.target.dataset.takeLabel||!active)return;const t=takeById(state(),event.target.dataset.takeLabel);if(t){t.label=event.target.value.slice(0,80);document.querySelectorAll('[data-take-label]').forEach(input=>{if(input!==event.target&&input.dataset.takeLabel===t.id)input.value=t.label;});}});
+
 
 function takeDeleteButton(t){return `<button type="button" class="take-delete" data-delete-take="${t.id}" aria-label="Delete ${entryLabel(t)}" title="${t.rolling?'Stop this take before deleting it':'Delete '+entryLabel(t)}" ${t.rolling?'disabled':''}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M6 4V2h4v2M4 4l1 10h6l1-10M7 6v6M9 6v6"/></svg></button>`;}
 function deleteProposalTake(s,id){
@@ -1885,7 +1885,7 @@ document.addEventListener('change',event=>{
  if(key==='length'){const timing=scoreWorkflowTiming(unifiedState);unifiedState.booked=value;timing.clock.booked=value*60;timing.clock.plannedEndAt=Date.now()+Math.max(0,value*60-timing.elapsed)*1000;document.querySelector('[data-session-hours]').textContent=Math.floor(value/60)+'h '+String(value%60).padStart(2,'0')+'m';}
  if(key==='prep')unifiedState.prepMinutes=value;
  if(key==='music')unifiedState.maxMusicMinutes=value;
- renderDemo();
+ syncAutomaticPlanDisplay(unifiedState);
 });
 document.addEventListener('submit',event=>{
  if(!event.target.matches('[data-session-chat-form]'))return;event.preventDefault();const field=event.target.querySelector('textarea'),text=field.value.trim();if(!text)return;
@@ -1943,6 +1943,16 @@ function closePlannedPickers(){document.querySelectorAll('.planned-picker[open]'
 function positionPlannedPicker(menu){
  if(!menu?.open)return;const panel=menu.querySelector('.planned-picker-panel'),r=menu.querySelector('summary').getBoundingClientRect();
  Object.assign(panel.style,{left:Math.max(8,Math.min(innerWidth-panel.offsetWidth-8,r.left))+'px',top:(r.bottom+panel.offsetHeight+6<innerHeight?r.bottom+6:Math.max(8,r.top-panel.offsetHeight-6))+'px'});
+}
+function syncAutomaticPlanDisplay(s){
+ document.querySelectorAll('[data-planned-menu]').forEach(menu=>{
+  const j=+menu.dataset.plannedMenu;menu.querySelector('summary b').textContent=cuePlannedMinutes(j);
+  const auto=menu.querySelector('[data-pick-planned="auto"]');if(auto)auto.textContent='Auto · '+cueAutoMinutes(s,j)+' min';
+ });
+ document.querySelectorAll('.cue-timeline [data-session-cue]').forEach(button=>{
+  const j=+button.dataset.sessionCue,minutes=cuePlannedMinutes(j);button.style.flexBasis=minutes*8+'px';button.title=cues[j][0]+' · '+cues[j][1]+' · '+minutes+' min';button.setAttribute('aria-label',cues[j][0]+' '+cues[j][1]+', '+minutes+' minutes planned');
+ });
+ const end=document.querySelector('.cue-timeline>header>small');if(end)end.textContent='10:00 — '+planningClock(600+cues.reduce((sum,_,j)=>sum+cuePlannedMinutes(j),0));
 }
 function choosePlanned(j,value){
  if(value==='auto'||!String(value).trim()){cueSettings(unifiedState,+j).planned=null;closePlannedPickers();renderDemo();return;}

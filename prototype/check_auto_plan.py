@@ -25,5 +25,7 @@ with sync_playwright() as p:
  assert page.evaluate('cuePlannedMinutes(0)')>estimate
  assert page.evaluate('state().selected')==original
  assert page.locator('[data-session-cue="0"]').get_attribute('title').endswith(str(page.evaluate('cuePlannedMinutes(0)')).removesuffix('.0')+' min')
+ page.locator('[data-session-setting="prep"]').fill('4')
+ page.locator('#main-panel .record').click();assert page.evaluate('state().sessionStarted')
  assert not errors,errors
  browser.close();print('PASS: complete inspected fixture, Auto/manual/clear, complexity and session-budget reactivity, shared timeline and unchanged take selection')

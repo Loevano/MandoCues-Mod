@@ -33,8 +33,8 @@ function sourceCuePlan(s) {
 }
 
 function takeLabelInput(t){return `<input class="take-label-input" data-take-label="${t.id}" value="${esc(t.label||'')}" maxlength="80" placeholder="Take label" aria-label="Label for ${entryLabel(t)}">`;}
-document.addEventListener('input',event=>{if(!event.target.dataset.takeLabel||!active)return;const t=takeById(state(),event.target.dataset.takeLabel);if(t)t.label=event.target.value.slice(0,80);});
-document.addEventListener('change',event=>{if(event.target.dataset.takeLabel&&active)renderDemo();});
+document.addEventListener('input',event=>{if(!event.target.dataset.takeLabel||!active)return;const t=takeById(state(),event.target.dataset.takeLabel);if(t){t.label=event.target.value.slice(0,80);document.querySelectorAll('[data-take-label]').forEach(input=>{if(input!==event.target&&input.dataset.takeLabel===t.id)input.value=t.label;});}});
+
 
 function takeDeleteButton(t){return `<button type="button" class="take-delete" data-delete-take="${t.id}" aria-label="Delete ${entryLabel(t)}" title="${t.rolling?'Stop this take before deleting it':'Delete '+entryLabel(t)}" ${t.rolling?'disabled':''}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M6 4V2h4v2M4 4l1 10h6l1-10M7 6v6M9 6v6"/></svg></button>`;}
 function deleteProposalTake(s,id){

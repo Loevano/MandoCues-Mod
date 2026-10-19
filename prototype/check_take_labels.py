@@ -8,7 +8,7 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto((ROOT/'dist/index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
  field=page.locator('[data-take-label="c0-t2"]').first;tools=page.locator('[data-calm-take="c0-t2"] .take-tools');before=tools.bounding_box()
- field.fill('Strings only');field.press('Tab');expect(field).to_have_value('Strings only');after=tools.bounding_box()
+ field.fill('Strings only');page.locator('[data-take-best="c0-t2"]').click();expect(page.locator('[data-take-best="c0-t2"]')).to_have_attribute('aria-pressed','true');expect(field).to_have_value('Strings only');after=tools.bounding_box()
  assert all(abs(before[k]-after[k])<1 for k in ['x','y','width','height'])
  page.locator('[data-proposal-view="cutlist"]').click();expect(field).to_have_value('Strings only')
  field.fill('Softer opening');field.press('Tab')
