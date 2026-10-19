@@ -846,3 +846,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 99. Sneltoetsen bij suggestie 3 direct zichtbaar
 
 - Toon de sneltoetsen bij Cues en takes direct kiezen permanent als gewone tekst, zonder uitklapknop. De overige stappen en optionele uitleg blijven hetzelfde.
+
+
+## 100. Enter uitleggen bij suggestie 5
+
+- Vermeld bij kloktijd en maat: Enter slaat de note op en zet een nieuwe note klaar.

@@ -62,7 +62,7 @@ Aanvulling: bied veelvoorkomende notities als aanpasbare suggesties aan, bijvoor
 
 ### 5. Kloktijd en maat bij een note
 
-De eerste letter legt de kloktijd vast. Kies zelf de maat. Klik op het klokje voor de huidige tijd.
+De eerste letter legt de kloktijd vast. Kies zelf de maat; het klokje vult de huidige tijd in. Enter slaat je note op en zet een nieuwe klaar.
 
 **Takes terugvinden in Pro Tools**
 
