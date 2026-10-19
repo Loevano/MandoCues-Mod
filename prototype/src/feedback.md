@@ -679,3 +679,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Overlappende selecties blijven afzonderlijk per take bewaard; toevoegen of verwijderen in één take verandert de andere niet.
 - Laat overlap zichtbaar in beide kleuren met arcering en aparte kleurstrepen, ook wanneer één take alleen als achtergrondreferentie zichtbaar is.
 - Verhoog het contrast van geselecteerde en achtergrondmaten. Muziek en notes blijven leesbaar.
+
+
+## 79. Rondleiding met bruikbare voorbeelden
+
+- Verwijder de algemene indelingszin en de oude suggestie 9 (Losse notes per take).
+- Noem [ en ] bij direct een cue kiezen.
+- Vul de eerste drie voorbeeldcues met takes en notes. Een take-suggestie opent bij een lege cue een gevuld voorbeeld, zonder tijdens de rondleiding takes aan te maken.
+- Vermeld Command+Option+slepen naast Command+rechtsklik voor verwijderen van maatselecties.

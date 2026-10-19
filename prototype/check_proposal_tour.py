@@ -23,7 +23,7 @@ with sync_playwright() as p:
     assert page.evaluate('proposalTourSteps.slice(0,2).map(s=>s.id)')==['duidelijke-labels','opnametoets']
     steps=page.evaluate('proposalTourSteps.map(s=>({id:s.id,title:s.title,view:s.view}))')
     order=[s['id'] for s in steps]
-    for first,second in [('cue-takes','noteplek'),('noteplek','notes-enter'),('notes-enter','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
+    for first,second in [('cue-takes','noteplek'),('noteplek','maat-aanpassen'),('maat-aanpassen','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
         assert order.index(first)<order.index(second),(first,second)
     selected={'sterren','opnametoets','score-notes'}
     for index,step in enumerate(steps):

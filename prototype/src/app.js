@@ -21,6 +21,11 @@ function fresh(id){
  }
  ts[0][0].notes=[{id:'seed-1',text:'Nice entrance; keep this.',at:31,measure:18,page:1,source:'example-v1'}];
  ts[0][1].notes=[{id:'seed-2',text:'Cello a little calmer in bar 18.',at:38,measure:18,page:1,source:'example-v1'}];
+ // Populated examples let the reviewer try cue/take changes immediately.
+ if(id==='partituur'){
+  ts[1].push(newTake(1,2));ts[2].push(newTake(2,1),newTake(2,2));
+  for(const j of [1,2])for(const t of ts[j])t.notes=[{id:`example-${j}-${t.num}`,text:t.num===1?'Keep the phrasing at the opening.':'Try a softer entrance.',at:24,measure:1,page:1,source:productionScoreDoc(cues[j][0]).id,instruments:[...scoreInstrumentIds]}];
+ }
  if(id==='partituur')for(const t of ts[0])t.scoreSelections={[assets.production.id]:(t.num===1?[1,2,3,4,7,8,9]:[5,6]).flatMap(m=>scoreInstrumentIds.map(i=>scoreCellKey(m,i)))};
  if(id==='partituur')for(const t of ts[0])for(const n of t.notes){n.source=assets.production.id;n.instruments=t.num===2?['vc']:[...scoreInstrumentIds];syncSavedScorePage(n);}
  return {cue:0,minRating:0,open:new Set([0]),cueFold:new Set(),takes:ts,selected:ts[0].at(-1).id,cueNotes:cues.map((_,j)=>j===0?[{id:'cue-seed-'+j,text:'Watch the transition into bar 18.'}]:[]),cueDrafts:cues.map(()=>''),page:1,measure:null,zoom:1,doc:id==='partituur'?productionScoreDoc():{id:'example-v1',name:'Demo score',url:null,pages:2},noteSerial:2,...(id==='planning'?{booked:180,elapsed:42,remaining:140}:{})};

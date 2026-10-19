@@ -42,7 +42,11 @@ function openTourStep(index){
  document.body.classList.toggle('tour-take-notes',step.id==='noteplek');
  document.body.classList.toggle('tour-note-metadata',step.id==='maat-aanpassen');
  showProposalView(step.view);
- if(step.view==='recording')s.open.add(s.cue);
+ if(step.view==='recording'){
+  // Demonstrate take-based suggestions on populated examples, without creating takes during a tour.
+  if(['cue-takes','noteplek','maat-aanpassen','sterren','alt-best'].includes(step.id)&&!s.takes[s.cue].length&&!running(s))selectCue(s,0);
+  s.open.add(s.cue);
+ }
  if(step.prepare==='session')s.calmSessionOpen=true;
  if(step.prepare==='all'&&s.cutlistView!=='all'){rememberScoreView(s);s.cutlistView='all';}
  if(step.prepare==='score'&&s.cutlistView==='all'){s.cutlistView='score';restoreScoreView(s);}
@@ -52,7 +56,7 @@ function openTourStep(index){
  }
  document.querySelector('.proposal-tour-card')?.remove();
  const card=document.createElement('section');card.className='proposal-tour-card';card.lang='nl';card.setAttribute('aria-labelledby','proposal-tour-title');card.setAttribute('aria-label','Rondleiding');
- card.innerHTML=`<header><span>Suggestie ${index+1} van ${proposalTourSteps.length}</span><button type="button" data-tour-action="close" aria-label="Rondleiding sluiten">×</button></header><h2 id="proposal-tour-title" tabindex="-1">${esc(step.title)}</h2><p>${esc(step.text)}</p><label class="tour-prompt-choice"><input type="checkbox" data-tour-choice="${step.id}" ${proposalTourSelection.has(step.id)?'checked':''}><span>Voeg toe aan de prompt voor Claude</span></label><footer><button type="button" data-tour-action="previous" ${index===0?'disabled':''}>Terug</button><button type="button" class="review-primary" data-tour-action="next">${index===proposalTourSteps.length-1?'Naar mijn selectie':'Volgende →'}</button></footer>`;
+ card.innerHTML=`<header><span>Suggestie ${index+1} van ${proposalTourSteps.length}</span><button type="button" data-tour-action="close" aria-label="Rondleiding sluiten">×</button></header><h2 id="proposal-tour-title" tabindex="-1">${esc(step.title)}</h2>${step.text?`<p>${esc(step.text)}</p>`:""}<label class="tour-prompt-choice"><input type="checkbox" data-tour-choice="${step.id}" ${proposalTourSelection.has(step.id)?'checked':''}><span>Voeg toe aan de prompt voor Claude</span></label><footer><button type="button" data-tour-action="previous" ${index===0?'disabled':''}>Terug</button><button type="button" class="review-primary" data-tour-action="next">${index===proposalTourSteps.length-1?'Naar mijn selectie':'Volgende →'}</button></footer>`;
  document.body.append(card);
  if(!document.querySelector('.proposal-tour-highlight')){const highlight=document.createElement('div');highlight.className='proposal-tour-highlight';highlight.setAttribute('aria-hidden','true');document.body.append(highlight);}
  tourTarget=findTourTarget(step);

@@ -6,7 +6,7 @@
     {
       "id": "duidelijke-labels",
       "title": "Een mogelijke indeling voor Recording",
-      "text": "Cuekeuze bij de cuenaam, takebediening bij elkaar. Zou deze indeling passen bij jullie sessies?",
+      "text": "",
       "target": "#main-panel",
       "view": "recording",
       "discussion": "duidelijke-labels"
@@ -46,7 +46,7 @@
     {
       "id": "cue-aanklikken",
       "title": "Een cue direct kiezen",
-      "text": "Zou direct kiezen in de lijst handig zijn? Klik verschillende cues en bekijk hoe het paneel en de takes meewisselen.",
+      "text": "Zou direct kiezen in de lijst handig zijn? Klik verschillende cues of gebruik [ en ] en bekijk hoe het paneel en de takes meewisselen.",
       "target": ".calm-cue-list",
       "view": "recording",
       "discussion": "cue-aanklikken"
@@ -69,14 +69,6 @@
       "relatedTargets": [
         ".calm-cue-list .cue-group.current"
       ]
-    },
-    {
-      "id": "notes-enter",
-      "title": "Losse notes per take",
-      "text": "Een opmerking per note, om ze apart terug te lezen. Typ iets en druk Enter; Shift+Enter maakt een nieuwe regel.",
-      "target": ".calm-notes .note-composer",
-      "view": "recording",
-      "discussion": "notes-enter"
     },
     {
       "id": "maat-aanpassen",
@@ -170,7 +162,7 @@
     {
       "id": "score-selecteren",
       "title": "Maten kiezen voor de kniplijst",
-      "text": "Kies een take en markeer maten met ⌘+slepen. ⌘+rechtsklik haalt maten uit die selectie.",
+      "text": "Kies een take en markeer maten met ⌘+slepen. Verwijderen kan met ⌘+rechtsklik of ⌘⌥+slepen.",
       "target": ".score-paper",
       "view": "cutlist",
       "prompt": "Hergebruik de bestaande kniplijstselectie op maatvakken. Command+linksklik of slepen voegt toe en Command+rechtsklik of Command+Option+linksslepen verwijdert. Link instruments staat standaard aan: alle instrumenten van de geraakte maten. Uit selecteert de geraakte instrumenten. Opnieuw koppelen herschrijft bestaande selecties niet. Voorkom het browsercontextmenu tijdens verwijderen. Selectie is per take en bron, geen audio-edit.",
