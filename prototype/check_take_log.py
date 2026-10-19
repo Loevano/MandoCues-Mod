@@ -57,6 +57,12 @@ with sync_playwright() as p:
     page.keyboard.press('Meta+Enter')
     page.evaluate("switchProposalSession('strings-20261020')")
     assert page.evaluate('state().takes[0].at(-1).takeLog') == stopped
+    page.evaluate('openAddSessionCues()')
+    page.locator('[data-add-session-cue="1M04"]').check()
+    page.locator('[data-app-action="confirm-cues"]').click()
+    page.evaluate('selectCue(state(),cues.length-1)')
+    page.keyboard.press('Meta+Enter'); page.keyboard.press('Meta+Enter')
+    assert page.evaluate('sessionTakeLog().takes.at(-1).cueCode') == '1M04'
     assert not errors, errors
     browser.close()
 print('PASS: explicit manual start/stop dates, no invented example times, independent notes/selection, JSON download and isolated session IDs')

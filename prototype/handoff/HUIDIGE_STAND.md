@@ -20,7 +20,7 @@ Nieuwe sessie-/cuewerktijd begint op nul. Music length is de muziekduur; Planned
 - De rondleiding scrolt automatisch naar elk onderdeel. Quick notes staan direct zichtbaar bij de editor.
 - De rondleiding volgt de workflow: hoofdpaneel → sessiestart en planning → cue en take kiezen → notes → beoordeling → sneltoetsen → partituur en kniplijst → vergelijken en instellingen. Open vragen staan apart.
 - De uitleg is gericht aan de collega: vrijblijvende ideeën en korte aanwijzingen om te proberen, zonder eigen bugfixes of ontwerphistorie uit te leggen.
-- De rondleiding bevat 24 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
+- De rondleiding bevat 25 korte suggesties met een highlight, een standaard aangevinkte checkbox voor Claude en Terug/Volgende. Uitvinken blijft mogelijk; expliciete uitvinkkeuzes worden bewaard. Oude gedeeltelijke opt-in-selecties worden eenmalig vervangen door alles aan. Kiezen beïnvloedt alleen de prompt, niet de werking van de demo.
 - De selectie blijft lokaal in de browser bewaard. Kopiëren/downloaden voegt bestaande teksten samen; geen nieuwe generatie. Open vragen staan apart.
 - GUI Engels; uitleg en vragen Nederlands. De grote klok gebruikt AM/PM; note-kloktijden blijven 24-uursnotatie. Command+Enter start eerst de sessie en daarna een take, of stopt de lopende take. Dit werkt ook met focus op de rondleiding. Enter plaatst een note en spatie is tekst.
 - Herkenbare appcontext: zijbalk, sessiekeuze, Session length (min), Prep per cue, Max music (min), Add cues, Chat standaard dicht en de PDF-overzichten. De inspectie-HTML is geen volledige appbron; planningscijfers zijn voorbeelddata.
@@ -77,3 +77,9 @@ Nog te beoordelen door Floris:
 1. Alle invulvelden in Planning of zichtbaar bovenaan? Voorlopig B: in Planning.
 2. Uitloopknoppen verlengen het geplande einde of melden alleen verwachte extra werktijd? Voorlopig verlengen.
 3. Sessie laten doortellen bij bekijken van een andere dag of automatisch pauzeren? Voorlopig doortellen; tijdens een take is wisselen geblokkeerd.
+
+## Takekoppeling met Pro Tools (voorstel)
+
+De rondleiding heeft een korte stap na note-kloktijd: onze Take 3 kan bij de engineer Take 4 heten. Een latere koppeling gebruikt gecontroleerde opnamekloktijden en handmatige bevestiging; geen hernummering. Pro Tools Original Time Stamp is projectpositie, geen gegarandeerde kloktijd. Zie `prototype/src/protools-sync.md` (gegenereerd als `Pro-Tools-takekoppeling.md`) voor de officiële bronnen en de test met originele WAVs.
+
+Nieuwe takes/overdubs bewaren aparte UTC-start-/stopinstants en tijdzone/sessie/cue/log-ID. Dit zijn onze lokale transportmomenten, geen DAW-bevestigingen. PDF → Take sheet → Download take log (JSON) exporteert ze met note-kloktijden. Voorbeeldtakes hebben geen opnamelog; niets verzinnen. Invoer verdwijnt nog bij herladen. Er is geen import, matching of DAW-verbinding gebouwd. Productie vraagt duurzame logs en een gecontroleerde engineerbron.

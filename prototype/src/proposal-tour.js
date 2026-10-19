@@ -44,7 +44,7 @@ function openTourStep(index){
  showProposalView(step.view);
  if(step.view==='recording'){
   // Demonstrate take-based suggestions on populated examples, without creating takes during a tour.
-  if(['cue-takes','noteplek','maat-aanpassen','sterren','alt-best'].includes(step.id)&&!s.takes[s.cue].length&&!running(s))selectCue(s,0);
+  if(['cue-takes','noteplek','maat-aanpassen','protools-sync','sterren','alt-best'].includes(step.id)&&!s.takes[s.cue].length&&!running(s))selectCue(s,0);
   s.open.add(s.cue);
  }
  if(step.prepare==='session')s.calmSessionOpen=true;

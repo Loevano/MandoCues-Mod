@@ -755,3 +755,12 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - De rondleiding vraagt kort welke oorspronkelijke klokken tijdens een sessie nodig zijn, vanuit Floris. Geen lange uitleg.
 - De eerste dag heeft voorbeeldtakes; de tweede dag is expliciet een aparte demosessie. Notes, takes, planning en chat blijven per dag gescheiden. Tijdens een take is dagwisseling geblokkeerd; een gestarte sessie blijft tijdens bekijken van een andere dag doortellen.
 - Nieuwe vragen pas na afloop, met de voorlopig gekozen optie erbij.
+
+
+## 88. Takes achteraf terugkoppelen aan Pro Tools
+
+- Onderzoek eerst welke datum-/tijdmetadata Pro Tools bewaart; Original Time Stamp is niet vanzelf de echte kloktijd.
+- Voeg een korte vrijblijvende suggestie toe aan de rondleiding: onze Take 3 kan bij de engineer Take 4 zijn. Koppelen via gecontroleerde kloktijden, zonder hernummeren.
+- BWF heeft OriginationDate/OriginationTime; daadwerkelijk schrijfgedrag in de gebruikte Pro Tools-versie nog met originele WAVs controleren. Houd rekening met klokverschil, datum, QuickPunch en meerdere kanalen.
+- Nieuwe demo-takes/overdubs bewaren aparte lokale start-/stopinstants, tijdzone, sessie/cue en log-ID. Geen tijd verzinnen voor voorbeeldtakes. Take sheet kan een JSON-log downloaden; demo-opslag blijft vluchtig en is geen DAW-bevestiging.
+- Technische aanpak, bronnen en praktijktest staan in Pro-Tools-takekoppeling.md. Voorlopig kandidaten voorstellen en handmatig bevestigen; geen automatische audio- of maatsynchronisatie.

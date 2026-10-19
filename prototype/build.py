@@ -58,7 +58,8 @@ doc+='## Gedeelde promptinleiding\n\n'+tour['promptIntro']+'\n## Gedeelde afslui
 write('Suggesties-van-Floris.md',doc)
 for output,source in [('Alle-notes-van-Floris.md','feedback.md'),('Aanvullende-input.md','extra-input.md'),
     ('Bestaand-scherm-context.md','rendered-context.md'),('Partituren-overzicht.md','scores-context.md'),
-    ('Score-ervaring-voor-Claude.md','score-context.md'),('Huidig-voorstel.md','current-proposal.md')]:write(output,read(source))
+    ('Score-ervaring-voor-Claude.md','score-context.md'),('Huidig-voorstel.md','current-proposal.md'),
+    ('Pro-Tools-takekoppeling.md','protools-sync.md')]:write(output,read(source))
 (DIST/'Wijzigingen-18-oktober.md').unlink(missing_ok=True)
 shutil.copyfile(SRC/'score-assets/score-catalog.json',DIST/'Score-catalogus.json')
 shutil.copyfile(SRC/'score-assets/Afterparty-1M02-Arrival-excerpt.pdf',DIST/'Afterparty-1M02-Arrival-excerpt.pdf')

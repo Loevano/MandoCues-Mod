@@ -23,7 +23,7 @@ with sync_playwright() as p:
     assert page.evaluate('proposalTourSteps.slice(0,2).map(s=>s.id)')==['duidelijke-labels','opnametoets']
     steps=page.evaluate('proposalTourSteps.map(s=>({id:s.id,title:s.title,view:s.view}))')
     order=[s['id'] for s in steps]
-    for first,second in [('cue-takes','noteplek'),('noteplek','maat-aanpassen'),('maat-aanpassen','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
+    for first,second in [('cue-takes','noteplek'),('noteplek','maat-aanpassen'),('maat-aanpassen','protools-sync'),('protools-sync','sterren'),('alt-best','cue-sneltoetsen'),('score-lagen','score-selecteren'),('score-selecteren','score-notes'),('score-notes','score-vergelijk'),('score-vergelijk','score-instellingen')]:
         assert order.index(first)<order.index(second),(first,second)
     selected={'sterren','opnametoets','score-notes'}
     for index,step in enumerate(steps):
@@ -56,6 +56,10 @@ with sync_playwright() as p:
             for selector in ['.calm-cue-list .cue-group.current','.calm-notes']:
                 assert page.locator(selector).evaluate('(el)=>getComputedStyle(el).outlineStyle')=='solid'
             page.screenshot(path=str(ROOT/'checks/tour-take-notes.png'))
+        if step['id']=='protools-sync':
+            expect(page.locator('.proposal-tour-card')).to_contain_text('Take 3 bij ons, Take 4 bij de engineer?')
+            assert 'OriginationDate' in page.evaluate('tourPromptFor(proposalTourSteps[proposalTourIndex])')
+            page.screenshot(path=str(ROOT/'checks/tour-protools-sync.png'))
         if step['id']=='tijdformaat':
             assert page.evaluate('tourTarget.closest("#main-panel")!==null')
         if step['id']=='maat-aanpassen':
@@ -123,7 +127,7 @@ with sync_playwright() as p:
     page.locator('#proposal-prompt [data-tour-action="close-dialog"]').click()
     # Small viewports retain an in-bounds card, highlight and functioning next action.
     page.set_viewport_size({'width':390,'height':844})
-    for step_id in ['duidelijke-labels','opnametoets','cue-aanklikken','noteplek','maat-aanpassen','bereikbare-bediening','score-per-cue','score-zoom','score-selecteren','score-overzicht','score-undo']:
+    for step_id in ['duidelijke-labels','opnametoets','cue-aanklikken','noteplek','maat-aanpassen','protools-sync','bereikbare-bediening','score-per-cue','score-zoom','score-selecteren','score-overzicht','score-undo']:
         index=next(i for i,step in enumerate(steps) if step['id']==step_id)
         page.evaluate('(index)=>openTourStep(index)',index)
         page.wait_for_timeout(60)
