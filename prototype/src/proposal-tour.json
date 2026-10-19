@@ -50,7 +50,7 @@
       "id": "maat-aanpassen",
       "title": "Kloktijd en maat bij een note",
       "text": "De eerste letter legt de kloktijd vast. Kies zelf de maat. Klik op het klokje voor de huidige tijd.",
-      "target": ".calm-notes .note-meta",
+      "target": ".calm-notes .composer-footer, .calm-notes .note-meta, .calm-notes",
       "view": "recording",
       "discussion": "maat-aanpassen"
     },

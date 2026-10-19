@@ -121,6 +121,17 @@ with sync_playwright() as p:
     assert page.evaluate('state().sessionStarted&&!running(state())')
     page.keyboard.press('Meta+Enter')
     live=page.evaluate('running(state()).id');page.locator('[data-draft]').fill('Draft kept through tour')
+    # A newly recorded take has no saved notes: metadata still targets its draft controls.
+    page.evaluate("openTourStep(proposalTourSteps.findIndex(s=>s.id==='maat-aanpassen'))")
+    assert page.evaluate('tourTarget.matches(".calm-notes .composer-footer")')
+    assert page.evaluate('tourTarget.querySelector("[data-draft-clock]").dataset.take')==live
+    expect(page.locator('.proposal-tour-highlight')).to_be_visible()
+    page.locator('[data-proposal-view="cutlist"]').click()
+    page.wait_for_timeout(100)
+    assert page.evaluate('tourTarget===null')
+    expect(page.locator('.proposal-tour-highlight')).to_be_hidden()
+    page.evaluate("openTourStep(proposalTourSteps.findIndex(s=>s.id==='maat-aanpassen'))")
+    assert page.evaluate('tourTarget.matches(".calm-notes .composer-footer")')
     page.evaluate("openTourStep(proposalTourSteps.findIndex(s=>s.id==='score-per-cue'))")
     assert page.evaluate('running(state()).id')==live
     page.keyboard.press('Escape');page.locator('[data-proposal-view="recording"]').click()

@@ -65,11 +65,11 @@ function openTourStep(index){
  document.body.append(card);
  if(!document.querySelector('.proposal-tour-highlight')){const highlight=document.createElement('div');highlight.className='proposal-tour-highlight';highlight.setAttribute('aria-hidden','true');document.body.append(highlight);}
  tourTarget=findTourTarget(step);
- if(step.id==='cue-aanklikken'){
+ if(step.id==='cue-aanklikken'&&tourTarget){
   const scroll=document.querySelector('#cue-scroll');
   scroll.scrollTop+=tourTarget.getBoundingClientRect().top-scroll.getBoundingClientRect().top-80;
   syncSticky();
- }else if(step.id==='noteplek'){
+ }else if(step.id==='noteplek'&&tourTarget){
   const scroll=document.querySelector('#cue-scroll');
   const anchor=tourTarget;
   scroll.scrollTop+=anchor.getBoundingClientRect().top-scroll.getBoundingClientRect().top-90;
@@ -100,9 +100,9 @@ function revealTourTarget(target){
 }
 function findTourTarget(step){
  for(const selector of step.target.split(','))for(const el of document.querySelectorAll(selector.trim())){
-  const box=el.getBoundingClientRect();if(box.width>0&&box.height>0)return el;
+  const box=el.getBoundingClientRect();if(box.width>0&&box.height>0&&getComputedStyle(el).visibility==='visible'&&!el.closest('[hidden]'))return el;
  }
- return document.querySelector('.proposal-view-toggle');
+ return null;
 }
 function scheduleTourPosition(){
  if(proposalTourIndex<0||tourPositionFrame)return;
@@ -111,7 +111,12 @@ function scheduleTourPosition(){
 function positionProposalTour(){
  if(proposalTourIndex<0)return;
  const card=document.querySelector('.proposal-tour-card'),highlight=document.querySelector('.proposal-tour-highlight');if(!card||!highlight)return;
- tourTarget=findTourTarget(proposalTourSteps[proposalTourIndex]);if(!tourTarget)return;
+ tourTarget=findTourTarget(proposalTourSteps[proposalTourIndex]);
+ if(!tourTarget){
+  highlight.hidden=true;
+  Object.assign(card.style,{left:Math.max(12,innerWidth-card.offsetWidth-12)+'px',top:Math.max(12,innerHeight-card.offsetHeight-12)+'px'});
+  return;
+ }
  const step=proposalTourSteps[proposalTourIndex];
  const popup=step.id==='maat-aanpassen'?document.querySelector('.measure-picker[open] .measure-picker-panel'):null;
  const rects=[tourTarget,...(step.relatedTargets||[]).map(selector=>document.querySelector(selector)).filter(Boolean),...(popup?[popup]:[])].map(el=>el.getBoundingClientRect()).filter(r=>r.width&&r.height);

@@ -820,3 +820,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Bestaande take kiezen, niet aanmaken; bescherm tekstinvoer, IME, modaliteiten en slepen. Geen extra keuze door herhaalde cijfers onder dezelfde vastgehouden combinatie.
 - Bij direct een cue kiezen ook [ en ], ⌥[ en ⌥], ⌥1–9 uitleggen. De latere stap gaat alleen over twee cijfers en geeft ook 02 als probeerbaar voorbeeld.
 - Volledige cuecodes in de tijdlijn niet meer als losse suggestie opvoeren; bestaande tijdlijn behouden. Nu 22 stappen, standaard aangevinkt met behoud van expliciete uitvinkkeuzes.
+
+
+## 96. Highlights bij lege takes
+
+- De maat-/kloktijdstap wijst naar de conceptbediening, ook als de gekozen nieuwe take nog geen notes heeft.
+- Geen algemene terugval naar Recording/Comp tool bij een ontbrekend doel. Bij bewust wisselen naar een andere weergave verbergt de niet-toepasselijke highlight zich; de volgende stap opent zijn eigen weergave.
