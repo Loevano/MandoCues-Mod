@@ -207,7 +207,7 @@ Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score
 
 **Promptonderdeel:**
 
-Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
+Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Verhoog kleurcontrast; laat overlap zien met meerkleurige arcering en aparte kleurstrepen per take. Verberg een achtergrondselectie niet zodra de gekozen take dezelfde maat bevat. Selecties blijven onafhankelijk per take; toevoegen, verwijderen en undo in één take wijzigen de andere niet. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
 
 ### 25. Instrumenten en andere takes
 

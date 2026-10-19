@@ -17,11 +17,10 @@ function scoreComparisonLayers(s,page){
  });
  return `<div class="score-comparison-layer" aria-hidden="true">${regions.map(r=>{
   const explicit=layers.filter(l=>visible.has(l.t.id)&&l.selection.has(scoreCellKey(r.measure,r.instrument||scoreInstrumentIds[0]))),ghosts=layers.filter(l=>!visible.has(l.t.id)&&l.selection.has(scoreCellKey(r.measure,r.instrument||scoreInstrumentIds[0])));
-  const shown=explicit.length?explicit:ghosts;if(!shown.length)return '';
-  const alpha=explicit.length?16.8:9.6;
-  const colours=shown.map(l=>`color-mix(in srgb,${scoreTakeColor(l.t)} ${alpha}%,transparent)`);
-  const background=colours.length===1?colours[0]:`linear-gradient(90deg,${colours.map((c,i)=>`${c} ${i/colours.length*100}% ${((i+1)/colours.length)*100}%`).join(',')})`;
-  return `<div class="score-cut-range ${explicit.length?'compared-range':'ghost-range'}" data-cut-measure="${r.measure}" data-cut-takes="${shown.map(l=>l.t.id).join(' ')}" style="left:${r.x*100}%;top:${r.y*100}%;width:${r.width*100}%;height:${r.height*100}%;--range-color:${scoreTakeColor(shown[0].t)};background:${background}"></div>`;
+  const shown=[...explicit,...ghosts];if(!shown.length)return '';
+  const colours=shown.map(l=>`color-mix(in srgb,${scoreTakeColor(l.t)} ${visible.has(l.t.id)?34:23}%,transparent)`);
+  const background=colours.length===1?colours[0]:`repeating-linear-gradient(135deg,${colours.map((c,i)=>`${c} ${i*10}px ${(i+1)*10}px`).join(',')})`;
+  return `<div class="score-cut-range ${explicit.length?'compared-range':'ghost-range'} ${shown.length>1?'has-overlap':''}" data-cut-measure="${r.measure}" data-cut-takes="${shown.map(l=>l.t.id).join(' ')}" style="left:${r.x*100}%;top:${r.y*100}%;width:${r.width*100}%;height:${r.height*100}%;--range-color:${scoreTakeColor(shown[0].t)};background:${background}">${shown.map((l,i)=>`<i class="score-take-band ${visible.has(l.t.id)?'':'is-reference'}" data-range-take="${l.t.id}" style="top:${i*3}px;border-color:${scoreTakeColor(l.t)}"></i>`).join('')}</div>`;
  }).join('')}</div>`;
 }
 // Small image occupancy maps help keep added text out of existing printed marks.

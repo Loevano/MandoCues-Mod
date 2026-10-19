@@ -33,6 +33,7 @@ python -X utf8 check_note_time_width.py
 python -X utf8 check_all_takes.py
 python -X utf8 check_score_note_drag.py
 python -X utf8 check_score_settings.py
+python -X utf8 check_score_overlap.py
 python -X utf8 check_score_take_scroll.py
 python -X utf8 check_score_zoom.py
 python -X utf8 check_score_page_layout.py

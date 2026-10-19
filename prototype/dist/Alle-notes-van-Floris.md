@@ -672,3 +672,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Een compact menu met Continuous scroll, Single page en Two pages.
 - Verder uitzoomen, tot 10%; knijpzoom en Fit width blijven werken.
 - Pagina-indeling en zoom blijven globaal bij wisselen van cue of take.
+
+
+## 78. Overlap en kleurcontrast in Comp tool
+
+- Overlappende selecties blijven afzonderlijk per take bewaard; toevoegen of verwijderen in één take verandert de andere niet.
+- Laat overlap zichtbaar in beide kleuren met arcering en aparte kleurstrepen, ook wanneer één take alleen als achtergrondreferentie zichtbaar is.
+- Verhoog het contrast van geselecteerde en achtergrondmaten. Muziek en notes blijven leesbaar.
