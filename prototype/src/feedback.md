@@ -874,3 +874,8 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 104. Sneltoetsen beter laten opvallen
 
 - Maak elke toetscombinatie in het sneltoetsenblok vetgedrukt en lichtblauw. De toelichting blijft gewone tekst; de sneltoetsen blijven direct zichtbaar.
+
+
+## 105. Pro Tools-uitleg terug naar één zin
+
+- Korte zichtbare suggestie: later automatisch koppelen via de kloktijd van notes en echte opnametijden. Technische uitwerking blijft in de Claude-prompt en Pro-Tools-takekoppeling.md.

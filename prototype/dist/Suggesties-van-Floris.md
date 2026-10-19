@@ -66,7 +66,7 @@ De eerste letter legt de kloktijd vast. Kies zelf de maat; het klokje vult de hu
 
 **Notes koppelen aan Pro Tools-opnames**
 
-Pro Tools kan clips en projecttijdcodes als tekstbestand exporteren. Idee: lever ook de echte opnametijden mee, zodat AI notes aan de juiste take kan koppelen. Bijvoorbeeld: een note van 3:00 PM bij de opname die toen liep, ook bij andere take-nummers. De tekstexport alleen bevat niet vanzelf die kloktijden.
+Idee voor later: notes automatisch aan Pro Tools-opnames koppelen via de kloktijd van je notes en de echte opnametijden.
 
 **Promptonderdeel:**
 

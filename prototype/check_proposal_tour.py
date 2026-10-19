@@ -61,8 +61,7 @@ with sync_playwright() as p:
             assert page.evaluate('tourTarget.matches(".calm-notes .composer-footer")')
             expect(page.locator('.tour-inline-help')).to_be_visible()
             expect(page.locator('.tour-inline-help summary')).to_have_count(0)
-            expect(page.locator('.tour-inline-help')).to_contain_text('zodat AI notes aan de juiste take kan koppelen')
-            expect(page.locator('.tour-inline-help')).to_contain_text('De tekstexport alleen bevat niet vanzelf die kloktijden.')
+            expect(page.locator('.tour-inline-help')).to_contain_text('Idee voor later: notes automatisch aan Pro Tools-opnames koppelen via de kloktijd van je notes en de echte opnametijden.')
             assert 'OriginationDate' in page.evaluate('tourPromptFor(proposalTourSteps[proposalTourIndex])')
             picker=page.locator('.calm-notes .measure-picker').first
             picker.locator('summary').click()
