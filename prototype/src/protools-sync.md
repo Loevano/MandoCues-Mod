@@ -4,6 +4,16 @@ Onderzocht op 19 oktober 2026. Voorstel voor later; er is geen DAW-koppeling of 
 
 Het idee is bruikbaar: onze Take 3 kan bij de engineer Take 4 heten. Met gecontroleerde opnametijden kunnen we een koppeling voorstellen, die iemand bevestigt. Kloktijd is hierbij een zoekhulp. Het bewijst geen exacte audio-uitlijning.
 
+## Tekstexport en notes op kloktijd koppelen
+
+Het bedoelde voorstel: de engineer levert opnamegegevens mee, en AI helpt die aan de kloktijden van onze notes te koppelen. Een note van **3:00:20 PM** past bijvoorbeeld bij een opname die van **3:00:00 tot 3:01:30 PM** liep, ook als onze take anders genummerd is. Dit is een voorstel voor later, geen bestaande AI-koppeling in de demo.
+
+**Het tekstbestand bestaat.** Kies in Pro Tools **File → Export → Session Info as Text**, met **Include File List**, **Include Clip List** en **Include Track EDLs**. Kies bijvoorbeeld UTF-8 en Timecode als tijdformaat. Op Mac wordt een `.txt`-bestand geleverd met bestands-/clipnamen en tijdlijngegevens. **Include User Timestamps** voegt een door de gebruiker ingestelde of oorspronkelijke clippositie toe; dit is geen garantie op de werkelijke kloktijd van opnemen. Dat onderscheid is expliciet beschreven in de [Avid Reference Guide 2026.4, p. 698–701](https://resources.avid.com/SupportFiles/PT/Pro_Tools_Reference_Guide_2026.4.pdf#page=800).
+
+De tekstexport alleen levert dus niet aantoonbaar het gevraagde kloktijdlog. Laat de engineer daarnaast de echte opnametijden aanleveren: gecontroleerde metadata van de originele bestanden of een afzonderlijk opnamelog met datum, tijdzone en start/einde. Aanwezige BWF-datum-/tijdvelden kunnen met BWF MetaEdit naar CSV; de route hieronder blijft daarvoor bruikbaar. Dit bewijst niet dat iedere Pro Tools-opname die velden correct vult.
+
+AI kan de tekst-/CSV-gegevens interpreteren en koppelvoorstellen maken. De tijdvergelijking zelf blijft controleerbaar: note-tijd binnen het opname-interval, dezelfde datum en cue, met bekend klokverschil. Koppelen op alleen hetzelfde uur of exact gelijke starttijd is onvoldoende. Notes die na het stoppen zijn geschreven, tegelijk lopende bronnen en ontbrekende klokgegevens vragen extra context of controle. Geef geen projecttijdcode als echte kloktijd door en laat AI geen ontbrekende opnametijden verzinnen.
+
 ## Concrete route voor de eerste versie
 
 1. Bewaar de originele opnames uit de **Audio Files**-map van de engineer, plus ons JSON-take-log via **PDF → Take sheet → Download take log**.

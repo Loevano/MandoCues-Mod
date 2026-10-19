@@ -856,3 +856,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 101. Pro Tools-uitleg altijd zichtbaar
 
 - Toon Takes terugvinden in Pro Tools met de volledige bestaande toelichting direct bij suggestie 5, zonder uitklapknop.
+
+
+## 102. Notes via kloktijd aan engineer-opnames koppelen
+
+- Leg het idee uit vanuit de note: de engineer levert opnamegegevens en echte opnametijden; AI kan notes op kloktijd aan de juiste opname koppelen, ook bij afwijkende take-nummers. Voorbeeld: een note om 3:00 PM bij de take die toen liep. Uitleg blijft direct zichtbaar.
+- Opnieuw gecontroleerd in de officiële Avid-handleiding: Session Info as Text bestaat en levert clips, bronrelaties en tijdlijnposities als tekst. Dat is niet vanzelf een log van hoe laat er werkelijk is opgenomen. Vermeld dit onderscheid kort; de benodigde echte klokgegevens komen aanvullend uit gecontroleerde metadata of een engineerlog.
+- Technische prompt en Pro-Tools-takekoppeling.md beschrijven datum/tijdzone, opname-intervallen, klokverschil, notes na een take en onzekere matches. Geen werkende import of AI-koppeling toegevoegd.
