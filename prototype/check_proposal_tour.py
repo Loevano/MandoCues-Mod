@@ -3,7 +3,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 from browser_support import launch_chromium
 ROOT=Path(__file__).resolve().parent
-ORDER=['opnametoets','planning','cue-aanklikken','noteplek','maat-aanpassen','sterren','view-toggle','score-selecteren','score-notes','score-vergelijk']
+ORDER=['opnametoets','planning','cue-aanklikken','noteplek','maat-aanpassen','sterren','comp-tool-overgang','view-toggle','score-selecteren','score-notes','score-vergelijk']
 with sync_playwright() as p:
     browser=launch_chromium(p)
     context=browser.new_context(viewport={'width':1512,'height':1100})
@@ -24,15 +24,24 @@ with sync_playwright() as p:
     steps=page.evaluate('proposalTourSteps.map(s=>({id:s.id,title:s.title,view:s.view,parts:s.parts.map(p=>p.id)}))')
     selected={'sterren','opnametoets','score-notes'}
     selected_parts=sorted(part for step in steps if step['id'] in selected for part in step['parts'])
+    suggestion_number=0
     for index,step in enumerate(steps):
         expect(page.locator('#proposal-tour-title')).to_have_text(step['title'])
-        expect(page.locator('.proposal-tour-card header')).to_contain_text(f'Suggestie {index+1} van 10')
+        if step['parts']:
+            suggestion_number+=1
+            expect(page.locator('.proposal-tour-card header')).to_contain_text(f'Suggestie {suggestion_number} van 10')
+        else:
+            expect(page.locator('.proposal-tour-card header')).to_contain_text('Recording → Comp tool')
         expect(page.locator('.proposal-tour-highlight')).to_be_visible()
         assert page.evaluate('tourTarget.matches(proposalTourSteps[proposalTourIndex].target)')
-        assert page.evaluate('!tourTarget.matches(".proposal-view-toggle")')
+        assert page.evaluate('tourTarget.matches(".proposal-view-toggle")')==(step['id']=='comp-tool-overgang')
         assert page.evaluate('proposalView')==step['view']
-        expect(page.locator('[data-tour-choice]')).to_be_checked()
-        page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
+        if step['parts']:
+            expect(page.locator('[data-tour-choice]')).to_be_checked()
+            page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
+        else:
+            expect(page.locator('[data-tour-choice]')).to_have_count(0)
+            expect(page.locator('.proposal-tour-card')).to_contain_text('nog niet helemaal uitgewerkt')
         shortcut_examples={
             'opnametoets':['Spatie','⌘ Enter'],
             'cue-aanklikken':['[',']','⌥[','⌥]','⌥1','⌥9','⌥ + ⌘'],
@@ -85,6 +94,11 @@ with sync_playwright() as p:
             stamp=page.locator('.calm-notes .note-list [data-note-time-edit]').first
             original_stamp=stamp.input_value();stamp.click();stamp.fill('99:59');stamp.press('Escape')
             expect(stamp).to_have_value(original_stamp)
+        if step['id']=='comp-tool-overgang':
+            page.locator('[data-proposal-view="cutlist"]').click()
+            assert page.evaluate('proposalView')=='cutlist'
+            assert page.evaluate('proposalTourSteps[proposalTourIndex].id')=='view-toggle'
+            open_step('comp-tool-overgang')
         if step['id']=='view-toggle':
             expect(page.locator('.score-canvas')).to_be_visible()
             expect(page.locator('.score-display-menu')).to_be_visible()
@@ -153,7 +167,10 @@ with sync_playwright() as p:
     page.locator('[data-proposal-view="cutlist"]').click();page.wait_for_timeout(100)
     assert page.evaluate('tourTarget===null');expect(page.locator('.proposal-tour-highlight')).to_be_hidden()
     open_step('maat-aanpassen');assert page.evaluate('tourTarget.matches(".calm-notes .composer-footer")')
-    open_step('view-toggle');assert page.evaluate('running(state()).id')==live
+    open_step('comp-tool-overgang')
+    page.locator('[data-proposal-view="cutlist"]').click()
+    assert page.evaluate('proposalTourSteps[proposalTourIndex].id')=='view-toggle'
+    assert page.evaluate('running(state()).id')==live
     page.keyboard.press('Escape');page.locator('[data-proposal-view="recording"]').click()
     expect(page.locator('[data-draft]')).to_have_value('Draft kept through tour')
     page.keyboard.press('Meta+Enter');assert page.evaluate('!running(state())')
@@ -188,4 +205,4 @@ with sync_playwright() as p:
     assert not errors,errors
     assert not network,network
     browser.close()
-print('PASS: ten steps, correct targets including empty live takes, mobile, default/grouped choices, old individual opt-outs, exact prompts, shared state and optional detail')
+print('PASS: ten suggestions and one transition, correct targets including empty live takes, mobile, default/grouped choices, old individual opt-outs, exact prompts, shared state and optional detail')

@@ -13,7 +13,7 @@ python3 -X utf8 check_handoff.py
 
 Op Windows: vervang python3 door py -3. Alle benodigde scorebeelden en mappings zitten in `src/score-assets/`; de oorspronkelijke boeken zijn geen buildvereiste.
 
-De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 10 korte stappen en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
+De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat tien suggesties, een korte overgang naar Comp tool en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
 
 ## Browsercontroles
 

@@ -890,3 +890,9 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 ## 107. Exportpad bij Pro Tools-suggestie
 
 - Voeg File → Export → Session Info as Text toe als route voor de cliplijst. Houd kort zichtbaar dat de echte opnametijden aanvullend nodig zijn.
+
+
+## 108. Overgang naar Comp tool tussen suggestie 6 en 7
+
+- Voeg een korte aanwijzing bij de Recording/Comp tool-toggle toe, met de tekst dat dit onderdeel nog niet helemaal is uitgewerkt.
+- Klikken op Comp tool opent de score en vervolgt de rondleiding bij suggestie 7; Verder werkt ook. De aanwijzing is geen extra voorstel of checkbox: er blijven tien suggesties.

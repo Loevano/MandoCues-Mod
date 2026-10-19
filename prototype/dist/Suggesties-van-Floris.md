@@ -90,6 +90,10 @@ Vervang de Good / NG / Hold-beoordeling door 1 tot en met 5 klikbare sterren per
 
 Aanvulling: voeg een onafhankelijke Alt-toggle toe voor één of meer reservetakes. Maak Beste een toggle met maximaal één Beste per cue; een nieuwe Beste heft de vorige binnen die cue op. Sterren blijven apart. Bewaar alles bij de vaste take-ID. Alle take-knoppen tonen steeds Alt, zonder volgnummer. Markeer de keuze alleen met de bestaande highlight en aria-pressed. Toon alleen het totale aantal alternatieven per cue, onafhankelijk van het sterrenfilter, ook als het nul is. Houd de knopbreedte gelijk zodat sterren niet verschuiven. Beste verandert alleen de highlight: geen vinkje of wisselende Beste-tekst in de cuekop. Reserveer een vaste breedte voor Beste en Alt in alle toestanden; sterren, cuegegevens en omliggende tekst blijven op dezelfde plaats bij aan- en uitzetten.
 
+### Naar Comp tool
+
+Klik Comp tool om vanuit de partituur te werken. Dit onderdeel is nog niet helemaal uitgewerkt.
+
 ### 7. Werken vanuit de partituur?
 
 Voorstel: Comp tool voor notes en een kniplijst op de partituur. Zoom met het trackpad of de knoppen; Page layout toont één of twee pagina’s.

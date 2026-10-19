@@ -55,7 +55,12 @@ small_doc='## Kleine suggesties\n\n'+'\n'.join('- '+d['bullet'] for d in small)+
 write('Kleine-suggesties-en-vragen.md','# Suggesties en open vragen\n\n'+small_doc+questions_doc)
 doc='# MandoCues · voorstel van Floris\n\nEén werkruimte met Recording en Comp tool. Bij openen kies je Rondleiding starten of Zelf bekijken. De rondleiding toont één suggestie tegelijk; een checkbox bepaalt of die tekst meegaat naar Claude. De app werkt los van deze keuze.\n\nAlle daadwerkelijke GUI-tekst is Engels. Uitleg en vragen blijven Nederlands. Het zijn vrijblijvende ideeën; jouw programma en ontwerpkeuzes gaan voor.\n\n'
 doc+=questions_doc+'\n## De rondleiding\n\nDe onderstaande tekstonderdelen worden alleen samengevoegd als ze zijn aangevinkt. Er wordt geen nieuwe prompt gegenereerd.\n\n'
-for index,step in enumerate(steps,1):
+index=0
+for step in steps:
+    if step.get('transition'):
+        doc+=f"### {step['title']}\n\n{step['text']}\n\n"
+        continue
+    index+=1
     prompt=tour_prompt(step)
     detail=step.get('details') or step.get('inlineHelp')
     extra=f"**{detail['title']}**\n\n{detail['text']}\n\n" if detail else ''
@@ -104,4 +109,4 @@ Huidig-voorstel.md beschrijft de actuele keuzes en het herstelpunt.
 Alle-notes-van-Floris.md is geschiedenis; latere correcties gaan voor eerdere.
 De oude vijf voorbeelden zijn bewaard op Git-tag before-unified-ui-20261018.
 ''')
-print(f'Built one offline workspace, two shared views and {len(steps)} guided suggestions.')
+print(f'Built one offline workspace, two shared views, {sum(not step.get("transition") for step in steps)} guided suggestions and {sum(bool(step.get("transition")) for step in steps)} transition cue(s).')

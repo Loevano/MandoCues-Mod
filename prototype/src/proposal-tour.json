@@ -146,6 +146,15 @@
       ]
     },
     {
+      "id": "comp-tool-overgang",
+      "title": "Naar Comp tool",
+      "text": "Klik Comp tool om vanuit de partituur te werken. Dit onderdeel is nog niet helemaal uitgewerkt.",
+      "target": ".proposal-view-toggle",
+      "view": "recording",
+      "transition": true,
+      "parts": []
+    },
+    {
       "id": "view-toggle",
       "title": "Werken vanuit de partituur?",
       "text": "Voorstel: Comp tool voor notes en een kniplijst op de partituur. Zoom met het trackpad of de knoppen; Page layout toont één of twee pagina’s.",
