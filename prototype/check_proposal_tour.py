@@ -33,6 +33,13 @@ with sync_playwright() as p:
         assert page.evaluate('proposalView')==step['view']
         expect(page.locator('[data-tour-choice]')).to_be_checked()
         page.locator('[data-tour-choice]').set_checked(step['id'] in selected)
+        if step['id']=='planning':
+            examples=page.locator('.tour-schedule-examples .main-plan-card')
+            expect(examples).to_have_count(3)
+            assert examples.locator('strong').all_text_contents()==['+02:00','−02:00','−07:00']
+            assert len(set(examples.evaluate_all('(els)=>els.map(el=>getComputedStyle(el).backgroundColor)')))==3
+            expect(page.locator('#main-panel [data-plan-status]')).to_have_text('On schedule')
+            assert page.evaluate('!state().sessionStarted')
         if step['id']=='cue-aanklikken':
             for cue in [1,0]:
                 page.locator(f'.calm-cue-list [data-select-cue="{cue}"]').click()

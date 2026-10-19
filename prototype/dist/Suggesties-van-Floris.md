@@ -28,7 +28,7 @@ Behoud de opnamebediening boven de cue-/takelijst. Zodra die buiten beeld scrolt
 
 ### 2. Voor- en achterstand met + en −?
 
-Voorstel: +02:00 voor voorsprong, −02:00 voor achterstand. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.
+Voorstel: + voor voorsprong, − voor achterstand. Op schema is groen. Achterstand: oranje onder 5 minuten, rood vanaf 5 minuten.
 
 **Promptonderdeel:**
 

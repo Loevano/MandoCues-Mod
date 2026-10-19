@@ -883,3 +883,10 @@ body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hin
 .tour-score-selection .proposal-tour-highlight,.tour-score-notes .proposal-tour-highlight{border-color:transparent}
 .tour-score-selection .score-take-picker,.tour-score-selection .score-canvas,
 .tour-score-notes .cutlist-notes-list,.tour-score-notes .score-canvas{outline:2px solid #d6b7f0;outline-offset:3px}
+
+/* Tutorial examples reuse the real planning colours without changing session data. */
+.tour-schedule-examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:0 0 16px}
+.tour-schedule-examples figcaption{grid-column:1/-1;color:#bcaacb;font-size:10px}
+.proposal-tour-card .tour-schedule-examples .main-plan-card{min-width:0;min-height:64px;padding:9px 5px;border-radius:7px;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.proposal-tour-card .tour-schedule-examples strong{font:650 18px/1.2 var(--mono);letter-spacing:-.5px}
+.proposal-tour-card .tour-schedule-examples small{font-size:10px;line-height:1.2}

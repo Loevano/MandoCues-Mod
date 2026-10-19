@@ -48,6 +48,10 @@ function closeProposalTour(){
  document.querySelector('.proposal-tour-card')?.remove();document.querySelector('.proposal-tour-highlight')?.remove();
  document.querySelector('[data-proposal-action="tour"]')?.focus({preventScroll:true});
 }
+function tourScheduleExamples(step){
+ if(!step.scheduleExamples)return '';
+ return `<figure class="tour-schedule-examples"><figcaption>Voorbeelden</figcaption>${step.scheduleExamples.map(example=>`<div class="main-plan-card ${proposalPlanClass(example.delta)}"><strong>${esc(proposalScheduleText(example.delta))}</strong><small>${esc(example.label)}</small></div>`).join('')}</figure>`;
+}
 function openTourStep(index){
  if(index<0||index>=proposalTourSteps.length)return;
  stopTourShortcutHint();
@@ -75,7 +79,7 @@ function openTourStep(index){
  }
  document.querySelector('.proposal-tour-card')?.remove();
  const card=document.createElement('section');card.className='proposal-tour-card';card.lang='nl';card.setAttribute('aria-labelledby','proposal-tour-title');card.setAttribute('aria-label','Rondleiding');
- card.innerHTML=`<header><span>Suggestie ${index+1} van ${proposalTourSteps.length}</span><button type="button" data-tour-action="close" aria-label="Rondleiding sluiten">×</button></header><h2 id="proposal-tour-title" tabindex="-1">${esc(step.title)}</h2>${step.text?`<p>${esc(step.text)}</p>`:""}${step.inlineHelp?`<div class="tour-extra tour-inline-help"><strong>${esc(step.inlineHelp.title)}</strong><p>${esc(step.inlineHelp.text)}</p></div>`:""}${step.details?`<details class="tour-extra"><summary>${esc(step.details.title)}</summary><p>${esc(step.details.text)}</p></details>`:""}<label class="tour-prompt-choice"><input type="checkbox" data-tour-choice="${step.id}" ${tourStepSelected(step)?'checked':''}><span>Voeg toe aan de prompt voor Claude</span></label><footer><button type="button" data-tour-action="previous" ${index===0?'disabled':''}>Terug</button><button type="button" class="review-primary" data-tour-action="next">${index===proposalTourSteps.length-1?'Naar mijn selectie':'Volgende →'}</button></footer>`;
+ card.innerHTML=`<header><span>Suggestie ${index+1} van ${proposalTourSteps.length}</span><button type="button" data-tour-action="close" aria-label="Rondleiding sluiten">×</button></header><h2 id="proposal-tour-title" tabindex="-1">${esc(step.title)}</h2>${step.text?`<p>${esc(step.text)}</p>`:""}${tourScheduleExamples(step)}${step.inlineHelp?`<div class="tour-extra tour-inline-help"><strong>${esc(step.inlineHelp.title)}</strong><p>${esc(step.inlineHelp.text)}</p></div>`:""}${step.details?`<details class="tour-extra"><summary>${esc(step.details.title)}</summary><p>${esc(step.details.text)}</p></details>`:""}<label class="tour-prompt-choice"><input type="checkbox" data-tour-choice="${step.id}" ${tourStepSelected(step)?'checked':''}><span>Voeg toe aan de prompt voor Claude</span></label><footer><button type="button" data-tour-action="previous" ${index===0?'disabled':''}>Terug</button><button type="button" class="review-primary" data-tour-action="next">${index===proposalTourSteps.length-1?'Naar mijn selectie':'Volgende →'}</button></footer>`;
  document.body.append(card);syncTourChoices();
  if(!document.querySelector('.proposal-tour-highlight')){const highlight=document.createElement('div');highlight.className='proposal-tour-highlight';highlight.setAttribute('aria-hidden','true');document.body.append(highlight);}
  tourTarget=findTourTarget(step);
