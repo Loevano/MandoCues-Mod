@@ -1,7 +1,7 @@
 // Helpers derived from visible structure only. The pasted page is never executed.
 function entryLabel(t) { return (t.kind==='overdub'?'Overdub ':'Take ')+t.num; }
 function nextEntryNumber(s,cue,kind='take') {
-  return Math.max(0,...s.takes[cue].filter(t=>(t.kind||'take')===kind).map(t=>t.num))+1;
+  return Math.max(0,s.takeSerials?.[cue]?.[kind]||0,...s.takes[cue].filter(t=>(t.kind||'take')===kind).map(t=>t.num))+1;
 }
 function entryCountText(s,cue,fallback=0) {
   if(!s.takes)return fallback+' takes';
@@ -35,3 +35,23 @@ function sourceCuePlan(s) {
 function takeLabelInput(t){return `<input class="take-label-input" data-take-label="${t.id}" value="${esc(t.label||'')}" maxlength="80" placeholder="Take label" aria-label="Label for ${entryLabel(t)}">`;}
 document.addEventListener('input',event=>{if(!event.target.dataset.takeLabel||!active)return;const t=takeById(state(),event.target.dataset.takeLabel);if(t)t.label=event.target.value.slice(0,80);});
 document.addEventListener('change',event=>{if(event.target.dataset.takeLabel&&active)renderDemo();});
+
+function takeDeleteButton(t){return `<button type="button" class="take-delete" data-delete-take="${t.id}" aria-label="Delete ${entryLabel(t)}" title="${t.rolling?'Stop this take before deleting it':'Delete '+entryLabel(t)}" ${t.rolling?'disabled':''}><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4h10M6 4V2h4v2M4 4l1 10h6l1-10M7 6v6M9 6v6"/></svg></button>`;}
+function deleteProposalTake(s,id){
+ const t=takeById(s,id);if(!t||t.rolling)return;
+ const list=s.takes[t.cue],index=list.indexOf(t),kind=t.kind||'take';
+ s.takeSerials??={};s.takeSerials[t.cue]??={};s.takeSerials[t.cue][kind]=nextEntryNumber(s,t.cue,kind)-1;
+ list.splice(index,1);
+ if(s.scoreCompared?.[t.cue])s.scoreCompared[t.cue]=s.scoreCompared[t.cue].filter(key=>key!==id);
+ if(s.selected===id){s.selected=s.scoreCompared?.[t.cue]?.at(-1)||list[index]?.id||list.at(-1)?.id||null;if(s.selected){s.scoreCompared??={};if(!s.scoreCompared[t.cue]?.length)s.scoreCompared[t.cue]=[s.selected];restoreScoreView(s);}else{s.scoreComment=null;s.focusedScoreNote=null;}}
+ if(s.scoreRangeAnchor?.[t.cue]===id)s.scoreRangeAnchor[t.cue]=s.selected;
+ if(s.scoreSelectedTakes?.[t.cue]===id)delete s.scoreSelectedTakes[t.cue];
+ if(s.scoreComment?.take===id)s.scoreComment=null;
+ document.querySelector('.app-dialog')?.close();renderDemo();toast(entryLabel(t)+' deleted.');
+}
+document.addEventListener('click',event=>{
+ const confirm=event.target.closest('[data-confirm-delete-take]');if(confirm){deleteProposalTake(state(),confirm.dataset.confirmDeleteTake);return;}
+ const button=event.target.closest('[data-delete-take]');if(!button||button.disabled||!active)return;
+ const t=takeById(state(),button.dataset.deleteTake);if(!t||t.rolling)return;
+ appDialog('Delete '+entryLabel(t)+'?',`<p>This deletes ${esc(entryLabel(t))} from ${esc(cues[t.cue][0])}, including its notes and bar selections.</p>`,'<button data-app-dialog-close>Cancel</button><button class="take-delete-confirm" data-confirm-delete-take="'+t.id+'">Delete take</button>');
+});

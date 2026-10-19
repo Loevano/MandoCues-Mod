@@ -728,3 +728,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Een eigen label per take/overdub, bewerkbaar in Recording en Comp tool (ook All takes).
 - Labels delen dezelfde take-ID, blijven bij wisselen behouden en staan op het take sheet.
 - Sterren, Best en Alt blijven op vaste posities.
+
+
+## 85. Bestaande take verwijderen behouden
+
+- Verwijderknop bij de take in Recording, Comp tool en All takes. Bevestigen verwijdert ook de eigen notes en maatselecties.
+- Een lopende take is beschermd. Overige takes, cuewerktijd en planning blijven behouden.
+- Overgebleven takes worden niet hernummerd; nieuwe takes hergebruiken geen verwijderd nummer.
