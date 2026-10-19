@@ -20,10 +20,8 @@ with sync_playwright() as p:
     assert page.evaluate('!document.fullscreenElement&&!document.body.classList.contains("proposal-expanded")')
     assert page.evaluate('active.id')=='bediening'
     expect(page.locator('#main-panel [data-proposal-plan]')).to_have_class('proposal-schedule is-behind')
-    page.locator('[data-calm-session] > summary').click()
     expect(page.locator('[data-proposal-elapsed]')).to_contain_text('42:')
-    expect(page.locator('.calm-extra-times')).to_contain_text('5:20:00')
-    page.locator('[data-calm-session] > summary').click()
+    expect(page.locator('.main-session-times')).to_contain_text('5:20:00')
     # Cue selection remains visible in the list, separately from take selection.
     for cue_id in [1,0]:
         page.locator(f'.calm-cue-list [data-select-cue="{cue_id}"]').click()

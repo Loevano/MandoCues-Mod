@@ -8,7 +8,7 @@ with sync_playwright() as p:
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto((ROOT/'dist/index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
     expect(page.locator('[data-cue-complete]')).to_have_count(page.evaluate('cues.length'))
-    expect(page.locator('[data-cue-planned="0"]')).to_have_value('10')
+    expect(page.locator('.cue-group.current .planned-picker>summary')).to_contain_text('10')
     expect(page.locator('[data-cue-complexity="0"]')).to_have_value('Medium')
     expect(page.locator('[data-cue-actual="0"]')).to_have_text('08:00')
     expect(page.locator('[data-cue-actual="2"]')).to_have_text('—')
@@ -16,7 +16,8 @@ with sync_playwright() as p:
     original=page.evaluate('allTakes(state()).map(t=>({id:t.id,notes:t.notes,draft:t.draft,rating:t.rating,best:t.best,alt:t.alt}))')
     # Editing another cue never jumps the cue/take or changes notes.
     page.locator('[data-cue-complexity="1"]').select_option('High')
-    field=page.locator('[data-cue-planned="1"]');field.fill('30');field.press('Enter')
+    page.locator('.calm-cue-list [data-planned-menu="1"]>summary').click()
+    field=page.locator('.calm-cue-list [data-planned-input="1"]');field.fill('30');field.press('Enter')
     assert page.evaluate('cuePlannedMinutes(1)')==30
     assert page.evaluate('state().cue')==0 and page.evaluate('state().selected')==selected
     assert page.locator('[data-session-cue="1"]').evaluate('(el)=>el.style.flexBasis')=='240px'
@@ -42,7 +43,7 @@ with sync_playwright() as p:
     expect(page.locator('[data-cue-actual="1"]')).to_have_text('00:02')
     expect(page.locator('[data-cue-complete="1"]')).to_be_checked()
     expect(page.locator('[data-cue-complexity="1"]')).to_have_value('High')
-    expect(page.locator('[data-cue-planned="1"]')).to_have_value('30')
+    expect(page.locator('.calm-cue-list [data-planned-menu="1"]>summary')).to_contain_text('30')
     page.evaluate("showProposalView('cutlist')");page.clock.run_for(2200)
     page.evaluate("showProposalView('recording')")
     expect(page.locator('[data-cue-actual="1"]')).to_have_text('00:04')
@@ -58,12 +59,13 @@ with sync_playwright() as p:
     expect(page.locator('[data-cue-complete="0"]')).to_be_checked()
     # Input validation cannot poison the shared planning budget.
     for value in ['','-1','2000']:
-        field=page.locator('[data-cue-planned="0"]');field.fill(value);field.press('Enter')
-        expect(field).to_have_value('10')
+        page.locator('.calm-cue-list [data-planned-menu="0"]>summary').click()
+        field=page.locator('.calm-cue-list [data-planned-input="0"]');field.fill(value);field.press('Enter')
+        field.press('Escape')
         assert page.evaluate('cuePlannedMinutes(0)')==10
     for width in [1512,900,390]:
         page.set_viewport_size({'width':width,'height':1100})
-        for selector in ['[data-cue-planned="0"]','[data-cue-complexity="0"]','[data-cue-complete="0"]','[data-cue-actual="0"]']:
+        for selector in ['.calm-cue-list [data-planned-menu="0"]>summary','[data-cue-complexity="0"]','[data-cue-complete="0"]','[data-cue-actual="0"]']:
             box=page.locator(selector).bounding_box();assert box['x']>=0 and box['x']+box['width']<=width,(width,selector,box)
         assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
         page.locator('[data-open-cue="0"]').click();page.locator('[data-open-cue="0"]').click()

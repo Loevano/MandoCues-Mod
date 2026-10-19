@@ -614,3 +614,102 @@ body.unified-proposal{height:100dvh;min-height:0;display:flex;flex-direction:col
 .score-take-band{position:absolute;left:0;right:0;height:0;border-top:3px solid;pointer-events:none}
 .score-take-band.is-reference{border-top-style:dashed}
 .all-takes-cell.has-selection{box-shadow:inset 0 2px var(--take-color)}
+
+/* Main-panel layout review: one state and one set of controls, two arrangements. */
+.main-panel-options{display:flex;align-items:center;gap:6px;margin:0 0 12px;color:#b8acbf;font-size:11px}
+.demo .main-panel-options button{padding:5px 9px;font-size:11px;min-height:28px}
+.main-panel-options [aria-pressed="true"]{background:#453650;border-color:#a88abd;color:#f2e9fa}
+.recording-workspace .proposal-main-panel{display:grid;grid-template-columns:minmax(240px,1fr) minmax(275px,1.1fr) 280px;grid-template-areas:"cue clock session" "take clock session";gap:20px 24px;align-items:start;padding:8px 0 24px!important}
+.proposal-main-panel>.calm-cue{grid-area:cue;min-width:0}
+.proposal-main-panel .main-cue{display:flex;flex-direction:column;gap:4px;margin:14px 0 8px;min-height:100px}
+.proposal-main-panel .main-cue b{font:700 clamp(30px,3.2vw,46px)/1.1 var(--mono);letter-spacing:-1px}
+.proposal-main-panel .main-cue strong{font-size:clamp(25px,2.3vw,34px);line-height:1.15;overflow-wrap:anywhere}
+.proposal-main-panel .calm-cue>small{font-size:11px;color:#aaa0b3}
+.proposal-main-panel .proposal-cue-switcher{display:flex;gap:6px;margin-top:14px;flex-wrap:nowrap}
+.demo .proposal-cue-switcher button{font-size:11px;padding:7px 9px;white-space:nowrap}
+.proposal-main-panel>.proposal-session-clocks{grid-area:clock;justify-self:stretch;align-self:center;align-items:center;gap:10px;min-width:0}
+.proposal-main-panel .proposal-session-clocks>label{align-items:center;font-size:11px;gap:7px}
+.proposal-main-panel .proposal-session-clocks [data-wall-clock]{font:600 clamp(48px,5.8vw,88px)/1.05 var(--mono);letter-spacing:-3px;min-width:0;font-variant-numeric:tabular-nums}
+.proposal-main-panel .proposal-clock-plan{margin:0;text-align:center}
+.proposal-main-panel .proposal-schedule{font-size:24px}
+.proposal-main-panel .proposal-main-planning{margin:12px 0 0;padding:0;border:0}
+.proposal-main-panel .proposal-main-planning>label{display:flex;align-items:center;gap:6px;flex-direction:row;font-size:11px;flex-wrap:wrap;justify-content:center}
+.proposal-main-panel .proposal-main-planning b{font-size:13px;min-width:0}
+.proposal-main-panel .proposal-main-planning>label>span{display:flex;align-items:center;gap:5px}
+.proposal-main-panel>.calm-transport{grid-area:take;display:block;margin:0;min-width:0}
+.main-take-heading{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.main-take-heading>strong{font:650 30px/1.2 var(--mono);color:#e5d6f0}
+.main-take-heading>span{font-size:11px;color:#afa2b9}
+.is-recording .main-take-heading>strong{color:#ffabb9}
+.proposal-main-panel .main-take-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.demo .proposal-main-panel .record{min-width:0;font-size:12px;padding:11px 12px;max-width:100%}
+.demo .proposal-main-panel .main-take-actions>button:not(.record){font-size:11px;padding:8px}
+.demo .proposal-main-panel .proposal-take-clock{margin:0;font-size:10px;gap:3px;align-items:start}
+.proposal-main-panel .proposal-take-clock b{font:600 21px var(--mono)}
+.main-session-rail{grid-area:session;min-width:0;font-size:11px}
+.main-session-rail .proposal-session-header{margin:0;padding:0;border:0}
+.main-session-rail .session-choice{display:block;margin:0 0 12px}
+.main-session-rail .session-choice>label{min-width:0;display:block}
+.main-session-rail .session-choice select{width:100%;margin:5px 0;font-size:11px}
+.main-session-rail .session-choice>span{font-size:10px}
+.main-session-rail .session-setup{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:start;gap:9px}
+.main-session-rail .session-setup>label{font-size:10px;white-space:nowrap;gap:5px;min-width:0}
+.main-session-rail .session-setup>label>span{display:flex;gap:3px;font-size:9px;flex-wrap:wrap}
+.main-session-rail .session-setup input{width:50px;min-width:0;font-size:12px;padding:6px}
+.main-session-rail [data-session-hours]{display:none}
+.main-session-rail .session-app-actions{grid-column:1/-1;display:flex;gap:5px;margin:3px 0 0}
+.demo .main-session-rail .session-app-actions>button,.main-session-rail .session-pdf-menu>summary{font-size:10px;padding:6px 8px;min-height:31px}
+.main-session-rail .proposal-session-actions{display:flex;gap:6px;margin:10px 0 0}
+.demo .main-session-rail .proposal-session-actions button{font-size:11px;padding:7px 10px;display:inline-flex;align-items:center;gap:5px}
+.main-session-times{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:14px;color:#aaa0b4;font-size:10px}
+.main-session-times span{display:flex;gap:4px}
+.main-session-times b{font:11px var(--mono);color:#d4cadf}
+.recording-workspace .proposal-main-panel.layout-B{grid-template-columns:minmax(240px,1fr) minmax(240px,1fr) 280px;grid-template-areas:"clock clock session" "cue take session";gap:20px 24px}
+.layout-B .proposal-session-clocks{padding:4px 0 0}
+.layout-B .calm-cue{text-align:center}
+.layout-B .main-cue{flex-direction:row;justify-content:center;align-items:baseline;min-height:0;margin:10px 0;gap:14px}
+.layout-B .proposal-cue-switcher{justify-content:center}
+.layout-B .main-take-heading,.layout-B .main-take-actions{justify-content:center}
+.layout-B .proposal-main-planning{margin-top:2px}
+.planned-picker{display:inline-block;font:11px var(--mono);vertical-align:middle}
+.planned-picker>summary{display:inline-flex;align-items:center;gap:5px;list-style:none;cursor:pointer;color:#d6bde8;min-height:28px;white-space:nowrap}
+.planned-picker>summary::-webkit-details-marker{display:none}
+.planned-picker>summary b{border-bottom:1px dotted #a78bbc;font-size:12px}
+.planned-picker-panel{position:fixed;z-index:110;display:flex;flex-direction:column;gap:6px;width:140px;padding:7px;background:#241b2d;border:1px solid #8c6ca4;border-radius:7px;box-shadow:0 8px 24px #0008;font:12px var(--mono)}
+.planned-picker-panel input{width:100%;padding:7px!important;font-size:13px!important}
+.planned-choices{position:relative;display:flex;flex-direction:column;max-height:190px;overflow-y:auto;overscroll-behavior:contain}
+.demo .planned-choices button{font:12px var(--mono);flex-shrink:0;border:0;padding:7px;text-align:left;min-height:30px}
+.planned-choices [aria-pressed="true"]{background:#4b355d;color:white}
+.demo .calm-take-row .alt{min-width:36px;width:36px;padding:4px!important}
+.score-take-flags{grid-template-columns:48px 36px}
+.demo .score-take-flags button.alt{width:36px}
+.all-takes-tools{grid-template-columns:48px 36px}
+@media(max-width:1190px){
+ .recording-workspace .proposal-main-panel{grid-template-columns:minmax(220px,1fr) minmax(230px,1fr);grid-template-areas:"cue clock" "take clock" "session session"}
+ .main-session-rail{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 20px}
+ .main-session-rail .session-choice{margin-bottom:8px}
+ .main-session-rail .session-setup{display:flex;flex-wrap:wrap;gap:14px}
+ .main-session-rail .session-app-actions{margin:0}
+ .main-session-rail .proposal-session-actions{align-self:end;margin:0}
+ .main-session-times{grid-column:1/-1;margin-top:10px}
+ .recording-workspace .proposal-main-panel.layout-B{grid-template-columns:minmax(0,1fr);grid-template-areas:"clock" "cue" "take" "session"}
+ .proposal-main-panel .proposal-session-clocks [data-wall-clock]{font-size:clamp(42px,5.7vw,72px)}
+}
+@media(max-width:759px){
+ .recording-workspace .proposal-main-panel,.recording-workspace .proposal-main-panel.layout-B{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"clock" "cue" "take" "session";gap:20px;padding-bottom:20px!important}
+ .proposal-main-panel .proposal-session-clocks [data-wall-clock]{font-size:56px}
+ .proposal-main-panel .main-cue{min-height:0;flex-direction:row;gap:9px;flex-wrap:wrap;align-items:baseline}
+ .proposal-main-panel .main-cue b{font-size:32px}.proposal-main-panel .main-cue strong{font-size:26px}
+ .main-session-rail{display:block}.main-session-rail .session-setup{gap:12px}.main-session-rail .proposal-session-actions{margin-top:12px}
+ .main-panel-options{flex-wrap:wrap;font-size:10px}.main-panel-options>span{width:100%}
+ .main-take-heading>strong{font-size:28px}.proposal-main-panel .proposal-cue-switcher{justify-content:start}
+ .layout-B .calm-cue{text-align:left}.layout-B .main-take-heading,.layout-B .main-take-actions{justify-content:start}
+}
+
+.demo button.alt{width:36px;min-width:36px;flex-basis:36px}
+
+.proposal-main-panel .rec-status.rolling{font-size:14px!important;letter-spacing:.3px;padding:6px 10px}
+.calm-cue-heading .cue-name-line>b{font-size:17px}
+.calm-take-row .calm-take-name>b{font-size:14px}
+
+.demo .calm-cue-heading [data-select-cue] .cue-name-line>b{font-size:17px}

@@ -39,7 +39,7 @@ Een grotere klok met de voor-/achterstand eronder. − is achter, + is voor. Zou
 
 **Promptonderdeel:**
 
-Toon de kloktijd groter, met de sessieafwijking eronder; laat Expected end voorlopig uit de hoofd- en compacte bediening. Gebruik − voor achterstand, + voor voorsprong en 00:00 op schema, zonder zichtbare ahead/behind-tekst. Achterstand onder vijf minuten is oranje; vanaf vijf minuten rood. Voorsprong is groen en nul neutraal. Geef dezelfde betekenis in toegankelijke labels en tooltips en gebruik deze presentatie ook in Recording, de compacte scrollbalk en Comp tool. Cue-tijd tegenover geplande werktijd en de take-tijd blijven beschikbaar; overige sessietijden blijven onder Session details. Behoud de bestaande planningsberekeningen en bron; de demo bevat voorbeelddata en bewijst geen productiebeleid.
+Toon de kloktijd groter, met de sessieafwijking eronder; laat Expected end voorlopig uit de hoofd- en compacte bediening. Gebruik − voor achterstand, + voor voorsprong en 00:00 op schema, zonder zichtbare ahead/behind-tekst. Achterstand onder vijf minuten is oranje; vanaf vijf minuten rood. Voorsprong is groen en nul neutraal. Geef dezelfde betekenis in toegankelijke labels en tooltips en gebruik deze presentatie ook in Recording, de compacte scrollbalk en Comp tool. Cue-tijd tegenover geplande werktijd en de take-tijd blijven beschikbaar; overige sessietijden blijven compact bij de sessie-instellingen. De gekozen paneelindeling volgt na vergelijking van A en B; maak geen definitieve keuze voor Floris. Behoud de bestaande planningsberekeningen en bron; de demo bevat voorbeelddata en bewijst geen productiebeleid.
 
 ### 4. Kloktijden in 24-uursnotatie
 

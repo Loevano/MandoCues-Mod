@@ -1,6 +1,6 @@
 # MandoCues · één voorstel
 
-Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. Er zijn geen losse A/B-prototypes meer in de actieve UI.
+Open `../index.html` of `dist/index.html`. De offline pagina heeft Recording en Comp tool met gedeelde gegevens. Bij openen kies je Rondleiding starten of Zelf bekijken. A/B vergelijkt alleen de indeling van het hoofdpaneel; beide gebruiken dezelfde takes, notes en opnamebediening.
 
 ## Bouwen
 
@@ -13,7 +13,7 @@ python3 -X utf8 check_handoff.py
 
 Op Windows: vervang python3 door py -3. Alle benodigde scorebeelden en mappings zitten in `src/score-assets/`; de oorspronkelijke boeken zijn geen buildvereiste.
 
-De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 26 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
+De bron staat in `src/`. `unified-app.js` hergebruikt de bestaande opname- en scorecomponenten met één state. `proposal-tour.json` bevat de 25 korte suggesties en vaste promptteksten; `proposal-tour.js` regelt de rondleiding en selectie. `build.py` genereert de offline app en actuele documenten. Bewerk `dist/` niet rechtstreeks.
 
 ## Browsercontroles
 

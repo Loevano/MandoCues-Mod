@@ -687,3 +687,13 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Noem [ en ] bij direct een cue kiezen.
 - Vul de eerste drie voorbeeldcues met takes en notes. Een take-suggestie opent bij een lege cue een gevuld voorbeeld, zonder tijdens de rondleiding takes aan te maken.
 - Vermeld Command+Option+slepen naast Command+rechtsklik voor verwijderen van maatselecties.
+
+
+## 80. Twee indelingen om het hoofdpaneel te beoordelen
+
+- A: cue/take links, grote klok midden, sessiegegevens en bediening rechts.
+- B: klok boven cue/take, sessiegegevens en bediening rechts. Geen definitieve keuze: beide delen dezelfde state en functies.
+- Cue en take prominent; lopende opname rood en duidelijk herkenbaar.
+- Geen apart Session details-vak: instellingen en overige sessietijden compact bij elkaar.
+- Planned gebruikt een zwevende scrolllijst met minuten en directe invoer via Enter, ook in de cuelijst.
+- De Alt-knop is smaller en behoudt een vaste breedte.
