@@ -58,7 +58,7 @@ with sync_playwright() as p:
     page.evaluate('selectCue(state(),1)');page.evaluate('selectCue(state(),0)')
     expect(page.locator('[data-cue-complete="0"]')).to_be_checked()
     # Input validation cannot poison the shared planning budget.
-    for value in ['','-1','2000']:
+    for value in ['-1','2000']:
         page.locator('.calm-cue-list [data-planned-menu="0"]>summary').click()
         field=page.locator('.calm-cue-list [data-planned-input="0"]');field.fill(value);field.press('Enter')
         field.press('Escape')

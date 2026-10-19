@@ -10,7 +10,17 @@ function entryCountText(s,cue,fallback=0) {
   return takes+' '+(takes===1?'take':'takes')+(overdubs?' · '+overdubs+' '+(overdubs===1?'overdub':'overdubs'):'');
 }
 let cuePlanningState=null;
-function cuePlannedMinutes(j) { return cuePlanningState?.cueSettings?.[j]?.planned??([10,25,20,12,14,8,12,8,10,12,13,25][j]||10); }
+const inspectedCuePlan=[10,25,20,12,14,8,12,8,10,12,13,25,10,16,4,12,12,12,8,8,6,60.5,8,5,4,25.5];
+function cueAutoMinutes(s,j){
+ // Local estimate from the visible tooltip, not a reconstruction of the production scheduler.
+ const prep=s?.prepMinutes??3,weight=k=>{const [m,sec]=cues[k][2].split(':').map(Number);return (m+sec/60)*({Low:.7,Medium:1,High:1.5}[s?.cueSettings?.[k]?.complexity]??1);};
+ const total=cues.reduce((sum,_,k)=>sum+weight(k),0),available=Math.max(0,(s?.booked??360)-prep*cues.length);
+ return Math.max(.5,Math.round((prep+available*weight(j)/(total||1))*2)/2);
+}
+function cuePlannedMinutes(j) {
+ const setting=cuePlanningState?.cueSettings?.[j];
+ return setting?.planned===null?cueAutoMinutes(cuePlanningState,j):setting?.planned??inspectedCuePlan[j]??cueAutoMinutes(cuePlanningState,j);
+}
 function sourceCueFacts(c,j) {
   const planned=cuePlannedMinutes(j);
   return `<span class="cue-source-facts"><span><small>Music</small><b>${c[2]}</b></span><span title="Demo schedule"><small>Planned</small><b>${time(planned*60)}</b></span></span>`;

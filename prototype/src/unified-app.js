@@ -43,8 +43,8 @@ function proposalEndSession(s){
  s.sessionStarted=false;s.sessionEnded=true;renderDemo();
 }
 function plannedPicker(s,j,place='list'){
- const value=cuePlannedMinutes(j),values=Array.from({length:120},(_,i)=>i+1);if(value>120||!Number.isInteger(value))values.push(value);values.sort((a,b)=>a-b);
- return `<details class="planned-picker" data-planned-menu="${j}"><summary aria-label="Planned work in minutes for ${cues[j][0]}"><b>${value}</b>${place==='main'?' min':''}<span aria-hidden="true">⌄</span></summary><div class="planned-picker-panel"><input data-planned-input="${j}" type="text" inputmode="decimal" value="${value}" aria-label="Planned minutes for ${cues[j][0]}"><div class="planned-choices" role="group" aria-label="Choose planned minutes">${values.map(n=>`<button type="button" data-pick-planned="${n}" data-planned-cue="${j}" aria-pressed="${n===value}">${n} min</button>`).join('')}</div></div></details>`;
+ const value=cuePlannedMinutes(j),automatic=s.cueSettings?.[j]?.planned===null,values=Array.from({length:120},(_,i)=>i+1);if(value>120||!Number.isInteger(value))values.push(value);values.sort((a,b)=>a-b);
+ return `<details class="planned-picker" data-planned-menu="${j}"><summary title="${automatic?'Automatic estimate':'Manual override'} · clear to use Auto" aria-label="Planned work in minutes for ${cues[j][0]}"><b>${value}</b>${place==='main'?' min':''}<span aria-hidden="true">⌄</span></summary><div class="planned-picker-panel"><input data-planned-input="${j}" type="text" inputmode="decimal" value="${automatic?'':value}" placeholder="Auto" aria-label="Planned minutes for ${cues[j][0]}"><div class="planned-choices" role="group" aria-label="Choose planned minutes"><button type="button" data-pick-planned="auto" data-planned-cue="${j}" aria-pressed="${automatic}">Auto · ${cueAutoMinutes(s,j)} min</button>${values.map(n=>`<button type="button" data-pick-planned="${n}" data-planned-cue="${j}" aria-pressed="${!automatic&&n===value}">${n} min</button>`).join('')}</div></div></details>`;
 }
 function closePlannedPickers(){document.querySelectorAll('.planned-picker[open]').forEach(el=>el.open=false);}
 function positionPlannedPicker(menu){
@@ -52,6 +52,7 @@ function positionPlannedPicker(menu){
  Object.assign(panel.style,{left:Math.max(8,Math.min(innerWidth-panel.offsetWidth-8,r.left))+'px',top:(r.bottom+panel.offsetHeight+6<innerHeight?r.bottom+6:Math.max(8,r.top-panel.offsetHeight-6))+'px'});
 }
 function choosePlanned(j,value){
+ if(value==='auto'||!String(value).trim()){cueSettings(unifiedState,+j).planned=null;closePlannedPickers();renderDemo();return;}
  if(!String(value).trim()||!Number.isFinite(+value)||+value<1||+value>1440){toast('Choose planned minutes from 1 to 1440.');return;}
  cueSettings(unifiedState,+j).planned=+value;closePlannedPickers();renderDemo();
 }

@@ -60,3 +60,5 @@ De demo is geen recorder en heeft geen echte DAW-/filmtijd of live score followi
 Alles bouwt met Python 3.10+ zonder extra pakketten. `python3 -X utf8 prototype/check_handoff.py` vergelijkt de huidige uitvoer met een schone geïsoleerde build. Browsercontroles gebruiken optioneel Playwright; zie `prototype/README.md`.
 
 Shift+klik in Comp tool kiest een reeks takes vanaf het laatste klikanker; Command+klik kiest losse takes. Command+Shift+klik voegt een reeks toe. De aangeklikte take wordt de bewerkbare laag.
+
+Auto-planning: Planned bevat de originele 26 inspectiewaarden als voorbeeld-overrides. Auto kiezen of leegmaken schakelt terug naar een schatting die reageert op Complexity, sessieduur en voorbereiding. De lokale formule volgt de zichtbare tooltip en is niet de geverifieerde productieplanner.

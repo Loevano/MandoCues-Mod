@@ -40,6 +40,7 @@ document.addEventListener('change',event=>{
  if(key==='length'){const timing=scoreWorkflowTiming(unifiedState);unifiedState.booked=value;timing.clock.booked=value*60;timing.clock.plannedEndAt=Date.now()+Math.max(0,value*60-timing.elapsed)*1000;document.querySelector('[data-session-hours]').textContent=Math.floor(value/60)+'h '+String(value%60).padStart(2,'0')+'m';}
  if(key==='prep')unifiedState.prepMinutes=value;
  if(key==='music')unifiedState.maxMusicMinutes=value;
+ renderDemo();
 });
 document.addEventListener('submit',event=>{
  if(!event.target.matches('[data-session-chat-form]'))return;event.preventDefault();const field=event.target.querySelector('textarea'),text=field.value.trim();if(!text)return;

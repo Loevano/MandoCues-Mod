@@ -713,3 +713,11 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Command+klik kiest losse takes. Shift+klik kiest de reeks vanaf het laatste klikanker.
 - Command+Shift+klik voegt een reeks toe. Gewone klik kiest alleen die take.
 - De aangeklikte take is bewerkbaar; opname, notes, maatselecties en leespositie blijven behouden.
+
+
+## 83. Bestaande automatische planning behouden
+
+- Bewaar alle 26 zichtbare Planned-waarden uit de aangeleverde momentopname.
+- Een handmatige minutenkeuze blijft een override; leegmaken of Auto kiezen schakelt terug naar een automatische schatting.
+- Auto reageert op sessieduur, voorbereiding, muziekduur en Complexity. Een handmatige override blijft staan.
+- De lokale schatting volgt de zichtbare uitleg (voorbereiding + gewogen aandeel), geen geverifieerde kopie van de productieplanner. Behoud bij echte implementatie de bestaande logica en opslag.
