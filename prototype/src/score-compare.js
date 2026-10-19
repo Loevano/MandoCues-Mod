@@ -2,11 +2,25 @@
 function scoreVisibleTakes(s){const ids=s.scoreCompared?.[s.cue]||[s.selected];return [...new Set([s.selected,...ids])].map(id=>takeById(s,id)).filter(t=>t&&t.cue===s.cue);}
 function toggleScoreComparison(s,id){
  const t=takeById(s,id);if(!t||t.cue!==s.cue)return;
+ s.scoreRangeAnchor??={};s.scoreRangeAnchor[s.cue]=id;
  const ids=scoreVisibleTakes(s).map(t=>t.id),on=ids.includes(id);
  if(on&&ids.length===1)return;
  const next=on?ids.filter(x=>x!==id):[...ids,id];s.scoreCompared??={};s.scoreCompared[s.cue]=next;
  const primary=on?(id===s.selected?next.at(-1):s.selected):id;
  if(primary!==s.selected)selectScoreTake(s,primary,true,true);else renderDemo();
+}
+function selectScoreRange(s,id,add=false){
+ const takes=s.takes[s.cue],end=takes.findIndex(t=>t.id===id);if(end<0)return;
+ const anchor=s.scoreRangeAnchor?.[s.cue]||s.selected,start=Math.max(0,takes.findIndex(t=>t.id===anchor));
+ s.scoreRangeAnchor??={};s.scoreRangeAnchor[s.cue]=takes[start].id;
+ const range=takes.slice(Math.min(start,end),Math.max(start,end)+1).map(t=>t.id);
+ s.scoreCompared??={};s.scoreCompared[s.cue]=add?[...new Set([...scoreVisibleTakes(s).map(t=>t.id),...range])]:range;
+ selectScoreTake(s,id,true,true);
+}
+function chooseScoreTake(s,id,event){
+ if(event?.shiftKey)selectScoreRange(s,id,!!(event.metaKey||event.ctrlKey));
+ else if(event?.metaKey||event?.ctrlKey)toggleScoreComparison(s,id);
+ else selectScoreTake(s,id);
 }
 function scoreComparisonLayers(s,page){
  const visible=new Set(scoreVisibleTakes(s).map(t=>t.id));

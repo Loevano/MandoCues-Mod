@@ -194,11 +194,11 @@ Behoud undo/redo voor toevoegen, verwijderen, aanpassen en verplaatsen van score
 
 ### 23. Meerdere takes vergelijken
 
-⌘+klik op meerdere takes om hun notes en geselecteerde maten samen op dezelfde score te bekijken.
+⌘+klik kiest losse takes; Shift+klik kiest een reeks. Bekijk hun notes en geselecteerde maten samen op de score.
 
 **Promptonderdeel:**
 
-Gewone klik kiest één take; Command+klik schakelt extra takes in of uit voor vergelijking, met minimaal één geselecteerde take. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Verhoog kleurcontrast; laat overlap zien met meerkleurige arcering en aparte kleurstrepen per take. Verberg een achtergrondselectie niet zodra de gekozen take dezelfde maat bevat. Selecties blijven onafhankelijk per take; toevoegen, verwijderen en undo in één take wijzigen de andere niet. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
+Gewone klik kiest één take. Command+klik schakelt losse takes in of uit, met minimaal één geselecteerd. Shift+klik kiest de aaneengesloten reeks tussen het laatste gewone/Command-klikanker en de aangeklikte take; Command+Shift+klik voegt die reeks toe. Gebruik de gebruikelijke Mac-selectie: Shift houdt het anker vast, een gewone of Command-klik zet het anker opnieuw. Dit werkt in PDF en All takes en verandert geen takes of notities. De laatst toegevoegde is bewerkbaar. Houd vaste takekleuren en leespositie; toon expliciete vergelijkingen duidelijker dan achtergrondreferenties. Verhoog kleurcontrast; laat overlap zien met meerkleurige arcering en aparte kleurstrepen per take. Verberg een achtergrondselectie niet zodra de gekozen take dezelfde maat bevat. Selecties blijven onafhankelijk per take; toevoegen, verwijderen en undo in één take wijzigen de andere niet. Vergelijken wijzigt geen opname, notes of opgeslagen selecties en neemt geen notes over in een nieuwe take.
 
 ### 24. Instrumenten en andere takes
 

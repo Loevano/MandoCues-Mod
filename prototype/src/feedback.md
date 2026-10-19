@@ -706,3 +706,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - Vastleggen bij de eerste letter. Ook na het wissen van alle tekst blijft die kloktijd staan; alleen het klokje zet hem op nu. Enter maakt na plaatsen een nieuw concept klaar.
 - Klikken en Enter past de tijd aan; het klokje vult de actuele kloktijd in. De maat blijft handmatig.
 - De demo bevat geen koppeling met Pro Tools of andere DAW.
+
+
+## 82. Gebruikelijke Mac-selectie voor vergelijken
+
+- Command+klik kiest losse takes. Shift+klik kiest de reeks vanaf het laatste klikanker.
+- Command+Shift+klik voegt een reeks toe. Gewone klik kiest alleen die take.
+- De aangeklikte take is bewerkbaar; opname, notes, maatselecties en leespositie blijven behouden.

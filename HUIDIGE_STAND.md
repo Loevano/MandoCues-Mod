@@ -58,3 +58,5 @@ De demo is geen recorder en heeft geen echte DAW-/filmtijd of live score followi
 - `prototype/legacy-checks/`: checks van de eerdere vijf prototypes. Alleen bij de oude Git-tag van toepassing.
 
 Alles bouwt met Python 3.10+ zonder extra pakketten. `python3 -X utf8 prototype/check_handoff.py` vergelijkt de huidige uitvoer met een schone geïsoleerde build. Browsercontroles gebruiken optioneel Playwright; zie `prototype/README.md`.
+
+Shift+klik in Comp tool kiest een reeks takes vanaf het laatste klikanker; Command+klik kiest losse takes. Command+Shift+klik voegt een reeks toe. De aangeklikte take wordt de bewerkbare laag.
