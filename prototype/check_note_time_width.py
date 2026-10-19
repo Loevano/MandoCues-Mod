@@ -21,15 +21,17 @@ with sync_playwright() as p:
                 composer=page.locator('[data-composer="c0-t2"]')
                 field=composer.locator('[data-note-time-edit="draft"]')
                 fits(field)
-                for value in ['00:42:00','01:02:03','23:59:59']:
+                for value in ['12:42:00 AM','01:02:03 PM','11:59:59 PM','23:59:59']:
                     field.click();field.fill(value);fits(field)
                     field.press('Enter');fits(field)
+                    assert field.input_value().endswith((' AM',' PM'))
                 composer.locator('[data-reset-note-time="draft"]').click();fits(field)
             # Saved clock times retain sufficient width and do not collide with Delete.
             selector='.calm-notes [data-note-id="seed-2"]' if view=='recording' else '.score-note-row[data-note-id="seed-2"]'
             row=page.locator(selector);stamp=row.locator('[data-note-time-edit]')
-            for value in ['00:42:00','01:02:03','23:59:59']:
+            for value in ['12:42:00 AM','01:02:03 PM','11:59:59 PM','23:59:59']:
                 stamp.click();stamp.fill(value);fits(stamp);stamp.press('Enter');fits(stamp)
+                assert stamp.input_value().endswith((' AM',' PM'))
                 if view=='cutlist':
                     stamp_box=stamp.locator('..').bounding_box();delete=row.locator('[data-delete-note]').bounding_box()
                     assert stamp_box['x']+stamp_box['width']<=delete['x']+.5,(stamp_box,delete)

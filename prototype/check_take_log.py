@@ -40,7 +40,7 @@ with sync_playwright() as p:
     assert page.evaluate('state().takes[0].at(-1).takeLog') == stopped
     page.locator('.session-pdf-menu summary').click()
     page.locator('[data-app-export="takes"]').click()
-    expect(page.locator('.session-export-preview')).to_contain_text(stopped['loggedStartAt'])
+    expect(page.locator('.session-export-preview')).to_contain_text('11:59:58 PM')
     expect(page.locator('.session-export-preview')).to_contain_text('Recording time not logged (example take)')
     with page.expect_download() as download:
         page.locator('[data-app-action="download-take-log"]').click()

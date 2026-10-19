@@ -1,7 +1,7 @@
 // One workspace, one take model. The old layouts remain recoverable in Git.
 let unifiedState=Object.assign(states.partituur,{unified:true,sessionStarted:false,booked:360,elapsed:0,remaining:360,sessionEnded:false,sessionPausedAt:null});
 const initialSessionCues=cues.map(c=>[...c]);
-const proposalSessionCatalog=[{id:'strings-20261020',label:'String quartet · 20 October',detail:'20 October 2026 · 10:00 · Studio Hana'},{id:'strings-demo-day2',label:'String quartet · 21 October (demo)',detail:'21 October 2026 · 10:00 · Studio Hana · Example session'}];
+const proposalSessionCatalog=[{id:'strings-20261020',label:'String quartet · 20 October',detail:'20 October 2026 · 10:00 AM · Studio Hana'},{id:'strings-demo-day2',label:'String quartet · 21 October (demo)',detail:'21 October 2026 · 10:00 AM · Studio Hana · Example session'}];
 unifiedState.sessionId=proposalSessionCatalog[0].id;unifiedState.sessionCues=cues.map(c=>[...c]);
 const proposalSessionStates=new Map([[unifiedState.sessionId,unifiedState]]);
 function proposalSessionMeta(s){return proposalSessionCatalog.find(day=>day.id===s.sessionId)||proposalSessionCatalog[0];}
@@ -43,7 +43,7 @@ function proposalSchedule(){
  return `<span class="proposal-schedule ${proposalPlanClass(timing.delta)}" data-proposal-plan aria-label="${proposalPlanLabel(timing.delta)}" title="${proposalPlanLabel(timing.delta)}">${scoreWorkflowPlanText(timing.delta)}</span>`;
 }
 function proposalDuration(seconds){return seconds>=3600?Math.floor(seconds/3600)+':'+String(Math.floor(seconds/60)%60).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0'):time(seconds);}
-function proposalClockTime(ms){return new Date(ms).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true});}
+function proposalClockTime(ms){return formatLocalClock(ms,false);}
 function proposalEndTime(timing,expected=true){return proposalClockTime(timing.clock.plannedEndAt+(expected?timing.delta:0)*1000);}
 function proposalSessionBreak(s){
  if(!s.sessionStarted||running(s))return;

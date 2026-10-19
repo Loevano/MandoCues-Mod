@@ -37,7 +37,13 @@ function allTakes(s){return s.takes.flat();}
 function takeById(s,id){return allTakes(s).find(t=>t.id===id);}
 function running(s){return allTakes(s).find(t=>t.rolling);}
 function position(t){return t.rolling?t.base+(t.started?Math.floor((Date.now()-t.started)/1000):0):t.cursor;}
-function formatWallClock(){return new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});}
+function formatLocalClock(ms,seconds=true){return new Date(ms).toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',...(seconds?{second:'2-digit'}:{}),hour12:true});}
+function parseLocalClock(value){
+ const match=value.trim().match(/^(\d{1,2}):([0-5]\d)(?::([0-5]\d))?\s*(AM|PM)?$/i);if(!match)return null;
+ let hours=+match[1];const period=match[4]?.toUpperCase();if(period){if(hours<1||hours>12)return null;hours=hours%12+(period==='PM'?12:0);}else if(hours>23)return null;
+ return {hours,minutes:+match[2],seconds:+(match[3]||0)};
+}
+function formatWallClock(){return formatLocalClock(Date.now());}
 function time(n){n=Math.max(0,Math.floor(n||0));return `${String(Math.floor(n/60)).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`;}
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),2700);}
 function promptBody(i,v){return `Gewenst gedrag:\n${i.requirement}\n\n${Object.keys(i.variants).length>1?'Variant '+v:'Uitwerking'}:\n${i.variants[v]}\n\nControle:\n${i.accept}${i.inspection?'\n\nContext uit het bestaande scherm:\n'+i.inspection:''}${i.context?'\n\nErvaring uit Floris’ andere project:\n'+i.context:''}`;}
@@ -91,7 +97,7 @@ function mountMainScore(s){
  $('.main-score-pages').scrollTop=s.mainScoreScroll?.[s.cue]||0;
 }
 function recordingScreen(s,body,focus){return demoTop(focus)+sourceSessionSummary(s)+`<div class="shared-recording-screen" data-recording-view="${active.id}">${mainPanel(s)}${sourceCuePlan(s)}${body}</div>`;}
-function noteTimeValue(n){return new Date(n.clockAt??Date.now()).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});}
+function noteTimeValue(n){return formatLocalClock(n.clockAt??Date.now());}
 function sizeNoteTime(el){el.style.width=Math.max(6,el.value.length+1)+'ch';el.scrollLeft=0;}
 function setNoteTimeValue(el,value){el.value=value;sizeNoteTime(el);}
 function noteTime(s,t,n,place){
@@ -100,9 +106,9 @@ function noteTime(s,t,n,place){
 }
 function commitNoteTime(el){
  const s=state(),t=takeById(s,el.dataset.take),n=metadataNote(t,el.dataset.noteTimeEdit);if(!n)return false;
- const value=el.value.trim();
- if(!/^(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?$/.test(value)){el.setCustomValidity('Use 24-hour clock time, for example 14:32:08.');el.reportValidity();return false;}
- el.setCustomValidity('');const [hours,minutes,seconds=0]=value.split(':').map(Number),date=new Date(n.clockAt??Date.now());date.setHours(hours,minutes,seconds,0);
+ const value=parseLocalClock(el.value);
+ if(!value){el.setCustomValidity('Use a clock time, for example 02:32:08 PM.');el.reportValidity();return false;}
+ el.setCustomValidity('');const date=new Date(n.clockAt??Date.now());date.setHours(value.hours,value.minutes,value.seconds,0);
  if(n.clockAt===date.getTime()&&n.useTime!==false){setNoteTimeValue(el,noteTimeValue(n));el.readOnly=true;return true;}
  if(n.id!=='draft')rememberScoreChange(s,t);n.clockAt=date.getTime();n.useTime=true;renderDemo();
  document.querySelector(`[data-note-time-edit="${n.id}"][data-editor-place="${el.dataset.editorPlace}"]`)?.focus({preventScroll:true});return true;

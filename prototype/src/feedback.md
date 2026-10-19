@@ -764,3 +764,10 @@ Direct onder de kleine suggesties en vóór de prototypes staan deze vragen, zon
 - BWF heeft OriginationDate/OriginationTime; daadwerkelijk schrijfgedrag in de gebruikte Pro Tools-versie nog met originele WAVs controleren. Houd rekening met klokverschil, datum, QuickPunch en meerdere kanalen.
 - Nieuwe demo-takes/overdubs bewaren aparte lokale start-/stopinstants, tijdzone, sessie/cue en log-ID. Geen tijd verzinnen voor voorbeeldtakes. Take sheet kan een JSON-log downloaden; demo-opslag blijft vluchtig en is geen DAW-bevestiging.
 - Technische aanpak, bronnen en praktijktest staan in Pro-Tools-takekoppeling.md. Voorlopig kandidaten voorstellen en handmatig bevestigen; geen automatische audio- of maatsynchronisatie.
+
+
+## 89. AM/PM behouden
+
+- Kloktijden met AM/PM zoals in het origineel, ook bij notes en in het take sheet. Geen voorstel meer voor overal 24-uursweergave.
+- Bewaar UTC-instants en datum ongewijzigd; dit gaat over weergave en invoer. Duurvelden blijven minuten/seconden.
+- Note-tijden accepteren AM/PM, inclusief 12 AM (middernacht) en 12 PM (middag). De bestaande 24-uursinvoer blijft als invoergemak geaccepteerd en wordt met AM/PM getoond.

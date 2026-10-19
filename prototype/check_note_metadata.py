@@ -58,11 +58,14 @@ with sync_playwright() as p:
     choose_bar(18)
     assert saved()['measure']==18 and saved()['clockAt']==original
     stamp=row.locator('[data-note-time-edit]')
-    stamp.click();stamp.fill('00:45');stamp.press('Escape')
+    stamp.click();stamp.fill('12:45 AM');stamp.press('Escape')
     assert saved()['clockAt']==original
-    stamp.click();stamp.fill('00:45');stamp.press('Enter')
+    stamp.click();stamp.fill('12:45 AM');stamp.press('Enter')
     assert saved()['clockAt']==clock_at(0,45) and saved()['createdAt']>=original
     expect(stamp).to_have_attribute('readonly','')
+    for value,hours in [('12:15 AM',0),('12:15 PM',12),('01:15 PM',13)]:
+        stamp.click();stamp.fill(value);stamp.press('Enter')
+        assert saved()['clockAt']==clock_at(hours,15)
     current=page.evaluate('Date.now()')
     row.locator('[data-reset-note-time]').click()
     assert abs(saved()['clockAt']-current)<1000 and saved()['createdAt']>=original and current>original
@@ -76,9 +79,9 @@ with sync_playwright() as p:
     choose_bar(18)
     assert saved()['page'] is not None
     stamp=row.locator('[data-note-time-edit]')
-    stamp.click();stamp.fill('01:02:03');stamp.press('Enter')
+    stamp.click();stamp.fill('01:02:03 AM');stamp.press('Enter')
     assert saved()['clockAt']==clock_at(1,2,3) and saved()['createdAt']>=original
-    expect(stamp).to_have_value('01:02:03')
+    expect(stamp).to_have_value('01:02:03 AM')
     current=page.evaluate('Date.now()')
     row.locator('[data-reset-note-time]').click()
     assert abs(saved()['clockAt']-current)<1000 and saved()['createdAt']>=original
