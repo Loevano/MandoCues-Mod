@@ -1,0 +1,111 @@
+Ik heb Mando Qs tijdens een echte opnamesessie getest. Hieronder staan mijn bevindingen en ideeën, inclusief dingen waarover ik nog twijfel.
+
+Jij hebt de context van het bestaande project. Bekijk deze punten vanuit die context, denk na over de problemen en maak **eerst een plan**. Stel vragen wanneer mijn bedoeling onduidelijk is.
+
+Maak daarna **per toevoeging of wijziging een klein prototype dat je aan mij laat zien**. Bij verschillende mogelijke indelingen wil ik ze kunnen vergelijken. Ik beoordeel vervolgens wat prettig werkt en waarmee ik akkoord ga voordat je het definitief doorvoert.
+
+**1. Minder zoeken en scrollen bij de actieve cue**
+
+Het grootste probleem is dat ik steeds naar beneden moet scrollen en zoeken waar de cue staat waaraan we werken, zodat ik een opmerking kan maken. Daarna moet ik weer naar boven voor andere handelingen.
+
+Alles wat ik voor de actieve cue nodig heb, moet binnen handbereik komen: het commentveld, de eerder gemaakte opmerkingen bij die cue en de bediening.
+
+Zie Mando Qs vooral als een notitie- en timemanagementtool. Die twee functies moeten tijdens de sessie goed samengaan.
+
+**2. De huidige indeling vergelijken met een alternatief**
+
+Ik wil onderzoeken of de opmerkingen en het timemanagement meer samen in één scherm kunnen komen. Daarbij wil ik ook eerdere opmerkingen kunnen zien.
+
+Tegelijk twijfel ik of alles goed past. De huidige versie werkt op zich prettig, maar je scrollt nog behoorlijk veel op en neer. Misschien is de bestaande opzet uiteindelijk al de beste basis.
+
+Maak een A/B-prototype waarmee we de huidige opzet kunnen vergelijken met een alternatief waarin dit meer samenkomt. Denk daarbij na over waar de opmerkingen staan, hoeveel je ervan kunt overzien en hoe bereikbaar de bediening blijft.
+
+**3. Spatie gebruiken om snel een take te starten**
+
+Spatie bleek tijdens de sessie handig, omdat je soms heel snel een take moet starten terwijl je ook met andere dingen bezig bent. Ik wil hiervoor spatie kunnen gebruiken, niet Command-Enter.
+
+Ook als er een Pro Tools-koppeling komt, moet handmatig starten met spatie als terugval beschikbaar blijven.
+
+Als je spatie gebruikt terwijl Pro Tools gekoppeld is, lijkt een eenmalige melding me handig: wil je Pro Tools overrulen of niet?
+
+**4. Onderzoeken hoe Mando Qs met Pro Tools kan synchroniseren**
+
+Ik wil een manier vinden waarop Mando Qs automatisch meeloopt met de tijdcode, cue en take in Pro Tools.
+
+Ik kan tijdens een sessie met mijn laptop en een interface zitten en om een lijntje vanuit Pro Tools vragen. Onderzoek hoe we daarmee de koppeling kunnen maken en wat daarvoor nodig is.
+
+Het doel is dat een take in Pro Tools en de bijbehorende take in Mando Qs altijd bij elkaar horen: dezelfde naam, dezelfde tijd en dezelfde duur. Ook als er bijvoorbeeld een take wordt verwijderd, moet daar geen verwarring over ontstaan.
+
+In de gekoppelde werkwijze wil ik dat Mando Qs automatisch de juiste cue en take volgt. Als die koppeling om een of andere reden niet kan, moet de handmatige werkwijze beschikbaar blijven.
+
+**5. Flexibeler timemanagement**
+
+Tijdens de sessie werkte de planning niet flexibel genoeg. Als we uitliepen of een pauze namen, klopten de tijden op een gegeven moment niet meer goed. Dan bleef er staan dat we achterliepen, terwijl de inschatting zelf niet meer goed aansloot.
+
+Ik wil tijdens de sessie een eindtijd kunnen instellen of aanpassen, waarna opnieuw wordt berekend hoeveel tijd we voor iedere resterende cue hebben.
+
+Die verdeling moet rekening houden met de duur en moeilijkheid van iedere cue, in plaats van de beschikbare tijd gelijk te verdelen.
+
+Bijvoorbeeld: we hebben tot 18:00 en nog vijf cues. Drie duren ongeveer twee minuten en zijn medium, één duurt een minuut en is hard, en één duurt een minuut en is easy. Op basis daarvan moet een passende tijdsverdeling worden gemaakt.
+
+Ik kan gegevens van de geteste sessie aanleveren om een beter beeld te geven van hoeveel tijd dingen daadwerkelijk kosten.
+
+**6. Verschillende secties binnen één cue**
+
+We nemen een cue vaak in verschillende delen op. Bijvoorbeeld eerst maat 1–8, daar een paar takes van, en daarna maat 12–15. Dat zijn verschillende selecties of secties binnen dezelfde cue, niet per se overdubs.
+
+De takenummers blijven gewoon doorlopen. Na take 3 komt take 4, ook wanneer we op een andere plek in de cue beginnen.
+
+Ik wil heel snel kunnen aangeven welk maatbereik wordt opgenomen, bijvoorbeeld maat 4–10 of maat 1–3. Vervolgens moet je in één oogopslag kunnen zien welke takes bij welk bereik horen.
+
+Hier zouden sneltoetsen goed voor kunnen werken. Denk na over een snelle manier om zo’n bereik in te voeren.
+
+**7. Snel maatlabels aan opmerkingen toevoegen**
+
+Tijdens het schrijven van een opmerking wil ik vanuit het commentveld met een sneltoets kunnen aangeven over welke maat de opmerking gaat.
+
+Dat maatnummer moet als apart label bij de opmerking komen, zoals in het eerder besproken systeem. Het moet niet automatisch onderdeel worden van de commenttekst.
+
+Dit moet kunnen voor één maat, maar ook voor een bereik, zoals maat 13–20. Je moet dus snel een maat kunnen invoeren en eventueel “tot en met” kunnen toevoegen.
+
+Een idee is iets met Command of Alt en cijfers, waarbij ook meercijferige maatnummers snel ingevoerd kunnen worden. Maar misschien zijn er betere combinaties. De exacte sneltoetsen liggen nog niet vast.
+
+De huidige sneltoetsen om tussen cues en takes te wisselen zijn ook prettig. Kijk hoe deze functies goed naast elkaar kunnen bestaan.
+
+**8. Partituur en comp-tool**
+
+Een geprinte partituur op A4 wil je sowieso bij de hand hebben. Daarnaast lijkt het me fijn als de partituur op een of andere manier in de interface past.
+
+We hebben ook de comp-tool, maar die heb ik nog niet goed kunnen uitproberen. Neem die mee wanneer je hierover nadenkt.
+
+**9. Het cue-overzicht onderaan**
+
+Onderaan staan alle cues onder elkaar. Ik wil de opnamevolgorde makkelijk zelf kunnen instellen door cues te verschuiven.
+
+Daarnaast moet ik het overzicht kunnen sorteren op zowel opnamevolgorde als de oorspronkelijke cuevolgorde, van de eerste tot de laatste cue.
+
+Als ik naar beneden scroll, wil ik duidelijk kunnen herkennen welke cue op dat moment actief is. Dat wordt nu op zich al aangegeven.
+
+Misschien is een knop “Current cue” op een logische plek handig, waarmee ik naar de actieve cue kan springen. Ik twijfel over automatisch scrollen naar die cue; dat lijkt me mogelijk juist vervelend. Denk na over een passende oplossing.
+
+**10. Modulair en instelbaar houden, zonder een vollere interface**
+
+Verschillende mensen willen verschillende informatie zien. We moeten een manier vinden om Mando Qs makkelijk modulair of instelbaar te maken.
+
+VJ wil bijvoorbeeld misschien een bepaald systeem met tijdcodes en zelf kunnen kiezen welke tijden zichtbaar zijn.
+
+De huidige grote tijdweergave toont de lokale tijd. Misschien wil iemand daar klein een andere wereldtijd onder zien, bijvoorbeeld omdat iemand in Los Angeles zit en iemand anders in Europa of ergens anders.
+
+Ik wil kunnen kiezen welke tijden of tijdcodes ik voor me heb, zonder dat de interface overal vol komt te staan met klokken en tijdcodes.
+
+Misschien werkt een uitklapbaar onderdeel, misschien iets wat je zelf kunt instellen. Dat zijn ideeën om te onderzoeken, geen vastgelegde oplossing.
+
+De huidige interface is redelijk clean. Dat wil ik behouden.
+
+**11. De tutorial aanpassen**
+
+Richt de tutorial verder in op de werkwijze en de wijzigingen die we uiteindelijk kiezen.
+
+**Aanpak**
+
+Denk eerst over deze problemen na en maak een samenhangend plan. Stel gerichte vragen waar mijn uitleg nog onduidelijk is. Werk vervolgens per toevoeging een klein prototype uit dat ik kan beoordelen. Leg keuzes die nog openstaan eerst aan mij voor via die prototypes, voordat je ze definitief doorvoert.
