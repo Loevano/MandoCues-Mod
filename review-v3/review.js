@@ -1,5 +1,10 @@
 // Local review layer. It leaves the v2 source, tour and hosting checkout unchanged.
 const sessionReview={layout:'A',space:true,history:false,moreTiming:false,setupOpen:false,scrolls:{A:0,B:0},decision:null};
+sessionReview.feature='workspace';sessionReview.variants={workspace:'A',history:'A',sections:'A',notes:'A',planning:'A',order:'A',clocks:'A',score:'A'};
+const reviewUpdates=[];
+const reviewShortcutBase=shortcutText;
+shortcutText=function(text){return reviewShortcutBase(text).replace(/(<kbd class="keyboard-shortcut">[⌘⌥⌃⇧ +]+)<\/kbd>J\b/g,'$1J</kbd>');};
+function reviewVariant(key){return sessionReview.variants[key]||'A';}
 const reviewBaseControls=controls,reviewBaseRender=renderDemo,reviewRecordButton=recordButton;
 const reviewBaseSessionHeader=proposalSessionHeader;
 document.querySelector('#proposal-welcome')?.close();
@@ -16,10 +21,10 @@ proposalSessionHeader=function(s){
  if(sessionReview.layout==='A')return markup;
  return `<details class="v3-session-setup" ${sessionReview.setupOpen?'open':''}><summary>Session setup <span>${esc(proposalSessionMeta(s).label)}</span></summary>${markup}</details>`;
 };
-function reviewActiveTakes(s){return `<section class="v3-active-takes" aria-label="Takes in the active cue"><header><b>${cues[s.cue][0]} · Takes</b><small>${entryCountText(s,s.cue)}</small></header><div class="v3-active-take-buttons">${s.takes[s.cue].map(t=>`<button type="button" data-select-take="${t.id}" aria-pressed="${s.selected===t.id}"><b>${entryLabel(t)}</b><small>${t.rolling?'● Recording':time(t.duration)}</small></button>`).join('')||'<p>No takes yet. Start a take to write notes.</p>'}</div></section>`;}
+function reviewActiveTakes(s){return `<section class="v3-active-takes" aria-label="Takes in the active cue"><header><b>${cues[s.cue][0]} · Takes</b><small>${entryCountText(s,s.cue)}</small></header><div class="v3-active-take-buttons">${s.takes[s.cue].map(t=>`<button type="button" data-select-take="${t.id}" aria-pressed="${s.selected===t.id}"><b>${entryLabel(t)}</b><small>${t.barRange?reviewBarsText(t.barRange)+' · ':''}${t.rolling?'● Recording':time(t.duration)}</small></button>`).join('')||'<p>No takes yet. Start a take to write notes.</p>'}</div></section>`;}
 function reviewCueHistory(s){
  const rows=s.takes[s.cue].flatMap(t=>t.notes.map(n=>({t,n})));
- return `<section class="v3-cue-history"><header><button type="button" data-review-history aria-expanded="${sessionReview.history}">${sessionReview.history?'⌄':'›'} Earlier notes in this cue <span>${rows.length}</span></button></header>${sessionReview.history?`<div class="v3-history-list">${rows.map(({t,n})=>`<article><button type="button" data-select-take="${t.id}" aria-label="Read notes for ${entryLabel(t)}">${entryLabel(t)}</button><span>${n.measureScope==='all'?'All bars':n.measure?'Bar '+n.measure:'No bar'}</span><p>${esc(n.text)}</p></article>`).join('')||'<p>No saved notes in this cue yet.</p>'}</div>`:''}</section>`;
+ return `<section class="v3-cue-history"><header><button type="button" data-review-history aria-expanded="${sessionReview.history||sessionReview.feature==='history'&&reviewVariant('history')==='B'}">${sessionReview.history||sessionReview.feature==='history'&&reviewVariant('history')==='B'?'⌄':'›'} Earlier notes in this cue <span>${rows.length}</span></button></header>${(sessionReview.history||sessionReview.feature==='history'&&reviewVariant('history')==='B')?`<div class="v3-history-list">${rows.map(({t,n})=>`<article><button type="button" data-select-take="${t.id}" aria-label="Read notes for ${entryLabel(t)}">${entryLabel(t)}</button><span>${n.measureScope==='all'?'All bars':n.measure?(n.measureEnd&&n.measureEnd!==n.measure?'Bars '+n.measure+'–'+n.measureEnd:'Bar '+n.measure):'No bar'}</span><p>${esc(n.text)}</p></article>`).join('')||'<p>No saved notes in this cue yet.</p>'}</div>`:''}</section>`;
 }
 controls=function(){
  if(sessionReview.layout==='A')return reviewBaseControls();
@@ -35,6 +40,7 @@ renderDemo=function(){
  document.querySelector('.proposal-session-header-slot').after(caption);
  document.querySelectorAll('.v3-history-list article p').forEach(el=>el.lang='en');
  syncGlobalRecording();
+ for(const update of reviewUpdates)update();
 };
 function reviewSpaceAction(){
  // First press starts only the session; subsequent presses start/stop takes.
@@ -44,7 +50,7 @@ document.addEventListener('keydown',event=>{
  if(!sessionReview.space||event.code!=='Space'||event.altKey||event.metaKey||event.ctrlKey||event.shiftKey)return;
  if(event.isComposing)return;
  const target=event.target;
- if(target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"]),[role="textbox"],dialog,.v3-review-toolbar,.proposal-review-actions,.score-inline-editor')||document.querySelector('dialog[open]')||state().scoreComment)return;
+ if(target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="dialog"],[data-review-drag-cue],dialog,.v3-review-toolbar,.proposal-review-actions,.score-inline-editor')||document.querySelector('dialog[open]')||state().scoreComment)return;
  event.preventDefault();event.stopImmediatePropagation();if(!event.repeat)reviewSpaceAction();
 },true);
 document.addEventListener('change',event=>{
