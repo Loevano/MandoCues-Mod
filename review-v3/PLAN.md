@@ -6,30 +6,30 @@
 
 - **v2**: voorstel van 19 oktober, code `1bb803e` (functionele UI `93124f8`), tien suggesties met planning als nummer 6. De laatste bevestigde hostingversie is 2.
 - Bewaard met tag `before-session-review-v3-20261102` en backupmap `../../Backups/before-session-review-v3-20261102` vanaf deze map. Die bevat een zelfstandige demo, de hostingbron, een bron-ZIP, volledige Git-bundle en SHA256-manifest.
-- **v3**: branch `feature/session-review-v3`. Eerst afzonderlijke reviewprototypes; geen goedgekeurde vervanging van v2. De bestaande `prototype/src` en gegenereerde app blijven voorlopig gelijk.
+- **v3**: branch `feature/session-review-v3`. Alle voorstellen samen als een A/B-reviewrondleiding; geen goedgekeurde vervanging van v2. De bestaande `prototype/src` en gegenereerde app blijven voorlopig gelijk.
 - Online versie vandaag niet opnieuw te bevestigen: Sites geeft `project_not_found`. Niet zonder overleg een nieuw project registreren of de oude link vervangen. Geen publicatie aangevraagd voor deze reviewronde.
 
 ## Bevestigd door Floris
 
-Spatie blijft voorlopig de handmatige start-/stoptoets buiten tekstvelden. Tijdens het typen blijft het een gewone spatie. Het uiteindelijke doel is Pro Tools volgen, zonder een tweede take-telling handmatig bij te houden. Pro Tools-integratie is nog niet gebouwd.
+Spatie blijft voorlopig de handmatige start-/stoptoets buiten tekstvelden. Tijdens het typen blijft het een gewone spatie. De eerste spatie start alleen de sessie; volgende drukken starten/stoppen takes. Pro Tools is op expliciet verzoek voorlopig uitgesteld; daar nu geen koppeling, test of extra vragen voor maken.
 
 ## Volgorde en afbakening
 
 | Ronde | Probleem / voorstel | Wat Floris kan beoordelen | Nog open |
 | --- | --- | --- | --- |
 | 1 | Minder zoeken en scrollen | A huidige voorstelindeling; B notes en actieve takes direct naast bediening en planning. Eén klik Current cue naar het overzicht; geen automatisch springen. Eerdere notes binnen de cue direct terugleesbaar. | Welke indeling? Zijn Session setup en More timing inklapbaar prettig? Hoeveel eerdere notes tegelijk nodig? |
-| 2 | Snelle handmatige start | Afzonderlijke schakelaar in de review om Space en bestaande bediening te proberen; tekstinvoer beschermd. | In de review start de eerste Space sessie én take. Is dat gewenst? In v2 start de eerste Command+Enter alleen de sessie. |
+| 2 | Snelle handmatige start | Afzonderlijke schakelaar in de review om Space en bestaande bediening te proberen; tekstinvoer beschermd. | Bevestigd: eerste Space start alleen de sessie. |
 | 3 | Secties en maatlabels | Los prototype voor maatbereik vóór take en voor een note, bijvoorbeeld 4–10 of 13–20; apart van commenttekst. | Sneltoetsen kiezen zonder bestaande Option+take-keuze te breken. Voorstel: Command+J opent note-maatbereik vanuit editor; Command+Shift+J takebereik. Eerst toetsen en beoordelen. |
 | 4 | Flexibele planning | Preview met nieuwe eindtijd, pauze en resterende cues. Voor/na per cue vergelijken vóór toepassen. | Handmatige overrides beschermen of na expliciete keuze herverdelen; buffer en voorbereiding. Niet stilzwijgend tijdnood groen rekenen. |
 | 5 | Cuevolgorde | Opnamevolgorde via slepen; Cue order als aparte sortering. IDs houden, array-indexen niet als permanente identiteit gebruiken. Current cue-knop. | Reorder tijdens opnemen blokkeren? Reorder heeft alleen effect op opnamevolgorde, niet op cue-identiteit. |
 | 6 | Instelbare tijden | Kleine instellingen voor zichtbare klokken, primaire klok/tijdcode en optionele tweede tijdzone. | Voorkeuren per gebruiker/dag; geen extra standaardklokken. |
 | 7 | Score/Comp tool | Bestaande continue score en globale zoom behouden; optie score naast notities beoordelen. | A4 blijft beschikbaar; Comp tool nog praktijkgericht uitproberen. |
-| 8 | Pro Tools | Onderzoek naar tijdcode-input en aparte betrouwbare cue/take-/recordgegevens. Daarna verbindingstest met engineer, geen gesimuleerde live-sync als echt presenteren. | Pro Tools-versie, beschikbare LTC/MTC-route, installatie bridge op engineer-Mac. |
+| — | Pro Tools | Uitgesteld op verzoek van Floris. Bestaand onderzoek blijft alleen als naslag bewaard. | Niet nodig voor deze review. |
 | 9 | Rondleiding | Alleen de goedgekeurde veranderingen in workflowvolgorde uitleggen. | Niet vóór review de oude tour vervangen. |
 
-## Eerste reviewprototype
+## Eén reviewronde
 
-Open [index.html](index.html). Dit is een lokale vergelijking op basis van echte v2-componenten en gedeelde demo-state. Wisselen A/B mag notes, concepten en een lopende take niet verliezen. De reviewknoppen slaan alleen een voorkeur op; geen automatische toepassing op de gedeelde of online versie.
+Open [index.html](index.html). Dit is een lokale vergelijking op basis van echte v2-componenten en gedeelde demo-state. Wisselen A/B mag notes, concepten en een lopende take niet verliezen. Alle acht onderdelen komen achter elkaar, elk met A/B, terug/volgende en een gezamenlijk keuzeoverzicht. De reviewknoppen slaan alleen een voorkeur op; geen automatische toepassing op de gedeelde of online versie.
 
 In B staan actieve takes en het noteveld direct naast de bediening, gevolgd door eerder opgeslagen notes. Session setup en de vier kleinere sessietijden (More timing) zijn bewust inklapbaar; klok en planningsafwijking blijven zichtbaar. Het overzicht van alle cues staat eronder. De notitiebron blijft expliciet: bekijken van een oudere take verandert de lopende opname niet. Eerdere notes uit andere takes openen hun eigen take om verder te werken.
 
@@ -45,8 +45,6 @@ Zie ook [onderzoek Pro Tools](research/PRO_TOOLS.md).
 
 ## Nog te vragen / valideren
 
-- Welke Pro Tools-versie en opnamewijze gebruikt de engineer? Kan een bridge op die Mac draaien?
-- Komt er LTC-audio, MIDI-timecode of beide binnen? Een gewone klik is geen SMPTE-tijdcode.
-- Welke namingconventie bepaalt cue, take en sectie? Tijdcodeposities kunnen bij meerdere takes hetzelfde zijn.
+- Pro Tools-onderzoek en bijbehorende vragen staan on hold; nu niet verder uitwerken.
 - Gegevens van de echte sessie kunnen de planner kalibreren; geen verzonnen empirische prestaties gebruiken.
 - Geen notes of audio automatisch verwijderen omdat een engineerclip weg is; behoud IDs, herkomst en een wijzigingslog.

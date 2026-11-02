@@ -29,7 +29,6 @@ renderDemo=function(){
  document.body.classList.toggle('v3-layout-b',sessionReview.layout==='B');
  reviewBaseRender();
  for(const b of document.querySelectorAll('[data-review-layout]'))b.setAttribute('aria-pressed',String(b.dataset.reviewLayout===sessionReview.layout));
- for(const record of document.querySelectorAll('.record.session-start'))if(sessionReview.space&&!state().sessionStarted)record.innerHTML=`● Record ${cues[state().cue][0]} · Take ${nextEntryNumber(state(),state().cue,'take')} <kbd>Space</kbd>`;
  document.querySelector('.v3-review-caption')?.remove();
  const caption=document.createElement('p');caption.className='v3-review-caption';caption.lang='nl';
  caption.textContent=sessionReview.layout==='A'?'A behoudt de huidige opzet. B zet de actieve takes en notes direct naast de bediening.':'B zet actieve takes en notes direct naast de bediening. Alle cues blijven eronder; Current cue springt er bewust naartoe.';
@@ -38,10 +37,8 @@ renderDemo=function(){
  syncGlobalRecording();
 };
 function reviewSpaceAction(){
- const s=state();
- // One deliberate press starts the session and first take; no fake DAW source.
- if(!s.sessionStarted&&!s.sessionPausedAt)performRecordingAction(s);
- performRecordingAction(s);
+ // First press starts only the session; subsequent presses start/stop takes.
+ performRecordingAction(state());
 }
 document.addEventListener('keydown',event=>{
  if(!sessionReview.space||event.code!=='Space'||event.altKey||event.metaKey||event.ctrlKey||event.shiftKey)return;
@@ -73,7 +70,7 @@ document.addEventListener('click',event=>{
  }
  if(event.target.closest('[data-review-history]')){sessionReview.history=!sessionReview.history;renderDemo();return;}
  if(event.target.closest('[data-review-decision]')){
-  reviewDialog('v3-layout-decision','Welke indeling voelt prettiger?',`<p>Deze keuze bewaart alleen je voorkeur voor de review.</p><p class="review-muted">Spatieproef: de eerste spatie start sessie én take. In een tekstveld blijft spatie gewone tekst.</p><footer><button data-review-prefer="A">A behouden</button><button data-review-prefer="B">B verder uitwerken</button><button data-review-prefer="adjust">Nog aanpassen</button></footer>`);return;
+  reviewDialog('v3-layout-decision','Welke indeling voelt prettiger?',`<p>Deze keuze bewaart alleen je voorkeur voor de review.</p><p class="review-muted">Spatieproef: de eerste spatie start alleen de sessie; daarna start/stop je takes. In een tekstveld blijft spatie gewone tekst.</p><footer><button data-review-prefer="A">A behouden</button><button data-review-prefer="B">B verder uitwerken</button><button data-review-prefer="adjust">Nog aanpassen</button></footer>`);return;
  }
  const prefer=event.target.closest('[data-review-prefer]');if(prefer){
   sessionReview.decision={layout:prefer.dataset.reviewPrefer,space:sessionReview.space,at:new Date().toISOString()};

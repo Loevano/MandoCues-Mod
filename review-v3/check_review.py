@@ -35,6 +35,8 @@ with sync_playwright() as p:
  assert page.evaluate('!state().sessionStarted&&!running(state())')
  expect(field).to_have_value('Note ')
  page.locator('.v3-review-caption').click();page.keyboard.press('Space')
+ assert page.evaluate('state().sessionStarted&&!running(state())')
+ page.keyboard.press('Space')
  live=page.evaluate('running(state())?.id');assert live
  assert page.evaluate('state().sessionStarted')
  page.clock.run_for(1200)
