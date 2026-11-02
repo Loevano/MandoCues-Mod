@@ -1,6 +1,20 @@
 # MandoCues — projectkennis
 
-Bijgewerkt: 19 oktober 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
+Bijgewerkt: 2 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
+
+## Nieuwe reviewronde — 2 november 2026
+
+Floris testte de originele MandoCues-site in een echte opnamesessie. Zijn bevindingen zijn opgeslagen in [de reviewmap](review-v3/bevindingen-opnamesessie-20261102.txt). Eerst plannen en kleine prototypes beoordelen; geen definitieve herinrichting of vervanging van de bestaande publicatie zonder review.
+
+De v2-basis (`1bb803e`, UI `93124f8`) is bewaard met tag `before-session-review-v3-20261102` en een geverifieerde bron-ZIP, zelfstandige HTML, hostingbron en volledige Git-bundle in `../Backups/before-session-review-v3-20261102`. De branch `feature/session-review-v3` bevat het nieuwe werk. Het oude herstelpunt uit oktober blijft behouden.
+
+Begin bij [PLAN.md](review-v3/PLAN.md) en [de lokale A/B-proef](review-v3/index.html). Deze laag bouwt apart boven op de bestaande demo; de v2-bron, overdracht en hostingkopie zijn niet aangepast. De oude rondleiding wordt pas aangepast aan goedgekeurde keuzes. De klik op Mijn voorkeur bewaart alleen een lokale reviewkeuze; het is geen definitieve implementatiegoedkeuring.
+
+**Nieuwe instructie boven de oude Command+Enter-keuze:** voorlopig Space voor handmatige take-start/stop, met gewone spaties in tekstvelden. Uiteindelijk Pro Tools als leidende bron volgen zodat Floris geen tweede take-telling hoeft bij te houden. In de eerste proef is Space afzonderlijk aan/uit te zetten; eerste Space start sessie én take, nog expliciet ter beoordeling.
+
+De overige bevindingen betreffen flexibele herverdeling tot een eindtijd, gewone takes met maatsecties, maatbereiken bij notes via shortcuts, cuevolgorde en instelbare klokken. Ze staan in het plan en zijn nog niet allemaal geïmplementeerd. Onderzoek naar [Pro Tools volgen](review-v3/research/PRO_TOOLS.md) scheidt LTC/MTC-projectpositie van record-state en cue/take-identiteit; een kabel alleen bewijst die identiteit niet. Er is geen echte sync gebouwd.
+
+De Sites-opvraag gaf op 2 november `project_not_found`. Hostingversie 2 uit oktober is de laatst bevestigde publicatie, niet vandaag opnieuw geverifieerd. Geen nieuw siteproject aanmaken of oude link vervangen zonder dit op te lossen.
 
 ## Snel beginnen
 
