@@ -8,7 +8,7 @@ from playwright.sync_api import sync_playwright,expect
 with sync_playwright() as p:
  browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1100});page.clock.install();errors=[];page.set_default_timeout(10000)
  page.on('pageerror',lambda e:errors.append(str(e)))
- page.goto((ROOT/'index.html').as_uri())
+ page.goto((ROOT/'experiments.html').as_uri())
  expect(page.locator('.v3-review-topline')).to_contain_text('1 van 8')
  print('Loaded full review',flush=True)
  assert not errors,errors
