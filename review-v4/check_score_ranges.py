@@ -6,7 +6,7 @@ sys.path.insert(0,str(ROOT.parent/'prototype'))
 from browser_support import launch_chromium
 from playwright.sync_api import sync_playwright,expect
 with sync_playwright() as p:
- browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});errors=[]
+ browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});page.set_default_timeout(10000);errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)));page.goto((ROOT/'index.html').as_uri())
  original=page.evaluate('allTakes(state()).map(t=>({id:t.id,selections:t.scoreSelections}))')
  # Add a range without creating or renumbering a take.
@@ -26,6 +26,7 @@ with sync_playwright() as p:
  assert page.evaluate('running(state()).num')==4
  assert page.evaluate('running(state()).barRange')=={'from':12,'to':19}
  assert page.evaluate('state().takes[0].find(t=>t.num===3).barRange')=={'from':2,'to':8}
+ assert page.evaluate('sessionTakeLog().takes.find(t=>t.number===3&&t.cueCode==="1M02").barRange')=={'from':2,'to':8}
  live=page.evaluate('running(state()).id')
  # Changing views during a take preserves it, and only changes the view.
  page.locator('[data-proposal-view=cutlist]').click();expect(page.locator('.proposal-workspace-title')).to_have_text('Score')

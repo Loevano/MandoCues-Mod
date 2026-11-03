@@ -7,7 +7,7 @@ sys.path.insert(0,str(ROOT.parent/'prototype'))
 from browser_support import launch_chromium
 from playwright.sync_api import sync_playwright,expect
 with sync_playwright() as p:
- browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});errors=[]
+ browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});page.set_default_timeout(10000);errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  start=datetime(2026,11,3,12,tzinfo=timezone.utc);page.clock.install(time=start);page.clock.pause_at(start+timedelta(seconds=1));page.goto((ROOT/'index.html').as_uri())
  expect(page.locator('.proposal-version')).to_have_text('v4')
@@ -31,12 +31,21 @@ with sync_playwright() as p:
  assert page.evaluate('v4State(state()).corrections.length')==1
  assert page.evaluate('allTakes(state()).map(t=>({id:t.id,notes:t.notes.map(n=>({id:n.id,text:n.text,clockAt:n.clockAt}))}))')==notes
  assert page.evaluate('!running(state())')
+ # Leaving a timing dialog open must not erase work while editing only music.
+ page.locator('#main-panel [data-v4-edit-cue]').click();page.clock.run_for(3000)
+ form.locator('[name=music]').fill('02:10');page.locator('[form="v4-cue-timing"]').click()
+ assert page.evaluate('v4Forecast(state()).current.workedSeconds')>=2103
+ assert page.evaluate('v4State(state()).corrections.length')==1
  # Only completing the cue trains the estimator; the original pace is immutable.
  assert page.evaluate('v4Forecast(state()).samples')==0
  rate=page.evaluate('v4State(state()).rate')
  page.locator('.cue-group.current [data-cue-complete]').check()
  assert page.evaluate('v4Forecast(state()).samples')==1
  assert page.evaluate('v4Forecast(state()).factor')>1
+ completed=page.evaluate('v4Forecast(state()).current.workedSeconds');factor=page.evaluate('v4Forecast(state()).factor')
+ page.clock.run_for(2500)
+ assert page.evaluate('v4Forecast(state()).current.workedSeconds')==completed
+ assert page.evaluate('v4Forecast(state()).factor')==factor
  before=page.evaluate('v4Forecast(state()).remaining')
  page.evaluate('setProposalBudget(state(),state().booked+30)')
  assert page.evaluate('v4State(state()).rate')==rate
