@@ -1,6 +1,6 @@
 # MandoCues — werkwijze, tools en geleerde lessen
 
-Bijgewerkt 3 november 2026. Dit document is voor implementatie en overdracht. Besluiten en actuele stand: [PROJECT_KNOWLEDGE.md](PROJECT_KNOWLEDGE.md). Geen credentials of tokens in dit document opnemen.
+Bijgewerkt 4 november 2026. Dit document is voor implementatie en overdracht. Besluiten en actuele stand: [PROJECT_KNOWLEDGE.md](PROJECT_KNOWLEDGE.md). Geen credentials of tokens in dit document opnemen.
 
 ## 1. Begin bij de juiste map en versie
 
@@ -100,6 +100,7 @@ Browserchecks met de bestaande testomgeving:
 "/Users/florisheemskerk/Documents/Coding/Composition Study/.venv/bin/python" review-v4/check_workspace.py
 "/Users/florisheemskerk/Documents/Coding/Composition Study/.venv/bin/python" review-v4/check_score_ranges.py
 "/Users/florisheemskerk/Documents/Coding/Composition Study/.venv/bin/python" review-v4/check_review.py
+"/Users/florisheemskerk/Documents/Coding/Composition Study/.venv/bin/python" review-v4/check_layout.py
 ```
 
 | Check | Betekenis |
@@ -107,6 +108,7 @@ Browserchecks met de bestaande testomgeving:
 | `check_model.cjs` | Gewogen werkbelasting, kleine datasets/uitschieters, uitsluiten, budgetbehoud, eindtijd onafhankelijk van werktempo, afrondreserve |
 | `check_workspace.py` | Geen secondeflikkering, cuecorrecties, niet leren vóór Done, bevroren afgeronde referentie, uitsluiten, eindtijd met beide tekens, tijd loopt door in een open editor |
 | `check_score_ranges.py` | Doorlopende take-nummers/ranges, export, gedeelde opname-/notestate, compdata behouden, notes maken/verwijderen/undo, shortcuts, globale zoom, 1512/900/390 breedtes |
+| `check_layout.py` | Take-inhoud binnen de rij én onderling zonder overlap, oorspronkelijke controls behouden, geen fake-ranges, geen reflow bij maatkeuze, exacte highlight, vijf breedtes |
 | `check_review.py` | Ongewijzigde v3-SHA, herhaalbare v4-build, zes A/B-stappen, bereikduurvalidatie, geïsoleerde voorbeelden, export/opslag van reviewkeuzes, slepen en smalle schermen |
 | `prototype/check_handoff.py` | Schone geïsoleerde rebuild van de **bewaarde basis**; geen v4-interactietest |
 
@@ -115,6 +117,14 @@ Chrome/Chromium is getest; Safari/WebKit niet apart. Screenshots `review-v4/chec
 Historische checks niet blind als actuele v4-eisen gebruiken. `review-v3/check_review.py` verwacht onder meer dat de actieve hostingcheckout nog de v2-hostingkopie bevat. Die plek is bewust bijgewerkt naar de gepubliceerde v3.2.2. De v2-backup staat nog veilig in de backupmap; de oude assert is versiegebonden/verouderd. Oude rijhoogte- en Command+Enter-verwachtingen horen evenmin bij de nieuwe v4. Pas een test alleen bewust aan op een bevestigd nieuw gedrag; verklaar een echte fout niet weg als ‘oude test’.
 
 ## 5. Gevonden fouten: oorzaak en beste aanpak
+
+### V4-layout overloopt ondanks geslaagde kliktests
+
+De eerste v4-layout is door Floris afgewezen. Echte browsermetingen vonden 108 px take-inhoud in een vaste rij van 78 px. Nieuwe gridregels botsten met bestaande `.take-label-input`-regels; de patch had een niet-bestaande `.take-label` aangenomen. Controls bleven klikbaar en de documentbreedte bleef passen, maar kinderen overlapten aangrenzende rijen. Vergelijk dus DOM en berekende bounding boxes, inclusief onderlinge intersecties, niet alleen scrollWidth of zichtbaarheid.
+
+De v4.1-herstelronde hergebruikt de werkende v3-hoofdcomponenten en kolomstructuur. Nieuwe maatbediening opent als een verankerde popup buiten de normale flow. Controleer expliciet dat recordknop, cuenavigatie, tijdlijn en take-rijen dezelfde bounding boxes houden tijdens openen en typen. Escape moet de bovenste editor sluiten; de oude document-level tourhandler mag niet alvast de hele review sluiten.
+
+De ranges-B-review schreef ook werkelijk fictieve presets naar de sessie. Dit is verwijderd: een A/B-keuze mag uitsluitend de invoervariant wijzigen, niet muziekdata toevoegen. Begin-/eindmaat blijven leeg tot echte invoer. `check_layout.py` vergelijkt de sessie vóór/na variantwissels en controleert vijf breedtes. De tutorialhighlight richt zich op de knop; geen geanimeerde sprong vanuit het oude hoofdvakkader. Vroege v4 is herstelbaar via tag `rejected-v4-layout-20261103`.
 
 ### Planning knippert groen/oranje na een cuewissel
 

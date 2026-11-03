@@ -1,12 +1,12 @@
 # MandoCues — actuele projectkennis
 
-Bijgewerkt 3 november 2026. Dit is het centrale overzicht voor Floris, Jens en een volgende coding-agent. De verwijzing in `Coding/Knowledge/Projects/MandoCues.md` wijst hierheen; houd geen tweede statuskopie bij. Oude instructies en bevindingen zijn volledig bewaard in [PROJECT_HISTORY.md](PROJECT_HISTORY.md).
+Bijgewerkt 4 november 2026. Dit is het centrale overzicht voor Floris, Jens en een volgende coding-agent. De verwijzing in `Coding/Knowledge/Projects/MandoCues.md` wijst hierheen; houd geen tweede statuskopie bij. Oude instructies en bevindingen zijn volledig bewaard in [PROJECT_HISTORY.md](PROJECT_HISTORY.md).
 
 ## Waar we nu werken
 
 | Onderdeel | Actuele plek en betekenis |
 | --- | --- |
-| Actieve ontwikkeling | [review-v4/index.html](review-v4/index.html): lokale v4-proef, Recording + Score |
+| Actieve ontwikkeling | [review-v4/index.html](review-v4/index.html): lokale v4.1-proef, Recording + Score |
 | V4-bron | `review-v4/*.js`, `workspace.css`, [build.py](review-v4/build.py) |
 | V4-algoritme | [PLANNING.md](review-v4/PLANNING.md), met formules, aannames en grenzen |
 | V4-review | Knop **Review v4**: zes stappen; vijf werkende A/B-keuzes en Score |
@@ -14,10 +14,20 @@ Bijgewerkt 3 november 2026. Dit is het centrale overzicht voor Floris, Jens en e
 | Publicatiestatus | [review-v3/publication.json](review-v3/publication.json); hostingversie 3 is presentatie v3.2.2 |
 | Bewaarde Comp tool | [review-v3/index.html#cutlist](review-v3/index.html#cutlist) |
 | Repo / branch | `MandoCues-Mod`, `feature/session-review-v3`, remote `git@github.com:Loevano/MandoCues-Mod.git` |
-| Laatste functionele v4-commit vóór deze kennisupdate | `6bb684d` |
+| Laatste functionele v4-commit vóór deze kennisupdate | `4a2ff97` |
 | Praktisch gereedschap en publicatie | [WORKFLOW.md](WORKFLOW.md) |
 
 V4 is **lokaal** en vervangt de gedeelde v3 niet. De root-`index.html`, `prototype/dist`, losse map `../prototype` en oude overdrachtsmappen zijn geen actuele v4. Lokale edits en GitHub-pushes publiceren niets automatisch.
+
+## Herstel na de afgewezen v4-layout — 3 november 2026
+
+Floris heeft de eerste v4-weergave expliciet afgewezen: te veel weggehaald, onduidelijke maatbediening en echte overlap/glitches. Die versie is bewaard via tag `rejected-v4-layout-20261103`. De actieve pagina heet nu v4.1 en gebruikt weer de echte v3-componentstructuur voor hoofdvak, cuekolommen, opnameknoppen en notes. De grote AM/PM-klok, cue, oorspronkelijke sessieacties en scorewerkruimte zijn behouden. Het planningsmodel is in deze herstelronde niet veranderd.
+
+Concrete oorzaken: take-inhoud groeide door de toegevoegde gridregels tot 108 px in een rij van 78 px. Verkeerde classaannames rond take-labels maakten dat erger. Bovendien schreef de ranges-B-variant voorbeeldmaten 2–8 en 12–19 direct in de sessie. Alleen kunnen klikken en geen horizontale paginascroll waren onvoldoende testbewijs.
+
+Maatbereik is nu één vast geplaatste All bars/bereik-knop bij de take, met een zwevende From bar/Till bar-editor. Openen en typen veranderen geen rijen, opnameknop of tijdlijn. Er zijn geen automatisch ingevulde maatnummers of opgeslagen voorbeeldbereiken. Opgeslagen bereiken ontstaan uitsluitend door toepassen van gebruikersinvoer. Escape sluit de editor en laat een actieve review intact. De reviewmarkering is direct op de relevante knop gericht en animeert niet door het hele hoofdvak.
+
+`review-v4/check_layout.py` controleert containment én overlap tussen de take-naam, maatknop, label en beoordelingsknoppen op 1512/1280/1024/900/390 px, plus stabiele editor-geometrie, geen gesimuleerde ranges en precieze highlights. Ook de opname-/score-/noteflows en review zijn doorgelopen. V3 en de online presentatie blijven ongewijzigd. De nieuwe styling is een herstelde lokale proef ter beoordeling, geen bevestigde ontwerpgoedkeuring.
 
 ## Doel en laatste keuzes van Floris
 

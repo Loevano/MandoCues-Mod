@@ -1,6 +1,6 @@
 # Huidige stand — 3 november 2026
 
-**Actieve ontwikkeling: [lokale v4](review-v4/index.html).** Tijdplanning staat centraal. Review v4 biedt zes stappen om de concrete varianten achter elkaar te beoordelen. De nieuwe tweede view heet Score; de Comp tool staat bewaard in [v3](review-v3/index.html#cutlist).
+**Actieve ontwikkeling: [lokale v4.1](review-v4/index.html).** De afgewezen eerste v4-layout is hersteld vanuit de echte v3-componenten. Maatbereiken hebben één vaste knop per take met een zwevende editor, zonder gegenereerde voorbeeldmaten of verspringende rijen. Tijdplanning staat centraal. Review v4 biedt zes stappen om de concrete varianten achter elkaar te beoordelen. De nieuwe tweede view heet Score; de Comp tool staat bewaard in [v3](review-v3/index.html#cutlist).
 
 **Online: [v3.2.2 op het Floris-account](https://mandocues-voorstel-floris.superfrog5.chatgpt.site/#recording).** V4 is niet gepubliceerd. Gebruik geen gheeneman-link. De automatische introductie is weg en de planningflikkerfix zit in de gedeelde versie. ±15/30/60 is toegevoegd in lokale v4; de gepubliceerde v3 heeft nog alleen de oorspronkelijke plusknoppen.
 

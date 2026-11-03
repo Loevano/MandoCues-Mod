@@ -9,3 +9,7 @@
 - Recording duration is explicit mm:ss; do not infer it from bar count without tempo information. Ranges describe takes, not separate take-number sequences or overdubs.
 - Present unanswered choices together as working A/B previews in the v4 review, no repeated async questions. Keep existing Space/bracket/Option shortcuts; introduce no reserved Mac commands.
 - Keep each independent change in its own validated commit. Run meaningful planning invariants and browser flows.
+
+- Latest correction v4.1: Floris rejected the initial v4 layout. Reuse the actual v3 component DOM and column structure; do not replace the whole dashboard again. Preserve the large cue/AM-PM clock and original session actions. New range controls must float without reflow and must fit their rows.
+- Never seed real session ranges by selecting an A/B presentation. No invented start/end defaults. Test child containment AND pairwise overlap, not just horizontal page overflow or clickability. check_layout.py reproduces the actual row-collision class of failures.
+- Preserve the rejected design via rejected-v4-layout-20261103; the current local entry remains review-v4/index.html with a v4.1 badge. The planner and online v3 are unchanged by this UI repair.
