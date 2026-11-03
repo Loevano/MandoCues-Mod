@@ -1,20 +1,11 @@
-Dit is Floris’ MandoCues-voorstel: één werkruimte met Recording, Cut list en een rondleiding.
+Dit is Floris' MandoCues-project. Actieve ontwikkeling is de lokale v4-proef in review-v4/index.html; de gedeelde Floris-website is nog v3.2.2.
 
-Lees AGENTS.md, HUIDIGE_STAND.md en prototype/README.md.
-Controleer met python3 -X utf8 prototype/check_handoff.py dat broncode en build overeenkomen.
-Open index.html of prototype/dist/index.html om de pagina te bekijken.
+Lees eerst AGENTS.md, PROJECT_KNOWLEDGE.md, HUIDIGE_STAND.md en WORKFLOW.md, daarna review-v4/AGENTS.md en de relevante bron.
 
-De vastgelegde keuzes:
-- Opnameweergave: 2A, bediening bovenaan en compacte balk bij scrollen.
-- Kniplijst: de bestaande scorebediening behouden, inclusief All takes en instellingen.
-- Beide weergaven delen cues, takes, notes, beoordelingen en opname-state.
-- Bij openen een keuze: Rondleiding starten of Zelf bekijken.
-- Eén korte uitleg en highlight per suggestie; een checkbox kiest die tekst voor Claude.
-- Alleen gekozen vaste promptteksten samenvoegen. Vragen blijven vragen.
-- De oude vijf prototypes staan onder Git-tag before-unified-ui-20261018.
+De prioriteit is overzicht en tijdplanning per cue/sessie. Gebruik de werkelijk op te nemen muziek, complexiteit en betrouwbare afgeronde cuewerktijden; houd beschikbaar budget en werkschatting apart. Takebereiken blijven bij doorlopende take-nummers. Score deelt opname en notes. Comp tool is bewaard in review-v3; geen live Pro Tools-koppeling.
 
-Werk in prototype/src/ en bouw opnieuw met prototype/build.py.
-Alle echte GUI-tekst is Engels; rondleiding en toelichting blijven Nederlands.
-Leg onduidelijke ontwerpkeuzes aan mij voor; verzin geen nieuwe A/B-demos.
-Mijn code en ontwerpkeuzes blijven leidend. Niets publiceren of op SoundVibeHQ wijzigen zonder mijn opdracht.
-Controleer nu alleen of de overdracht werkt en wacht daarna op mijn concrete wijzigingsvraag.
+Open keuzes worden achteraf beoordeeld via de bestaande Review v4 met werkende A/B-varianten. Geen automatische introductie. Space eerst sessie, daarna takes; tekst blijft tekst. GUI Engels; review beknopt Nederlands.
+
+Werk in review-v4, bouw met python3 review-v4/build.py en voer gerichte controles uit volgens WORKFLOW.md. Bewaar de ongewijzigde v3-basis en herstelmanifest. Zet v4 niet over de gedeelde v3-site zonder expliciet verzoek. Lokale builds en GitHub-pushes publiceren niets.
+
+Voer de concrete nieuwe opdracht uit met behoud van deze keuzes; de oude startprompt en historische instructies staan in PROJECT_HISTORY.md.

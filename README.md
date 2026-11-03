@@ -1,18 +1,16 @@
 # MandoCues · voorstel van Floris
 
-**Open [index.html](index.html)** voor één werkruimte met **Recording** en **Cut list**. Bij openen kies je **Rondleiding starten** of **Zelf bekijken**. De rondleiding toont per suggestie een korte uitleg en een checkbox voor je Claude-prompt. Alleen aangevinkte tekstonderdelen gaan mee.
+**Ontwikkelversie: [open lokale v4](review-v4/index.html)** en klik **Review v4** voor de keuzes. V4 richt zich op cue-/sessieplanning, takebereiken en Score met notes.
 
-Recording gebruikt bediening bovenaan en een compacte balk bij scrollen. Cut list behoudt de bestaande scorebediening en All takes. Beide delen cues, takes, notes en beoordelingen. De GUI is Engels; rondleiding en vragen zijn Nederlands. Alles blijft vrijblijvend.
+**Gedeelde presentatie: [v3.2.2 online](https://mandocues-voorstel-floris.superfrog5.chatgpt.site/#recording).** De nieuwe v4 staat nog niet online. De [oude Comp tool](review-v3/index.html#cutlist) is bewaard.
 
-Voor Codex: [CODEX_STARTPROMPT.txt](CODEX_STARTPROMPT.txt), [AGENTS.md](AGENTS.md) en [HUIDIGE_STAND.md](HUIDIGE_STAND.md).
+Begin met [PROJECT_KNOWLEDGE.md](PROJECT_KNOWLEDGE.md), [HUIDIGE_STAND.md](HUIDIGE_STAND.md), [AGENTS.md](AGENTS.md) en [WORKFLOW.md](WORKFLOW.md). De root-index en oude overdrachtsmappen tonen eerdere versies.
 
 ```sh
-python3 -X utf8 prototype/build.py
-python3 -X utf8 prototype/check_handoff.py
+python3 review-v4/build.py
+node review-v4/check_model.cjs
 ```
 
-Python 3.10+, zonder extra pakketten voor de build. Alle score-assets zitten erbij. Zie [prototype/README.md](prototype/README.md) voor browsercontroles.
+De HTML-build gebruikt alleen Python-standaardbibliotheek en meegeleverde assets. Browserchecks gebruiken apart Playwright/Chrome; de beschikbare lokale runtimes en controles staan in WORKFLOW. Dit is een demo: geen audio-opname, live DAW-koppeling of duurzame opslag van nieuwe takes/notes. Alleen reviewvoorkeuren blijven lokaal bewaard.
 
-Werk in `prototype/src/`, bouw `dist/` opnieuw en commit bron en uitvoer samen. Haal vóór wijzigingen de laatste commits op en werk op een eigen branch. Browser-notes worden niet tussen computers gedeeld en verdwijnen bij herladen.
-
-De vorige versie is bewaard als Git-tag `before-unified-ui-20261018` (commit `d5f7119`). Herstelinstructies staan in HUIDIGE_STAND.md. De oorspronkelijke app en scoreboeken worden niet gewijzigd; de demo neemt geen audio op.
+Herstelpunt vóór v4: tag `before-v4-20261103`, commit `689779e`. De volledige eerdere kennis blijft in [PROJECT_HISTORY.md](PROJECT_HISTORY.md).
