@@ -2,6 +2,18 @@
 
 Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
 
+## Actieve ontwikkeling v4 — 3 november 2026, feedback na de call
+
+Open de nieuwe lokale [v4-proef](review-v4/index.html). V3.2.2 blijft ongewijzigd en online staan; herstelpunt before-v4-20261103 op 689779e en SHA256 in review-v4/restore.json. De Comp tool is bewaard in review-v3/index.html#cutlist. V4 is niet online gepubliceerd.
+
+Nieuwste prioriteit van Floris: overzicht en tijdplanning, niet comments. Opnameomvang is de muziek die werkelijk opgenomen moet worden, niet automatisch de totale cueduur. Complexiteit en werkelijk werk op afgeronde cues vormen een eerste adaptieve schatting. Beschikbare cuetijd blijft onderscheiden van geschat resterend werk en verwachte sessie-uitloop. Overige klokken staan onder Timing details. Handmatige correcties, inclusie/exclusie van referentiecues en oorspronkelijke cuebudgetten blijven controleerbaar. Geen live Pro Tools-koppeling. Zie review-v4/PLANNING.md voor het voorstel en zijn beperkingen; geen gevalideerde planningclaim.
+
+Takebereiken zijn From bar / Till bar met bewaarde bereikknoppen per cue; volgende takes blijven normaal doornummeren, zonder ze als overdub te behandelen. Bereiken blijven bij de take en staan in de take-logexport. De actieve tweede view heet Score: lezen, zoom, notes op hun scoreplek en dezelfde opname-/takebediening; Comp-selecties zijn hier verborgen en niet bewerkbaar, maar hun gegevens en v3-bron zijn behouden.
+
+Floris wil vragen achteraf beantwoorden via prototypes. Review v4 is daarom één optionele ronde van zes stappen: klokdichtheid, opnameomvang per cue/bereik, instartbereiken, leren/vaste referentie, budgetten herverdelen/vast en Score. A/B verandert de proef direct; losse rekenvoorbeelden schrijven geen nepmetingen. Mijn keuzes geeft een overzicht en JSON-export. Geen automatische introductie of losse vragen tussendoor.
+
+Bouw: python3 review-v4/build.py. Tests: Node check_model.cjs plus check_workspace.py, check_score_ranges.py en check_review.py met de aanwezige Playwright-omgeving. V3-basis en oorspronkelijke score-assets blijven onveranderd. Dagelijkse productie-opslag is niet toegevoegd: metingen/notes zijn demo-state, alleen reviewvoorkeuren blijven lokaal opgeslagen.
+
 ## Actieve publicatie op Floris-account — 3 november 2026
 
 De publicatietool is nu gekoppeld aan Floris (florisheemskerk01@gmail.com). Op uitdrukkelijk spoedverzoek is de bestaande Floris-Site bijgewerkt met v3.2.2: https://mandocues-voorstel-floris.superfrog5.chatgpt.site/#recording . Sites bevestigt geslaagde hostingversie 3. Gebruik voortaan review-v3/publication.json en checkout ../sites/mando-voorstel-floris; niet de gheeneman-Site. De automatische welkomdialoog is verwijderd; Rondleiding blijft op verzoek bereikbaar. De knipperfix uit v3.2.1 is meegenomen. De gevraagde −15/−30/−60-planningsknoppen staan nog open: Floris gaf de account-/URL-correctie voorrang. De vorige publicatiegeschiedenis hieronder is historisch.

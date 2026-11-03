@@ -11,3 +11,11 @@ Alleen afgeronde cues met betrouwbare gemeten/corrigeerbare werktijd worden als 
 Het hoofdscherm toont beschikbare werktijd voor deze cue en verwachte sessie-uitloop. Kloktijd blijft compact; overige cijfers staan onder Timing details. Muziekduur, moeilijkheid, budget, werkelijk werk en afgerond blijven per cue bereikbaar. Handmatig herstellen mag de opname-identiteit en notes niet veranderen.
 
 Vragen/keuzes pas aan het einde als A/B-review. Geen automatische introductie. Spatie eerst sessie, daarna takes; tijdens tekstinvoer gewone spatie. Brackets cues, Option takes; N opent het noteveld.
+
+## Uitgewerkt
+
+De hoofdweergave toont beschikbare cuetijd en sessieprognose, met een apart detailmenu. Handmatig herstellen en referentiecues uitsluiten zijn actief. ±15/30/60 in Planning past dezelfde eindtijd aan. De startbudgetten worden bewaard; een gecompleteerde cue bevriest zijn leertijd. Opnamebereiken blijven bij echte take-ID's en gaan mee in de take-logexport. Score deelt takes, note-invoer en transport; compselecties zijn verborgen en geblokkeerd zonder de oude data te verwijderen.
+
+Review v4 bevat zes stappen met vijf werkende A/B-keuzes en een scorestap. Werkbelasting kan één expliciete duur of expliciete duren per niet-overlappend maatbereik zijn. Losse leer-/verdelingsvoorbeelden zijn herkenbaar aparte data. Mijn keuzes toont de selectie met download. De kaart blijft versleepbaar. Er is geen automatisch welkomscherm.
+
+Lees PLANNING.md voor formules, afrondreserve, leergewicht, handmatig herstel en meetbeperkingen. Dit is een lokale sessieproef, geen bewezen algoritme en geen duurzame productieopslag.
