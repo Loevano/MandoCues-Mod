@@ -2,6 +2,10 @@
 
 Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
 
+## Actieve publicatie op Floris-account — 3 november 2026
+
+De publicatietool is nu gekoppeld aan Floris (florisheemskerk01@gmail.com). Op uitdrukkelijk spoedverzoek is de bestaande Floris-Site bijgewerkt met v3.2.2: https://mandocues-voorstel-floris.superfrog5.chatgpt.site/#recording . Sites bevestigt geslaagde hostingversie 3. Gebruik voortaan review-v3/publication.json en checkout ../sites/mando-voorstel-floris; niet de gheeneman-Site. De automatische welkomdialoog is verwijderd; Rondleiding blijft op verzoek bereikbaar. De knipperfix uit v3.2.1 is meegenomen. De gevraagde −15/−30/−60-planningsknoppen staan nog open: Floris gaf de account-/URL-correctie voorrang. De vorige publicatiegeschiedenis hieronder is historisch.
+
 ## Correctie v3.2.1 — 3 november 2026
 
 De planning knipperde tussen On schedule en −00:01/oranje na cuewissels. Oorzaak gereproduceerd: sessie- en cue-stopwatch werden elk vanaf hun eigen startmilliseconde afgerond. Tijdelijk telde de sessie een seconde die nog niet van het resterende cuewerk was afgetrokken. Bij herhaald wisselen gingen bovendien fracties verloren. review-v3/schedule-timing.js laat cuewerk dezelfde secondegrenzen als sessiewerk gebruiken; budgetten, voor-/achterstand, kleurdrempels en pauzebeleid blijven behouden. Geen tolerantieband of vertragingsfilter om de fout te maskeren. check_schedule.py controleert de reproductie, herhaald wisselen, beide weergaven, echte oranje/rode/voorstand en pauze/einde/hervatten. De v2-basis blijft ongewijzigd. Publiceer dit op dezelfde actieve Site.
