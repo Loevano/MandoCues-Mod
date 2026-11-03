@@ -913,6 +913,8 @@ body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hin
 .proposal-tour-card header{cursor:move;touch-action:none;user-select:none}
 .proposal-tour-card header button{cursor:pointer}
 .tour-take-notes .sticky-slot.is-stuck .transport{outline:2px solid #d6b7f0;outline-offset:2px}
+/* A stopped take's old duration is not a running transport clock. Reserve its space. */
+.transport.is-idle .transport-take-time{visibility:hidden}
 
 </style></head>
 <body>

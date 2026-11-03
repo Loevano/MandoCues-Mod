@@ -65,6 +65,7 @@ with sync_playwright() as p:
  page.keyboard.press('Space');assert page.evaluate('!running(state())')
  # Existing Comp tool remains the original score view.
  page.locator('[data-proposal-view="cutlist"]').click();expect(page.locator('.score-canvas')).to_be_visible()
+ expect(page.locator('.transport-take-time')).not_to_be_visible()
  expect(page.locator('.v3-reference-score')).to_have_count(0)
  page.locator('[data-proposal-view="recording"]').click()
  for width in [1512,900,390]:
