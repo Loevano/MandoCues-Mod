@@ -14,6 +14,7 @@ with sync_playwright() as p:
  expect(page.locator('.proposal-tour-card,dialog[open]')).to_have_count(0)
  page.locator('[data-proposal-action=tour]').click()
  expect(page.locator('.proposal-tour-card header')).to_contain_text('1 van 6')
+ page.keyboard.press('Space');assert page.evaluate('state().sessionStarted&&!running(state())')
  page.locator('[data-v4-review-choice=B]').click();expect(page.locator('.v4-timing-details')).to_have_attribute('open','')
  page.locator('[data-v4-review-choice=A]').click();expect(page.locator('.v4-timing-details')).not_to_have_attribute('open','')
  # The card is still movable and keeps its position on a data render.
@@ -29,7 +30,8 @@ with sync_playwright() as p:
  assert page.evaluate('v4Row(state(),state().cue).musicSeconds')==75
  assert len(page.evaluate('v4Row(state(),state().cue).musicParts'))==2
  page.locator('[data-tour-action=next]').click();page.locator('[data-v4-review-choice=B]').click()
- expect(page.locator('[data-v4-range-preset]')).to_have_count(2)
+ assert page.evaluate('v4Ranges(state()).presets')==[]
+ page.locator('[data-v4-range-open=next]').click();expect(page.locator('#v4-range-form [name=from]')).to_have_value('');page.keyboard.press('Escape')
  page.locator('[data-tour-action=next]').click();page.locator('[data-v4-learning-example]').click()
  first=page.locator('#v4-learning-example strong').inner_text();original=page.evaluate('state().takes.flat().length')
  page.locator('[data-v4-review-choice=B]').click();second=page.locator('#v4-learning-example strong').inner_text();assert first!=second

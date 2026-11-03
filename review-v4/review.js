@@ -1,12 +1,22 @@
 // One optional review round. A/B choices change the visible prototype immediately.
+// Handle the topmost editor before the old tour's document-level Escape handler.
+addEventListener('keydown',event=>{
+ if(event.key==='Escape'){
+  const dialog=document.querySelector('.app-dialog[open]');
+  if(dialog){event.preventDefault();event.stopImmediatePropagation();dialog.close();return;}
+ }
+ if(event.code==='Space'&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.shiftKey&&!event.isComposing&&event.target.closest('.proposal-tour-card')&&!event.target.closest('button,input,textarea,select,a,[contenteditable=true]')&&!document.querySelector('dialog[open]')&&!state().scoreComment){
+  event.preventDefault();event.stopImmediatePropagation();if(!event.repeat)performRecordingAction(state());
+ }
+},true);
 const v4ReviewChoices={timing:'A',workload:'A',ranges:'A',learning:'A',allocation:'A'};
 try{Object.assign(v4ReviewChoices,JSON.parse(localStorage.getItem('mandocues-v4-review')||'{}').choices||{});}catch{}
 let v4ReviewDemo=null;
 const v4ReviewConfig=[
  {id:'v4-timing',key:'timing',title:'Welke tijden wil je direct zien?',text:'Probeer eerst de sessie te starten met Space. A toont cuetijd en sessieprognose. B klapt de overige tijden erbij open.',target:'#main-panel',view:'recording',a:'A · Twee hoofdsignalen',b:'B · Met timingdetails'},
  {id:'v4-workload',key:'workload',title:'Hoe vul je de opnameomvang in?',text:'Vul de muziek in die je echt gaat opnemen. A is één duur per cue. B heeft maatbereiken met elk een eigen duur. De maten alleen bepalen de duur niet.',target:'#main-panel .v4-cue-facts',view:'recording',a:'A · Duur per cue',b:'B · Duur per bereik'},
- {id:'v4-ranges',key:'ranges',title:'Instarten op verschillende maten',text:'Kies Whole cue of een maatbereik voor de volgende take. De take-nummers lopen door. A voegt een bereik toe; B toont twee voorbeeldbereiken om tussen te wisselen.',target:'.v4-take-range',view:'recording',a:'A · Bereik invoeren',b:'B · Bereiken klaarzetten'},
- {id:'v4-learning',key:'learning',title:'De schatting bijstellen',text:'A leert geleidelijk van afgeronde cues. B houdt het oorspronkelijke werktempo vast. Probeer het rekenvoorbeeld; je echte demo-invoer blijft apart.',target:'.v4-status-area',view:'recording',a:'A · Leren van afgeronde cues',b:'B · Tempo vast houden'},
+ {id:'v4-ranges',key:'ranges',title:'Instarten op verschillende maten',text:'Stel bij de take een begin- en eindmaat in. A toont één bereik; B laat je eigen opgeslagen bereiken opnieuw kiezen. De take-nummers lopen door.',target:'.v4-range-slot .v4-range-trigger',view:'recording',a:'A · Eén bereik',b:'B · Opgeslagen bereiken'},
+ {id:'v4-learning',key:'learning',title:'De schatting bijstellen',text:'A leert geleidelijk van afgeronde cues. B houdt het oorspronkelijke werktempo vast. Probeer het rekenvoorbeeld; je echte demo-invoer blijft apart.',target:'.v4-session-forecast',view:'recording',a:'A · Leren van afgeronde cues',b:'B · Tempo vast houden'},
  {id:'v4-allocation',key:'allocation',title:'Tijd verdelen over de volgende cues',text:'A verdeelt de overgebleven tijd opnieuw bij een cuewissel of afronding. B houdt de oorspronkelijke cuebudgetten vast. Een aangepaste eindtijd is geen bewijs dat je langzamer werkt.',target:'.cue-timeline',view:'recording',a:'A · Beschikbare tijd herverdelen',b:'B · Budgetten vasthouden'},
  {id:'v4-score',title:'De partituur erbij',text:'Kies een take en lees mee op de partituur. N opent het noteveld; dubbelklik op de score voor een note op die plek. De Comp tool is bewaard in v3.',target:'.score-paper',relatedTargets:['.score-take-picker'],view:'cutlist',prepare:'score'}
 ];
@@ -16,11 +26,7 @@ function v4ApplyChoice(key,choice){
  if(key==='workload')v.settings.workload=choice==='A'?'cue':'ranges';
  if(key==='learning')v.settings.learning=choice==='A'?'completed':'fixed';
  if(key==='allocation')v.settings.allocation=choice==='A'?'adaptive':'fixed';
- if(key==='ranges'){
-  v.settings.ranges=choice==='A'?'single':'multiple';
-  const ranges=v4Ranges(s);ranges.editing=choice==='A';
-  if(choice==='B')for(const range of [{from:2,to:8},{from:12,to:19}])if(!ranges.presets.some(r=>r.from===range.from&&r.to===range.to))ranges.presets.push(range);
- }
+ if(key==='ranges')v.settings.ranges=choice==='A'?'single':'multiple';
  try{localStorage.setItem('mandocues-v4-review',JSON.stringify({version:4,choices:v4ReviewChoices}));}catch{}
  renderDemo();if(v4ReviewDemo==='learning')v4RenderLearningExample();else if(v4ReviewDemo==='allocation')v4RenderAllocationExample();
 }
@@ -76,12 +82,13 @@ v4EditCue=function(j){
  v4ReviewBaseEdit(j);if(v4State(state()).settings.workload!=='ranges')return;
  const form=document.querySelector('#v4-cue-timing'),music=form.querySelector('[name=music]'),row=v4Row(state(),j);
  music.closest('label').hidden=true;
- const parts=structuredClone(row.musicParts||[{from:1,to:8,seconds:row.musicSeconds}]);
+ const pending=v4Ranges(state()).pending;
+ const parts=structuredClone(row.musicParts||[{from:pending?.from??'',to:pending?.to??'',seconds:row.musicSeconds}]);
  const group=document.createElement('section');group.className='v4-music-parts';group.innerHTML='<b>Music to record per section</b><div data-v4-music-parts></div><button type="button" data-v4-music-add>+ Section</button><p data-v4-music-error role="status"></p>';
  form.prepend(group);
  for(const part of parts)v4AddMusicPart(group.querySelector('[data-v4-music-parts]'),part);
 };
-function v4AddMusicPart(group,part={from:1,to:8,seconds:0}){group.insertAdjacentHTML('beforeend',`<div class="v4-music-part"><label>From<input data-part-from type="number" min="1" max="99999" value="${part.from}" required></label><label>Till<input data-part-to type="number" min="1" max="99999" value="${part.to}" required></label><label>Music mm:ss<input data-part-duration value="${v4Duration(part.seconds)}" pattern="[0-9]+:[0-5][0-9]" required></label><button type="button" data-v4-music-remove aria-label="Remove section">×</button></div>`);}
+function v4AddMusicPart(group,part={from:'',to:'',seconds:0}){group.insertAdjacentHTML('beforeend',`<div class="v4-music-part"><label>From<input data-part-from type="number" min="1" max="99999" value="${part.from}" required></label><label>Till<input data-part-to type="number" min="1" max="99999" value="${part.to}" required></label><label>Music mm:ss<input data-part-duration value="${v4Duration(part.seconds)}" pattern="[0-9]+:[0-5][0-9]" required></label><button type="button" data-v4-music-remove aria-label="Remove section">×</button></div>`);}
 document.addEventListener('click',event=>{
  if(event.target.closest('[data-v4-music-add]'))v4AddMusicPart(document.querySelector('[data-v4-music-parts]'));
  const remove=event.target.closest('[data-v4-music-remove]');if(remove)remove.closest('.v4-music-part').remove();
@@ -97,12 +104,12 @@ renderDemo=function(){
  v4ReviewBaseRender();
  document.querySelector('[data-proposal-action=tour]').textContent='Review v4';document.querySelector('[data-proposal-action=prompt]').innerHTML='Mijn keuzes';
  document.querySelector('[data-proposal-action=questions]').hidden=true;
- document.querySelector('.header-label').textContent='v4 · planning & score';
- const target=document.querySelector('.proposal-demo-label');if(target)target.insertAdjacentHTML('beforeend',' · <button class="v4-shortcut-help" data-v4-shortcuts>Shortcuts</button> · <a href="../review-v3/index.html#cutlist" target="_blank" rel="noopener">Saved Comp tool</a>');
+ document.querySelector('.header-label').textContent='voorstel van Floris';
+ const target=document.querySelector('.proposal-demo-label');if(target)target.insertAdjacentHTML('beforeend',' · <button class="v4-shortcut-help" data-v4-shortcuts>Shortcuts</button>');
 };
 document.addEventListener('click',event=>{
  if(event.target.closest('[data-v4-shortcuts]'))appDialog('Shortcuts',`<dl class="v4-shortcut-list">${[['Space','Start session, then start / stop takes (outside text fields)'],['[ and ]','Previous / next cue'],['⌥[ and ⌥]','Previous / next take'],['⌥1 to ⌥9','Choose the actual take number'],['Hold ⌥ + ⌘, then two digits','Choose a take such as 12; release to cancel'],['N','Focus the note field and anchor the writing time'],['B','Set the next take range (Recording) or edit the selected take range (Score)'],['Enter','Save a note and prepare the next'],['Shift+Enter','New line in a note'],['⌘Z','Undo a score note change']].map(([key,meaning])=>`<div><dt>${shortcutText(key)}</dt><dd>${esc(meaning)}</dd></div>`).join('')}</dl>`);
 });
 // Apply stored review choices to this fresh demo without creating fake learning data.
-for(const key of ['timing','workload','learning','allocation'])v4ApplyChoice(key,v4ReviewChoices[key]);
+for(const key of ['timing','workload','ranges','learning','allocation'])v4ApplyChoice(key,v4ReviewChoices[key]);
 renderDemo();

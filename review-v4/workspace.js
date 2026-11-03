@@ -1,6 +1,7 @@
 // v4 keeps the existing transport, cue identity and note state, with planning first.
 const v4OriginalTiming=scoreWorkflowTiming,v4OriginalCueMinutes=cuePlannedMinutes;
 const v4BaseRender=renderDemo,v4BaseSelectCue=selectScoreCue,v4BaseTransport=transport;
+const v4OriginalPanel=calmPanel,v4OriginalCueList=calmCueList;
 function v4Seconds(value){
  const match=String(value).trim().match(/^(\d{1,4}):([0-5]\d)$/);
  return match?Number(match[1])*60+Number(match[2]):null;
@@ -42,26 +43,44 @@ function v4Rebalance(s,{rebase=false}={}){
 scoreWorkflowTiming=function(s){const raw=v4OriginalTiming(s);if(!s.unified||!s.v4)return raw;const p=v4Forecast(s,raw);return {...raw,delta:p.delta,remaining:Math.max(0,p.available)};};
 cuePlannedMinutes=function(j){const s=cuePlanningState;if(s?.v4){const b=v4Row(s,j).budget;return Math.max(0,(b??0)/60);}return v4OriginalCueMinutes(j);};
 function v4CueTiming(s){
- const p=v4Forecast(s),done=p.current.done,left=p.cueLeft;
- return `<div class="v4-cue-countdown ${left<0?'is-over':''}"><span>${done?'Cue complete':left<0?'Over cue budget':'Available for this cue'}</span><strong data-v4-cue-left>${done?'Done':(left<0?'−':'')+v4Duration(Math.abs(left))}</strong><small data-v4-estimate>Estimated work left: ${v4Duration(p.current.remaining)}</small></div>`;
+ const p=v4Forecast(s),done=p.current.done;
+ return `<div class="v4-cue-countdown ${p.cueLeft<0?'is-over':''}"><div><span>${done?'Cue complete':p.cueLeft<0?'Over cue budget':'Time left for this cue'}</span><strong data-v4-cue-left>${done?'Done':(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</strong></div><small data-v4-estimate>Estimated work left: ${v4Duration(p.current.remaining)}</small></div>`;
 }
 function v4SessionTiming(s){
- const p=v4Forecast(s),status=proposalPlanClass(p.delta);
- return `<div class="v4-session-forecast ${status}"><span>Session forecast</span><strong data-v4-forecast>${p.delta>0?'−'+v4SessionDuration(p.delta):p.delta<0?'+'+v4SessionDuration(-p.delta):'On schedule'}</strong><small data-v4-forecast-label>${p.delta>0?'Expected overrun':p.delta<0?'Expected spare time':'At the planned end'}</small><div class="v4-forecast-foot"><span>Finish by <b data-v4-finish>${proposalClockTime(p.raw.clock.plannedEndAt)}</b></span><span>Estimate <b data-v4-projected>${proposalClockTime(p.projectedAt)}</b></span></div><small data-v4-learning>${v4LearningText(s,p)}</small></div>`;
+ const p=v4Forecast(s);
+ return `<div class="main-plan-card v4-session-forecast ${proposalPlanClass(p.delta)}"><span class="v4-plan-title">Session forecast</span><strong data-v4-forecast>${proposalScheduleText(p.delta)}</strong><small data-v4-forecast-label>${p.delta>0?'Expected overrun':p.delta<0?'Expected spare time':'At the planned end'}</small><div class="v4-forecast-foot"><span>Finish by <b data-v4-finish>${proposalClockTime(p.raw.clock.plannedEndAt)}</b></span><span>Estimate <b data-v4-projected>${proposalClockTime(p.projectedAt)}</b></span></div><small class="completed-cue-count">${completedCueText(s)}</small><small class="v4-reference-status" data-v4-learning>${v4LearningText(s,p)}</small></div>`;
 }
-function v4TimingDetails(s){const t=v4Forecast(s);return `<details class="v4-timing-details" ${v4State(s).settings.timing==='details'?'open':''}><summary>Timing details</summary><div><span>Session left <b data-v4-session-left>${v4SessionDuration(t.available)}</b></span><span>Worked on cue <b data-v4-worked>${v4Duration(t.current.workedSeconds)}</b></span><span>Remaining work <b data-v4-total-work>${v4SessionDuration(t.remaining)}</b></span><span>Time <b data-wall-clock>${formatWallClock()}</b></span></div></details>`;}
+function v4TimingDetails(s){
+ const p=v4Forecast(s);
+ return `<details class="v4-timing-details" ${v4State(s).settings.timing==='details'?'open':''}><summary>Timing details</summary><div><span>Session left <b data-v4-session-left>${v4SessionDuration(p.available)}</b></span><span>Worked on cue <b data-v4-worked>${v4Duration(p.current.workedSeconds)}</b></span><span>Remaining work <b data-v4-total-work>${v4SessionDuration(p.remaining)}</b></span></div><button type="button" data-v4-model>How this estimate works</button></details>`;
+}
+// Keep v3's actual panel, controls and spacing. Replace only timing contents.
+mainSessionTimes=function(){return v4CueTiming(state());};
+mainPlanCard=function(){return v4SessionTiming(state());};
 calmPanel=function(s){
- const t=running(s),ready=!s.sessionStarted,paused=!!s.sessionPausedAt,c=cues[s.cue];
- const status=t?'● Recording':paused?'On break':s.sessionEnded?'Session ended':ready?'Ready to start':'Standby';
- return `<section id="main-panel" class="v4-main-panel ${t?'is-recording':''}" aria-label="Recording and planning"><div class="v4-main-content"><div class="main-take-heading"><span class="rec-status ${t?'rolling':'standby'}">${status}</span><span class="v4-live-take" ${t?'':'aria-hidden="true"'}>${t?`<b>${entryLabel(t)}</b><b data-live="${t.id}">${time(position(t))}</b>`:'<b>Take 1</b><b>00:00</b>'}</span></div><div class="main-cue"><b>${c[0]}</b><strong>${esc(c[1])}</strong></div><div class="v4-cue-facts"><span>${v4Duration(v4Row(s,s.cue).musicSeconds)} to record</span><span>${cueSettings(s,s.cue).complexity}</span><button data-v4-edit-cue="${s.cue}">Edit cue timing</button></div><div class="v4-record-actions">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button></div><div class="v4-range-slot"></div><div class="v4-cue-actions"><button data-action="prev-cue" ${t?'disabled':''}>← Previous <kbd>[</kbd></button><button data-action="next-cue" ${t?'disabled':''}>Next → <kbd>]</kbd></button>${cueJumpMenu(s)}<button data-v4-done-next ${t?'disabled':''}>${cueSettings(s,s.cue).complete?'Reopen cue':'Done & next'}</button></div></div><aside class="v4-status-area">${v4CueTiming(s)}${v4SessionTiming(s)}</aside><footer class="v4-main-footer">${v4TimingDetails(s)}<div class="v4-session-actions"><button data-session-action="break" ${ready||t?'disabled':''}>${paused?'Resume':'Break'}</button><button data-session-action="end" ${ready||t?'disabled':''}>End session</button><button data-session-action="reset" ${t?'disabled':''} aria-label="Reset takes and timers">${appIcon('reset')}</button></div></footer></section>`;
+ const template=document.createElement('template');template.innerHTML=v4OriginalPanel(s);
+ const root=template.content.querySelector('#main-panel');root.classList.add('v4-main-panel');
+ const facts=root.querySelector('.original-cue-facts');facts.classList.add('v4-cue-facts');
+ facts.innerHTML=`<span><b>${v4Duration(v4Row(s,s.cue).musicSeconds)}</b> to record</span><span>${cueSettings(s,s.cue).complexity}</span><span>Budget <b>${v4Duration(v4Forecast(s).cueBudget)}</b></span><button class="v4-inline-timing" data-v4-edit-cue="${s.cue}">Cue timing</button><span>${entryCountText(s,s.cue)}</span>`;
+ root.querySelector('.calm-transport').insertAdjacentHTML('afterend','<div class="v4-range-slot"></div>');
+ root.querySelector('.proposal-session-clocks').insertAdjacentHTML('beforeend',v4TimingDetails(s));
+ return template.innerHTML;
 };
 transport=function(s){const template=document.createElement('template');template.innerHTML=v4BaseTransport(s);const clock=template.content.querySelector('.transport-clocks');if(clock){const p=v4Forecast(s);clock.innerHTML=`<label>Cue left <b data-v4-compact-cue>${(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</b></label><span class="proposal-schedule ${proposalPlanClass(p.delta)}" data-proposal-plan>${proposalScheduleText(p.delta)}</span>`;}return template.innerHTML;};
+// Retain v3's hierarchy, column structure, rating controls and take editors.
 calmCueList=function(s){
- const p=v4Forecast(s);
- return `<div class="calm-cue-list grouped-list"><div class="v4-list-head"><span>Cue / Title</span><span>To record</span><span>Complexity</span><span>Budget</span><span>Worked</span><span>Done</span></div>${cues.map((c,j)=>{
-  const row=p.rows[j],settings=cueSettings(s,j),conf=v4Row(s,j);
-  return `<section class="cue-group ${j===s.cue?'current':''} ${settings.complete?'is-complete':''}"><div class="v4-cue-heading"><div class="v4-cue-name"><button data-open-cue="${j}" aria-expanded="${s.open.has(j)}" aria-label="Show takes for ${c[0]}">${s.open.has(j)?'⌄':'›'}</button><button data-select-cue="${j}" aria-current="${s.cue===j}"><b>${c[0]}</b><span>${esc(c[1])}</span><small>${entryCountText(s,j)} · Alts: ${cueAltKeys(s,j).length}</small></button></div><button data-v4-edit-cue="${j}" class="v4-music-duration" aria-label="Edit music to record for ${c[0]}">${v4Duration(conf.musicSeconds)}</button><select data-cue-complexity="${j}" aria-label="Complexity for ${c[0]}">${['Easy','Medium','Hard'].map(x=>`<option ${settings.complexity===x?'selected':''}>${x}</option>`).join('')}</select><button data-v4-edit-cue="${j}" aria-label="Edit budget for ${c[0]}" title="At session start: ${v4Duration(conf.originalBudget)}">${v4Duration(conf.budget)}</button><button data-v4-edit-cue="${j}" class="v4-worked" data-v4-cue-worked="${j}" aria-label="Correct worked time for ${c[0]}">${v4Duration(row.workedSeconds)}</button><input type="checkbox" data-cue-complete="${j}" aria-label="Mark ${c[0]} complete" ${settings.complete?'checked':''}></div><div class="calm-cue-takes" ${s.open.has(j)?'':'hidden'}>${s.takes[j].map(t=>calmTakeRow(s,t)).join('')||'<p class="notes-empty">No takes yet</p>'}</div></section>`;
- }).join('')}</div>`;
+ const template=document.createElement('template');template.innerHTML=v4OriginalCueList(s);const p=v4Forecast(s);
+ const headings=template.content.querySelector('.cue-column-headings');
+ headings.children[2].textContent='To record';headings.children[4].textContent='Budget';headings.children[5].textContent='Worked';
+ template.content.querySelectorAll('.cue-group').forEach(group=>{
+  const j=+group.querySelector('[data-select-cue]').dataset.selectCue,row=v4Row(s,j);
+  const music=group.querySelector('.cue-music-length'),musicButton=document.createElement('button');
+  musicButton.className='cue-music-length v4-cell-edit';musicButton.dataset.v4EditCue=String(j);musicButton.setAttribute('aria-label','Edit music to record for '+cues[j][0]);musicButton.textContent=v4Duration(row.musicSeconds);music.replaceWith(musicButton);
+  group.querySelector('.cue-planned').innerHTML=`<span>Budget</span><button class="v4-cell-edit" data-v4-edit-cue="${j}" aria-label="Edit budget for ${cues[j][0]}" title="At session start: ${v4Duration(row.originalBudget)}">${v4Duration(row.budget)}</button>`;
+  group.querySelector('.cue-actual-field').innerHTML=`<span>Worked</span><button class="v4-cell-edit" data-v4-edit-cue="${j}" data-v4-cue-worked="${j}" aria-label="Correct worked time for ${cues[j][0]}">${v4Duration(p.rows[j].workedSeconds)}</button>`;
+  const complete=group.querySelector('[data-cue-complete]');if(running(s)?.cue===j)complete.disabled=true;
+ });
+ return template.innerHTML;
 };
 function v4EditCue(j){
  const s=state(),p=v4Forecast(s),c=v4Row(s,j),row=p.rows[j];
@@ -121,16 +140,15 @@ function v4Sync(){
  set('[data-v4-compact-cue]',(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft)));
  set('[data-v4-session-left]',v4SessionDuration(p.available));set('[data-v4-worked]',v4Duration(p.current.workedSeconds));set('[data-v4-total-work]',v4SessionDuration(p.remaining));
  for(const row of p.rows)set(`[data-v4-cue-worked="${row.id}"]`,v4Duration(row.workedSeconds));
- document.querySelectorAll('.v4-session-forecast').forEach(el=>el.className='v4-session-forecast '+proposalPlanClass(p.delta));
+ document.querySelectorAll('.v4-session-forecast').forEach(el=>el.className='main-plan-card v4-session-forecast '+proposalPlanClass(p.delta));
  document.querySelectorAll('.v4-cue-countdown').forEach(el=>el.classList.toggle('is-over',p.cueLeft<0));
 }
 renderDemo=function(){
  const s=state();v4State(s);v4BaseRender();
- document.body.classList.add('v4-workspace');document.title='MandoCues · v4 · Session planning';
- document.querySelector('.proposal-version').textContent='v4';document.querySelector('.proposal-version').setAttribute('aria-label','Version 4');
+ document.body.classList.add('v4-workspace');document.title='MandoCues · v4.1 · Recording & Score';
+ document.querySelector('.proposal-version').textContent='v4.1';document.querySelector('.proposal-version').setAttribute('aria-label','Version 4.1');
  if(proposalView==='recording'){
   const layout=document.querySelector('.calm-content');layout?.classList.add('v4-recording-content');
-  const filter=document.querySelector('.review-filter');if(filter&&!filter.querySelector('.v4-model-link'))filter.insertAdjacentHTML('beforeend','<button class="v4-model-link" data-v4-model>How this estimate works</button>');
  }
  v4Sync();
 };

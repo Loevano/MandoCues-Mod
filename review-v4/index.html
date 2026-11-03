@@ -916,26 +916,136 @@ body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hin
 /* A stopped take's old duration is not a running transport clock. Reserve its space. */
 .transport.is-idle .transport-take-time{visibility:hidden}
 
-/* Preserve the familiar cue/transport hierarchy; make the two planning signals primary. */
-.v4-workspace .v4-main-panel{border:1px solid #34303e;border-radius:14px;padding:23px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(310px,.8fr);gap:22px;background:#111016;margin-bottom:18px}
-.v4-main-content{min-width:0}.v4-main-panel .main-cue{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;margin:14px 0}.v4-main-panel .main-cue>b{font:700 clamp(38px,5vw,68px)/1 var(--mono);color:#9082ff}.v4-main-panel .main-cue>strong{font-size:clamp(22px,2.5vw,35px);overflow-wrap:anywhere}
-.v4-main-panel .main-take-heading{min-height:26px;display:flex;align-items:center;gap:18px}.v4-live-take{display:flex;gap:12px;font:18px var(--mono);color:#ff667b}.v4-live-take[aria-hidden=true]{visibility:hidden}.v4-main-panel .rec-status{font-size:11px}.v4-cue-facts{display:flex;align-items:center;flex-wrap:wrap;gap:10px;color:#aaa0b8;font-size:12px}.v4-cue-facts button{font-size:11px;padding:4px 7px}
-.v4-record-actions{display:flex;gap:8px;align-items:center;margin-top:24px}.v4-record-actions .record{min-width:265px;max-width:100%;min-height:54px}.v4-record-actions button{font-size:13px}.v4-cue-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:15px}.v4-cue-actions button{font-size:11px;padding:9px}.v4-cue-actions [data-v4-done-next]{margin-left:auto;color:#8bdbb4;border-color:#335e4d}
-.v4-status-area{display:grid;gap:12px;grid-template-columns:1fr 1.2fr;align-items:stretch}.v4-cue-countdown{display:flex;flex-direction:column;justify-content:center;gap:12px;border-right:1px solid #302b38;padding-right:14px}.v4-cue-countdown>span{font-size:11px;color:#b3a8bd}.v4-cue-countdown>strong{font:600 clamp(26px,3vw,44px)/1.1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-1px;color:#eee5fa}.v4-cue-countdown>small{font-size:10px;line-height:1.5;color:#a99eb4}.v4-cue-countdown.is-over>strong{color:#f2b351}
-.v4-session-forecast{display:flex;flex-direction:column;justify-content:center;gap:9px;border-radius:12px;background:#0c2b23;color:#79d9b3;padding:18px;min-width:0}.v4-session-forecast.is-behind{background:#342816;color:#f2b351}.v4-session-forecast.is-late{background:#391a23;color:#ff7d90}.v4-session-forecast>span,.v4-session-forecast>small{font-size:11px}.v4-session-forecast>strong{font:650 clamp(23px,3vw,36px)/1.2 var(--sans);font-variant-numeric:tabular-nums;min-height:44px;white-space:nowrap}.v4-forecast-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}.v4-forecast-foot span{display:flex;flex-direction:column;font-size:9px;gap:4px}.v4-forecast-foot b{font:11px var(--mono)}.v4-session-forecast [data-v4-learning]{font-size:9px;opacity:.8;line-height:1.4}
-.v4-main-footer{grid-column:1/-1;display:flex;justify-content:space-between;align-items:start;gap:14px}.v4-session-actions{display:flex;gap:6px}.v4-session-actions button{font-size:10px}.v4-session-actions svg{width:14px;height:14px;fill:none;stroke:currentColor}.v4-timing-details summary{font-size:11px;cursor:pointer;color:#b4a6c0}.v4-timing-details>div{display:flex;flex-wrap:wrap;gap:14px;padding-top:12px}.v4-timing-details>div>span{display:flex;flex-direction:column;gap:5px;font-size:10px;color:#a99ab4}.v4-timing-details b{font:14px var(--mono);color:#dfd4e9}
-.v4-recording-content{grid-template-columns:minmax(0,1.5fr) minmax(270px,.75fr)!important}.v4-list-head,.v4-cue-heading{display:grid;grid-template-columns:minmax(145px,1fr) 63px 76px 60px 60px 24px;gap:7px;align-items:center}.v4-list-head{font-size:9px;color:#aea1b9;padding:16px 0 8px}.v4-cue-heading{padding:10px 5px;min-height:63px;border-bottom:1px solid #312c38}.v4-cue-name{display:flex;min-width:0;align-items:center;gap:5px}.v4-cue-name>[data-open-cue]{background:none!important;border:0!important;padding:4px!important;min-width:16px}.v4-cue-name>[data-select-cue]{min-width:0;flex:1;display:flex;flex-wrap:wrap;gap:4px 7px;align-items:baseline;background:transparent!important;border:0!important;text-align:left;padding:3px!important}.v4-cue-name b{font:700 16px var(--mono);color:#c6a7ed}.v4-cue-name span{font-size:12px;overflow-wrap:anywhere}.v4-cue-name small{flex:0 0 100%;font-size:9px;color:#ada1b9}.v4-cue-heading>button{font:11px var(--mono);border:0;background:transparent;padding:5px 1px}.v4-cue-heading>select{font-size:11px;padding:6px 2px;width:100%}.v4-cue-heading>input{accent-color:#ad9ce0;width:16px;height:16px}.v4-cue-heading .v4-worked{color:#b5a9c2}.v4-workspace .cue-group.current>.v4-cue-heading{background:#3a2e48;box-shadow:inset 3px 0 #cba6f3;border-radius:5px}.v4-workspace .cue-group.is-complete:not(.current)>.v4-cue-heading{background:#10251e}.v4-workspace .calm-notes{padding:12px;background:#121115;border-color:#302a38}.v4-workspace .calm-notes>header b{font-size:11px}.v4-model-link{font-size:10px;padding:5px 7px}.v4-workspace .minimal-cue-sort{margin-left:auto}
-#v4-cue-timing{display:grid;gap:12px}#v4-cue-timing>label{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:12px}#v4-cue-timing>label input:not([type=checkbox]){width:120px;font:14px var(--mono)}#v4-cue-timing>.v4-check{justify-content:start}#v4-cue-timing p{font-size:11px;line-height:1.6}.v4-correction-history{display:flex;flex-direction:column;gap:5px;color:#aaa0b5}
-@media(max-width:1200px){.v4-workspace .v4-main-panel{grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);padding:18px}.v4-status-area{grid-template-columns:1fr}.v4-cue-countdown{border:0;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:0;gap:6px}.v4-cue-countdown>strong{font-size:32px}.v4-cue-countdown>small{flex:0 0 100%}.v4-session-forecast>strong{min-height:30px}.v4-session-forecast{padding:13px}.v4-recording-content{grid-template-columns:minmax(0,1fr)!important}.v4-workspace .calm-notes{position:static}.v4-workspace .calm-content{gap:20px}}
-@media(max-width:700px){.v4-workspace .v4-main-panel{grid-template-columns:1fr;gap:18px;padding:14px}.v4-status-area{grid-template-columns:1fr 1fr}.v4-session-forecast>strong{font-size:23px}.v4-cue-countdown{flex-direction:column;align-items:start;justify-content:center}.v4-main-panel .main-cue>b{font-size:43px}.v4-main-panel .main-cue>strong{font-size:23px}.v4-record-actions .record{min-width:0;flex:1;font-size:12px}.v4-record-actions>button:not(.record){font-size:10px}.v4-list-head{display:none}.v4-cue-heading{grid-template-columns:1fr 1fr 1fr 1fr 24px}.v4-cue-name{grid-column:1/5}.v4-cue-heading>input{grid-row:1;grid-column:5}.v4-cue-heading>.v4-music-duration:before{content:'To record ';font:9px var(--sans);color:#b5a8bf}.v4-cue-heading>.v4-worked:before{content:'Worked ';font:9px var(--sans);color:#b5a8bf}.v4-cue-heading>[aria-label^='Edit budget']:before{content:'Budget ';font:9px var(--sans);color:#b5a8bf}.v4-main-footer{flex-wrap:wrap}.v4-workspace .transport-clocks{min-width:0}}
-.v4-take-range{margin-top:15px}.v4-range-line{display:flex;align-items:center;flex-wrap:wrap;gap:5px}.v4-range-line>span{font-size:10px;color:#b8abc3;margin-right:3px}.v4-range-line button{font-size:10px;padding:5px 7px}.v4-range-line button[aria-pressed=true]{background:#3a2d4d;border-color:#9a82b6;color:#e2cef5}.v4-take-range form{display:flex;align-items:end;flex-wrap:wrap;gap:7px;padding:10px 0 0}.v4-take-range form label{display:flex;flex-direction:column;gap:4px;color:#b4a7c2;font-size:10px}.v4-take-range input{width:69px;font:13px var(--mono);padding:6px}.v4-take-range form button{font-size:10px;padding:7px}.v4-take-range form small{flex:0 0 100%;font-size:10px;color:#aa9fb8}.v4-range-error{flex:0 0 100%;font-size:11px;color:#ff9eab;margin:0}.v4-take-range-label{font:9px var(--mono);color:#c2b1d4}.v4-workspace .calm-take-row{height:78px}.v4-workspace .calm-take-identity{display:grid;grid-template-columns:minmax(70px,1fr) auto;gap:2px 5px;flex:1}.v4-workspace .calm-take-name{grid-column:1;grid-row:1/3}.v4-workspace .calm-take-identity .take-label{grid-column:2}.v4-edit-take-range{font-size:9px!important;padding:3px 5px!important;grid-column:2}.v4-workspace .calm-take-row .take-tools{gap:4px}.v4-workspace .calm-take-row .star-rating button{width:17px;font-size:19px!important}#v4-existing-range{display:grid;gap:12px}#v4-existing-range label{display:flex;justify-content:space-between;align-items:center;gap:15px}#v4-existing-range input{width:110px}
-.v4-workspace .score-note-text{background:transparent!important}.v4-workspace .score-measure:hover,.v4-workspace .score-measure.in-take-selection{background:transparent!important;box-shadow:none!important;border-color:transparent!important}.v4-score-sidebar{background:transparent!important}.v4-score-timing{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0;font-size:11px;color:#b7a7c4}.v4-score-timing b{font:17px var(--mono);color:#eee6fa;margin-left:8px}.v4-score-timing button{font-size:10px;padding:5px}.v4-score-next-range{margin-bottom:16px}.v4-score-range{font:10px var(--mono)!important;padding:4px 6px!important;justify-self:start;color:#d4bde9}.v4-score-composer>header{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;margin:16px 0 10px}.v4-score-composer .note-composer{margin:0 0 15px}.v4-workspace .v4-score-composer .note-composer textarea{min-height:65px}.v4-workspace .v4-score-composer .quick-note-suggestions{gap:3px}.v4-workspace .v4-score-composer .quick-note-suggestions button{font-size:9px;padding:4px}.v4-workspace .score-take-picker{max-height:280px}.v4-workspace .score-take-row{grid-template-columns:minmax(0,1fr) auto!important}.v4-workspace .score-take-row .star-rating{grid-column:2!important;grid-row:1!important}.v4-workspace .score-take-flags{grid-column:2!important;grid-row:2!important}.v4-workspace .score-take-row .take-label{grid-column:1!important;grid-row:2!important}.v4-workspace .score-take-row>.v4-score-range{grid-column:1!important}.v4-workspace .cutlist-sidebar{min-width:0}.v4-workspace .score-text-annotation{font-weight:500}
-.v4-review-options{display:grid;gap:7px;margin:14px 0}.v4-review-options button{font-size:11px;text-align:left;line-height:1.4;padding:9px}.v4-review-options button[aria-pressed=true]{background:#433052;border-color:#be9fd7;color:#f0e1fa}.v4-review-notes{display:grid;gap:7px;font-size:12px}.v4-review-notes textarea{width:100%}#v4-learning-example{margin-top:12px;padding:10px;border:1px solid #665075;border-radius:6px;font-size:11px;line-height:1.5}#v4-learning-example p{font-size:11px;margin:7px 0}#v4-learning-example small{color:#b1a2bd}.v4-music-parts{display:grid;gap:9px}.v4-music-part{display:grid;grid-template-columns:60px 60px minmax(80px,1fr) 25px;gap:7px;align-items:end;margin-top:8px}.v4-music-part label{display:flex;flex-direction:column;gap:5px;font-size:10px}.v4-music-part input{width:100%;min-width:0;font:12px var(--mono)}.v4-music-part button{padding:7px}.v4-music-parts>b{font-size:12px}.v4-music-parts>button{justify-self:start;font-size:11px}.v4-music-parts p{color:#ffa0ac}
-.v4-workspace .v4-cue-countdown>small{flex-basis:auto;white-space:normal;max-width:100%;overflow-wrap:anywhere}
-.v4-cue-countdown{min-width:0}
-.v4-workspace .v4-score-sidebar .score-take-row{gap:4px;padding:8px 5px}
-#v4-allocation-example{margin-top:12px;padding:10px;border:1px solid #665075;border-radius:6px;font-size:11px;line-height:1.5}#v4-allocation-example p{font-size:11px;margin:7px 0}#v4-allocation-example table{width:100%;font-size:10px;text-align:left;border-collapse:collapse}#v4-allocation-example th,#v4-allocation-example td{padding:5px 2px;border-bottom:1px solid #58445f}
-.v4-shortcut-help{border:0!important;background:transparent!important;padding:0!important;font:inherit!important;color:#c6b2df!important;text-decoration:underline;cursor:pointer}.v4-shortcut-list>div{display:grid;grid-template-columns:minmax(100px,1fr) 2fr;gap:12px;padding:8px 0;border-bottom:1px solid #33293d;font-size:11px}.v4-shortcut-list dd{margin:0;color:#bdb0ca}
+/* v4.1 adds to the original v3 components; it does not replace their layout. */
+.v4-workspace .calm-content{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.v4-workspace .calm-notes{min-width:0}
+.v4-workspace .review-filter{gap:8px}
+.v4-workspace .transport .record.session-start{background:#2463cf;border-color:#4b86e8;color:#fff}
+#main-panel.original-panel.v4-main-panel{align-items:start;gap:28px}
+#main-panel.original-panel .original-cue-facts .v4-inline-timing{padding:3px 7px;min-height:24px;font:11px var(--sans);border-color:#403649;color:#c7b5d6}
+#main-panel.original-panel .v4-range-slot{height:38px;margin:0 0 10px}
+.v4-take-range{display:inline-flex;align-items:center;gap:10px;min-height:32px;max-width:100%;font-size:11px;color:#aa9eb7}
+.v4-workspace .proposal-tour-highlight{transition:none}
+.v4-take-range>span{min-width:66px;white-space:nowrap}
+.v4-workspace .v4-range-trigger,.v4-workspace .v4-take-range-value{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;padding:4px 8px;min-height:27px;width:104px;font:11px var(--mono);color:#d4c0e6;border:1px solid #514159;background:#1b1720;border-radius:6px;white-space:nowrap}
+.v4-workspace .v4-take-range-value{width:94px;padding:3px 6px;min-height:23px;font-size:10px;background:transparent;border-color:#3e3348}
+.v4-workspace .v4-take-range-value:hover,.v4-workspace .v4-range-trigger:hover{border-color:#a28ab9;background:#292031}
+.v4-cue-countdown{display:flex;flex-direction:column;align-items:stretch;gap:6px;min-width:0;padding:0}
+.v4-cue-countdown>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+.v4-cue-countdown span{color:#b0a3bc;font-size:12px}
+.v4-cue-countdown strong{font:650 34px/1.2 var(--mono);color:#eee6f6;letter-spacing:-1px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.v4-cue-countdown small{font-size:11px;color:#9c91a7;line-height:1.5}
+.v4-cue-countdown.is-over strong{color:#f2b351}
+#main-panel.original-panel .main-plan-card.v4-session-forecast{display:flex;flex-direction:column;align-items:stretch;justify-content:start;gap:5px;padding:15px 18px;min-height:128px}
+.v4-session-forecast.is-on-time,.v4-session-forecast.is-ahead{background:#0b3126;color:#00ce98}
+.v4-session-forecast.is-behind{background:#392b16;color:#f2b351}
+.v4-session-forecast.is-late{background:#3b151e;color:#ff627e}
+.v4-session-forecast .v4-plan-title{font-size:10px;opacity:.85}
+.v4-session-forecast [data-v4-forecast]{font:650 28px/1.25 var(--sans);min-height:35px;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.5px}
+.v4-session-forecast [data-v4-forecast-label]{font-size:11px}
+.v4-forecast-foot{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:6px}
+.v4-forecast-foot>span{font-size:10px;display:inline-flex;align-items:baseline;gap:6px}
+.v4-forecast-foot b{font:11px var(--mono);white-space:nowrap}
+.v4-session-forecast .v4-reference-status{font-size:9px;line-height:1.4;opacity:.75;margin-top:4px}
+.v4-timing-details{font-size:11px;color:#ac9dbb}
+.v4-timing-details summary{cursor:pointer}
+.v4-timing-details>div{display:grid;grid-template-columns:1fr 1fr;gap:11px 16px;margin-top:10px}
+.v4-timing-details>div>span{display:flex;flex-direction:column;gap:4px;font-size:10px}
+.v4-timing-details b{font:15px var(--mono);color:#ded3e9}
+.v4-timing-details>button{font-size:10px;padding:4px 7px;min-height:26px;margin-top:10px}
+.v4-workspace .demo .v4-cell-edit{border:0;background:transparent;padding:2px;min-height:26px;white-space:nowrap;font:11px var(--mono);color:#cdb8df;text-align:left;max-width:100%}
+.v4-workspace .demo .v4-cell-edit:hover{background:#ad8dc214}
+.v4-workspace .calm-take-row{height:74px;min-height:74px;max-height:74px;align-items:center}
+.v4-workspace .calm-take-identity{display:flex;flex-direction:column;gap:3px;min-width:0;max-width:none;flex:1}
+.v4-take-title-line{display:flex;align-items:center;justify-content:start;gap:9px;min-width:0;width:100%}
+.v4-workspace .v4-take-title-line>.calm-take-name{flex:0 1 auto;min-width:58px;width:auto;max-width:100%;padding:2px 3px!important;min-height:31px;gap:3px}
+.v4-workspace .calm-take-identity>.take-label-input{height:23px;min-height:23px;padding:2px 4px;align-self:start;max-width:200px}
+.v4-workspace .calm-take-row .take-tools{flex:0 0 auto;margin-left:auto;flex-wrap:nowrap;gap:5px}
+/* The range editor is always an overlay; no take row or toolbar grows. */
+.v4-range-popover{position:fixed;z-index:500;width:280px;max-width:calc(100vw - 16px);max-height:calc(100dvh - 16px);overflow:auto;padding:13px;background:#211a29;border:1px solid #80678f;border-radius:10px;box-shadow:0 12px 34px #0009;color:#e9dfef;font-family:var(--sans)}
+.v4-range-popover header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;font-size:12px}
+.v4-range-popover header button{border:0;background:transparent;color:#b9aac7;font-size:20px;padding:0 4px;min-height:24px;cursor:pointer}
+.v4-range-fields{display:grid;grid-template-columns:minmax(0,1fr) 12px minmax(0,1fr);align-items:end;gap:8px}
+.v4-range-fields label{display:flex;flex-direction:column;gap:6px;font-size:11px;color:#b9abc4}
+.v4-range-fields input{box-sizing:border-box;width:100%;min-width:0;height:35px;border:1px solid #5b4669;border-radius:6px;background:#17131e;color:#f0e5f8;font:14px var(--mono);padding:6px 8px}
+.v4-range-fields>span{align-self:center;padding-top:16px;color:#9988aa}
+.v4-range-popover button{font-family:inherit;cursor:pointer}
+.v4-range-popover form footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:13px}
+.v4-range-popover form footer button,.v4-range-recent button{border:1px solid #685176;background:#302439;color:#e5d8f0;border-radius:6px;padding:7px 10px;font-size:11px;min-height:31px}
+.v4-range-popover form footer button.review-primary{background:#b99acf;color:#1a1023;border-color:#b99acf}
+.v4-range-error{font-size:11px;color:#ffa0ad;margin:8px 0 0;line-height:1.5}
+.v4-range-error:empty{display:none}
+.v4-range-recent{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;padding-top:10px;border-top:1px solid #46364f}
+.v4-range-recent>small{flex:0 0 100%;font-size:10px;color:#ac9ab9;margin-bottom:4px}
+/* Score keeps the original large page area; take cards reuse the recording rows. */
+.v4-workspace .score-note-text{background:transparent!important}
+.v4-workspace .score-measure:hover,.v4-workspace .score-measure.in-take-selection{background:transparent!important;box-shadow:none!important;border-color:transparent!important}
+.v4-score-next-range{padding:10px 0 13px}
+.v4-workspace .score-take-picker.v4-score-takes{display:flex!important;flex-direction:column!important;gap:0;max-height:300px;overflow-y:auto;min-height:0}
+.v4-score-takes .calm-take-row{display:grid;grid-template-columns:minmax(0,1fr) 125px;gap:7px;height:96px;min-height:96px;max-height:96px;padding:5px}
+.v4-score-takes .calm-take-identity{width:100%;gap:3px}
+.v4-score-takes .v4-take-title-line{flex-direction:column;align-items:start;gap:4px}
+.v4-score-takes .calm-take-row .take-tools{display:grid;grid-template-columns:1fr 1fr 22px;gap:5px 4px;justify-items:stretch;align-items:center;width:125px;max-width:125px;margin:0}
+.v4-score-takes .take-tools>.star-rating{grid-column:1/-1;justify-self:end;display:flex;flex-wrap:nowrap}
+.v4-score-takes .take-tools>.star-rating button{width:20px!important;font-size:20px!important}
+.v4-score-takes .take-tools>button{font-size:10px;padding:4px 5px;min-height:25px}
+.v4-score-takes .take-tools>.take-delete-button{padding:4px 2px}
+.v4-score-composer>header{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;margin:15px 0 8px}
+.v4-score-composer .note-composer{margin:0 0 12px}
+.v4-score-composer .note-composer textarea{min-height:60px!important}
+.v4-score-composer .quick-note-suggestions{gap:3px}
+.v4-score-composer .quick-note-suggestions button{font-size:9px;padding:4px}
+.v4-score-sidebar .score-note-row{display:grid;grid-template-columns:34px minmax(0,1fr) 22px;gap:4px 7px;align-items:start;padding:9px 0}
+.v4-score-sidebar .score-note-row .score-note-position{grid-column:1;grid-row:1/3}
+.v4-score-sidebar .score-note-row .score-note-copy{grid-column:2;grid-row:1}
+.v4-score-sidebar .score-note-row .score-note-time{grid-column:2;grid-row:2;justify-self:start}
+.v4-score-sidebar .score-note-row .score-note-row-actions{grid-column:3;grid-row:1}
+/* Manual planning and review stay secondary to the working interface. */
+#v4-cue-timing{display:grid;gap:12px}
+#v4-cue-timing>label{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:12px}
+#v4-cue-timing>label input:not([type=checkbox]){width:120px;font:14px var(--mono)}
+#v4-cue-timing>.v4-check{justify-content:start}
+#v4-cue-timing p{font-size:11px;line-height:1.6}
+.v4-correction-history{display:flex;flex-direction:column;gap:5px;color:#aaa0b5}
+.v4-review-options{display:grid;gap:7px;margin:14px 0}
+.v4-review-options button{font-size:11px;text-align:left;line-height:1.4;padding:9px}
+.v4-review-options button[aria-pressed=true]{background:#433052;border-color:#be9fd7;color:#f0e1fa}
+.v4-review-notes{display:grid;gap:7px;font-size:12px}
+.v4-review-notes textarea{width:100%}
+#v4-learning-example,#v4-allocation-example{margin-top:12px;padding:10px;border:1px solid #665075;border-radius:6px;font-size:11px;line-height:1.5}
+#v4-learning-example p,#v4-allocation-example p{font-size:11px;margin:7px 0}
+#v4-learning-example small{color:#b1a2bd}
+#v4-allocation-example table{width:100%;font-size:10px;text-align:left;border-collapse:collapse}
+#v4-allocation-example th,#v4-allocation-example td{padding:5px 2px;border-bottom:1px solid #58445f}
+.v4-music-parts{display:grid;gap:9px}
+.v4-music-part{display:grid;grid-template-columns:60px 60px minmax(80px,1fr) 25px;gap:7px;align-items:end;margin-top:8px}
+.v4-music-part label{display:flex;flex-direction:column;gap:5px;font-size:10px}
+.v4-music-part input{width:100%;min-width:0;font:12px var(--mono)}
+.v4-music-part button{padding:7px}
+.v4-music-parts>b{font-size:12px}
+.v4-music-parts>button{justify-self:start;font-size:11px}
+.v4-music-parts p{color:#ffa0ac}
+.v4-shortcut-help{border:0!important;background:transparent!important;padding:0!important;font:inherit!important;color:#c6b2df!important;text-decoration:underline;cursor:pointer}
+.v4-shortcut-list>div{display:grid;grid-template-columns:minmax(100px,1fr) 2fr;gap:12px;padding:8px 0;border-bottom:1px solid #33293d;font-size:11px}
+.v4-shortcut-list dd{margin:0;color:#bdb0ca}
+@media(max-width:1180px){.v4-workspace .calm-content{grid-template-columns:minmax(0,1fr)}.v4-workspace .calm-notes{position:static}}
+@media(max-width:759px){
+ #main-panel.original-panel.v4-main-panel{gap:20px}
+ #main-panel.original-panel .v4-cue-countdown strong{font-size:31px}
+ #main-panel.original-panel .v4-session-forecast [data-v4-forecast]{font-size:26px}
+ .v4-workspace .calm-take-row .take-tools{gap:3px}
+ .v4-workspace .calm-take-row .star-rating button{width:17px!important;font-size:18px!important}
+ .v4-workspace .v4-take-range-value{width:84px;font-size:9px;padding:3px 4px}
+ .v4-workspace .calm-take-identity>.take-label-input{max-width:150px}
+ .v4-workspace .calm-take-row .take-tools>button{font-size:10px;padding:6px;min-height:28px}
+ .v4-workspace .calm-take-row .take-tools>.take-delete-button{padding:3px}
+ .v4-workspace .v4-take-title-line{gap:4px}
+ .v4-workspace .score-take-picker.v4-score-takes{max-height:260px}
+ .recording-workspace.v4-workspace .calm-take-row{display:grid;grid-template-columns:minmax(0,1fr) 125px;gap:7px;height:96px;min-height:96px;max-height:96px}
+ .recording-workspace.v4-workspace .v4-take-title-line{flex-direction:column;align-items:start;gap:3px}
+ .recording-workspace.v4-workspace .calm-take-row .take-tools{display:grid;grid-template-columns:1fr 1fr 22px;gap:4px;width:125px;max-width:125px;margin:0}
+ .recording-workspace.v4-workspace .take-tools>.star-rating{grid-column:1/-1;justify-self:end;flex-wrap:nowrap}
+}
 
 </style></head>
 <body>
@@ -2963,6 +3073,7 @@ if(typeof module!=='undefined')module.exports=V4Planning;
 // v4 keeps the existing transport, cue identity and note state, with planning first.
 const v4OriginalTiming=scoreWorkflowTiming,v4OriginalCueMinutes=cuePlannedMinutes;
 const v4BaseRender=renderDemo,v4BaseSelectCue=selectScoreCue,v4BaseTransport=transport;
+const v4OriginalPanel=calmPanel,v4OriginalCueList=calmCueList;
 function v4Seconds(value){
  const match=String(value).trim().match(/^(\d{1,4}):([0-5]\d)$/);
  return match?Number(match[1])*60+Number(match[2]):null;
@@ -3004,26 +3115,44 @@ function v4Rebalance(s,{rebase=false}={}){
 scoreWorkflowTiming=function(s){const raw=v4OriginalTiming(s);if(!s.unified||!s.v4)return raw;const p=v4Forecast(s,raw);return {...raw,delta:p.delta,remaining:Math.max(0,p.available)};};
 cuePlannedMinutes=function(j){const s=cuePlanningState;if(s?.v4){const b=v4Row(s,j).budget;return Math.max(0,(b??0)/60);}return v4OriginalCueMinutes(j);};
 function v4CueTiming(s){
- const p=v4Forecast(s),done=p.current.done,left=p.cueLeft;
- return `<div class="v4-cue-countdown ${left<0?'is-over':''}"><span>${done?'Cue complete':left<0?'Over cue budget':'Available for this cue'}</span><strong data-v4-cue-left>${done?'Done':(left<0?'−':'')+v4Duration(Math.abs(left))}</strong><small data-v4-estimate>Estimated work left: ${v4Duration(p.current.remaining)}</small></div>`;
+ const p=v4Forecast(s),done=p.current.done;
+ return `<div class="v4-cue-countdown ${p.cueLeft<0?'is-over':''}"><div><span>${done?'Cue complete':p.cueLeft<0?'Over cue budget':'Time left for this cue'}</span><strong data-v4-cue-left>${done?'Done':(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</strong></div><small data-v4-estimate>Estimated work left: ${v4Duration(p.current.remaining)}</small></div>`;
 }
 function v4SessionTiming(s){
- const p=v4Forecast(s),status=proposalPlanClass(p.delta);
- return `<div class="v4-session-forecast ${status}"><span>Session forecast</span><strong data-v4-forecast>${p.delta>0?'−'+v4SessionDuration(p.delta):p.delta<0?'+'+v4SessionDuration(-p.delta):'On schedule'}</strong><small data-v4-forecast-label>${p.delta>0?'Expected overrun':p.delta<0?'Expected spare time':'At the planned end'}</small><div class="v4-forecast-foot"><span>Finish by <b data-v4-finish>${proposalClockTime(p.raw.clock.plannedEndAt)}</b></span><span>Estimate <b data-v4-projected>${proposalClockTime(p.projectedAt)}</b></span></div><small data-v4-learning>${v4LearningText(s,p)}</small></div>`;
+ const p=v4Forecast(s);
+ return `<div class="main-plan-card v4-session-forecast ${proposalPlanClass(p.delta)}"><span class="v4-plan-title">Session forecast</span><strong data-v4-forecast>${proposalScheduleText(p.delta)}</strong><small data-v4-forecast-label>${p.delta>0?'Expected overrun':p.delta<0?'Expected spare time':'At the planned end'}</small><div class="v4-forecast-foot"><span>Finish by <b data-v4-finish>${proposalClockTime(p.raw.clock.plannedEndAt)}</b></span><span>Estimate <b data-v4-projected>${proposalClockTime(p.projectedAt)}</b></span></div><small class="completed-cue-count">${completedCueText(s)}</small><small class="v4-reference-status" data-v4-learning>${v4LearningText(s,p)}</small></div>`;
 }
-function v4TimingDetails(s){const t=v4Forecast(s);return `<details class="v4-timing-details" ${v4State(s).settings.timing==='details'?'open':''}><summary>Timing details</summary><div><span>Session left <b data-v4-session-left>${v4SessionDuration(t.available)}</b></span><span>Worked on cue <b data-v4-worked>${v4Duration(t.current.workedSeconds)}</b></span><span>Remaining work <b data-v4-total-work>${v4SessionDuration(t.remaining)}</b></span><span>Time <b data-wall-clock>${formatWallClock()}</b></span></div></details>`;}
+function v4TimingDetails(s){
+ const p=v4Forecast(s);
+ return `<details class="v4-timing-details" ${v4State(s).settings.timing==='details'?'open':''}><summary>Timing details</summary><div><span>Session left <b data-v4-session-left>${v4SessionDuration(p.available)}</b></span><span>Worked on cue <b data-v4-worked>${v4Duration(p.current.workedSeconds)}</b></span><span>Remaining work <b data-v4-total-work>${v4SessionDuration(p.remaining)}</b></span></div><button type="button" data-v4-model>How this estimate works</button></details>`;
+}
+// Keep v3's actual panel, controls and spacing. Replace only timing contents.
+mainSessionTimes=function(){return v4CueTiming(state());};
+mainPlanCard=function(){return v4SessionTiming(state());};
 calmPanel=function(s){
- const t=running(s),ready=!s.sessionStarted,paused=!!s.sessionPausedAt,c=cues[s.cue];
- const status=t?'● Recording':paused?'On break':s.sessionEnded?'Session ended':ready?'Ready to start':'Standby';
- return `<section id="main-panel" class="v4-main-panel ${t?'is-recording':''}" aria-label="Recording and planning"><div class="v4-main-content"><div class="main-take-heading"><span class="rec-status ${t?'rolling':'standby'}">${status}</span><span class="v4-live-take" ${t?'':'aria-hidden="true"'}>${t?`<b>${entryLabel(t)}</b><b data-live="${t.id}">${time(position(t))}</b>`:'<b>Take 1</b><b>00:00</b>'}</span></div><div class="main-cue"><b>${c[0]}</b><strong>${esc(c[1])}</strong></div><div class="v4-cue-facts"><span>${v4Duration(v4Row(s,s.cue).musicSeconds)} to record</span><span>${cueSettings(s,s.cue).complexity}</span><button data-v4-edit-cue="${s.cue}">Edit cue timing</button></div><div class="v4-record-actions">${recordButton(s)}<button data-action="record-overdub" ${ready||paused||t?'disabled':''}>Overdub ${nextEntryNumber(s,s.cue,'overdub')}</button></div><div class="v4-range-slot"></div><div class="v4-cue-actions"><button data-action="prev-cue" ${t?'disabled':''}>← Previous <kbd>[</kbd></button><button data-action="next-cue" ${t?'disabled':''}>Next → <kbd>]</kbd></button>${cueJumpMenu(s)}<button data-v4-done-next ${t?'disabled':''}>${cueSettings(s,s.cue).complete?'Reopen cue':'Done & next'}</button></div></div><aside class="v4-status-area">${v4CueTiming(s)}${v4SessionTiming(s)}</aside><footer class="v4-main-footer">${v4TimingDetails(s)}<div class="v4-session-actions"><button data-session-action="break" ${ready||t?'disabled':''}>${paused?'Resume':'Break'}</button><button data-session-action="end" ${ready||t?'disabled':''}>End session</button><button data-session-action="reset" ${t?'disabled':''} aria-label="Reset takes and timers">${appIcon('reset')}</button></div></footer></section>`;
+ const template=document.createElement('template');template.innerHTML=v4OriginalPanel(s);
+ const root=template.content.querySelector('#main-panel');root.classList.add('v4-main-panel');
+ const facts=root.querySelector('.original-cue-facts');facts.classList.add('v4-cue-facts');
+ facts.innerHTML=`<span><b>${v4Duration(v4Row(s,s.cue).musicSeconds)}</b> to record</span><span>${cueSettings(s,s.cue).complexity}</span><span>Budget <b>${v4Duration(v4Forecast(s).cueBudget)}</b></span><button class="v4-inline-timing" data-v4-edit-cue="${s.cue}">Cue timing</button><span>${entryCountText(s,s.cue)}</span>`;
+ root.querySelector('.calm-transport').insertAdjacentHTML('afterend','<div class="v4-range-slot"></div>');
+ root.querySelector('.proposal-session-clocks').insertAdjacentHTML('beforeend',v4TimingDetails(s));
+ return template.innerHTML;
 };
 transport=function(s){const template=document.createElement('template');template.innerHTML=v4BaseTransport(s);const clock=template.content.querySelector('.transport-clocks');if(clock){const p=v4Forecast(s);clock.innerHTML=`<label>Cue left <b data-v4-compact-cue>${(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</b></label><span class="proposal-schedule ${proposalPlanClass(p.delta)}" data-proposal-plan>${proposalScheduleText(p.delta)}</span>`;}return template.innerHTML;};
+// Retain v3's hierarchy, column structure, rating controls and take editors.
 calmCueList=function(s){
- const p=v4Forecast(s);
- return `<div class="calm-cue-list grouped-list"><div class="v4-list-head"><span>Cue / Title</span><span>To record</span><span>Complexity</span><span>Budget</span><span>Worked</span><span>Done</span></div>${cues.map((c,j)=>{
-  const row=p.rows[j],settings=cueSettings(s,j),conf=v4Row(s,j);
-  return `<section class="cue-group ${j===s.cue?'current':''} ${settings.complete?'is-complete':''}"><div class="v4-cue-heading"><div class="v4-cue-name"><button data-open-cue="${j}" aria-expanded="${s.open.has(j)}" aria-label="Show takes for ${c[0]}">${s.open.has(j)?'⌄':'›'}</button><button data-select-cue="${j}" aria-current="${s.cue===j}"><b>${c[0]}</b><span>${esc(c[1])}</span><small>${entryCountText(s,j)} · Alts: ${cueAltKeys(s,j).length}</small></button></div><button data-v4-edit-cue="${j}" class="v4-music-duration" aria-label="Edit music to record for ${c[0]}">${v4Duration(conf.musicSeconds)}</button><select data-cue-complexity="${j}" aria-label="Complexity for ${c[0]}">${['Easy','Medium','Hard'].map(x=>`<option ${settings.complexity===x?'selected':''}>${x}</option>`).join('')}</select><button data-v4-edit-cue="${j}" aria-label="Edit budget for ${c[0]}" title="At session start: ${v4Duration(conf.originalBudget)}">${v4Duration(conf.budget)}</button><button data-v4-edit-cue="${j}" class="v4-worked" data-v4-cue-worked="${j}" aria-label="Correct worked time for ${c[0]}">${v4Duration(row.workedSeconds)}</button><input type="checkbox" data-cue-complete="${j}" aria-label="Mark ${c[0]} complete" ${settings.complete?'checked':''}></div><div class="calm-cue-takes" ${s.open.has(j)?'':'hidden'}>${s.takes[j].map(t=>calmTakeRow(s,t)).join('')||'<p class="notes-empty">No takes yet</p>'}</div></section>`;
- }).join('')}</div>`;
+ const template=document.createElement('template');template.innerHTML=v4OriginalCueList(s);const p=v4Forecast(s);
+ const headings=template.content.querySelector('.cue-column-headings');
+ headings.children[2].textContent='To record';headings.children[4].textContent='Budget';headings.children[5].textContent='Worked';
+ template.content.querySelectorAll('.cue-group').forEach(group=>{
+  const j=+group.querySelector('[data-select-cue]').dataset.selectCue,row=v4Row(s,j);
+  const music=group.querySelector('.cue-music-length'),musicButton=document.createElement('button');
+  musicButton.className='cue-music-length v4-cell-edit';musicButton.dataset.v4EditCue=String(j);musicButton.setAttribute('aria-label','Edit music to record for '+cues[j][0]);musicButton.textContent=v4Duration(row.musicSeconds);music.replaceWith(musicButton);
+  group.querySelector('.cue-planned').innerHTML=`<span>Budget</span><button class="v4-cell-edit" data-v4-edit-cue="${j}" aria-label="Edit budget for ${cues[j][0]}" title="At session start: ${v4Duration(row.originalBudget)}">${v4Duration(row.budget)}</button>`;
+  group.querySelector('.cue-actual-field').innerHTML=`<span>Worked</span><button class="v4-cell-edit" data-v4-edit-cue="${j}" data-v4-cue-worked="${j}" aria-label="Correct worked time for ${cues[j][0]}">${v4Duration(p.rows[j].workedSeconds)}</button>`;
+  const complete=group.querySelector('[data-cue-complete]');if(running(s)?.cue===j)complete.disabled=true;
+ });
+ return template.innerHTML;
 };
 function v4EditCue(j){
  const s=state(),p=v4Forecast(s),c=v4Row(s,j),row=p.rows[j];
@@ -3083,16 +3212,15 @@ function v4Sync(){
  set('[data-v4-compact-cue]',(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft)));
  set('[data-v4-session-left]',v4SessionDuration(p.available));set('[data-v4-worked]',v4Duration(p.current.workedSeconds));set('[data-v4-total-work]',v4SessionDuration(p.remaining));
  for(const row of p.rows)set(`[data-v4-cue-worked="${row.id}"]`,v4Duration(row.workedSeconds));
- document.querySelectorAll('.v4-session-forecast').forEach(el=>el.className='v4-session-forecast '+proposalPlanClass(p.delta));
+ document.querySelectorAll('.v4-session-forecast').forEach(el=>el.className='main-plan-card v4-session-forecast '+proposalPlanClass(p.delta));
  document.querySelectorAll('.v4-cue-countdown').forEach(el=>el.classList.toggle('is-over',p.cueLeft<0));
 }
 renderDemo=function(){
  const s=state();v4State(s);v4BaseRender();
- document.body.classList.add('v4-workspace');document.title='MandoCues · v4 · Session planning';
- document.querySelector('.proposal-version').textContent='v4';document.querySelector('.proposal-version').setAttribute('aria-label','Version 4');
+ document.body.classList.add('v4-workspace');document.title='MandoCues · v4.1 · Recording & Score';
+ document.querySelector('.proposal-version').textContent='v4.1';document.querySelector('.proposal-version').setAttribute('aria-label','Version 4.1');
  if(proposalView==='recording'){
   const layout=document.querySelector('.calm-content');layout?.classList.add('v4-recording-content');
-  const filter=document.querySelector('.review-filter');if(filter&&!filter.querySelector('.v4-model-link'))filter.insertAdjacentHTML('beforeend','<button class="v4-model-link" data-v4-model>How this estimate works</button>');
  }
  v4Sync();
 };
@@ -3111,75 +3239,87 @@ document.addEventListener('change',event=>{
 });
 v4State(state());renderDemo();
 
-// A range belongs to a take; it never restarts numbering or implies an overdub.
+// One range control per take. Editing floats above the page, never inside its rows.
 function v4Ranges(s){s.v4Ranges??={};return s.v4Ranges[s.cue]??={presets:[],pending:null};}
-function v4RangeLabel(range){return range?'Bars '+range.from+'–'+range.to:'Whole cue';}
+function v4RangeLabel(range){return range?'Bars '+range.from+'–'+range.to:'All bars';}
+function v4RangeValue(range){return range?range.from+'–'+range.to:'All bars';}
 function v4RangeControls(s){
- const ranges=v4Ranges(s),pending=ranges.pending,t=running(s),settings=v4State(s).settings;
- return `<section class="v4-take-range" aria-label="Bar range for the next take"><div class="v4-range-line"><span>${t?'Recording range':'Next take'}</span><button data-v4-range-all aria-pressed="${!pending}" ${t?'disabled':''}>Whole cue</button>${ranges.presets.map((range,i)=>`<button data-v4-range-preset="${i}" aria-pressed="${pending?.from===range.from&&pending?.to===range.to}" ${t?'disabled':''}>${v4RangeLabel(range)}</button>`).join('')}<button data-v4-range-add aria-expanded="${!!ranges.editing}" ${t?'disabled':''}>+ Range</button></div>${ranges.editing?`<form id="v4-next-range"><label>From bar<input name="from" type="number" inputmode="numeric" min="1" max="99999" value="${pending?.from??1}" required></label><label>Till bar<input name="to" type="number" inputmode="numeric" min="1" max="99999" value="${pending?.to??8}" required></label>${settings.ranges==='multiple'?'<small>Save a range, then add another preset for the next pass.</small>':''}<button type="submit">Use range</button><button type="button" data-v4-range-cancel>Cancel</button><p class="v4-range-error" role="status"></p></form>`:''}</section>`;
+ const live=running(s),range=live?.barRange??v4Ranges(s).pending;
+ return `<div class="v4-take-range" aria-label="Bar range for the next take"><span>${live?'Take '+live.num:'Next take '+nextEntryNumber(s,s.cue)}</span><button type="button" class="v4-range-trigger" data-v4-range-open="next" aria-haspopup="dialog" ${live?'disabled':''}>${v4RangeValue(range)} <span aria-hidden="true">⌄</span></button></div>`;
 }
-const v4RangeBaseRender=renderDemo;
-renderDemo=function(){
- v4RangeBaseRender();const s=state();
- const slot=document.querySelector('.v4-range-slot');if(slot)slot.innerHTML=v4RangeControls(s);
- document.querySelectorAll('[data-calm-take]').forEach(row=>{
-  const t=takeById(s,row.dataset.calmTake);if(!t)return;
-  const name=row.querySelector('.calm-take-name');
-  name?.insertAdjacentHTML('beforeend',`<span class="v4-take-range-label">${v4RangeLabel(t.barRange)}</span>`);
-  const identity=row.querySelector('.calm-take-identity');
-  identity?.insertAdjacentHTML('beforeend',`<button class="v4-edit-take-range" data-v4-edit-take-range="${t.id}" title="Edit bars for ${entryLabel(t)}" aria-label="Edit bars for ${entryLabel(t)}">Bars</button>`);
- });
+const v4RangeBaseRow=calmTakeRow;
+calmTakeRow=function(s,t){
+ const template=document.createElement('template');template.innerHTML=v4RangeBaseRow(s,t);
+ const identity=template.content.querySelector('.calm-take-identity'),name=identity.querySelector('.calm-take-name'),top=document.createElement('div');top.className='v4-take-title-line';name.replaceWith(top);top.append(name);
+ top.insertAdjacentHTML('beforeend',`<button type="button" class="v4-take-range-value" data-v4-edit-take-range="${t.id}" aria-label="Edit bars for ${entryLabel(t)}" aria-haspopup="dialog" title="${entryLabel(t)} · ${v4RangeLabel(t.barRange)}">${v4RangeValue(t.barRange)} <span aria-hidden="true">⌄</span></button>`);
+ return template.innerHTML;
 };
+const v4RangeBaseRender=renderDemo;
+renderDemo=function(){v4CloseRange(false);v4RangeBaseRender();const slot=document.querySelector('.v4-range-slot');if(slot)slot.innerHTML=v4RangeControls(state());};
 const v4RangeBaseToggle=toggleRecord;
 toggleRecord=function(s,kind='take'){
  const before=running(s),range=structuredClone(v4Ranges(s).pending);
- v4RangeBaseToggle(s,kind);
- const live=running(s);if(!before&&live){live.barRange=range;renderDemo();}
+ v4RangeBaseToggle(s,kind);const live=running(s);if(!before&&live){live.barRange=range;renderDemo();}
 };
+let v4RangeEditor=null;
+function v4CloseRange(restoreFocus=false){
+ const editor=document.querySelector('#v4-range-popover'),anchor=v4RangeEditor?.anchor;editor?.remove();v4RangeEditor=null;if(restoreFocus&&anchor?.isConnected)anchor.focus({preventScroll:true});
+}
+function v4PositionRange(){
+ const context=v4RangeEditor,popup=document.querySelector('#v4-range-popover');if(!context||!popup)return;
+ if(!context.anchor.isConnected){v4CloseRange();return;}
+ const r=context.anchor.getBoundingClientRect(),height=popup.offsetHeight,width=popup.offsetWidth;
+ const below=r.bottom+7,above=r.top-height-7;
+ Object.assign(popup.style,{left:Math.max(8,Math.min(innerWidth-width-8,r.left))+'px',top:Math.max(8,Math.min(innerHeight-height-8,below+height<=innerHeight-8?below:above))+'px'});
+}
+function v4OpenRange(anchor,takeId=null){
+ v4CloseRange();const s=state();if(!takeId&&running(s))return;
+ const take=takeId?takeById(s,takeId):null;if(takeId&&!take)return;
+ const range=take?take.barRange:v4Ranges(s).pending,presets=v4State(s).settings.ranges==='multiple'?v4Ranges(s).presets:[];
+ v4RangeEditor={anchor,takeId,cue:s.cue,session:s.sessionId};
+ const popup=document.createElement('div');popup.id='v4-range-popover';popup.className='v4-range-popover';popup.lang='en';popup.setAttribute('role','dialog');popup.setAttribute('aria-labelledby','v4-range-title');
+ popup.innerHTML=`<header><b id="v4-range-title">${take?entryLabel(take):'Next take '+nextEntryNumber(s,s.cue)} · Bars</b><button type="button" data-v4-range-close aria-label="Close bar range">×</button></header><form id="v4-range-form"><div class="v4-range-fields"><label>From bar<input name="from" type="number" inputmode="numeric" min="1" max="99999" value="${range?.from??''}" placeholder="Start"></label><span aria-hidden="true">–</span><label>Till bar<input name="to" type="number" inputmode="numeric" min="1" max="99999" value="${range?.to??''}" placeholder="End"></label></div><p class="v4-range-error" role="status"></p>${presets.length?`<div class="v4-range-recent"><small>Saved ranges</small>${presets.map((r,i)=>`<button type="button" data-v4-use-range="${i}">${v4RangeValue(r)}</button>`).join('')}</div>`:''}<footer><button type="button" data-v4-range-whole>All bars</button><button type="submit" class="review-primary">Apply</button></footer></form>`;
+ document.body.append(popup);v4PositionRange();popup.querySelector('[name=from]').focus({preventScroll:true});
+}
+function v4ApplyRange(range){
+ const context=v4RangeEditor,s=state();if(!context||s.cue!==context.cue||s.sessionId!==context.session)return;
+ const owner=context.takeId?takeById(s,context.takeId):null;
+ if(context.takeId&&!owner)return;
+ if(owner)owner.barRange=structuredClone(range);else{if(running(s))return;v4Ranges(s).pending=structuredClone(range);}
+ if(range&&!v4Ranges(s).presets.some(r=>r.from===range.from&&r.to===range.to))v4Ranges(s).presets.push(structuredClone(range));
+ const id=context.takeId;v4CloseRange();renderDemo();
+ document.querySelector(id?`[data-v4-edit-take-range="${id}"]`:'[data-v4-range-open="next"]')?.focus({preventScroll:true});
+}
 document.addEventListener('click',event=>{
- const s=state(),ranges=v4Ranges(s),b=event.target.closest('[data-v4-range-add],[data-v4-range-cancel],[data-v4-range-all],[data-v4-range-preset],[data-v4-edit-take-range]');if(!b||b.disabled)return;
- if(b.hasAttribute('data-v4-edit-take-range')){
-  const t=takeById(s,b.dataset.v4EditTakeRange);if(!t)return;
-  appDialog(entryLabel(t)+' · Bars',`<form id="v4-existing-range"><input type="hidden" name="take" value="${t.id}"><label>From bar<input name="from" type="number" min="1" max="99999" value="${t.barRange?.from??''}" placeholder="Whole cue"></label><label>Till bar<input name="to" type="number" min="1" max="99999" value="${t.barRange?.to??''}" placeholder="Whole cue"></label><p class="review-muted">Leave both empty for the whole cue.</p><p class="v4-range-error" role="status"></p></form>`,`<button type="submit" form="v4-existing-range">Save</button>`);return;
- }
- if(running(s))return;
- if(b.hasAttribute('data-v4-range-add'))ranges.editing=!ranges.editing;
- if(b.hasAttribute('data-v4-range-cancel'))ranges.editing=false;
- if(b.hasAttribute('data-v4-range-all')){ranges.pending=null;ranges.editing=false;}
- if(b.hasAttribute('data-v4-range-preset')){ranges.pending=structuredClone(ranges.presets[+b.dataset.v4RangePreset]);ranges.editing=false;}
- renderDemo();if(ranges.editing)document.querySelector('#v4-next-range [name=from]')?.focus({preventScroll:true});
+ const trigger=event.target.closest('[data-v4-range-open],[data-v4-edit-take-range]');if(trigger&&!trigger.disabled){v4OpenRange(trigger,trigger.dataset.v4EditTakeRange||null);return;}
+ if(event.target.closest('[data-v4-range-close]')){v4CloseRange(true);return;}
+ if(event.target.closest('[data-v4-range-whole]')){v4ApplyRange(null);return;}
+ const saved=event.target.closest('[data-v4-use-range]');if(saved){v4ApplyRange(v4Ranges(state()).presets[+saved.dataset.v4UseRange]);return;}
+ if(v4RangeEditor&&!event.target.closest('#v4-range-popover'))v4CloseRange();
 });
 document.addEventListener('submit',event=>{
- const form=event.target;if(!['v4-next-range','v4-existing-range'].includes(form.id))return;event.preventDefault();
- const values=new FormData(form),f=String(values.get('from')??''),t=String(values.get('to')??''),whole=!f&&!t;
- const from=Number(f),to=Number(t);
- if(!whole&&(!Number.isInteger(from)||!Number.isInteger(to)||from<1||to<from||to>99999)||form.id==='v4-next-range'&&whole){form.querySelector('.v4-range-error').textContent='Choose a start bar and an end bar at or after it.';return;}
- const s=state(),range=whole?null:{from,to};
- if(form.id==='v4-existing-range'){
-  const take=takeById(s,values.get('take'));if(take)take.barRange=range;form.closest('dialog').close();
- }else{
-  const ranges=v4Ranges(s);ranges.pending=range;ranges.editing=false;
-  if(!ranges.presets.some(r=>r.from===from&&r.to===to))ranges.presets.push(range);
- }
- renderDemo();
+ if(event.target.id!=='v4-range-form')return;event.preventDefault();const form=event.target,data=new FormData(form),from=String(data.get('from')).trim(),to=String(data.get('to')).trim();
+ if(!from&&!to){v4ApplyRange(null);return;}
+ const first=Number(from),last=Number(to);
+ if(!from||!to||!Number.isInteger(first)||!Number.isInteger(last)||first<1||last<first||last>99999){form.querySelector('.v4-range-error').textContent='Choose an end bar at or after the start bar.';v4PositionRange();return;}
+ v4ApplyRange({from:first,to:last});
 });
-// B focuses the range controls only when outside text fields and dialogs.
+addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&v4RangeEditor){event.preventDefault();event.stopImmediatePropagation();v4CloseRange(true);}
+},true);
 document.addEventListener('keydown',event=>{
  if(event.code!=='KeyB'||event.metaKey||event.ctrlKey||event.altKey||event.shiftKey||event.repeat||event.isComposing||!navigationKeysAvailable(event)||running(state()))return;
- event.preventDefault();event.stopImmediatePropagation();
- if(proposalView==='recording'){v4Ranges(state()).editing=true;renderDemo();document.querySelector('#v4-next-range [name=from]')?.focus();}
- else if(state().selected)document.querySelector(`[data-v4-edit-take-range="${state().selected}"]`)?.click();
+ const anchor=proposalView==='recording'?document.querySelector('[data-v4-range-open="next"]'):document.querySelector(`[data-v4-edit-take-range="${state().selected}"]`);
+ if(anchor){event.preventDefault();event.stopImmediatePropagation();v4OpenRange(anchor,proposalView==='recording'?null:state().selected);}
 },true);
-renderDemo();
+addEventListener('resize',v4PositionRange);document.addEventListener('scroll',v4PositionRange,true);
 const v4RangeBaseLog=sessionTakeLog,v4RangeBaseExport=openSessionExport;
 sessionTakeLog=function(s=unifiedState){const log=v4RangeBaseLog(s);for(const take of log.takes)take.barRange=structuredClone(takeById(s,take.takeId)?.barRange??null);return log;};
-openSessionExport=function(kind){
- v4RangeBaseExport(kind);
- if(kind==='takes')document.querySelectorAll('.session-export-preview section').forEach((section,index)=>{const t=allTakes(state())[index];if(t)section.querySelector('b')?.insertAdjacentHTML('afterend',' · '+v4RangeLabel(t.barRange));});
-};
+openSessionExport=function(kind){v4RangeBaseExport(kind);if(kind==='takes')document.querySelectorAll('.session-export-preview section').forEach((section,index)=>{const t=allTakes(state())[index];if(t)section.querySelector('b')?.insertAdjacentHTML('afterend',' · '+v4RangeLabel(t.barRange));});};
+renderDemo();
 
 // Score is a recording/annotation view. Comp remains intact in the preserved v3.
-const v4ScoreBaseView=productionScoreView,v4ScoreBaseTakeList=scoreTakeList;
+const v4ScoreBaseView=productionScoreView;
 scoreComparisonLayers=function(){return '';};
 scoreSettings=function(s){return `<div class="score-settings" role="group" aria-label="Score display">${!s.doc.url?scorePageLayoutMenu(s)+scoreZoomControls(s):''}</div>`;};
 productionScoreView=function(s){
@@ -3195,23 +3335,18 @@ document.addEventListener('pointerdown',event=>{
 },true);
 chooseScoreTake=function(s,id){selectScoreTake(s,id,false,true);};
 scoreVisibleTakes=function(s){const t=takeById(s,s.selected);return t?[t]:[];};
-scoreTakeList=function(s,options){
- const template=document.createElement('template');template.innerHTML=v4ScoreBaseTakeList(s,{...options,newButton:false});
- template.content.querySelector('.score-compare-help')?.remove();
- template.content.querySelectorAll('.score-take-row').forEach(row=>{
-  const id=row.querySelector('[data-select-take]').dataset.selectTake,t=takeById(s,id);
-  row.insertAdjacentHTML('beforeend',`<button class="v4-score-range" data-v4-edit-take-range="${id}" title="Edit take bars">${v4RangeLabel(t.barRange)}</button>`);
- });return template.innerHTML;
+scoreTakeList=function(s){
+ return `<section class="score-take-list v4-score-take-list"><header><h3>Takes</h3><small class="cue-alt-total">Alts: ${cueAltKeys(s,s.cue).length}</small></header><div class="take-picker score-take-picker v4-score-takes" role="group" aria-label="Select a take">${s.takes[s.cue].map(t=>calmTakeRow(s,t)).join('')||'<p class="notes-empty">Start a take to begin.</p>'}</div></section>`;
 };
 scoreSidebar=function(s){
- const t=takeById(s,s.selected),p=v4Forecast(s);
- return `<aside class="score-notes cutlist-sidebar v4-score-sidebar">${scoreCueOverview(s)}<div class="v4-score-timing"><span>Cue left <b data-v4-compact-cue>${(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</b></span><button data-v4-edit-cue="${s.cue}">Cue timing</button></div><div class="v4-score-next-range">${v4RangeControls(s)}</div>${scoreTakeList(s)}${t?`<section class="v4-score-composer"><header><b>${entryLabel(t)} · Notes</b><small>${shortcutText('N · Enter')}</small></header>${composer(s,t,false,'v4-score')}${scoreNoteList(s,t)}</section>`:'<p class="notes-empty">Start a take to write notes.</p>'}</aside>`;
+ const t=takeById(s,s.selected);
+ return `<aside class="score-notes cutlist-sidebar v4-score-sidebar">${scoreCueOverview(s)}<div class="v4-score-next-range">${v4RangeControls(s)}</div>${scoreTakeList(s)}${t?`<section class="v4-score-composer"><header><b>${entryLabel(t)} · Notes</b><small>${shortcutText('N · Enter')}</small></header>${composer(s,t,false,'v4-score')}${scoreNoteList(s,t)}</section>`:'<p class="notes-empty">Start a take to write notes.</p>'}</aside>`;
 };
 const v4ScoreBaseRender=renderDemo;
 renderDemo=function(){
  v4ScoreBaseRender();document.querySelectorAll('[data-proposal-view="cutlist"]').forEach(b=>{b.textContent='Score';b.setAttribute('aria-label','Score view');});
  document.querySelector('.proposal-workspace-title').textContent=proposalView==='cutlist'?'Score':'Recording';
- const title=document.querySelector('.proposal-demo-label');if(title)title.textContent='Local v4 prototype · no audio is recorded';
+ const title=document.querySelector('.proposal-demo-label');if(title)title.textContent='Demo · no audio is recorded';
 };
 const v4ScoreBaseShow=showProposalView;
 showProposalView=function(view,options={}){const target=view==='score'?'cutlist':view;v4ScoreBaseShow(target,options);if(options.navigate!==false)history.replaceState(null,'',target==='cutlist'?'#score':'#recording');};
@@ -3227,14 +3362,24 @@ saveScoreComment=function(s){const c=s.scoreComment,t=takeById(s,c?.take),old=t?
 route();
 
 // One optional review round. A/B choices change the visible prototype immediately.
+// Handle the topmost editor before the old tour's document-level Escape handler.
+addEventListener('keydown',event=>{
+ if(event.key==='Escape'){
+  const dialog=document.querySelector('.app-dialog[open]');
+  if(dialog){event.preventDefault();event.stopImmediatePropagation();dialog.close();return;}
+ }
+ if(event.code==='Space'&&!event.metaKey&&!event.ctrlKey&&!event.altKey&&!event.shiftKey&&!event.isComposing&&event.target.closest('.proposal-tour-card')&&!event.target.closest('button,input,textarea,select,a,[contenteditable=true]')&&!document.querySelector('dialog[open]')&&!state().scoreComment){
+  event.preventDefault();event.stopImmediatePropagation();if(!event.repeat)performRecordingAction(state());
+ }
+},true);
 const v4ReviewChoices={timing:'A',workload:'A',ranges:'A',learning:'A',allocation:'A'};
 try{Object.assign(v4ReviewChoices,JSON.parse(localStorage.getItem('mandocues-v4-review')||'{}').choices||{});}catch{}
 let v4ReviewDemo=null;
 const v4ReviewConfig=[
  {id:'v4-timing',key:'timing',title:'Welke tijden wil je direct zien?',text:'Probeer eerst de sessie te starten met Space. A toont cuetijd en sessieprognose. B klapt de overige tijden erbij open.',target:'#main-panel',view:'recording',a:'A · Twee hoofdsignalen',b:'B · Met timingdetails'},
  {id:'v4-workload',key:'workload',title:'Hoe vul je de opnameomvang in?',text:'Vul de muziek in die je echt gaat opnemen. A is één duur per cue. B heeft maatbereiken met elk een eigen duur. De maten alleen bepalen de duur niet.',target:'#main-panel .v4-cue-facts',view:'recording',a:'A · Duur per cue',b:'B · Duur per bereik'},
- {id:'v4-ranges',key:'ranges',title:'Instarten op verschillende maten',text:'Kies Whole cue of een maatbereik voor de volgende take. De take-nummers lopen door. A voegt een bereik toe; B toont twee voorbeeldbereiken om tussen te wisselen.',target:'.v4-take-range',view:'recording',a:'A · Bereik invoeren',b:'B · Bereiken klaarzetten'},
- {id:'v4-learning',key:'learning',title:'De schatting bijstellen',text:'A leert geleidelijk van afgeronde cues. B houdt het oorspronkelijke werktempo vast. Probeer het rekenvoorbeeld; je echte demo-invoer blijft apart.',target:'.v4-status-area',view:'recording',a:'A · Leren van afgeronde cues',b:'B · Tempo vast houden'},
+ {id:'v4-ranges',key:'ranges',title:'Instarten op verschillende maten',text:'Stel bij de take een begin- en eindmaat in. A toont één bereik; B laat je eigen opgeslagen bereiken opnieuw kiezen. De take-nummers lopen door.',target:'.v4-range-slot .v4-range-trigger',view:'recording',a:'A · Eén bereik',b:'B · Opgeslagen bereiken'},
+ {id:'v4-learning',key:'learning',title:'De schatting bijstellen',text:'A leert geleidelijk van afgeronde cues. B houdt het oorspronkelijke werktempo vast. Probeer het rekenvoorbeeld; je echte demo-invoer blijft apart.',target:'.v4-session-forecast',view:'recording',a:'A · Leren van afgeronde cues',b:'B · Tempo vast houden'},
  {id:'v4-allocation',key:'allocation',title:'Tijd verdelen over de volgende cues',text:'A verdeelt de overgebleven tijd opnieuw bij een cuewissel of afronding. B houdt de oorspronkelijke cuebudgetten vast. Een aangepaste eindtijd is geen bewijs dat je langzamer werkt.',target:'.cue-timeline',view:'recording',a:'A · Beschikbare tijd herverdelen',b:'B · Budgetten vasthouden'},
  {id:'v4-score',title:'De partituur erbij',text:'Kies een take en lees mee op de partituur. N opent het noteveld; dubbelklik op de score voor een note op die plek. De Comp tool is bewaard in v3.',target:'.score-paper',relatedTargets:['.score-take-picker'],view:'cutlist',prepare:'score'}
 ];
@@ -3244,11 +3389,7 @@ function v4ApplyChoice(key,choice){
  if(key==='workload')v.settings.workload=choice==='A'?'cue':'ranges';
  if(key==='learning')v.settings.learning=choice==='A'?'completed':'fixed';
  if(key==='allocation')v.settings.allocation=choice==='A'?'adaptive':'fixed';
- if(key==='ranges'){
-  v.settings.ranges=choice==='A'?'single':'multiple';
-  const ranges=v4Ranges(s);ranges.editing=choice==='A';
-  if(choice==='B')for(const range of [{from:2,to:8},{from:12,to:19}])if(!ranges.presets.some(r=>r.from===range.from&&r.to===range.to))ranges.presets.push(range);
- }
+ if(key==='ranges')v.settings.ranges=choice==='A'?'single':'multiple';
  try{localStorage.setItem('mandocues-v4-review',JSON.stringify({version:4,choices:v4ReviewChoices}));}catch{}
  renderDemo();if(v4ReviewDemo==='learning')v4RenderLearningExample();else if(v4ReviewDemo==='allocation')v4RenderAllocationExample();
 }
@@ -3304,12 +3445,13 @@ v4EditCue=function(j){
  v4ReviewBaseEdit(j);if(v4State(state()).settings.workload!=='ranges')return;
  const form=document.querySelector('#v4-cue-timing'),music=form.querySelector('[name=music]'),row=v4Row(state(),j);
  music.closest('label').hidden=true;
- const parts=structuredClone(row.musicParts||[{from:1,to:8,seconds:row.musicSeconds}]);
+ const pending=v4Ranges(state()).pending;
+ const parts=structuredClone(row.musicParts||[{from:pending?.from??'',to:pending?.to??'',seconds:row.musicSeconds}]);
  const group=document.createElement('section');group.className='v4-music-parts';group.innerHTML='<b>Music to record per section</b><div data-v4-music-parts></div><button type="button" data-v4-music-add>+ Section</button><p data-v4-music-error role="status"></p>';
  form.prepend(group);
  for(const part of parts)v4AddMusicPart(group.querySelector('[data-v4-music-parts]'),part);
 };
-function v4AddMusicPart(group,part={from:1,to:8,seconds:0}){group.insertAdjacentHTML('beforeend',`<div class="v4-music-part"><label>From<input data-part-from type="number" min="1" max="99999" value="${part.from}" required></label><label>Till<input data-part-to type="number" min="1" max="99999" value="${part.to}" required></label><label>Music mm:ss<input data-part-duration value="${v4Duration(part.seconds)}" pattern="[0-9]+:[0-5][0-9]" required></label><button type="button" data-v4-music-remove aria-label="Remove section">×</button></div>`);}
+function v4AddMusicPart(group,part={from:'',to:'',seconds:0}){group.insertAdjacentHTML('beforeend',`<div class="v4-music-part"><label>From<input data-part-from type="number" min="1" max="99999" value="${part.from}" required></label><label>Till<input data-part-to type="number" min="1" max="99999" value="${part.to}" required></label><label>Music mm:ss<input data-part-duration value="${v4Duration(part.seconds)}" pattern="[0-9]+:[0-5][0-9]" required></label><button type="button" data-v4-music-remove aria-label="Remove section">×</button></div>`);}
 document.addEventListener('click',event=>{
  if(event.target.closest('[data-v4-music-add]'))v4AddMusicPart(document.querySelector('[data-v4-music-parts]'));
  const remove=event.target.closest('[data-v4-music-remove]');if(remove)remove.closest('.v4-music-part').remove();
@@ -3325,14 +3467,14 @@ renderDemo=function(){
  v4ReviewBaseRender();
  document.querySelector('[data-proposal-action=tour]').textContent='Review v4';document.querySelector('[data-proposal-action=prompt]').innerHTML='Mijn keuzes';
  document.querySelector('[data-proposal-action=questions]').hidden=true;
- document.querySelector('.header-label').textContent='v4 · planning & score';
- const target=document.querySelector('.proposal-demo-label');if(target)target.insertAdjacentHTML('beforeend',' · <button class="v4-shortcut-help" data-v4-shortcuts>Shortcuts</button> · <a href="../review-v3/index.html#cutlist" target="_blank" rel="noopener">Saved Comp tool</a>');
+ document.querySelector('.header-label').textContent='voorstel van Floris';
+ const target=document.querySelector('.proposal-demo-label');if(target)target.insertAdjacentHTML('beforeend',' · <button class="v4-shortcut-help" data-v4-shortcuts>Shortcuts</button>');
 };
 document.addEventListener('click',event=>{
  if(event.target.closest('[data-v4-shortcuts]'))appDialog('Shortcuts',`<dl class="v4-shortcut-list">${[['Space','Start session, then start / stop takes (outside text fields)'],['[ and ]','Previous / next cue'],['⌥[ and ⌥]','Previous / next take'],['⌥1 to ⌥9','Choose the actual take number'],['Hold ⌥ + ⌘, then two digits','Choose a take such as 12; release to cancel'],['N','Focus the note field and anchor the writing time'],['B','Set the next take range (Recording) or edit the selected take range (Score)'],['Enter','Save a note and prepare the next'],['Shift+Enter','New line in a note'],['⌘Z','Undo a score note change']].map(([key,meaning])=>`<div><dt>${shortcutText(key)}</dt><dd>${esc(meaning)}</dd></div>`).join('')}</dl>`);
 });
 // Apply stored review choices to this fresh demo without creating fake learning data.
-for(const key of ['timing','workload','learning','allocation'])v4ApplyChoice(key,v4ReviewChoices[key]);
+for(const key of ['timing','workload','ranges','learning','allocation'])v4ApplyChoice(key,v4ReviewChoices[key]);
 renderDemo();
 
 </script>

@@ -1,5 +1,5 @@
 // Score is a recording/annotation view. Comp remains intact in the preserved v3.
-const v4ScoreBaseView=productionScoreView,v4ScoreBaseTakeList=scoreTakeList;
+const v4ScoreBaseView=productionScoreView;
 scoreComparisonLayers=function(){return '';};
 scoreSettings=function(s){return `<div class="score-settings" role="group" aria-label="Score display">${!s.doc.url?scorePageLayoutMenu(s)+scoreZoomControls(s):''}</div>`;};
 productionScoreView=function(s){
@@ -15,23 +15,18 @@ document.addEventListener('pointerdown',event=>{
 },true);
 chooseScoreTake=function(s,id){selectScoreTake(s,id,false,true);};
 scoreVisibleTakes=function(s){const t=takeById(s,s.selected);return t?[t]:[];};
-scoreTakeList=function(s,options){
- const template=document.createElement('template');template.innerHTML=v4ScoreBaseTakeList(s,{...options,newButton:false});
- template.content.querySelector('.score-compare-help')?.remove();
- template.content.querySelectorAll('.score-take-row').forEach(row=>{
-  const id=row.querySelector('[data-select-take]').dataset.selectTake,t=takeById(s,id);
-  row.insertAdjacentHTML('beforeend',`<button class="v4-score-range" data-v4-edit-take-range="${id}" title="Edit take bars">${v4RangeLabel(t.barRange)}</button>`);
- });return template.innerHTML;
+scoreTakeList=function(s){
+ return `<section class="score-take-list v4-score-take-list"><header><h3>Takes</h3><small class="cue-alt-total">Alts: ${cueAltKeys(s,s.cue).length}</small></header><div class="take-picker score-take-picker v4-score-takes" role="group" aria-label="Select a take">${s.takes[s.cue].map(t=>calmTakeRow(s,t)).join('')||'<p class="notes-empty">Start a take to begin.</p>'}</div></section>`;
 };
 scoreSidebar=function(s){
- const t=takeById(s,s.selected),p=v4Forecast(s);
- return `<aside class="score-notes cutlist-sidebar v4-score-sidebar">${scoreCueOverview(s)}<div class="v4-score-timing"><span>Cue left <b data-v4-compact-cue>${(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</b></span><button data-v4-edit-cue="${s.cue}">Cue timing</button></div><div class="v4-score-next-range">${v4RangeControls(s)}</div>${scoreTakeList(s)}${t?`<section class="v4-score-composer"><header><b>${entryLabel(t)} · Notes</b><small>${shortcutText('N · Enter')}</small></header>${composer(s,t,false,'v4-score')}${scoreNoteList(s,t)}</section>`:'<p class="notes-empty">Start a take to write notes.</p>'}</aside>`;
+ const t=takeById(s,s.selected);
+ return `<aside class="score-notes cutlist-sidebar v4-score-sidebar">${scoreCueOverview(s)}<div class="v4-score-next-range">${v4RangeControls(s)}</div>${scoreTakeList(s)}${t?`<section class="v4-score-composer"><header><b>${entryLabel(t)} · Notes</b><small>${shortcutText('N · Enter')}</small></header>${composer(s,t,false,'v4-score')}${scoreNoteList(s,t)}</section>`:'<p class="notes-empty">Start a take to write notes.</p>'}</aside>`;
 };
 const v4ScoreBaseRender=renderDemo;
 renderDemo=function(){
  v4ScoreBaseRender();document.querySelectorAll('[data-proposal-view="cutlist"]').forEach(b=>{b.textContent='Score';b.setAttribute('aria-label','Score view');});
  document.querySelector('.proposal-workspace-title').textContent=proposalView==='cutlist'?'Score':'Recording';
- const title=document.querySelector('.proposal-demo-label');if(title)title.textContent='Local v4 prototype · no audio is recorded';
+ const title=document.querySelector('.proposal-demo-label');if(title)title.textContent='Demo · no audio is recorded';
 };
 const v4ScoreBaseShow=showProposalView;
 showProposalView=function(view,options={}){const target=view==='score'?'cutlist':view;v4ScoreBaseShow(target,options);if(options.navigate!==false)history.replaceState(null,'',target==='cutlist'?'#score':'#recording');};

@@ -10,7 +10,7 @@ with sync_playwright() as p:
  browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});page.set_default_timeout(10000);errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  start=datetime(2026,11,3,12,tzinfo=timezone.utc);page.clock.install(time=start);page.clock.pause_at(start+timedelta(seconds=1));page.goto((ROOT/'index.html').as_uri())
- expect(page.locator('.proposal-version')).to_have_text('v4')
+ expect(page.locator('.proposal-version')).to_have_text('v4.1')
  expect(page.locator('#proposal-welcome')).to_have_count(0)
  expect(page.locator('[data-v4-forecast]')).to_have_text('On schedule')
  expect(page.locator('.v4-timing-details')).not_to_have_attribute('open','')

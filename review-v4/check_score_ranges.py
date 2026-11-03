@@ -10,7 +10,7 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)));page.goto((ROOT/'index.html').as_uri())
  original=page.evaluate('allTakes(state()).map(t=>({id:t.id,selections:t.scoreSelections}))')
  # Add a range without creating or renumbering a take.
- page.locator('[data-v4-range-add]').click();form=page.locator('#v4-next-range')
+ page.locator('[data-v4-range-open=next]').click();form=page.locator('#v4-range-form')
  form.locator('[name=from]').fill('12');form.locator('[name=to]').fill('8');form.locator('[type=submit]').click()
  expect(form.locator('.v4-range-error')).to_contain_text('end bar')
  form.locator('[name=from]').fill('2');form.locator('[name=to]').fill('8');form.locator('[type=submit]').click()
@@ -19,9 +19,9 @@ with sync_playwright() as p:
  page.locator('.proposal-workspace-title').click();page.keyboard.press('Space');assert page.evaluate('state().sessionStarted&&!running(state())')
  page.keyboard.press('Space');assert page.evaluate('running(state()).num')==3
  assert page.evaluate('running(state()).barRange')=={'from':2,'to':8}
- expect(page.locator('[data-v4-range-add]')).to_be_disabled()
+ expect(page.locator('[data-v4-range-open=next]')).to_be_disabled()
  page.keyboard.press('Space');assert page.evaluate('!running(state())')
- page.locator('[data-v4-range-add]').click();form.locator('[name=from]').fill('12');form.locator('[name=to]').fill('19');form.locator('[type=submit]').click()
+ page.locator('[data-v4-range-open=next]').click();form.locator('[name=from]').fill('12');form.locator('[name=to]').fill('19');form.locator('[type=submit]').click()
  page.locator('.proposal-workspace-title').click();page.keyboard.press('Space')
  assert page.evaluate('running(state()).num')==4
  assert page.evaluate('running(state()).barRange')=={'from':12,'to':19}
