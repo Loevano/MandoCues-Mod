@@ -3,10 +3,9 @@ discussion.splice(0,discussion.length,...discussion.filter(item=>item.small),...
 const removedTransportStep=proposalTourSteps.find(step=>step.id==='opnametoets');
 if(removedTransportStep){
  proposalTourSteps.splice(proposalTourSteps.indexOf(removedTransportStep),1);
- for(const part of removedTransportStep.parts)proposalTourSelection.delete(part.id);
+ proposalTourSelection.delete('opnametoets');
  proposalTourSuggestions.splice(0,proposalTourSuggestions.length,...proposalTourSteps.filter(step=>!step.transition));
  proposalTourParts.splice(0,proposalTourParts.length,...proposalTourSteps.flatMap(step=>step.parts));
- persistTourSelection();
 }
 const proposalVersionBadge=document.createElement('span');proposalVersionBadge.className='proposal-version';proposalVersionBadge.textContent='v'+activeProposalMeta.version;proposalVersionBadge.title=activeProposalMeta.date;proposalVersionBadge.setAttribute('aria-label','Version '+activeProposalMeta.version);
 document.querySelector('.site-header .wordmark').append(proposalVersionBadge);

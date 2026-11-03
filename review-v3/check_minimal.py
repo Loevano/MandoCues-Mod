@@ -1,4 +1,4 @@
-"""Only cue ordering and the confirmed Space shortcut extend the v2 layout."""
+"""Keep the original layout and transport while checking the presentation changes."""
 from pathlib import Path
 import sys
 ROOT=Path(__file__).resolve().parent
@@ -43,12 +43,12 @@ with sync_playwright() as p:
  expect(questions).to_contain_text('Idee voor tijdplanning.')
  expect(questions).to_contain_text('muziekduur en moeilijkheid')
  expect(questions).to_contain_text('Welke klokken en tijdcodes gebruiken we')
- expect(questions.locator('li')).to_have_count(3)
+ expect(questions.locator('li')).to_have_count(4)
  assert not any(text in questions.inner_text() for text in ['duur van elke take','New take','vergeet een take'])
  page.locator('#proposal-questions [data-tour-action="close-dialog"]').first.click()
  page.locator('[data-proposal-action="tour"]').click()
- expect(page.locator('#proposal-tour-title')).to_have_text('Cues en takes direct kiezen')
- expect(page.locator('.proposal-tour-card header')).to_contain_text('1 van 9')
+ expect(page.locator('#proposal-tour-title')).to_have_text('Cues kiezen en herschikken')
+ expect(page.locator('.proposal-tour-card header')).to_contain_text('1 van 10')
  assert 'opnametoets' not in page.evaluate('proposalTourSteps.map(s=>s.id)')
  assert 'Spatie vervangen door' not in page.evaluate('selectedTourPrompt()')
  page.locator('[data-tour-action="close"]').click()

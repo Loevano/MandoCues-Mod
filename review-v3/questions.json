@@ -22,5 +22,12 @@
     "label": "Vraag",
     "small": false,
     "questionOnly": true
+  },
+  {
+    "id": "take-instart-vraag",
+    "title": "Takes met verschillende instartmaten?",
+    "text": "Bijvoorbeeld eerst maat 1–8 en daarna een nieuwe take vanaf maat 12. Zullen we de instartmaat of het maatbereik aangeven bij takes en notes, terwijl de take-nummers gewoon doorlopen?",
+    "small": false,
+    "questionOnly": true
   }
 ]

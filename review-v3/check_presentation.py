@@ -48,6 +48,53 @@ with sync_playwright() as p:
  page.locator(f'.cue-group.current [data-take-best="{ids[1]}"]').click()
  expect(page.locator(f'.cue-group.current [data-take-best="{ids[0]}"]')).to_have_attribute('aria-pressed','true')
  assert page.evaluate('state().selected')==selected
+ # The walkthrough follows real session order and keeps its correct target.
+ page.locator('[data-proposal-action="tour"]').click()
+ ids=page.evaluate('proposalTourSteps.map(s=>s.id)')
+ assert ids[:6]==['sessieplan','cue-aanklikken','sterren','noteplek','maat-aanpassen','planning']
+ expect(page.locator('.proposal-tour-highlight')).to_be_visible()
+ # Drag by the header, then re-render: automatic positioning must not undo the move.
+ card=page.locator('.proposal-tour-card');header=card.locator('header');r=header.bounding_box();before=card.bounding_box()
+ page.mouse.move(r['x']+40,r['y']+12);page.mouse.down();page.mouse.move(110,160,steps=6);page.mouse.up()
+ after=card.bounding_box();assert abs(after['x']-(110-(r['x']+40-before['x'])))<3,after
+ page.evaluate('renderDemo(); positionProposalTour()')
+ assert abs(card.bounding_box()['x']-after['x'])<1
+ for index,id in enumerate(ids):
+  page.evaluate('(index)=>openTourStep(index)',index)
+  expect(page.locator('#proposal-tour-title')).to_have_text(page.evaluate('proposalTourSteps[proposalTourIndex].title'))
+  target=page.evaluate('tourTarget?.className||""');assert target,(id,target)
+  checkbox=page.locator('.proposal-tour-card [data-tour-choice]')
+  if id!='comp-tool-overgang':expect(checkbox).to_be_checked()
+  if id=='cue-aanklikken':
+   expect(page.locator('.proposal-tour-highlight')).not_to_be_visible()
+   # Take selection remains interactive while the tour is open.
+   page.locator('.cue-group.current [data-select-take]').first.click()
+   assert page.evaluate('state().selected')==page.locator('.cue-group.current [data-select-take]').first.get_attribute('data-select-take')
+  if id=='noteplek':expect(page.locator('.sticky-slot')).to_have_class('sticky-slot is-stuck')
+  if id=='maat-aanpassen':
+   assert 'composer-footer' in target,(id,target)
+   expect(page.locator('.tour-inline-help')).to_contain_text('Voor later')
+   assert 'File → Export' not in page.locator('.tour-inline-help').inner_text()
+  if id=='view-toggle':assert 'score-paper' in target
+  if id=='planning':expect(page.locator('.tour-schedule-examples .main-plan-card')).to_have_count(3)
+  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),id
+ page.locator('[data-tour-action="close"]').click()
+ # Existing explicit opt-outs survive the new ordering and a page reload.
+ page.evaluate("openTourStep(1)")
+ page.locator('.proposal-tour-card [data-tour-choice]').uncheck()
+ page.reload();page.locator('[data-tour-action="welcome-skip"]').click()
+ page.evaluate('openTourStep(1)');expect(page.locator('.proposal-tour-card [data-tour-choice]')).not_to_be_checked()
+ page.evaluate('openTourStep(0)');expect(page.locator('.proposal-tour-card [data-tour-choice]')).to_be_checked()
+ # Review cards and their controls remain within the viewport on smaller screens.
+ for width in [900,390]:
+  page.set_viewport_size({'width':width,'height':844})
+  for index in range(len(ids)):
+   page.evaluate('(index)=>openTourStep(index)',index)
+   page.evaluate('positionProposalTour()')
+   rect=page.locator('.proposal-tour-card').bounding_box()
+   assert rect['x']>=0 and rect['x']+rect['width']<=width+1,(width,ids[index],rect)
+   assert rect['y']>=0 and rect['y']+rect['height']<=845,(width,ids[index],rect)
+   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(width,ids[index])
  assert not errors,errors
  browser.close()
-print('PASS first-letter and N anchors, clearing drafts, independent NOW/restore before and after Enter')
+print('PASS note anchors/N/NOW/restore, independent Best takes, tour order/targets/dragging/sticky bar and opt-out persistence')
