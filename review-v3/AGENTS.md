@@ -16,3 +16,5 @@
 - Pro Tools is alleen een korte toekomstnotitie, geen onderzochte of beloofde export-/syncroute. Verschillende instartmaten zijn alleen een vraag, geen nieuwe sectie-UI. Floris bevestigt: laat de sneltoetsen zoals ze waren. Geen nieuwe Control-/cijferkeuze voor cues; bestaande brackets en Option-taketoetsen blijven.
 
 - Publicatie op expliciet verzoek van Floris, 3 november: v3.2 staat op https://mandocues-voorstel-v32.gheeneman.chatgpt.site . Actieve Site en succesvolle deployment staan in publication.json; checkout ../sites/mando-voorstel-v3-2 ten opzichte van de repository. Deze specifieke publicatie was toegestaan, ondanks de eerdere lokale reviewfase. Iedereen met de URL heeft toegang zonder account; noindex/robots is geen beveiliging. Gebruik dezelfde Site bij volgende geautoriseerde updates; lokale edits zijn niet automatisch gepubliceerd.
+
+- v3.2.1: schedule-timing.js corrigeert de v2-afrondingsfout tussen sessie en cue met gedeelde secondegrenzen. Niet maskeren met een kleurvertraging of deadband; behoud echte afwijkingen en de vijfminutengrens. check_schedule.py reproduceert de oude flikkerfout en test pauze/hervatten en echte kleurstatussen.

@@ -2,6 +2,10 @@
 
 Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
 
+## Correctie v3.2.1 — 3 november 2026
+
+De planning knipperde tussen On schedule en −00:01/oranje na cuewissels. Oorzaak gereproduceerd: sessie- en cue-stopwatch werden elk vanaf hun eigen startmilliseconde afgerond. Tijdelijk telde de sessie een seconde die nog niet van het resterende cuewerk was afgetrokken. Bij herhaald wisselen gingen bovendien fracties verloren. review-v3/schedule-timing.js laat cuewerk dezelfde secondegrenzen als sessiewerk gebruiken; budgetten, voor-/achterstand, kleurdrempels en pauzebeleid blijven behouden. Geen tolerantieband of vertragingsfilter om de fout te maskeren. check_schedule.py controleert de reproductie, herhaald wisselen, beide weergaven, echte oranje/rode/voorstand en pauze/einde/hervatten. De v2-basis blijft ongewijzigd. Publiceer dit op dezelfde actieve Site.
+
 ## Online publicatie v3.2 — 3 november 2026
 
 Floris heeft de lokale presentatie expliciet laten publiceren. Deel: https://mandocues-voorstel-v32.gheeneman.chatgpt.site/#recording . Sites bevestigt geslaagde publicatie, hostingversie 1 met presentatie v3.2. De oude Site is vanuit het huidige account niet bereikbaar; daarom is een afzonderlijke Site aangemaakt in ../sites/mando-voorstel-v3-2. Gebruik voortaan de exacte projectidentiteit uit review-v3/publication.json en de .openai/hosting.json in die checkout voor updates; geen nieuwe Site aanmaken. De bestaande oktober-demo is niet vervangen.
