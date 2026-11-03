@@ -1,3 +1,7 @@
+# Actuele lokale presentatie — v3.2 · 3 november 2026
+
+Open [review-v3/index.html](review-v3/index.html); bron en keuzes staan in [PROJECT_KNOWLEDGE.md](PROJECT_KNOWLEDGE.md) en [review-v3/PLAN.md](review-v3/PLAN.md). De onderstaande beschrijving is de bewaarde v2-basis, geen actuele wijzigingslijst. Voor v3.2 gelden Space voor transport, onafhankelijke Best-takes, gedeeld herschikken in tijdlijn/cuelijst, N en oorspronkelijke/huidige notetijden en de aangepaste tien-stappenrondleiding. De bestaande layout en klokken blijven. De v2-build en oude overdracht zijn niet overschreven; er is niets opnieuw online gepubliceerd.
+
 # Eén voorstel · 19 oktober 2026
 
 De huidige richting vervangt het overzicht met vijf afzonderlijke prototypes.

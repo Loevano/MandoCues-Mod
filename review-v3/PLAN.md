@@ -1,10 +1,12 @@
 # v3 — kleine aanpassingen op de vorige indeling
 
-Bijgewerkt 3 november 2026 · actuele lokale versie v3.1.
+Bijgewerkt 3 november 2026 · actuele lokale versie v3.2.
 
 Laatste keuze van Floris: behoud A, de vorige indeling. Alleen cuevolgorde herschikken via de sleepgreep overnemen. De eerder bevestigde Space-bediening blijft: eerst alleen sessiestart, daarna take starten/stoppen, met gewone spaties tijdens tekstinvoer.
 
-Open [index.html](index.html). Deze pagina heeft de bestaande take-/cue-notes, hoofdklokken, scoreweergave en oorspronkelijke rondleiding. De brede A/B-balk en overige nieuwe experimenten zijn niet actief. Er is geen nieuwe notes-layout, clock display-menu of driepanelenweergave.
+De laatste presentatiefeedback voegt alleen gerichte functies toe: gedeelde cuevolgorde in sessieplan en lijst, onafhankelijke Best-takes, N voor note-invoer en aparte huidige/oorspronkelijke kloktijd. De rondleiding is aan de kop versleepbaar en telt tien suggesties in sessievolgorde. De note-stap laat de sticky balk zien. Instarten is een vraag, Pro Tools alleen een korte toekomstnotitie; geen planner- of sectie-UI toegevoegd. Floris bevestigt: de brackets/Option-bediening blijft zoals die was; geen nieuwe cijferkeuze voor cues.
+
+Open [index.html](index.html). Deze pagina heeft de bestaande take-/cue-notes, hoofdklokken, scoreweergave en bijgewerkte rondleiding. De brede A/B-balk en overige nieuwe experimenten zijn niet actief. Er is geen nieuwe notes-layout, clock display-menu of driepanelenweergave.
 
 De sleepgreep staat links van de cues. Order kiest opnamevolgorde of cuevolgorde als weergavesortering. Slepen verandert geen cue-/take-/note-identiteit. Tijdens opnemen is herschikken geblokkeerd.
 

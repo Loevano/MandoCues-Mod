@@ -2,6 +2,16 @@
 
 Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
 
+## Actuele presentatie v3.2 — 3 november 2026
+
+Open [review-v3/index.html](review-v3/index.html). De bestaande v2-indeling blijft intact. Alleen de laatst gevraagde verfijningen zijn actief: cues herschikken in tijdlijn én lijst met één gedeelde opnamevolgorde; meerdere Best-takes; N om het noteveld te focussen en een tijdanker te zetten; ↓ voor huidige kloktijd en klokje voor het oorspronkelijke schrijfmoment. Notes bewaren writtenAt apart van de bewerkbare clockAt, ook na Enter en tekst wissen.
+
+De rondleiding telt tien suggesties: sessieplan, cues/takes, sterren, noteveld met compacte balk bij scrollen, kloktijd/maat, planning, Comp tool, maten kiezen, score-notes en vergelijken. De Comp-overgang blijft ongenummerd. De kaart is aan de kop versleepbaar; de grote tutorial-selectiebox bij cues is weg. Vinkkeuzes blijven per onderdeel bewaard. Pro Tools staat alleen als kort toekomstidee vermeld. De vraag over verschillende instartmaten staat bij de drie bestaande planning-/klokvragen; geen nieuwe sectie-UI of planningsalgoritme.
+
+Space blijft: eerst sessie, daarna take starten/stoppen, gewone tekst in tekstvelden. Brackets kiezen cues, Option+brackets/1–9 kiezen takes; Option+Command vasthouden voor twee cijfers. Floris bevestigt na de verduidelijkingsvraag: laat de sneltoetsen zoals ze waren. Geen nieuwe Control- of cijferkeuze voor cues.
+
+Bouw: `python3 review-v3/build.py`. Actieve aanvullingen: minimal.js/css, note-times.js, best-takes.js en presentation-tour.js; tekstvragen in questions.json, versienummer in version.json. Gerichte browserchecks: check_minimal.py en check_presentation.py; check_review.py controleert de ongewijzigde v2, backup en herhaalbare build. v3.1 is herstelbaar op commit ec3506e; v2 en afgewezen A/B-proeven blijven afzonderlijk bewaard. Dit is een lokale presentatie, niet opnieuw online gepubliceerd.
+
 ## Presentatieversie v3.1 — 3 november 2026
 
 Alleen kleine vervolgwijzigingen: subtiel versienummer in de bovenbalk, aangepaste teksten onder Vragen, Space voor transport en de oude Command+Enter-stap uit de rondleiding. De actuele pagina is [review-v3/index.html](review-v3/index.html); versie staat in review-v3/version.json. Vragen komen uit review-v3/questions.json: kort planningidee op basis van muziekduur/moeilijkheid/werktempo/werkelijke cuetijd, plus vragen over essentiële klokken en een actuele, betrouwbare voor-/achterstand. De drie oude take-timer/New take/vergeten-start-vragen vervallen. Er is geen nieuw planningsalgoritme geïmplementeerd.
