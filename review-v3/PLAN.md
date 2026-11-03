@@ -1,6 +1,6 @@
 # v3 — kleine aanpassingen op de vorige indeling
 
-Bijgewerkt 3 november 2026.
+Bijgewerkt 3 november 2026 · actuele lokale versie v3.1.
 
 Laatste keuze van Floris: behoud A, de vorige indeling. Alleen cuevolgorde herschikken via de sleepgreep overnemen. De eerder bevestigde Space-bediening blijft: eerst alleen sessiestart, daarna take starten/stoppen, met gewone spaties tijdens tekstinvoer.
 
@@ -11,6 +11,12 @@ De sleepgreep staat links van de cues. Order kiest opnamevolgorde of cuevolgorde
 Herstelpunten: v2 blijft bewaard als before-session-review-v3-20261102. De volledige A/B-ronde is apart bewaard als [experiments.html](experiments.html) en Git-tag v3-full-ab-review-20261102. Niets verwijderd uit die geschiedenis.
 
 Bouwen: python3 review-v3/build.py. Controleren: check_minimal.py met Playwright en python3 review-v3/check_review.py. build-experiments.py bouwt alleen het historische experimentenbestand. Er wordt niets online gepubliceerd in deze ronde.
+
+## Kleine presentatie-update v3.1
+
+De bovenbalk toont nu subtiel v3.1; toekomstige updates krijgen een eigen nummer via version.json. questions.json vervangt uitsluitend de tekst onder Vragen: een kort planningidee en twee vragen over essentiële klokken en de betrouwbaarheid van voor-/achterstand. De vragen over take-duur, New take zonder start/stop en vergeten starten vervallen. De nieuwe planningtekst is een idee, geen nieuwe berekening in de app.
+
+De Command+Enter-suggestie is uit de rondleiding gehaald; deze begint nu met cues en takes kiezen en telt negen suggesties. Space is de transporttoets (eerst sessie, daarna takes); Command+Enter schakelt transport niet meer. De overige rondleiding en indeling blijven behouden. Dit is een lokale presentatieversie; geen online publicatie uitgevoerd.
 
 ## Eerdere brede review — historisch, niet de huidige richting
 

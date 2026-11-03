@@ -1,7 +1,20 @@
-// Previous layout, with only cue reordering and the already confirmed Space shortcut.
+// Small presentation update on the preserved layout; no new planning behavior.
+discussion.splice(0,discussion.length,...discussion.filter(item=>item.small),...activeProposalQuestions);
+const removedTransportStep=proposalTourSteps.find(step=>step.id==='opnametoets');
+if(removedTransportStep){
+ proposalTourSteps.splice(proposalTourSteps.indexOf(removedTransportStep),1);
+ for(const part of removedTransportStep.parts)proposalTourSelection.delete(part.id);
+ proposalTourSuggestions.splice(0,proposalTourSuggestions.length,...proposalTourSteps.filter(step=>!step.transition));
+ proposalTourParts.splice(0,proposalTourParts.length,...proposalTourSteps.flatMap(step=>step.parts));
+ persistTourSelection();
+}
+const proposalVersionBadge=document.createElement('span');proposalVersionBadge.className='proposal-version';proposalVersionBadge.textContent='v'+activeProposalMeta.version;proposalVersionBadge.title=activeProposalMeta.date;proposalVersionBadge.setAttribute('aria-label','Version '+activeProposalMeta.version);
+document.querySelector('.site-header .wordmark').append(proposalVersionBadge);
+document.title='MandoCues · voorstel van Floris · v'+activeProposalMeta.version;
 const minimalBaseRender=renderDemo,minimalRecordButton=recordButton;
 recordButton=function(s){return minimalRecordButton(s).replace('<kbd>⌘ Enter</kbd>','<kbd>Space</kbd>');};
 document.addEventListener('keydown',event=>{
+ if(event.key==='Enter'&&event.metaKey&&!event.altKey&&!event.ctrlKey&&!event.shiftKey){event.preventDefault();event.stopImmediatePropagation();return;}
  if(event.code!=='Space'||event.altKey||event.metaKey||event.ctrlKey||event.shiftKey||event.isComposing)return;
  if(event.target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"]),dialog,[role="dialog"],[data-review-drag-cue],.proposal-review-actions,.proposal-tour-card,.proposal-review-dialog')||document.querySelector('dialog[open]')||state().scoreComment||reviewCueDrag)return;
  event.preventDefault();event.stopImmediatePropagation();if(!event.repeat)performRecordingAction(state());

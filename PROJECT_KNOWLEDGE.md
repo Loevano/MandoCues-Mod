@@ -2,6 +2,12 @@
 
 Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
 
+## Presentatieversie v3.1 — 3 november 2026
+
+Alleen kleine vervolgwijzigingen: subtiel versienummer in de bovenbalk, aangepaste teksten onder Vragen, Space voor transport en de oude Command+Enter-stap uit de rondleiding. De actuele pagina is [review-v3/index.html](review-v3/index.html); versie staat in review-v3/version.json. Vragen komen uit review-v3/questions.json: kort planningidee op basis van muziekduur/moeilijkheid/werktempo/werkelijke cuetijd, plus vragen over essentiële klokken en een actuele, betrouwbare voor-/achterstand. De drie oude take-timer/New take/vergeten-start-vragen vervallen. Er is geen nieuw planningsalgoritme geïmplementeerd.
+
+De rondleiding begint nu bij cues/takes kiezen en telt negen suggesties. Command+Enter bedient transport niet meer; de eerste Space start alleen de sessie, volgende drukken starten/stoppen takes. De gekozen bestaande indeling, notes, cue-sleepgreep en Comp tool zijn behouden. Nog steeds geen nieuwe klokinstellingen, driepanelenweergave of brede reviewflow. Geen online publicatie uitgevoerd voor deze tekst-/versie-update.
+
 ## Laatste besluit — 3 november 2026
 
 Floris wijst de brede v3-herinrichting af. Behoud de vorige A/v2-indeling en neem alleen cuevolgorde herschikken via de bolletjesgreep over; de eerder bevestigde Space-bediening blijft. Geen notes naast de bediening, nieuwe klokinstellingen, drie panelen, planningsproef of andere wijzigingen toevoegen. De bestaande notes moeten behouden blijven. De tutorial voorlopig niet opnieuw vormgeven.

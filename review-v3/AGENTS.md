@@ -8,3 +8,5 @@
 - Spatie is de voorlopig gewenste handmatige transporttoets; tijdens tekstinvoer blijft het tekst. De eerste spatie start alleen de sessie. Pro Tools is voorlopig uitgesteld; geen integratiewerk of vragen daarover in deze ronde.
 - Publiceer deze experimenten niet over de bestaande demo voordat Floris de gekozen wijzigingen beoordeeld heeft. Dit is een expliciet lokale reviewfase.
 - Bouw met python3 review-v3/build.py vanuit de repository; de bestaande prototype/dist/index.html blijft byte-identiek.
+
+- Presentatie-update v3.1 (3 november): stel het lokale versienummer in version.json in en toon het subtiel in de bovenbalk. questions.json bevat de drie actuele punten: planningidee, essentiële klokken en betrouwbare voor-/achterstand. De oude take-duur/New take/vergeten-start-vragen en de Command+Enter-suggestie vervallen. Space bedient transport; Command+Enter doet dat niet meer. Verder geen UI-/plannerwijzigingen.

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "planning-idee",
+    "title": "Idee voor tijdplanning.",
+    "text": "Verdeel de beschikbare sessietijd op basis van muziekduur en moeilijkheid per cue. Gebruik de werkelijk bestede cuetijd om ook het werktempo beter in te schatten. Bij een late start, pauze of uitloop wil ik eindtijd en resterende tijd eenvoudig kunnen bijstellen, waarna de verdeling over de overige cues en de voor-/achterstand worden herberekend.",
+    "label": "Suggestie",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "timers-vraag",
+    "title": "Welke klokken en tijdcodes gebruiken we tijdens een sessie, en waarvoor?",
+    "text": "Wat moet je in één oogopslag zien: resterende tijd voor de cue, resterende sessietijd of voor-/achterstand? Welke weergaven zijn daarbij essentieel?",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  },
+  {
+    "id": "voor-achter-vraag",
+    "title": "Hoe wordt de voor-/achterstand nu berekend?",
+    "text": "Hoe worden een late start, pauzes en uitgelopen cues meegenomen, zodat je op de actuele inschatting kunt vertrouwen?",
+    "label": "Vraag",
+    "small": false,
+    "questionOnly": true
+  }
+]

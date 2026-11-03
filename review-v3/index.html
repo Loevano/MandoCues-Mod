@@ -905,6 +905,8 @@ body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hin
 .recording-workspace .review-filter{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.recording-workspace .review-filter .minimal-cue-sort{display:flex;align-items:center;gap:7px;font-size:11px;color:#aaa0b4}.minimal-cue-sort select{max-width:145px}
 .v3-order-row{position:relative;padding-left:22px!important}.v3-drag-handle{position:absolute;left:0;top:21px;width:18px;padding:2px;font-size:18px;line-height:1;color:#8f819f;cursor:grab;touch-action:none;user-select:none}.v3-drag-handle:hover,.v3-drag-handle:focus-visible{color:#d8bee9}.v3-drag-handle[aria-disabled="true"]{opacity:.3;cursor:default}.v3-cue-drop-target{box-shadow:inset 0 2px #bd9cdb}.v3-order-end{height:18px;margin:4px 0;border-radius:3px}.v3-order-end.v3-cue-drop-target{background:#342a40}
 
+.proposal-version{font:10px var(--mono);color:#9e92a9;margin-left:8px;letter-spacing:0;white-space:nowrap;flex:0 0 auto}
+
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -2633,10 +2635,25 @@ document.addEventListener('toggle',event=>{if(event.target.matches('.tour-extra'
 persistTourSelection();showProposalWelcome();
 </script>
 <script>
-// Previous layout, with only cue reordering and the already confirmed Space shortcut.
+const activeProposalMeta={"version": "3.1", "date": "2026-11-03", "description": "Previous layout, Space transport, cue reordering and revised discussion text."};
+const activeProposalQuestions=[{"id": "planning-idee", "title": "Idee voor tijdplanning.", "text": "Verdeel de beschikbare sessietijd op basis van muziekduur en moeilijkheid per cue. Gebruik de werkelijk bestede cuetijd om ook het werktempo beter in te schatten. Bij een late start, pauze of uitloop wil ik eindtijd en resterende tijd eenvoudig kunnen bijstellen, waarna de verdeling over de overige cues en de voor-/achterstand worden herberekend.", "label": "Suggestie", "small": false, "questionOnly": true}, {"id": "timers-vraag", "title": "Welke klokken en tijdcodes gebruiken we tijdens een sessie, en waarvoor?", "text": "Wat moet je in één oogopslag zien: resterende tijd voor de cue, resterende sessietijd of voor-/achterstand? Welke weergaven zijn daarbij essentieel?", "label": "Vraag", "small": false, "questionOnly": true}, {"id": "voor-achter-vraag", "title": "Hoe wordt de voor-/achterstand nu berekend?", "text": "Hoe worden een late start, pauzes en uitgelopen cues meegenomen, zodat je op de actuele inschatting kunt vertrouwen?", "label": "Vraag", "small": false, "questionOnly": true}];
+// Small presentation update on the preserved layout; no new planning behavior.
+discussion.splice(0,discussion.length,...discussion.filter(item=>item.small),...activeProposalQuestions);
+const removedTransportStep=proposalTourSteps.find(step=>step.id==='opnametoets');
+if(removedTransportStep){
+ proposalTourSteps.splice(proposalTourSteps.indexOf(removedTransportStep),1);
+ for(const part of removedTransportStep.parts)proposalTourSelection.delete(part.id);
+ proposalTourSuggestions.splice(0,proposalTourSuggestions.length,...proposalTourSteps.filter(step=>!step.transition));
+ proposalTourParts.splice(0,proposalTourParts.length,...proposalTourSteps.flatMap(step=>step.parts));
+ persistTourSelection();
+}
+const proposalVersionBadge=document.createElement('span');proposalVersionBadge.className='proposal-version';proposalVersionBadge.textContent='v'+activeProposalMeta.version;proposalVersionBadge.title=activeProposalMeta.date;proposalVersionBadge.setAttribute('aria-label','Version '+activeProposalMeta.version);
+document.querySelector('.site-header .wordmark').append(proposalVersionBadge);
+document.title='MandoCues · voorstel van Floris · v'+activeProposalMeta.version;
 const minimalBaseRender=renderDemo,minimalRecordButton=recordButton;
 recordButton=function(s){return minimalRecordButton(s).replace('<kbd>⌘ Enter</kbd>','<kbd>Space</kbd>');};
 document.addEventListener('keydown',event=>{
+ if(event.key==='Enter'&&event.metaKey&&!event.altKey&&!event.ctrlKey&&!event.shiftKey){event.preventDefault();event.stopImmediatePropagation();return;}
  if(event.code!=='Space'||event.altKey||event.metaKey||event.ctrlKey||event.shiftKey||event.isComposing)return;
  if(event.target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"]),dialog,[role="dialog"],[data-review-drag-cue],.proposal-review-actions,.proposal-tour-card,.proposal-review-dialog')||document.querySelector('dialog[open]')||state().scoreComment||reviewCueDrag)return;
  event.preventDefault();event.stopImmediatePropagation();if(!event.repeat)performRecordingAction(state());
