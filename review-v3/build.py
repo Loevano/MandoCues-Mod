@@ -1,15 +1,12 @@
-"""Build the isolated v3 review, leaving the v2 demo and hosting copy unchanged."""
+"""Build the small accepted changes on the preserved v2 layout."""
 from pathlib import Path
 import hashlib
 ROOT=Path(__file__).resolve().parent
 BASE=ROOT.parent/'prototype/dist/index.html'
-source=BASE.read_text(encoding='utf-8')
 before=hashlib.sha256(BASE.read_bytes()).hexdigest()
-css=(ROOT/'review.css').read_text(encoding='utf-8')
-js='\n'.join((ROOT/name).read_text(encoding='utf-8') for name in ('review.js','sections.js','note-ranges.js','planner.js','cue-order.js','clocks.js','reference-score.js','review-tour.js'))
-assert '</style>' in source and '</body>' in source
-source=source.replace('</style>', '\n'+css+'\n</style>',1)
-source=source.replace('</body>', '<script>\n'+js+'\n</script>\n</body>',1)
+source=BASE.read_text(encoding='utf-8')
+source=source.replace('</style>','\n'+(ROOT/'minimal.css').read_text()+'\n</style>',1)
+source=source.replace('</body>','<script>\n'+(ROOT/'minimal.js').read_text()+'\n</script>\n</body>',1)
 (ROOT/'index.html').write_text(source,encoding='utf-8')
 assert hashlib.sha256(BASE.read_bytes()).hexdigest()==before
-print('Built isolated v3 review: '+str(ROOT/'index.html'))
+print('Built previous layout with cue drag handles and confirmed Space transport.')

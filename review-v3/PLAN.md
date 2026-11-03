@@ -1,3 +1,19 @@
+# v3 — kleine aanpassingen op de vorige indeling
+
+Bijgewerkt 3 november 2026.
+
+Laatste keuze van Floris: behoud A, de vorige indeling. Alleen cuevolgorde herschikken via de sleepgreep overnemen. De eerder bevestigde Space-bediening blijft: eerst alleen sessiestart, daarna take starten/stoppen, met gewone spaties tijdens tekstinvoer.
+
+Open [index.html](index.html). Deze pagina heeft de bestaande take-/cue-notes, hoofdklokken, scoreweergave en oorspronkelijke rondleiding. De brede A/B-balk en overige nieuwe experimenten zijn niet actief. Er is geen nieuwe notes-layout, clock display-menu of driepanelenweergave.
+
+De sleepgreep staat links van de cues. Order kiest opnamevolgorde of cuevolgorde als weergavesortering. Slepen verandert geen cue-/take-/note-identiteit. Tijdens opnemen is herschikken geblokkeerd.
+
+Herstelpunten: v2 blijft bewaard als before-session-review-v3-20261102. De volledige A/B-ronde is apart bewaard als [experiments.html](experiments.html) en Git-tag v3-full-ab-review-20261102. Niets verwijderd uit die geschiedenis.
+
+Bouwen: python3 review-v3/build.py. Controleren: check_minimal.py met Playwright en python3 review-v3/check_review.py. build-experiments.py bouwt alleen het historische experimentenbestand. Er wordt niets online gepubliceerd in deze ronde.
+
+## Eerdere brede review — historisch, niet de huidige richting
+
 # v3 — review na de echte opnamesessie
 
 2 november 2026. Floris testte de **originele MandoCues-site**, niet ons voorstel. De aangeleverde tekst is denkrichting, geen blind uit te voeren specificatie.

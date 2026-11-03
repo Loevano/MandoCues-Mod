@@ -1,6 +1,12 @@
 # MandoCues — projectkennis
 
-Bijgewerkt: 2 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
+Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
+
+## Laatste besluit — 3 november 2026
+
+Floris wijst de brede v3-herinrichting af. Behoud de vorige A/v2-indeling en neem alleen cuevolgorde herschikken via de bolletjesgreep over; de eerder bevestigde Space-bediening blijft. Geen notes naast de bediening, nieuwe klokinstellingen, drie panelen, planningsproef of andere wijzigingen toevoegen. De bestaande notes moeten behouden blijven. De tutorial voorlopig niet opnieuw vormgeven.
+
+De actuele [lokale pagina](review-v3/index.html) gebruikt alleen `review-v3/minimal.js` en `minimal.css` boven op de ongewijzigde v2-build. De volledige experimentele ronde staat apart in [experiments.html](review-v3/experiments.html) en tag `v3-full-ab-review-20261102`; niet opnieuw als huidige richting aanbieden. Onderstaande reviewbeschrijving van 2 november is geschiedenis waar dit besluit van afwijkt. Er is geen online publicatie gedaan voor deze versmalling.
 
 ## Nieuwe reviewronde — 2 november 2026
 
