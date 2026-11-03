@@ -36,6 +36,18 @@ with sync_playwright() as p:
  expect(editor).to_have_value('Keep this draft')
  assert page.evaluate('takeById(state(),state().selected).draft.writtenAt')==n_anchor
  editor.press('n');expect(editor).to_have_value('Keep this draftn')
+ # Choosing another Best does not clear the first; selected/live takes stay unchanged.
+ selected=page.evaluate('state().selected')
+ best=page.locator('.cue-group.current [data-take-best]')
+ ids=best.evaluate_all('(buttons)=>buttons.map(b=>b.dataset.takeBest)')
+ assert len(ids)>=2
+ for take in ids[:2]:
+  button=page.locator(f'.cue-group.current [data-take-best="{take}"]')
+  if button.get_attribute('aria-pressed')!='true':button.click()
+ for take in ids[:2]:expect(page.locator(f'.cue-group.current [data-take-best="{take}"]')).to_have_attribute('aria-pressed','true')
+ page.locator(f'.cue-group.current [data-take-best="{ids[1]}"]').click()
+ expect(page.locator(f'.cue-group.current [data-take-best="{ids[0]}"]')).to_have_attribute('aria-pressed','true')
+ assert page.evaluate('state().selected')==selected
  assert not errors,errors
  browser.close()
 print('PASS first-letter and N anchors, clearing drafts, independent NOW/restore before and after Enter')
