@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-03",
+  "presentation_version": "3.2",
+  "url": "https://mandocues-voorstel-v32.gheeneman.chatgpt.site",
+  "project_id": "appgprj_6aea39b640e08191927568766a425501",
+  "site_version": 1,
+  "saved_version_id": "appgprj_6aea39b640e08191927568766a425501~appgver_37ff8441fe308191a0213f111b360b7a",
+  "deployment_id": "appgdep_6aea3a6617b88191a9f44b459b19f01d",
+  "source_commit": "6d9399320fce70684b9beb8bac6c6de2053f7bce",
+  "checkout": "../sites/mando-voorstel-v3-2",
+  "audience": "public",
+  "indexing": "noindex, nofollow, noarchive; robots.txt disallows crawling",
+  "status": "succeeded"
+}

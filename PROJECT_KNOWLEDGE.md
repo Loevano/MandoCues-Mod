@@ -2,6 +2,12 @@
 
 Bijgewerkt: 3 november 2026. Dit is het vaste projectoverzicht voor Floris, Jens en een volgende coding-agent. Het beschrijft de gemaakte keuzes en de huidige demo; het is geen specificatie van een bewezen productie-app. Werk dit bestand bij wanneer een besluit of beperking verandert.
 
+## Online publicatie v3.2 — 3 november 2026
+
+Floris heeft de lokale presentatie expliciet laten publiceren. Deel: https://mandocues-voorstel-v32.gheeneman.chatgpt.site/#recording . Sites bevestigt geslaagde publicatie, hostingversie 1 met presentatie v3.2. De oude Site is vanuit het huidige account niet bereikbaar; daarom is een afzonderlijke Site aangemaakt in ../sites/mando-voorstel-v3-2. Gebruik voortaan de exacte projectidentiteit uit review-v3/publication.json en de .openai/hosting.json in die checkout voor updates; geen nieuwe Site aanmaken. De bestaande oktober-demo is niet vervangen.
+
+Iedereen met de URL kan zonder account openen. noindex/noarchive en robots.txt verzoeken zoekmachines de pagina niet op te nemen; dit is geen toegangsbeveiliging. Alle 68 score-afbeeldingen blijven ingebed. De hostingkopie is exact de opgegeven review-v3/index.html met alleen de robots-metatag toegevoegd. Lokale edits verschijnen pas online na opnieuw publiceren. De vorige lokale-only-instructie is voor deze expliciet gevraagde publicatie opgeheven. Identiteiten, broncommit en deployment staan in publication.json.
+
 ## Actuele presentatie v3.2 — 3 november 2026
 
 Open [review-v3/index.html](review-v3/index.html). De bestaande v2-indeling blijft intact. Alleen de laatst gevraagde verfijningen zijn actief: cues herschikken in tijdlijn én lijst met één gedeelde opnamevolgorde; meerdere Best-takes; N om het noteveld te focussen en een tijdanker te zetten; ↓ voor huidige kloktijd en klokje voor het oorspronkelijke schrijfmoment. Notes bewaren writtenAt apart van de bewerkbare clockAt, ook na Enter en tekst wissen.
