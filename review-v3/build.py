@@ -5,6 +5,9 @@ ROOT=Path(__file__).resolve().parent
 BASE=ROOT.parent/'prototype/dist/index.html'
 before=hashlib.sha256(BASE.read_bytes()).hexdigest()
 source=BASE.read_text(encoding='utf-8')
+# Keep the tour available on demand; do not open the introductory dialog.
+assert source.count('persistTourSelection();showProposalWelcome();')==1
+source=source.replace('persistTourSelection();showProposalWelcome();','persistTourSelection();',1)
 source=source.replace('</style>','\n'+(ROOT/'minimal.css').read_text()+'\n</style>',1)
 metadata=json.loads((ROOT/'version.json').read_text())
 questions=json.loads((ROOT/'questions.json').read_text())

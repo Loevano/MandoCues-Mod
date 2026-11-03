@@ -8,9 +8,9 @@ from playwright.sync_api import sync_playwright,expect
 with sync_playwright() as p:
  browser=launch_chromium(p);context=browser.new_context(viewport={'width':1512,'height':1000});page=context.new_page();page.clock.install();errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
- page.goto((ROOT/'index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
+ page.goto((ROOT/'index.html').as_uri());expect(page.locator('#proposal-welcome')).to_have_count(0)
  expect(page.locator('.v3-review-toolbar,.v3-cue-workspace,.v3-clock-settings,.v3-reference-score,.v3-planner')).to_have_count(0)
- expect(page.locator('.proposal-version')).to_have_text('v3.2.1')
+ expect(page.locator('.proposal-version')).to_have_text('v3.2.2')
  expect(page.locator('.main-session-times label')).to_have_count(4)
  expect(page.locator('[data-review-drag-cue]')).to_have_count(26)
  expect(page.locator('.calm-notes')).to_have_count(1)

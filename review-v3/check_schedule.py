@@ -10,7 +10,7 @@ with sync_playwright() as p:
  browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
  start=datetime(2026,11,3,12,0,tzinfo=timezone.utc);page.clock.install(time=start);page.clock.pause_at(start+timedelta(seconds=1))
- page.goto((ROOT/'index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
+ page.goto((ROOT/'index.html').as_uri());expect(page.locator('#proposal-welcome')).to_have_count(0)
  # Equal total work/budget: neither cue selection nor take selection is a delay.
  page.evaluate('''() => {const s=state();cues.forEach((_,j)=>cueSettings(s,j).planned=5);setProposalBudget(s,cues.length*5);performRecordingAction(s);}''')
  page.clock.run_for(250);page.evaluate('selectCue(state(),1)')

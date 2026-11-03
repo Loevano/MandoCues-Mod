@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright,expect
 with sync_playwright() as p:
  browser=launch_chromium(p);page=browser.new_page(viewport={'width':1512,'height':1000});errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)))
- page.clock.install();page.goto((ROOT/'index.html').as_uri());page.locator('[data-tour-action="welcome-skip"]').click()
+ page.clock.install();page.goto((ROOT/'index.html').as_uri());expect(page.locator('#proposal-welcome')).to_have_count(0)
  editor=page.locator('.calm-notes [data-draft]')
  # First letter freezes the original instant, even if all text is removed.
  editor.fill('Cello');anchor=page.evaluate('takeById(state(),state().selected).draft.writtenAt')
@@ -82,7 +82,7 @@ with sync_playwright() as p:
  # Existing explicit opt-outs survive the new ordering and a page reload.
  page.evaluate("openTourStep(1)")
  page.locator('.proposal-tour-card [data-tour-choice]').uncheck()
- page.reload();page.locator('[data-tour-action="welcome-skip"]').click()
+ page.reload();expect(page.locator('#proposal-welcome')).to_have_count(0)
  page.evaluate('openTourStep(1)');expect(page.locator('.proposal-tour-card [data-tour-choice]')).not_to_be_checked()
  page.evaluate('openTourStep(0)');expect(page.locator('.proposal-tour-card [data-tour-choice]')).to_be_checked()
  # Review cards and their controls remain within the viewport on smaller screens.

@@ -1,5 +1,5 @@
 {
-  "version": "3.2.1",
+  "version": "3.2.2",
   "date": "2026-11-03",
-  "description": "Fix false one-second schedule flicker by counting cue and session work on shared second boundaries."
+  "description": "Remove automatic introduction; keep the walkthrough available on demand."
 }
