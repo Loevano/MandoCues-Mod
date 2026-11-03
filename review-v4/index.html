@@ -931,6 +931,9 @@ body.tour-start-shortcut #main-panel .session-start kbd{animation:tour-start-hin
 
 .v4-take-range{margin-top:15px}.v4-range-line{display:flex;align-items:center;flex-wrap:wrap;gap:5px}.v4-range-line>span{font-size:10px;color:#b8abc3;margin-right:3px}.v4-range-line button{font-size:10px;padding:5px 7px}.v4-range-line button[aria-pressed=true]{background:#3a2d4d;border-color:#9a82b6;color:#e2cef5}.v4-take-range form{display:flex;align-items:end;flex-wrap:wrap;gap:7px;padding:10px 0 0}.v4-take-range form label{display:flex;flex-direction:column;gap:4px;color:#b4a7c2;font-size:10px}.v4-take-range input{width:69px;font:13px var(--mono);padding:6px}.v4-take-range form button{font-size:10px;padding:7px}.v4-take-range form small{flex:0 0 100%;font-size:10px;color:#aa9fb8}.v4-range-error{flex:0 0 100%;font-size:11px;color:#ff9eab;margin:0}.v4-take-range-label{font:9px var(--mono);color:#c2b1d4}.v4-workspace .calm-take-row{height:78px}.v4-workspace .calm-take-identity{display:grid;grid-template-columns:minmax(70px,1fr) auto;gap:2px 5px;flex:1}.v4-workspace .calm-take-name{grid-column:1;grid-row:1/3}.v4-workspace .calm-take-identity .take-label{grid-column:2}.v4-edit-take-range{font-size:9px!important;padding:3px 5px!important;grid-column:2}.v4-workspace .calm-take-row .take-tools{gap:4px}.v4-workspace .calm-take-row .star-rating button{width:17px;font-size:19px!important}#v4-existing-range{display:grid;gap:12px}#v4-existing-range label{display:flex;justify-content:space-between;align-items:center;gap:15px}#v4-existing-range input{width:110px}
 
+.v4-workspace .score-note-text{background:transparent!important}.v4-workspace .score-measure:hover,.v4-workspace .score-measure.in-take-selection{background:transparent!important;box-shadow:none!important;border-color:transparent!important}.v4-score-sidebar{background:transparent!important}.v4-score-timing{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0;font-size:11px;color:#b7a7c4}.v4-score-timing b{font:17px var(--mono);color:#eee6fa;margin-left:8px}.v4-score-timing button{font-size:10px;padding:5px}.v4-score-next-range{margin-bottom:16px}.v4-score-range{font:10px var(--mono)!important;padding:4px 6px!important;justify-self:start;color:#d4bde9}.v4-score-composer>header{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;margin:16px 0 10px}.v4-score-composer .note-composer{margin:0 0 15px}.v4-workspace .v4-score-composer .note-composer textarea{min-height:65px}.v4-workspace .v4-score-composer .quick-note-suggestions{gap:3px}.v4-workspace .v4-score-composer .quick-note-suggestions button{font-size:9px;padding:4px}.v4-workspace .score-take-picker{max-height:280px}.v4-workspace .score-take-row{grid-template-columns:minmax(0,1fr) auto!important}.v4-workspace .score-take-row .star-rating{grid-column:2!important;grid-row:1!important}.v4-workspace .score-take-flags{grid-column:2!important;grid-row:2!important}.v4-workspace .score-take-row .take-label{grid-column:1!important;grid-row:2!important}.v4-workspace .score-take-row>.v4-score-range{grid-column:1!important}.v4-workspace .cutlist-sidebar{min-width:0}.v4-workspace .score-text-annotation{font-weight:500}
+.v4-workspace .v4-score-sidebar .score-take-row{gap:4px;padding:8px 5px}
+
 </style></head>
 <body>
 <header class="site-header"><a class="wordmark" href="#"><span class="brand-icon">m<span>·</span></span> MandoCues <span class="divider">/</span><span class="header-label">prototypes van Floris</span></a><div class="header-right"><span class="draft-label"><i></i> Klikbaar · vrijblijvend</span><a class="text-button selection-link" href="#voor-claude">Kies voor Claude</a><button class="text-button" id="export">Bewaar suggesties <span aria-hidden="true">↗</span></button></div></header>
@@ -3148,6 +3151,53 @@ openSessionExport=function(kind){
  if(kind==='takes')document.querySelectorAll('.session-export-preview section').forEach((section,index)=>{const t=allTakes(state())[index];if(t)section.querySelector('b')?.insertAdjacentHTML('afterend',' · '+v4RangeLabel(t.barRange));});
 };
 
+// Score is a recording/annotation view. Comp remains intact in the preserved v3.
+const v4ScoreBaseView=productionScoreView,v4ScoreBaseTakeList=scoreTakeList;
+scoreComparisonLayers=function(){return '';};
+scoreSettings=function(s){return `<div class="score-settings" role="group" aria-label="Score display">${!s.doc.url?scorePageLayoutMenu(s)+scoreZoomControls(s):''}</div>`;};
+productionScoreView=function(s){
+ s.cutlistView='score';const template=document.createElement('template');template.innerHTML=v4ScoreBaseView(s);
+ template.content.querySelectorAll('.score-measure').forEach(cell=>{cell.classList.remove('in-take-selection');cell.setAttribute('aria-pressed','false');});
+ return template.innerHTML;
+};
+// Keep the saved comp data; suppress edits and colored selection rendering only here.
+changeScoreSelection=function(){return;};
+document.addEventListener('pointerdown',event=>{
+ if(proposalView!=='cutlist'||!(event.metaKey||event.ctrlKey)||!event.target.closest('.score-paper')||event.target.closest('.score-note-text,.score-inline-editor'))return;
+ event.stopImmediatePropagation();
+},true);
+chooseScoreTake=function(s,id){selectScoreTake(s,id,false,true);};
+scoreVisibleTakes=function(s){const t=takeById(s,s.selected);return t?[t]:[];};
+scoreTakeList=function(s,options){
+ const template=document.createElement('template');template.innerHTML=v4ScoreBaseTakeList(s,{...options,newButton:false});
+ template.content.querySelector('.score-compare-help')?.remove();
+ template.content.querySelectorAll('.score-take-row').forEach(row=>{
+  const id=row.querySelector('[data-select-take]').dataset.selectTake,t=takeById(s,id);
+  row.insertAdjacentHTML('beforeend',`<button class="v4-score-range" data-v4-edit-take-range="${id}" title="Edit take bars">${v4RangeLabel(t.barRange)}</button>`);
+ });return template.innerHTML;
+};
+scoreSidebar=function(s){
+ const t=takeById(s,s.selected),p=v4Forecast(s);
+ return `<aside class="score-notes cutlist-sidebar v4-score-sidebar">${scoreCueOverview(s)}<div class="v4-score-timing"><span>Cue left <b data-v4-compact-cue>${(p.cueLeft<0?'−':'')+v4Duration(Math.abs(p.cueLeft))}</b></span><button data-v4-edit-cue="${s.cue}">Cue timing</button></div><div class="v4-score-next-range">${v4RangeControls(s)}</div>${scoreTakeList(s)}${t?`<section class="v4-score-composer"><header><b>${entryLabel(t)} · Notes</b><small>${shortcutText('N · Enter')}</small></header>${composer(s,t,false,'v4-score')}${scoreNoteList(s,t)}</section>`:'<p class="notes-empty">Start a take to write notes.</p>'}</aside>`;
+};
+const v4ScoreBaseRender=renderDemo;
+renderDemo=function(){
+ v4ScoreBaseRender();document.querySelectorAll('[data-proposal-view="cutlist"]').forEach(b=>{b.textContent='Score';b.setAttribute('aria-label','Score view');});
+ document.querySelector('.proposal-workspace-title').textContent=proposalView==='cutlist'?'Score':'Recording';
+ const title=document.querySelector('.proposal-demo-label');if(title)title.textContent='Local v4 prototype · no audio is recorded';
+};
+const v4ScoreBaseShow=showProposalView;
+showProposalView=function(view,options={}){const target=view==='score'?'cutlist':view;v4ScoreBaseShow(target,options);if(options.navigate!==false)history.replaceState(null,'',target==='cutlist'?'#score':'#recording');};
+route=function(){if(!document.querySelector('.proposal-shell'))mountProposal();showProposalView(['score','cutlist','partituur'].includes(location.hash.slice(1))?'score':'recording',{navigate:false});};
+document.addEventListener('keydown',event=>{
+ if(event.code!=='KeyN'||proposalView!=='cutlist'||event.metaKey||event.ctrlKey||event.altKey||event.shiftKey||event.repeat||event.isComposing||!navigationKeysAvailable(event)||state().scoreComment)return;
+ const t=takeById(state(),state().selected),editor=document.querySelector('[data-draft][data-editor-place="v4-score"]');if(!t||!editor)return;
+ event.preventDefault();event.stopImmediatePropagation();reviewAnchorDraft(t);editor.focus();editor.setSelectionRange(editor.value.length,editor.value.length);
+},true);
+// Preserve the first-letter anchor when a positioned score note is edited.
+const v4SaveScoreComment=saveScoreComment;
+saveScoreComment=function(s){const c=s.scoreComment,t=takeById(s,c?.take),old=t?.notes.find(n=>n.id===c?.editId),writtenAt=old?.writtenAt??c?.clockAt;v4SaveScoreComment(s);if(c&&t&&!s.scoreComment){const n=t.notes.find(n=>n.id===c.editId)||t.notes.at(-1);if(n)n.writtenAt=writtenAt??n.clockAt;}};
+route();
 
 
 </script>
