@@ -31,7 +31,13 @@ function reviewMoveCue(j,target){
 const reviewOriginalTimeline=cueTimeline;
 cueTimeline=function(s){
  const output=reviewOriginalTimeline(s),template=document.createElement('template');template.innerHTML=output;
- const track=template.content.querySelector('.cue-timeline-track');if(track){const nodes=[...track.children];for(const j of reviewRecordingOrder(s))track.append(nodes[j]);}
+ const track=template.content.querySelector('.cue-timeline-track');if(track){
+  const nodes=[...track.children];
+  for(const j of reviewRecordingOrder(s)){
+   const button=nodes[j];button.dataset.reviewTimelineCue=String(j);button.dataset.reviewCueKey=String(j);
+   button.draggable=false;button.title+=' · Drag to reorder';track.append(button);
+  }
+ }
  return template.innerHTML;
 };
 stepCue=function(s,direction){const order=reviewRecordingOrder(s),at=order.indexOf(s.cue),next=at+direction;if(next>=0&&next<order.length)selectCue(s,order[next]);};
@@ -54,16 +60,16 @@ renderDemo=function(){
  document.querySelectorAll('[data-action="next-cue"]').forEach(b=>b.disabled=!!running(s)||index===order.length-1);
 };
 document.addEventListener('change',e=>{if(e.target.matches('[data-review-cue-sort]')){state().reviewOrderSort=e.target.value;renderDemo();}});
-let reviewCueDrag=null;
+let reviewCueDrag=null,reviewSuppressCueClickUntil=0;
 function reviewCancelCueDrag(){
  document.querySelectorAll('.v3-cue-drop-target').forEach(el=>el.classList.remove('v3-cue-drop-target'));
  reviewCueDrag=null;
 }
 document.addEventListener('pointerdown',e=>{
- const handle=e.target.closest('[data-review-drag-cue]');if(!handle||e.button!==0)return;
+ const handle=e.target.closest('[data-review-drag-cue],[data-review-timeline-cue]');if(!handle||e.button!==0)return;
  if(running(state())||state().reviewOrderSort==='cue')return;
  e.preventDefault();handle.setPointerCapture(e.pointerId);
- reviewCueDrag={id:+handle.dataset.reviewDragCue,pointer:e.pointerId,startY:e.clientY,startX:e.clientX,moved:false,target:null};
+ reviewCueDrag={id:+(handle.dataset.reviewDragCue??handle.dataset.reviewTimelineCue),timeline:handle.hasAttribute('data-review-timeline-cue'),pointer:e.pointerId,startY:e.clientY,startX:e.clientX,moved:false,target:null};
 });
 document.addEventListener('pointermove',e=>{
  const drag=reviewCueDrag;if(!drag||e.pointerId!==drag.pointer)return;
@@ -72,9 +78,17 @@ document.addEventListener('pointermove',e=>{
  document.querySelectorAll('.v3-cue-drop-target').forEach(el=>el.classList.remove('v3-cue-drop-target'));
  const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-review-cue-key],[data-review-order-end]');
  drag.target=target?target.hasAttribute('data-review-order-end')?{end:true}:{before:+target.dataset.reviewCueKey}:null;
+ if(target?.hasAttribute('data-review-timeline-cue')){
+  const rect=target.getBoundingClientRect(),after=e.clientX>rect.left+rect.width/2;
+  if(after){const order=reviewRecordingOrder(state()),next=order[order.indexOf(+target.dataset.reviewCueKey)+1];drag.target=next===undefined?{end:true}:{before:next};}
+  target.classList.toggle('v3-drop-after',after);
+  const scroller=target.closest('.cue-timeline-scroll'),r=scroller.getBoundingClientRect();
+  if(e.clientX>r.right-35)scroller.scrollLeft+=15;else if(e.clientX<r.left+35)scroller.scrollLeft-=15;
+ }
  target?.classList.add('v3-cue-drop-target');
 });
-document.addEventListener('pointerup',e=>{const drag=reviewCueDrag;if(!drag||drag.pointer!==e.pointerId)return;e.preventDefault();reviewCancelCueDrag();if(drag.moved&&drag.target)reviewMoveCue(drag.id,drag.target);});
+document.addEventListener('pointerup',e=>{const drag=reviewCueDrag;if(!drag||drag.pointer!==e.pointerId)return;e.preventDefault();reviewCancelCueDrag();if(drag.moved){reviewSuppressCueClickUntil=performance.now()+350;if(drag.target)reviewMoveCue(drag.id,drag.target);}});
+document.addEventListener('click',e=>{if(performance.now()<reviewSuppressCueClickUntil&&e.target.closest('[data-session-cue],[data-review-drag-cue]')){e.preventDefault();e.stopImmediatePropagation();}},true);
 document.addEventListener('pointercancel',reviewCancelCueDrag);
 document.addEventListener('keydown',e=>{
  if(e.key==='Escape'&&reviewCueDrag){e.preventDefault();reviewCancelCueDrag();return;}

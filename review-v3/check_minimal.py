@@ -25,8 +25,14 @@ with sync_playwright() as p:
  # Keyboard reorder is also available on the drag grip, without changing take/note IDs.
  handle=page.locator('[data-review-drag-cue="0"]');handle.focus();handle.press('ArrowDown')
  assert page.evaluate('reviewRecordingOrder(state()).slice(0,2)')==[1,0]
- page.locator('[data-review-drag-cue="0"]').drag_to(page.locator('[data-review-cue-key="1"]'))
+ page.locator('[data-review-drag-cue="0"]').drag_to(page.locator('.cue-group[data-review-cue-key="1"]'))
  assert page.evaluate('reviewRecordingOrder(state()).slice(0,2)')==[0,1]
+ # The timeline and list share the same recording order in both directions.
+ page.locator('[data-review-timeline-cue="1"]').drag_to(page.locator('[data-review-timeline-cue="0"]'),target_position={'x':4,'y':10})
+ assert page.evaluate('reviewRecordingOrder(state()).slice(0,2)')==[1,0]
+ assert page.locator('.calm-cue-list>.cue-group').first.get_attribute('data-review-cue-key')=='1'
+ page.locator('[data-review-drag-cue="0"]').focus();page.keyboard.press('ArrowUp')
+ assert page.locator('.cue-timeline-track>button').first.get_attribute('data-session-cue')=='0'
  assert page.evaluate('({cueCodes:cues.map(c=>c[0]),takes:allTakes(state()).map(t=>({id:t.id,notes:t.notes})),cueNotes:state().cueNotes})')==original
  page.locator('[data-review-cue-sort]').select_option('cue')
  expect(page.locator('[data-review-drag-cue="0"]')).to_have_attribute('aria-disabled','true')
